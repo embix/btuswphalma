@@ -1,0 +1,49 @@
+#summary Entwurf für das Pflichtenheft
+#labels Featured,Phase-Requirements
+
+= Auftraggeber =
+
+= Zielbestimmung =
+
+Muskriterien
+  * Muss1
+
+Wunschkriterien
+  * Wunsch1
+
+Abgrenzungskriterien
+  * soll nicht auf Smartphones etc. laufen
+
+= Produkteinsatz =
+
+Anwendungsbereiche
+
+Zielgruppen
+
+Betriebsbedingungen
+
+= Produktumgebung =
+
+= Produktfunktionen =
+
+Übersicht
+
+*/F1/*
+
+= Produktdaten =
+
+= Produktleistung =
+
+= Benutzeroberfläche = 
+
+= Qualitäts-Zielbestimmungen =
+
+= Globale Testszenarien / Testfälle =
+
+= Entwicklungs-Umgebung =
+
+Software
+
+Hardware
+
+= Ergänzungen =
