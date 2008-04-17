@@ -1,26 +1,28 @@
 #summary Entwurf für das Pflichtenheft
 #labels Featured,Phase-Requirements
 
-= Auftraggeber =
+=Auftraggeber=
 
-= Zielbestimmung =
-
-Muskriterien
-  * Muss1
-
-Wunschkriterien
-  * Wunsch1
-
-Abgrenzungskriterien
-  * soll nicht auf Smartphones etc. laufen
+=Zielbestimmung=
+==Mußkriterien==
+  * Das Produkt prüft die Regelkonformität der Spielzüge und läßt bei Verstößen ein _Veto_ zu.
+==Wunschkriterien==
+  * Ambitionierte Anwender werden in einer _Leistungsübersicht_ (High Score) aufgelistet.
+  * Wenn sich nicht genügend menschliche Teilnehmer finden, können bis zu 2 Spieler von einem _Computergegner_ gesteuert werden. Dessen Schwierigkeitsgrad ist in 3 Stufen einstellbar.
+  * Das verwendete _Spielbrett_ ist wählbar
+==Abgrenzungskriterien==
+  * Das Produkt ist nicht für hochmobile Systeme, wie Smartphones oder PDA geeignet.
 
 = Produkteinsatz =
 
 Anwendungsbereiche
+  * Das Produkt wird von den Anwendern zum unterhaltsamen Zeitvertreib genutzt.
 
 Zielgruppen
+  * Grundlegende PC-Kenntnisse zur Inbetreibnahme werden vorausgesetzt, zum Spielen sind keine besonderen Qualifikationen erforderlich.
 
 Betriebsbedingungen
+  * Das Spiel soll auf handelsüblichen PC-Systemen ausgeführt werden können.
 
 = Produktumgebung =
 
