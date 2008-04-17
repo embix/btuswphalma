@@ -1,0 +1,3 @@
+#summary die Halma Spielregeln als Anhang des Pflichtenheftes
+#labels Featured,Phase-Requirements
+
