@@ -27,20 +27,26 @@ Das Produkt setzt eine Java 1.5 Laufzeitumgebung mit nutzbarer graphischer Oberf
 Das Produkt ist für x86 kompatible PC Systeme mit mindestens 512MiByte nutzbarem Arbeitsspeicher konzipiert.
 
 =Produktfunktionen=
+==Übersicht==
+===/F1/===
 
-Übersicht
 
-*/F1/*
+=Produktdaten=
+Die Leistungsübersicht wird gespeichert.
 
-= Produktdaten =
+=Produktleistung=
 
-= Produktleistung =
+=Benutzeroberfläche=
+Auf der Benutzeroberfläche werden eine Menüleiste, das Spielfeld sowie kontextabhängige Schaltflächen und Textfelder sichtbar sein. Das Spielfeld ist als 2D Draufsicht realisiert. Die Spielzüge werden, ebenso wie Schaltflächen, mit dem Standard-Zeigergerät (Maus, Trackball, Touchpad) eingegeben.
 
-= Benutzeroberfläche = 
+=Qualitäts-Zielbestimmungen=
+Das Projekt wird den objektorientiert Konzepten folgend entworfen und umgesetzt. Die Dokumantation der Klassenfunktionalitäten erfolgt im Quellcode.
 
-= Qualitäts-Zielbestimmungen =
-
-= Globale Testszenarien / Testfälle =
+=Globale Testszenarien / Testfälle=
+==Mehrspielertest==
+Bei einem Spiel mit mehreren Teilnehmern wird die Integration der einzelnen Produktkomponenten geprüft, insbesondere auch die Netzwerkfunktionalität.
+==Einzelspielertest==
+Bei einem Spiel eines menschlichen Teilnehmers gegen den Computergegner werden, neben der Integration der einzelnen Produktkomponenten, die Regelkonformität und "Intelligenz" des Computergeners geprüft.
 
 = Entwicklungs-Umgebung =
 
