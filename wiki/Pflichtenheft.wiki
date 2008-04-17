@@ -16,25 +16,32 @@
 ==Anwendungsbereiche==
   * Das Produkt wird von den Anwendern zum unterhaltsamen Zeitvertreib genutzt.
 ==Zielgruppen==
-  * Grundlegende PC-Kenntnisse zur Inbetreibnahme werden vorausgesetzt, zum Spielen sind keine besonderen Qualifikationen erforderlich.
+  * Grundlegende PC-Kenntnisse zu Inbetriebnahme und Netzwerkeinstellungen werden vorausgesetzt, zum Spielen selbst sind keine besonderen Qualifikationen erforderlich.
 ==Betriebsbedingungen==
   * Das Spiel soll auf handelsüblichen Desktop PC ausgeführt werden können.
 
 =Produktumgebung=
 ==Software==
-Das Produkt setzt eine Java 1.5 Laufzeitumgebung mit nutzbarer graphischer Oberfläche voraus.
+Das Produkt setzt eine Java 1.5 Laufzeitumgebung mit nutzbarer graphischer Oberfläche (Swing) voraus.
 ==Hardware==
-Das Produkt ist für x86 kompatible PC Systeme mit mindestens 512MiByte nutzbarem Arbeitsspeicher konzipiert.
+Das Produkt ist für x86 kompatible PC Systeme mit 1GHz Taktfrequenz, mindestens 512MiByte nutzbarem Arbeitsspeicher und 2D beschleunigender Graphikkarte/-Chipsatz konzipiert.
 
 =Produktfunktionen=
 ==Übersicht==
 ===/F1/===
-
+Die _Netzwerkfähigkeit_ des Produktes ermöglicht das gemeinsame Spiel mit 1,2,3,4,6 Teilnehmern.
+===/F2/===
+Bis zu zwei Computerspieler können am Spiel teilnemen. Der Spielleiter (Teilnehmer der als Server/Master fungiert) kann aus 3 Schwierigkeitsstufen wählen.
+===/F3/===
+Ein serverbasierter Regelcheck anhand festgelegter Spielregeln ermöglicht Vetorecht bei nicht regelkonformen Spielzügen. ([http://code.google.com/p/btuswphalma/wiki/Spielregeln Anhang])
+===/F4/===
+Das Spielfeld wird in 2D graphisch dargestellt.
 
 =Produktdaten=
 Die Leistungsübersicht wird gespeichert.
 
 =Produktleistung=
+Die Antwortzeiten liegen durschnittlich unter 60 Sekunden um ein füssiges Spiel zu ermöglichen.
 
 =Benutzeroberfläche=
 Auf der Benutzeroberfläche werden eine Menüleiste, das Spielfeld sowie kontextabhängige Schaltflächen und Textfelder sichtbar sein. Das Spielfeld ist als 2D Draufsicht realisiert. Die Spielzüge werden, ebenso wie Schaltflächen, mit dem Standard-Zeigergerät (Maus, Trackball, Touchpad) eingegeben.
@@ -48,10 +55,15 @@ Bei einem Spiel mit mehreren Teilnehmern wird die Integration der einzelnen Prod
 ==Einzelspielertest==
 Bei einem Spiel eines menschlichen Teilnehmers gegen den Computergegner werden, neben der Integration der einzelnen Produktkomponenten, die Regelkonformität und "Intelligenz" des Computergeners geprüft.
 
-= Entwicklungs-Umgebung =
+=Entwicklungs-Umgebung=
+==Software==
+  * IDE (Eclipse 3.3)
+  * Java 1.5 SDK, Java 1.6 SDK
+==Hardware==
+  * handelsübliche x86 kompatible PCs
+==Orgware==
+  * Versionierungssystem (Subversion)
+  * Wiki
+  * Issuetracker
 
-Software
-
-Hardware
-
-= Ergänzungen =
+=Ergänzungen=
