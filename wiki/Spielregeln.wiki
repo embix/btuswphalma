@@ -8,9 +8,9 @@ Das Spielbrett hat die Form eines Hexagramms, also eines gleichseitigen, sechsza
 
 Die Ecken der Dreiecke stellen die Felder für die Spielsteine dar, die Kanten der Dreiecke repräsentieren die Verbindungen der Felder. In einer Zacke des Sterns werden die zehn der Spitze der Zacke am nächsten liegenden Felder ein Haus genannt.
 
-*(Frage: Das Spielfeld genauer beschreiben?)*
+http://btuswphalma.googlecode.com/svn/wiki/sternTranspKlein.png
 
-*(Bild hochladen und verlinken)*
+*(Frage: Das Spielfeld genauer beschreiben?)*
 
 ==Spieler und Aufstellung:==
 Es können zwei, drei, vier oder sechs Spieler zusammen ein Spiel spielen.
