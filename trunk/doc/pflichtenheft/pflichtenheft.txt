@@ -1,5 +1,0 @@
-(Entwurf) Pflichtenheft
------------------------
-
-das vorlaeufige Pflichtenheft steht im wiki:
-http://code.google.com/p/btuswphalma/wiki/Pflichtenheft

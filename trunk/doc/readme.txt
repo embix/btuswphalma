@@ -1,1 +1,0 @@
-hier soll der Kram zur Dokumentation des Projektes rein
