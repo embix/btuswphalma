@@ -144,5 +144,5 @@ Bei einem Spiel eines menschlichen Teilnehmers gegen den Computergegner werden, 
 
 =Ergänzungen=
 Der Code wird unter die [http://www.opensource.org/licenses/bsd-license.php neue dreiklauselige BSD] Lizenz gestellt
- * Anhang [http://btuswphalma.googlecode.com/svn/wiki/Spielregeln Spielregeln]
- * Anhang [http://btuswphalma.googlecode.com/svn/wiki/Glossar Glossar]
+ * Anhang [http://code.google.com/p/btuswphalma/wiki/Spielregeln Spielregeln]
+ * Anhang [http://code.google.com/p/btuswphalma/wiki/Glossar Glossar]
