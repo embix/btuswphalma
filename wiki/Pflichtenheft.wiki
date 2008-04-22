@@ -139,6 +139,8 @@ Bei einem Spiel eines menschlichen Teilnehmers gegen den Computergegner werden, 
   * Versionierungssystem (Subversion)
   * Wiki
   * Issuetracker
+  * OpenOffice
+  * InternetRelayChat
 
 =Ergänzungen=
 Der Code wird unter die [http://www.opensource.org/licenses/bsd-license.php neue dreiklauselige BSD] Lizenz gestellt
