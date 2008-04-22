@@ -118,7 +118,7 @@ Die Antwortzeiten liegen durschnittlich unter 60 Sekunden um ein füssiges Spiel
 =Benutzeroberfläche=
 Auf der Benutzeroberfläche werden eine Menüleiste, das Spielfeld sowie kontextabhängige Schaltflächen und Textfelder sichtbar sein. Das Spielfeld ist als 2D Draufsicht realisiert. Die Spielzüge werden, ebenso wie Schaltflächen, mit dem Standard-Zeigergerät (Maus, Trackball, Touchpad) eingegeben.
 
-(Bild eines Prototypen einfügen)
+http://btuswphalma.googlecode.com/svn/wiki/skizze_frontend_spiel.png
 
 =Qualitäts-Zielbestimmungen=
 Das Projekt wird den objektorientiert Konzepten folgend entworfen und umgesetzt. Die Dokumantation der Klassenfunktionalitäten erfolgt im Quellcode.
@@ -144,5 +144,5 @@ Bei einem Spiel eines menschlichen Teilnehmers gegen den Computergegner werden, 
 
 =Ergänzungen=
 Der Code wird unter die [http://www.opensource.org/licenses/bsd-license.php neue dreiklauselige BSD] Lizenz gestellt
- * Anhang Spielregeln
- * Anhang Glossar
+ * Anhang [http://btuswphalma.googlecode.com/svn/wiki/Spielregeln.wiki Spielregeln]
+ * Anhang [http://btuswphalma.googlecode.com/svn/wiki/Glossar.wiki Glossar]
