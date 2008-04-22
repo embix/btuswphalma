@@ -4,21 +4,65 @@
 =Zielbestimmung=
 ==Mußkriterien==
   * Mehrere Anwender können das Produkt über ein Netzwerk gemeinsam nutzen.
-  * Das Produkt prüft die Regelkonformität der Spielzüge und läßt bei Verstößen ein _Veto_ zu.
+  * Geeignet um nach den Halmaregeln zu Spielen (siehe Anhang)
+  * Spielerzahlen: 2, 3, 4 und 6
+  * Spielmodus: Nur regelkonforme Spielzüge
+  * Server:
+    * Start durch mitspielenden "Game Master"
+    * Beim Start werden die Spielerzahl und die KI-Spielerzahl festgelegt
+    * Geeignet, ein einziges Spiel zu spielen
+    * Verschickt Ergebnis des gerade beendetens Spiels
+  * Client:
+    * Wahl eines Spielernamens
+    * Wahl eines Servers
+    * 2D-Darstellung des Spielbretts
+    * Zugeingabe: auf dem 2D-Spielbrett
+    * Spielerliste
+    * Anzeige des aktiven Spielers
+    * Spielzüge grafisch darstellen, und für ca. 10 Sekunden angezeigt lassen
+    * Anzeige des Spielergebnisses
+  * KI:
+    * 3 Spielstärken
+    * Spielt nach den Regeln
+    * Bis zu 2 Bots pro Spiel müssen unterstützt werden
+    * Bots werden durch Game Master gestartet
 ==Wunschkriterien==
-  * Ambitionierte Anwender werden in einer _Leistungsübersicht_ (High Score) aufgelistet.
-  * Wenn sich nicht genügend menschliche Teilnehmer finden, können bis zu 2 Spieler von einem _Computergegner_ gesteuert werden. Dessen Schwierigkeitsgrad ist in 3 Stufen einstellbar.
   * Das verwendete _Spielbrett_ ist wählbar
+  * 2. Spielmodus: Vetos durch Clients, keine Regleprüfung
+  * Server:
+    * Spielmodus beim Start festgelegt
+    * Eine Highscoreliste
+    * Macht nach Veto letzten Spielzug rückgängig
+  * Client:
+    * Vetomöglichkeit innerhalb der Anzeigezeit des Zuges
+    * Anzeige der Highscoreliste des aktuellen Servers
+  * KI:
+    * Beliebige Anzahl KI-Spieler
+    * Höchste KI-Stufe muss Vetorecht korrekt nutzen
 ==Abgrenzungskriterien==
-  * Das Produkt ist nicht für hochmobile Systeme, wie Smartphones oder PDA geeignet.
+  * Das Produkt ist nicht für hochmobile Systeme, wie Smartphones oder PDA ausgelegt.
+  * Nicht mehr als 6 Spieler
+  * Server:
+    * kein dedicated Server
+    * Kein Dauerbetrieb
+  * Client:
+    * Keine 3D-Darstellung
+    * Keine Animationen
+    * Nur kompletter Zug wird angezeigt
+  * KI:
+    * Läuft auf demselben Computer wie Server
 
 =Produkteinsatz=
 ==Anwendungsbereiche==
   * Das Produkt wird von den Anwendern zum unterhaltsamen Zeitvertreib genutzt.
 ==Zielgruppen==
-  * Grundlegende PC-Kenntnisse zu Inbetriebnahme und Netzwerkeinstellungen werden vorausgesetzt, zum Spielen selbst sind keine besonderen Qualifikationen erforderlich.
+  * Grundlegende PC-Kenntnisse zu Inbetriebnahme und Netzwerkeinstellungen werden vorausgesetzt
+  * Zum Spielen selbst sind keine besonderen Qualifikationen erforderlich.
+  * ZZZ Der Anwender muss die Spielregeln verstehen können (Deutsche Sprache, Lesen, IQ>Kopfsalat)
 ==Betriebsbedingungen==
   * Das Spiel soll auf handelsüblichen Desktop PC ausgeführt werden können.
+  * Der Server wird auf dem PC eines Mitspielers ausgeführt
+  * Der Server läuft nur während des Spiels / der Spiele
 
 =Produktumgebung=
 ==Software==
