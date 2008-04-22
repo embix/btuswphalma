@@ -33,6 +33,7 @@
     * Spielmodus beim Start festgelegt
     * Eine Highscoreliste
     * Macht nach Veto letzten Spielzug rückgängig
+    * Nach Beendigung eines Spiels kann ein neues Spiel gestartet werden
   * Client:
     * Vetomöglichkeit innerhalb der Anzeigezeit des Zuges
     * Anzeige der Highscoreliste des aktuellen Servers
@@ -54,11 +55,11 @@
 
 =Produkteinsatz=
 ==Anwendungsbereiche==
-  * Das Produkt wird von den Anwendern zum unterhaltsamen Zeitvertreib genutzt.
+  * Das Produkt wird zum freundschaftlichen Halma spielen in der Freizeit benutzt
 ==Zielgruppen==
   * Grundlegende PC-Kenntnisse zu Inbetriebnahme und Netzwerkeinstellungen werden vorausgesetzt
   * Zum Spielen selbst sind keine besonderen Qualifikationen erforderlich.
-  * ZZZ Der Anwender muss die Spielregeln verstehen können (Deutsche Sprache, Lesen, IQ>Kopfsalat)
+  * Der Anwender muss die Spielregeln verstehen können (Deutsche Sprache, Lesen)
 ==Betriebsbedingungen==
   * Das Spiel soll auf handelsüblichen Desktop PC ausgeführt werden können.
   * Der Server wird auf dem PC eines Mitspielers ausgeführt
