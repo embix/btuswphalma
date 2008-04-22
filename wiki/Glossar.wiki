@@ -1,0 +1,17 @@
+#summary Erklärung der verwandten Fachbegriffe
+#labels Featured,Phase-Requirements
+
+Folgende Begriffe werden synonym verwendet:
+
+==Programm==
+  * Spiel
+  * Produkt
+Hierbei handelt es sich um das ausführbare Program, in dem die geforterte Funktionalität eingebaut ist.
+
+==Session==
+
+==Spielzug==
+
+==Schieben==
+
+==Springen==
