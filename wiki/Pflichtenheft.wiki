@@ -67,29 +67,57 @@
 
 =Produktumgebung=
 ==Software==
-Das Produkt setzt eine Java 1.5 Laufzeitumgebung mit nutzbarer graphischer Oberfläche (Swing) voraus.
+Das Produkt setzt eine SUN Java JRE 1.5  mit nutzbarer graphischer Oberfläche (Swing) voraus.
+(Es wird IPv4 benutzt)
 ==Hardware==
-Das Produkt ist für x86 kompatible PC Systeme mit 1GHz Taktfrequenz, mindestens 512MiByte nutzbarem Arbeitsspeicher und 2D beschleunigender Graphikkarte/-Chipsatz konzipiert.
+Das Produkt ist für netzwerkfähigen x86 kompatible PC Systeme mit 1GHz Taktfrequenz, mindestens 512MiByte nutzbarem Arbeitsspeicher und 2D beschleunigender Graphikkarte/-Chipsatz konzipiert und .
 
 =Produktfunktionen=
-==Übersicht==
+==Serverstart==
 ===/F1/===
-Die _Netzwerkfähigkeit_ des Produktes ermöglicht das gemeinsame Spiel mit 1,2,3,4,6 Teilnehmern.
+Festlegen der Spielerzahl
 ===/F2/===
-Bis zu zwei Computerspieler können am Spiel teilnemen. Der Spielleiter (Teilnehmer der als Server/Master fungiert) kann aus 3 Schwierigkeitsstufen wählen.
+Festlegen der Botanzahl
 ===/F3/===
-Ein serverbasierter Regelcheck anhand festgelegter Spielregeln ermöglicht Vetorecht bei nicht regelkonformen Spielzügen. ([http://code.google.com/p/btuswphalma/wiki/Spielregeln Anhang])
+Festlegen der Netzwerkadresse
 ===/F4/===
-Das Spielfeld wird in 2D graphisch dargestellt.
+Bestimmen des Spielmodus (Regelprüfung/Veto)
+===/F5/===
+Spielername des Game Master bestimmen
+==Clientstart==
+===/F6/===
+Eingeben der Serveradresse
+===/F7/===
+Festlegen eines Spielernamens
+==Spielen durch Client==
+===/F8/===
+Eingabe eines Zuges
+===/F9/===
+Züge der anderen Spieler anzeigen
+===/F10/===
+Veto gegen Zug eines anderen Spielers einlegen
+===/F11/===
+Mitteilung wenn Spieler fertig ist
+==Nach Abschluss eines Session==
+===/F12/===
+Anzeigen der Platzierung des Spiels mit Anzahl der Züge
+===/F13/===
+Game Master bestimmt ob neues Spiel
+==Mit laufenden Client==
+===/F14/===
+Anzeige der Higscoreliste
 
 =Produktdaten=
-Die Leistungsübersicht wird gespeichert.
+  * Spielernamen
+  * Schnellste gewonnene Session
+  * Anzahl der gewonnen Sessions
 
 =Produktleistung=
 Die Antwortzeiten liegen durschnittlich unter 60 Sekunden um ein füssiges Spiel zu ermöglichen.
 
 =Benutzeroberfläche=
 Auf der Benutzeroberfläche werden eine Menüleiste, das Spielfeld sowie kontextabhängige Schaltflächen und Textfelder sichtbar sein. Das Spielfeld ist als 2D Draufsicht realisiert. Die Spielzüge werden, ebenso wie Schaltflächen, mit dem Standard-Zeigergerät (Maus, Trackball, Touchpad) eingegeben.
+[Bild eines Prototypen einfügen]
 
 =Qualitäts-Zielbestimmungen=
 Das Projekt wird den objektorientiert Konzepten folgend entworfen und umgesetzt. Die Dokumantation der Klassenfunktionalitäten erfolgt im Quellcode.
@@ -112,3 +140,6 @@ Bei einem Spiel eines menschlichen Teilnehmers gegen den Computergegner werden, 
   * Issuetracker
 
 =Ergänzungen=
+Der Code wird unter die [http://www.opensource.org/licenses/bsd-license.php neue dreiklauselige BSD] Lizenz gestellt
+ * Anhang Spielregeln
+ * Anhang Glossar
