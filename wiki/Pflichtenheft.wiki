@@ -117,7 +117,8 @@ Die Antwortzeiten liegen durschnittlich unter 60 Sekunden um ein füssiges Spiel
 
 =Benutzeroberfläche=
 Auf der Benutzeroberfläche werden eine Menüleiste, das Spielfeld sowie kontextabhängige Schaltflächen und Textfelder sichtbar sein. Das Spielfeld ist als 2D Draufsicht realisiert. Die Spielzüge werden, ebenso wie Schaltflächen, mit dem Standard-Zeigergerät (Maus, Trackball, Touchpad) eingegeben.
-[Bild eines Prototypen einfügen]
+
+(Bild eines Prototypen einfügen)
 
 =Qualitäts-Zielbestimmungen=
 Das Projekt wird den objektorientiert Konzepten folgend entworfen und umgesetzt. Die Dokumantation der Klassenfunktionalitäten erfolgt im Quellcode.
