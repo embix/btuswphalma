@@ -1,15 +1,15 @@
-#summary der Grobplan für die Teilprojekte
+ï»¿#summary der Grobplan fÃ¼r die Teilprojekte
 #labels Featured,Phase-Requirements
 
 =Der Grobplan der Teilprojekte=
 
 ==Teilprojekt 2:==
-Funktionalität: spielbar an einem Terminal (eine GUI), voll funktionsfähiges Spiel (u.a. Spielregeln).
-  * GUI, Spielengine, Serverengine (zugehörige Interfaces)
+FunktionalitÃ¤t: spielbar an einem Terminal (eine GUI), voll funktionsfÃ¤higes Spiel (u.a. Spielregeln).
+  * GUI, Spielengine, Serverengine (zugehÃ¶rige Interfaces)
   * Netzwerkkomponente als Dummy
 ==Teilprojekt 3:==
-Funktionalität: Spiel über Netzwerk für bis zu 6 Spieler.
+FunktionalitÃ¤t: Spiel fÃ¼r Netzwerk fÃ¼r bis zu 6 Spieler.
   * Netzwerkkomponenten (Server / Client)
 ==Teilprojekt 4:==
-Funktionalität: Spielen mit KI, auch über Netzwerk mit anderen menschlichen Spielern.
-  * KI in 3 Schwierigkeitsstufen wählbar (Kommunikation über Client)
+FunktionalitÃ¤t: Spielen mit KI, auch Ã¼ber Netzwerk mit anderen menschlichen Spielern.
+  * KI in 3 Schwierigkeitsstufen wÃ¤hlbar (Kommunikation Ã¼ber Client)
