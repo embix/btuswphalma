@@ -146,4 +146,4 @@ Bei einem Spiel eines menschlichen Teilnehmers gegen den Computergegner werden, 
 Der Code wird unter die [http://www.opensource.org/licenses/bsd-license.php neue dreiklauselige BSD] Lizenz gestellt
  * Anhang [http://code.google.com/p/btuswphalma/wiki/Spielregeln Spielregeln]
  * Anhang [http://code.google.com/p/btuswphalma/wiki/Glossar Glossar]
- * Anhang [http://java.sun.com/docs/codeconv/CodeConventions.pdf Java Code Convention]
+ * Anhang [http://java.sun.com/docs/codeconv/CodeConventions.pdf Java-Code-Convention]
