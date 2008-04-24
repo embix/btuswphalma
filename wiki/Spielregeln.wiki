@@ -28,11 +28,12 @@ Der Spieler, der an der Reihe ist muss einen Stein ziehen, kann er keinen Stein 
 Sollte ein Spieler das Spiel verlassen, wird das Spiel ergebnislos abgebrochen.
 
 ==Ziehen eines Steins:==
-Es gibt zwei Arten einen Spielstein zu ziehen, das normale Ziehen und das Springen.
+Es gibt zwei Arten einen Spielstein zu ziehen, das Schieben und das Springen.
 
-Beim normalen Ziehen kann ein Spielstein auf ein benachbartes, freies Feld gezogen werden, womit der Zug beendet ist.
+Beim normalen Schieben kann ein Spielstein auf ein benachbartes, freies Feld gezogen werden, womit der Zug beendet ist.
 
 Beim Springen kann der Spielstein einen anderen Stein, egal welchem Spieler dieser gehören überspringen. Dazu muss der andere Spielstein auf einem Feld stehen, das an das Feld des zu ziehenden Steins angrenzt, und das Feld hinter dem zu überspringenden Stein, in selber Zugrichtung, muss frei sein. Nach einem Sprung kann der Spieler seinen Zug beenden, oder, falls er mit dem selben Stein mit dem er gesprungen wieder Springen, solange bis er seinen Zug beendet.
+Sprungfolgen, die aus mehreren Teilsprüngen bestehen, können nur fortgesetzt werden, wenn der nächste zu überspringende Spielstein dem gleichem Spieler gehört, wie der soeben übersprungene Spielstein.
 
 *(Frage: Darf man durch Springen aussetzen? Also vorwärts Springen, und dann wieder zurück, einfacher wäre ein "ja" /  erweiterte Zugpflicht?)*
 
