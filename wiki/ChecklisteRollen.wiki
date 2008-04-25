@@ -1,0 +1,74 @@
+#summary Checkliste Rollen
+#labels Featured
+
+=Aufgaben=
+==Besprechungskoordinator==
+Christoph
+  * Festlegung und Einhaltung der Besprechungstermine
+  * Effiziente Nutzung der Besprechungszeit
+  * Protokollierung der Besprechungsergebnisse
+  * stellt dem Team das Besprechungsprotokoll zur Verfügung
+===Bewertung===
+  # steht noch aus
+
+==Planungsmanager und Projektverfolger==
+Sebastian
+  * Erstellung der (Teil-)Projektpläne (Grobplan, Feinplan)
+  * Dokumentation der (Teil-)Projektpläne
+  * Aufteilung in hinreichend kleine Arbeitspakete
+  * Festlegung der Abschlußkriterien für die Arbeitspakete
+  * Aufteilung der Verantwortung für die Arbeitspakete
+  * Verfolgung des Projektfortschrittes
+  * Feststellung des Projektstandes (Fragen der jeweils zuständigen Teammitglieder)
+  * wöchentliche Präsentation des Projektstandes
+  * Moderation der Planerstellung im Team
+===Bewertung===
+  # steht noch aus
+
+==Anforderungsmanager==
+Michel
+  * Beseitigung von Mißverständnissen
+  * Beseitigung von Mehrdeutigkeiten und Widersprüchen
+  * Beseitigung von Unklarheiten
+  * Anlegen und Pflege des Pflichtenheftes (bei zusätzlichen Absprachen und Klärungen mit Auftraggeber)
+===Bewertung===
+  # steht noch aus
+
+==Entwurfsmanager==
+Michel
+  * Dokumentation der Softwarearchitektur
+  * Dokumentation der verwendeten Algorithmen
+  * Pflegen der Entwurfsdokumentation bei späteren Entwurfsänderungen
+===Bewertung===
+  # steht noch aus
+
+==Codemanager==
+Christian
+  * Prüfung der Einhaltung von Code Conventions
+  * Stellt systematische Verwaltung verschiedener Versionen sicher (macht zum Großteil _subversion_)
+    * Konfliktmanagement (macht _subversion_ nicht automatisch)
+===Bewertung===
+  # steht noch aus
+
+==Qualitätsmanager==
+Christian
+  * Vorbereitung von Design-Checklisten
+  * Durchführung und Dokumentation von Design-Reviews
+  * Vorbereitung von Code-Checklisten
+  * Durchführung und Dokumentation von Code-Reviews
+  * Aufstellung und Dokumentation von Testplänen
+  * Durchführung von Tests
+  * Prüfung von Struktur, Verständlichkeit und Orthographie der _Prosa-Dokumente_
+===Bewertung===
+  # steht noch aus
+
+==Reflexionsmanager==
+Christoph
+  * Erstellung aussagefähiger Reflexionsbericht zu Teilprojekten und Gesamtprojekt
+  * Sammlung von nötigen Daten für Reflexionsbericht während des (Teil-)Projektablaufs
+  * Sammlung der Zeitprotokolle und der Aufwände für Arbeitspakete
+  * Dokumentation von Konsequenzen aus den Erfahrungen in den Teilprojekten
+  * Erstellung Gesamtprojektbericht entsprechend der Vorgabe
+===Bewertung===
+  # steht noch aus
+
