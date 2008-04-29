@@ -11,7 +11,7 @@
     * Start durch mitspielenden "Game Master"
     * Beim Start werden die Spielerzahl und die KI-Spielerzahl festgelegt
     * Geeignet, ein einziges Spiel zu spielen
-    * Verschickt Ergebnis des gerade beendetens Spiels
+    * Verschickt Ergebnis des gerade beendeten Spiels
   * Client:
     * Wahl eines Spielernamens
     * Wahl eines Servers
@@ -19,7 +19,7 @@
     * Zugeingabe: auf dem 2D-Spielbrett
     * Spielerliste
     * Anzeige des aktiven Spielers
-    * Spielzüge grafisch darstellen, und für ca. 10 Sekunden angezeigt lassen
+    * Spielzüge grafisch darstellen und für ca. 10 Sekunden angezeigt lassen
     * Anzeige des Spielergebnisses
   * KI:
     * 3 Spielstärken
@@ -61,7 +61,7 @@
   * Zum Spielen selbst sind keine besonderen Qualifikationen erforderlich.
   * Der Anwender muss die Spielregeln verstehen können (Deutsche Sprache, Lesen)
 ==Betriebsbedingungen==
-  * Das Spiel soll auf handelsüblichen Desktop PC ausgeführt werden können.
+  * Das Spiel soll auf handelsüblichen Desktop PCs ausgeführt werden können.
   * Der Server wird auf dem PC eines Mitspielers ausgeführt
   * Der Server läuft nur während des Spiels / der Spiele
 
@@ -70,7 +70,7 @@
 Das Produkt setzt eine SUN Java JRE 1.5  mit nutzbarer graphischer Oberfläche (Swing) voraus.
 (Es wird IPv4 benutzt)
 ==Hardware==
-Das Produkt ist für netzwerkfähigen x86 kompatible PC Systeme mit 1GHz Taktfrequenz, mindestens 512MiByte nutzbarem Arbeitsspeicher und 2D beschleunigender Graphikkarte/-Chipsatz konzipiert und .
+Das Produkt ist für netzwerkfähigen x86 kompatible PC Systeme mit 1GHz Taktfrequenz, mindestens 512MiByte nutzbarem Arbeitsspeicher und 2D beschleunigender Graphikkarte/-Chipsatz konzipiert.
 
 =Produktfunktionen=
 ==Serverstart==
@@ -83,7 +83,7 @@ Festlegen der Netzwerkadresse
 ===/F4/===
 Bestimmen des Spielmodus (Regelprüfung/Veto)
 ===/F5/===
-Spielername des Game Master bestimmen
+Spielernamen des Game Master bestimmen
 ==Clientstart==
 ===/F6/===
 Eingeben der Serveradresse
@@ -105,7 +105,7 @@ Anzeigen der Platzierung des Spiels mit Anzahl der Züge
 Game Master bestimmt ob neues Spiel
 ==Mit laufenden Client==
 ===/F14/===
-Anzeige der Higscoreliste
+Anzeige der Highscoreliste
 
 =Produktdaten=
   * Spielernamen
@@ -113,7 +113,7 @@ Anzeige der Higscoreliste
   * Anzahl der gewonnen Sessions
 
 =Produktleistung=
-Die Antwortzeiten liegen durschnittlich unter 60 Sekunden um ein füssiges Spiel zu ermöglichen.
+Die Antwortzeiten liegen durschnittlich unter 60 Sekunden um ein flüssiges Spiel zu ermöglichen.
 
 =Benutzeroberfläche=
 Auf der Benutzeroberfläche werden eine Menüleiste, das Spielfeld sowie kontextabhängige Schaltflächen und Textfelder sichtbar sein. Das Spielfeld ist als 2D Draufsicht realisiert. Die Spielzüge werden, ebenso wie Schaltflächen, mit dem Standard-Zeigergerät (Maus, Trackball, Touchpad) eingegeben.
