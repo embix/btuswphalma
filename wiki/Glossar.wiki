@@ -28,3 +28,7 @@ Ist ein Spieler, der an einer laufenden Session teilnimmt und noch nicht all sei
 ==Beobachter==
 Ist ein Spieler, der in einer laufenden Session all seine Spielsteine in sein Zielhaus gebracht und somit sein Spiel erfolgreich beendet hat.
 Ein Beobachter hat keine Zugmöglichkeit mehr.
+==Bot==
+Ein Bot ist ein computergesteuerter Spieler.
+==Dedicated Server==
+Ein Dedicated Server ist ein Programm, welches ausschließlich als Server entsprechend der Aufgabe dient und sonst nichts tut.
