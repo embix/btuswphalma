@@ -17,14 +17,14 @@ Ein Spielzug ist ein kompletter Sprung oder ein Schub eines Spielers in einer Ru
 Ein Schub ist die Spielfeldbewegung eines Spielsteines auf ein benachbartes freies Feld.
 ==Teilsprung==
 Ein Teilsprung ist eine Spielfeldbewegung eines Spielsteines über 2 Felder, in gerader Linie, auf ein freies Feld. Dabei steht ein Spielstein auf dem zu
-überspringenden Feldes.
+überspringenden Feld.
 ==Sprung==
 Ein Sprung besteht aus mindestens einem Teilsprung.
 ==Spielmodus==
-Ist die Art wie das Spiel gespielt wird, dabei wird vor dem Sessionsstart festgelegt, ob (a) das Spiel selbst die Anwendung der Spielregeln überprüft,
+Ist die Art wie das Spiel gespielt wird. Dabei wird vor dem Sessionsstart festgelegt, ob (a) das Spiel selbst die Anwendung der Spielregeln überprüft,
 oder (b) ob die teilnehmenden Spieler allein die Anwendung der Spielregeln über ein Vetorecht überprüfen.
 ==teilnehmender Spieler==
-Ist ein Spieler, der an einer laufenden Session teilnimmt und noch nicht alle seine Spielsteine in das Zielhaus gebracht hat.
+Ist ein Spieler, der an einer laufenden Session teilnimmt und noch nicht all seine Spielsteine in das Zielhaus gebracht hat.
 ==Beobachter==
-Ist ein Spieler, der in einer laufenden Session alle seine Spielsteine in sein Zielhaus gebracht hat und somit sein Spiel erfolgreich beendet hat.
+Ist ein Spieler, der in einer laufenden Session all seine Spielsteine in sein Zielhaus gebracht und somit sein Spiel erfolgreich beendet hat.
 Ein Beobachter hat keine Zugmöglichkeit mehr.
