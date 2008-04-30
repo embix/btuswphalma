@@ -7,6 +7,7 @@ Fakten noch in Prosatext wandeln!
 ==Rolle als Anforderungsmanager==
 
 In der Rolle des Anforderungsmanagers war es meine Aufgabe, Mehrdeutigkeiten und Widersprüche in der Definition der Anforderungen zu finden und diese dann zu einem Konsens zwischen Team und Auftraggeber zu führen. Alle bekannten Unklarheiten wurden beseitigt, unter anderem durch Anlegen eines Glossars in welchem die wesentlichen Begrifflichkeiten das Projekt betreffend aufgeführt sind. Sofern im Entwicklungsprozess neue Definitionen für abstrakte Begriffe gefunden wurden, sind diese näher erläutert in das Glossar eingefügt worden.
+
 Die entscheidende Aufgabe ist jedoch das Pflichtenheft anhand der mit dem Auftrageber ausgehandelten Bedingungen zu erstellen und bei sich ergebenden Anforderungsänderungen diese darin auch zu dokumentieren, so daß es zu jedem Zeitpunkt als Grundlage für die weitere Entwicklung dienen kann. Das derzeitige Pflichtenheft ist das Ergebnis der Grobplanung anhand der vom Auftraggeber geforderten Kriterien, durch ein zusätzliches Gespräch mit dem Vertragspartner konnten zum Beispiel das Lizenzierungsmodell wie auch die Spielregeln konkretisiert werden.
 
 ==Rolle als Entwurfsmanager==
