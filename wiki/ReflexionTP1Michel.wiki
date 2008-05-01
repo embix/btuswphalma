@@ -17,7 +17,7 @@ Das Teilprojekt 1 ist nahezu abgeschlossen, die geforderten Dokumente liegen wei
 ==Zahlen, Daten, Fakten==
 Wochenarbeitszeit (in Stunden)
 ||X||Woche1||Woche2||Woche3^1^||
-||gesamt||12.78||13.3||11.17||
+||gesamt||12.78||13.3||17.32||
 ||Planung/Koordination||7.35||4.13||1.47||
 ||Dokumentation||2.13||2.13||9.82||
 ||Bespr. Team||2.27||6||5.25||
