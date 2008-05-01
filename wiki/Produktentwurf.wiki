@@ -32,10 +32,19 @@ Die Grafische Benutzerschnittstelle enthält alle rein spielrelevanten Funktione
 http://btuswphalma.googlecode.com/svn/wiki/GrobEntwurf.png
 Abb2
 
+Wie in Abbildung 2 zu sehen ist wird auch die Engine soweit fertiggestellt, daß ein Einzelspielerspiel durchgeführt werden kann. Möglich wird dies durch Fertigstellung der Spielengine, die schon die gesamte Spiellogik umfaßt. Die Serverengine wird ebenfalls bereitgestellt.
 
-= ToDo =
-Stichpunkte:
-  * Bewertung des eigenen Entwurfes
-  * wie wird Entwurf dokumentiert
-  * dynamisches Prozessmodell
-  * Schnittstellenmodell
+Diese Aufteilung erfodert ebenfalls die Entwicklung eines Netzwerkdummys, der sämtliche geforderten Schnittstellen der Servernetzwerkkomponente implementiert und sich an das vorgegebene Protokoll hält, allerdings keine Netzwerkfunktionalität bereitstellt.
+
+Die für Teilprojekt 1 gweählte Aufteilung begünstig somit auch den Test der Einzelkomponenten, die Testfälle sind damit auch in den kommenden Teilprojekten weiter verwendbar und bei Bedarf erweiterbar um neue Funktionalität zu prüfen.
+
+== Teilprojekt 3 ==
+In Teilprojekt 3 wird der Prototyp aus Teilprojekt eins um die Netzwerkfunktionalitäten angereichert. Dazu werden auf Basis des Netzwerkdummys die entsprechenden Komponenten für Server und Client entwickelt. An der Engine sind im Idealfall keine, sonst geringe Änderungen vorzunehmen. Geplant ist für Clients statt der Spielengine eine schnittstellenkonforme Dummyengine zu verwenden. Die Serverengine wird um die hostspezifischen Funktionen erleichtert und als Clientengine verwendet. Das Userinterface wird sowohl Server als auch Client Spielmodi unterstützen.
+
+== Teilprojekt 4 ==
+Die Entwicklung des Computerspielers, vor allem also der KI-Engine erfolgt im vorerst letzten Teilprojekt. Dafür wird die Clientengine um die notwendigen Modelle und Algorithmen zur Teilnahme als Spieler erweitert. Für die verschiedenen Schwierigkeitsgrade werden unterschiedliche algorithmische Ansätze umgesetzt und als Spieleralgorithmusobjekt gekapselt, so daß die KI-Engine im wesentlichen gleich bleibt.
+
+== Was ist noch zu tun==
+Im Verlauf des Teilprojektes 2 werden noch erstellt
+  * ein dynamisches Prozessmodell
+  * ein Schnittstellenmodell
