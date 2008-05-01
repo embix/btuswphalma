@@ -18,8 +18,8 @@ Das Teilprojekt 1 ist nahezu abgeschlossen, die geforderten Dokumente liegen wei
 Wochenarbeitszeit (in Stunden)
 ||X||Woche1||Woche2||Woche3^1^||
 ||gesamt||12.78||13.3||11.17||
-||Planung/Koordination||7.35||4.13||0||
-||Dokumentation||2.13||2.13||5.13||
+||Planung/Koordination||7.35||4.13||1.47||
+||Dokumentation||2.13||2.13||9.82||
 ||Bespr. Team||2.27||6||5.25||
 ||Komm. Berater||0.62||0.87||0.78||
 ||Komm. Auftrg.||0.42||0.18||0||
