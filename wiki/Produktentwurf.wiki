@@ -1,0 +1,25 @@
+#summary Dokumentation des Softwareproduktentwurfs
+#labels Phase-Design,Featured
+
+= ToDo =
+Stichpunkte:
+
+Kriterien für
+  * Wahl des Frameworks (Java 5SE)
+  * Systemarchitektur (Entwurfsplan für Systemanforderungen)
+  * wichtistges Kriterium: Wartbarkeit, insbesondere Erweiterbarkeit
+  * Blockdiagramm (weil für Beteiligte aus unterschiedlichen Fachbereichen leicht zu verstehen, auch als Diskussionsgrundlage geeignet)
+  * wie existierende Anwendungsarchitekturen
+  * wie ist System verteilt
+  * wie sehen geeignete Architekturen aus
+  * wie wird in Module zerlegt
+  * wie werden Systemeinheiten gesteuert
+  * Verteilungsarchitektur?
+  * Bewertung des eigenen Entwurfes
+  * wie wird Entwurf dokumentiert
+
+  * statisches Strukturmodell
+  * dynamisches Prozessmodell
+  * Schnittstellenmodell
+  * Beziehungsmodelle
+  * Verteilungsmodell
