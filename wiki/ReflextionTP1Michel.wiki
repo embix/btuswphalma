@@ -23,6 +23,7 @@ Wochenarbeitszeit (in Stunden)
 ||Bespr. Team||2.27||6||5.25||
 ||Komm. Berater||0.62||0.87||0.78||
 ||Komm. Auftrg.||0.42||0.18||0||
+
 1) läuft noch
 
 http://btuswphalma.googlecode.com/svn/wiki/micheltp1zeitverteilung.png
