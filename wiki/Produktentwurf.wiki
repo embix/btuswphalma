@@ -5,28 +5,37 @@
 
 Beim Architekturentwurf für das Softwareprodukt haben wir Architekturen von existierenden verteilten Anwendungen miteinander verglichen. Das Hauptkriterium für unseren Entwurf war eine gute Wartbarkeit und insbesondere die damit einhergehende gute Erweiterbarkeit, welche es uns ermöglicht, das Projekt in Teilprojekte zu zerlegen. Damit ist sichergestellt das am Ende des zweiten Teilprojektes bereits ein Prototyp zur Verfügung steht, dessen Funktionalität dann in den weiteren Teilprojekten schrittweise erhöht werden kann.
 
-Aus Abbildung 1 kann man entnehmen, daß die Architektur einfach aufgebaut ist. Für die Interaktion mit dem Benutzer wird eine GUI-Komponente entwickelt. Die spielrelevanten Berechnungen werden in der Engine durchgeführt. Diese ist entsprechend ihrer Aufgaben in zwei wesentliche Teile gegliedert, zum einen der sogenannten Spielengine, die für regelchecks verantwortlich ist und die Verwaltung der Spieler, des Spielbrettes und der sich darauf befindlichen Spielsteine übernimmt.
-
-http://btuswphalma.googlecode.com/svn/wiki/GrobEntwurfVerteilung.png
-Abb1
-
 Für die Darstellung der Architektur in einem einfachen Blockdiagramm haben wir uns entschieden, weil diese Darstellungsform bei der Zusammenarbeit mit Beteiligten aus unterschiedlichen Fachbereichen für alle verständlich ist und somit eine erste Diskussionsgrundlage bietet.
 
 Als Rahmenwerk haben wir uns für J2SE Edition 5 entschieden, da uns dort Komponenten für die Grafische Benutzeroberfläche, wie auch Komponentenfür verteilte Anwendungen zur Verfügung stehen. Auch wenn Einarbeitungszeit in das Framework einige Zeit kostet, wird dadurch ein großer Teil an Entwicklungszeit eingespart, was den Einsatz durchaus rechtfertigt.
 
+== Softwarearchitektur ==
+
+Aus Abbildung 1 kann man entnehmen, daß die Architektur einfach aufgebaut ist. Für die Interaktion mit dem Benutzer wird eine GUI-Komponente entwickelt. Auf dieser wird das Spielbrett dargestellt, sämtliche Wechselwirkungen zwischen dargestelltem Spielstand und Zugeingabe werden der mit der Engine ausgehandelt.
+
+http://btuswphalma.googlecode.com/svn/wiki/GrobEntwurfVerteilung.png
+Abb1
+
+Die spielrelevanten Berechnungen werden in der Engine durchgeführt. Diese ist entsprechend ihrer Aufgaben in zwei wesentliche Teile gegliedert, zum einen der sogenannten Spielengine, die für regelchecks verantwortlich ist und die Verwaltung der Spieler, des Spielbrettes und der sich darauf befindlichen Spielsteine übernimmt. Sie koordiniert den eigendlichen Spielablauf. Die Serverengine ist im wesentlichen baugleich der Clientengine und ist zuständig für die Interkomponentenkommunikation, insbesondere der Anbindung der Spielengine an die anderen Komponenten.
+
+Die Server-Netzwerkomponente ist zuständig für die Kommunikation mit entfernten Spielern und sorgt für die Übertragung der Spielnachrichten zu den Clients. Die Client-Netwerkomponenten jedes entfernten Spielers registrieren sich am Server, senden und empfangen die Spielnachrichten und leiten sie somit zu entsprechenden Engine.
+
+Der Computerspieler wird auf dem Hostrechner von der Spielengine bereitgestellt, dazu wird eine KI-Engine über eine Netzwerkclientkomponente an den eigendlichen Server angebunden. Die KI-Engine verarbeitet die gleichen Nachrichten wie auch die Server- und clientengine, weiterhin steht ihr eine Algorithmuseinheit zur Verfügung, mit der sie aufgrund der Spieldaten eigenständig Entscheidungen für die Zugwahl trifft. Je nach benötigem Schwierigkeitsgrad kommt eine andere Algorithmuseinheit zum Einsatz.
+
+Diese Architektur erscheint uns für das geforderte Produkt ideal, weil sie eine etappenweise Entwicklung begünstigt. Der Umfang der Teilprojekte wird so in etwa gleich groß und die vorhandenen Betriebsmittel können optimal genutzt werden.
+
+== Teilprojekt 2 ==
+Für das zweite Teilprojekt wurde zunächst eine einfachere Architektur gewählt, die jedoch die geforderte Erweiterbarkeit bietet um sämtliche gestellten Anforderungen zu erfüllen.
+
+Die Grafische Benutzerschnittstelle enthält alle rein spielrelevanten Funktionen, lediglich Netzwerkeinstellungen und Einstellungen für den Computerspieler bleiben offen und kommen in den späteren Teilprojekten hinzu. Der gewählte Entwurf ist flexibel genug um zukünfitge Erweiterungen aufzunehmen.
+
+http://btuswphalma.googlecode.com/svn/wiki/GrobEntwurf.png
+Abb2
+
+
 = ToDo =
 Stichpunkte:
-
-  * wie ist System verteilt
-  * wie sehen geeignete Architekturen aus
-  * wie wird in Module zerlegt
-  * wie werden Systemeinheiten gesteuert
-  * Verteilungsarchitektur?
   * Bewertung des eigenen Entwurfes
   * wie wird Entwurf dokumentiert
-
-  * statisches Strukturmodell
   * dynamisches Prozessmodell
   * Schnittstellenmodell
-  * Beziehungsmodelle
-  * Verteilungsmodell
