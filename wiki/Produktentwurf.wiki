@@ -1,15 +1,22 @@
 #summary Dokumentation des Softwareproduktentwurfs
 #labels Phase-Design,Featured
 
+= Softwareentwurf =
+
+Beim Architekturentwurf für das Softwareprodukt haben wir Architekturen von existierenden verteilten Anwendungen miteinander verglichen. Das Hauptkriterium für unseren Entwurf war eine gute Wartbarkeit und insbesondere die damit einhergehende gute Erweiterbarkeit, welche es uns ermöglicht, das Projekt in Teilprojekte zu zerlegen. Damit ist sichergestellt das am Ende des zweiten Teilprojektes bereits ein Prototyp zur Verfügung steht, dessen Funktionalität dann in den weiteren Teilprojekten schrittweise erhöht werden kann.
+
+Aus Abbildung 1 kann man entnehmen, daß die Architektur einfach aufgebaut ist. Für die Interaktion mit dem Benutzer wird eine GUI-Komponente entwickelt. Die spielrelevanten Berechnungen werden in der Engine durchgeführt. Diese ist entsprechend ihrer Aufgaben in zwei wesentliche Teile gegliedert, zum einen der sogenannten Spielengine, die für regelchecks verantwortlich ist und die Verwaltung der Spieler, des Spielbrettes und der sich darauf befindlichen Spielsteine übernimmt.
+
+http://btuswphalma.googlecode.com/svn/wiki/GrobEntwurfVerteilung.png
+Abb1
+
+Für die Darstellung der Architektur in einem einfachen Blockdiagramm haben wir uns entschieden, weil diese Darstellungsform bei der Zusammenarbeit mit Beteiligten aus unterschiedlichen Fachbereichen für alle verständlich ist und somit eine erste Diskussionsgrundlage bietet.
+
+Als Rahmenwerk haben wir uns für J2SE Edition 5 entschieden, da uns dort Komponenten für die Grafische Benutzeroberfläche, wie auch Komponentenfür verteilte Anwendungen zur Verfügung stehen. Auch wenn Einarbeitungszeit in das Framework einige Zeit kostet, wird dadurch ein großer Teil an Entwicklungszeit eingespart, was den Einsatz durchaus rechtfertigt.
+
 = ToDo =
 Stichpunkte:
 
-Kriterien für
-  * Wahl des Frameworks (Java 5SE)
-  * Systemarchitektur (Entwurfsplan für Systemanforderungen)
-  * wichtistges Kriterium: Wartbarkeit, insbesondere Erweiterbarkeit
-  * Blockdiagramm (weil für Beteiligte aus unterschiedlichen Fachbereichen leicht zu verstehen, auch als Diskussionsgrundlage geeignet)
-  * wie existierende Anwendungsarchitekturen
   * wie ist System verteilt
   * wie sehen geeignete Architekturen aus
   * wie wird in Module zerlegt
