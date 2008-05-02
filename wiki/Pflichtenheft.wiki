@@ -29,6 +29,7 @@
 ==Wunschkriterien==
   * Das verwendete _Spielbrett_ ist wählbar
   * 2. Spielmodus: Vetos durch Clients, keine Regleprüfung
+  * Speichern und Wiederherstellen von Spielständen
   * Server:
     * Spielmodus beim Start festgelegt
     * Eine Highscoreliste
