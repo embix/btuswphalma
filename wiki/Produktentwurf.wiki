@@ -18,12 +18,12 @@ Abb1
 
 Die spielrelevanten Berechnungen werden in der Engine durchgeführt. Diese ist entsprechend ihrer Aufgaben in zwei wesentliche Teile gegliedert:
 
- # Die sogenannte *Spielengine*. Sie ist für Regelchecks, Verwaltung der Spieler, des Spielbrettes und der sich darauf befindlichen Spielsteine verantwortlich. Sie koordiniert den eigendlichen Spielablauf.
+ # Die sogenannte *Spielengine*. Sie ist für Regelchecks, Verwaltung der Spieler, des Spielbrettes und der sich darauf befindlichen Spielsteine verantwortlich. Sie koordiniert den eigentlichen Spielablauf.
  # Die *Serverengine* ist im wesentlichen baugleich der Clientengine und ist zuständig für die Interkomponentenkommunikation, insbesondere der Anbindung der Spielengine an die anderen Komponenten.
 
 Die Server-Netzwerkomponente ist zuständig für die Kommunikation mit entfernten Spielern und sorgt für die Übertragung der Spielnachrichten zu den Clients. Die Client-Netwerkomponenten jedes entfernten Spielers registrieren sich am Server, senden und empfangen die Spielnachrichten und leiten sie somit zu der entsprechenden Engine.
 
-Der Computerspieler wird auf dem Hostrechner von der Spielengine bereitgestellt. Dazu wird eine KI-Engine über eine Netzwerkclientkomponente an den eigendlichen Server angebunden. Die KI-Engine verarbeitet die gleichen Nachrichten wie auch die Server- und Clientengine, weiterhin steht ihr eine Algorithmuseinheit zur Verfügung, mit der sie aufgrund der Spieldaten eigenständig Entscheidungen für die Zugwahl trifft. Je nach benötigem Schwierigkeitsgrad kommt eine andere Algorithmuseinheit zum Einsatz.
+Der Computerspieler wird auf dem Hostrechner von der Spielengine bereitgestellt. Dazu wird eine KI-Engine über eine Netzwerkclientkomponente an den eigentlichen Server angebunden. Die KI-Engine verarbeitet die gleichen Nachrichten wie auch die Server- und Clientengine, weiterhin steht ihr eine Algorithmuseinheit zur Verfügung, mit der sie aufgrund der Spieldaten eigenständig Entscheidungen für die Zugwahl trifft. Je nach benötigem Schwierigkeitsgrad kommt eine andere Algorithmuseinheit zum Einsatz.
 
 Diese Architektur erscheint uns für das geforderte Produkt ideal, weil sie eine etappenweise Entwicklung begünstigt. Der Umfang der Teilprojekte wird so in etwa gleich groß und die vorhandenen Betriebsmittel können optimal genutzt werden.
 
