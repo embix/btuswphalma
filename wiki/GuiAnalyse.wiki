@@ -1,0 +1,21 @@
+#summary Analyse der Graphischen Benutzeroberflaeche (TP2)
+#labels Phase-Requirements
+
+= GUI =
+
+Prosa
+
+
+= Stichpunkte =
+
+Folgende Anforderungen sind für die GUI des ersten Teilprojektes zu realisieren:
+  * Eingabe der Spieldaten (Name, Anzahl Spieler)
+  * Eingabe des Spielzuges (Eingabe von Schub oder Sprung (Eingabe von Teilsprung), Abschicken des Gesamtzuges)
+  * Anzeige der Spieldaten (Name, Anzahl Spieler)
+  * Anzeigen des aktiven Spielers (der am Zug ist)
+  * Anzeige des Spielfeldes
+  * Anzeige des Zuges
+  * Anzeigen, wenn Spieler fertig ist
+  * Anzeigen des Spielergebnisses
+  * (Anzeigen der Highscoreliste)
+  * (bei Spielmodus (b) Abgabe des Vetos ermöglichen)
