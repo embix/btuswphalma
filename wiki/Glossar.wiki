@@ -32,3 +32,5 @@ Ein Beobachter hat keine Zugmöglichkeit mehr.
 Ein Bot ist ein computergesteuerter Spieler.
 ==Dedicated Server==
 Ein Dedicated Server ist ein Programm, welches ausschließlich als Server entsprechend der Aufgabe dient und sonst nichts tut.
+==Highscoreliste==
+Die Highscoreliste ist eine Tabelle, die eine festgelegte Anzahl von Spielern beeinhaltet, denen zugeordnet wird wie oft sie insgesamt gewonnen haben und wieviel Runden ihr schnellster Sieg benötigte.
