@@ -1,4 +1,4 @@
-#summary Entwurf für das Pflichtenheft
+#summary Pflichtenheft (noch nicht vom Auftraggeber abgesegnet)
 #labels Featured,Phase-Requirements
 
 =Zielbestimmung=
