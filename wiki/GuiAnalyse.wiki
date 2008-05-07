@@ -9,14 +9,4 @@ Ist die Session beendet, so muß das Spielergebnis angezeigt werden. Schließlic
 
 http://btuswphalma.googlecode.com/svn/wiki/GuiTP2UseCase.jpg
 
-= in Use Case Diagram packen =
-  * Eingabe der Spieldaten (Name, Anzahl Spieler)
-  * Eingabe des Spielzuges (Eingabe von Schub oder Sprung (Eingabe von Teilsprung), Abschicken des Gesamtzuges)
-  * Anzeige der Spieldaten (Name, Anzahl Spieler)
-  * Anzeigen des aktiven Spielers (der am Zug ist)
-  * Anzeige des Spielfeldes
-  * Anzeige des Zuges
-  * Anzeigen, wenn Spieler fertig ist
-  * Anzeigen des Spielergebnisses
-  * (Anzeigen der Highscoreliste)
-  * (bei Spielmodus (b) Abgabe des Vetos ermöglichen)
+siehe auch [GuiEntwurf GUI Entwurf]

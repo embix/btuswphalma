@@ -1,0 +1,13 @@
+#summary Entwurf der Graphischen Benutzeroberflaeche (TP2)
+#labels Phase-Design
+
+= GUI =
+
+Für den weiteren Entwurf wurde ein Automatenmodell (siehe Abb.1) für die graphische Benutzerschnittstelle erstellt, auf dessen Basis das Entwurfsklassendiagramm kreiert werden soll.
+
+http://btuswphalma.googlecode.com/svn/wiki/GuiTP2StateChart.jpg
+
+Abb.1 Automatenmodell
+
+
+siehe auch [GuiAnalyse GUI Analyse]
