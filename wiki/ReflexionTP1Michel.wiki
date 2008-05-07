@@ -16,7 +16,7 @@ Das Teilprojekt 1 ist nahezu abgeschlossen, die geforderten Dokumente liegen wei
 
 ==Zahlen, Daten, Fakten==
 Wochenarbeitszeit (in Stunden)
-||X||Woche1||Woche2||Woche3^1^||
+||X||Woche1||Woche2||Woche3||
 ||gesamt||12.78||13.3||17.32||
 ||Planung/Koordination||7.35||4.13||1.47||
 ||Dokumentation||2.13||2.13||9.82||
@@ -24,6 +24,5 @@ Wochenarbeitszeit (in Stunden)
 ||Komm. Berater||0.62||0.87||0.78||
 ||Komm. Auftrg.||0.42||0.18||0||
 
-1) läuft noch
 
 http://btuswphalma.googlecode.com/svn/wiki/micheltp1zeitverteilung.png
