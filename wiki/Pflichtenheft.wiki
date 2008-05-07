@@ -109,11 +109,17 @@ Game Master bestimmt ob neues Spiel
 Anzeige der Highscoreliste
 
 =Produktdaten=
-  * Spielernamen
-  * Schnellste gewonnene Session
-  * Anzahl der gewonnen Sessions
+==Highscoreliste==
+===/D1/===
+Spielernamen
+===/D2/===
+Schnellste gewonnene Session je Spieler
+===/D3/===
+Anzahl der gewonnen Sessions je Spieler
 
 =Produktleistung=
+==Zeit==
+===/L1/===
 Die Antwortzeiten liegen durschnittlich unter 60 Sekunden um ein flüssiges Spiel zu ermöglichen.
 
 =Benutzeroberfläche=
