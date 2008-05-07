@@ -122,7 +122,7 @@ Auf der Benutzeroberfläche werden eine Menüleiste, das Spielfeld sowie kontext
 http://btuswphalma.googlecode.com/svn/wiki/skizze_frontend_spiel.png
 
 =Qualitäts-Zielbestimmungen=
-Das Projekt wird den objektorientiert Konzepten folgend entworfen und umgesetzt. Die Dokumentation der Klassenfunktionalitäten erfolgt im Quellcode.
+Das Projekt wird den objektorientierten Konzepten folgend entworfen und umgesetzt. Die Dokumentation der Klassenfunktionalitäten erfolgt im Quellcode.
 
 =Globale Testszenarien / Testfälle=
 ==Mehrspielertest==
