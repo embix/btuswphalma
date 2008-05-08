@@ -14,3 +14,6 @@ Alle Nachrichttypklassen müssen dieses Interface implementieren. Dadurch wird s
 
 = IGuiListener =
 Scnittstelle, die von Objekten, die über Engine-Ereignisse informiert werden müssen, implementiert wird.
+
+= MessageType =
+Dieses enum enthält die IDs für alle Nachrichtentypen, die zwischen den einzelnen Komponenten verschickt werden.
