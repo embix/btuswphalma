@@ -30,7 +30,7 @@ Diese Architektur erscheint uns für das geforderte Produkt ideal, weil sie eine
 == Teilprojekt 2 ==
 Für das zweite Teilprojekt wurde zunächst eine einfachere Architektur gewählt, die jedoch die geforderte Erweiterbarkeit bietet um sämtliche gestellten Anforderungen zu erfüllen.
 
-Die Grafische Benutzerschnittstelle enthält alle rein spielrelevanten Funktionen. Lediglich Netzwerkeinstellungen und Einstellungen für den Computerspieler bleiben offen und kommen in den späteren Teilprojekten hinzu. Der gewählte [http://code.google.com/p/btuswphalma/wiki/Produktentwurf Entwurf] ist flexibel genug um zukünfitge Erweiterungen aufzunehmen. 
+Die Grafische Benutzerschnittstelle enthält alle rein spielrelevanten Funktionen. Lediglich Netzwerkeinstellungen und Einstellungen für den Computerspieler bleiben offen und kommen in den späteren Teilprojekten hinzu. Der gewählte [http://code.google.com/p/btuswphalma/wiki/GuiEntwurf Entwurf] ist flexibel genug um zukünfitge Erweiterungen aufzunehmen. 
 
 http://btuswphalma.googlecode.com/svn/wiki/GrobEntwurf.png
 Abb2
