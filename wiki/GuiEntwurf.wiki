@@ -13,4 +13,4 @@ Abb.1 Automatenmodell
 http://btuswphalma.googlecode.com/svn/wiki/GuiTP2ClassDiagram.jpg
 Abb.2 Klassendiagramm
 
-siehe auch [GuiAnalyse GUI Analyse]
+siehe auch [GuiAnalyse GUI Analyse], [http://code.google.com/p/btuswphalma/wiki/Produktentwurf Produktentwurf]
