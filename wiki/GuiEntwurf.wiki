@@ -3,7 +3,7 @@
 
 = GUI =
 
-Für den weiteren Entwurf wurde ein Automatenmodell (siehe Abb.1) für die graphische Benutzerschnittstelle erstellt, auf dessen Basis das Entwurfsklassendiagramm entwickelt wurde. Die Abläufe innerhalb der GUI werden durch den Controller gesteuert (siehe Abb.2), der als Zustandautomat realisiert ist. Zustandsübergänge werden durch Interaktion mit dem Benutzer und/oder Nachrichten von derEngine ausgelöst.
+Für den weiteren Entwurf wurde ein Automatenmodell (siehe Abb.1) für die graphische Benutzerschnittstelle erstellt, auf dessen Basis das Entwurfsklassendiagramm entwickelt wurde. Die Abläufe innerhalb der GUI werden durch den Controller gesteuert (siehe Abb.2), der als Zustandautomat realisiert ist. Zustandsübergänge werden durch Interaktion mit dem Benutzer und/oder Nachrichten von der Engine ausgelöst.
 
 http://btuswphalma.googlecode.com/svn/wiki/GuiTP2StateChart.jpg
 
