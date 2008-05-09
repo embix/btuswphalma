@@ -1,0 +1,18 @@
+﻿#summary Entwurf der Spiele-Engine (TP2)
+#labels Phase-Design
+
+= Spiel-Engine =
+
+Erste Entwürfe der Spiele-Engine, diese soll v.a. die Spieler verwalten und die Zugprüfung durchführen.
+
+http://btuswphalma.googlecode.com/svn/wiki/EW_SpE_Manager_ZD.png
+
+Abb.1 Zustandsdiagramm für Manager
+
+http://btuswphalma.googlecode.com/svn/wiki/EW_SpE_Spiel_ZD.png
+
+Abb.2 Zustandsdiagramm für Spiel
+
+http://btuswphalma.googlecode.com/svn/wiki/EW_SpE_KD.png
+
+Abb.3 Klassendiagramm für Spiele-Engine
