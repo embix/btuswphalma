@@ -21,3 +21,8 @@ Hinweis: TokenMove
 Ein TokenMove enthält, wenn ifPush wahr ist, nur startPosition und endPosition, wenn ifPush falsch ist, enhält TokenMove noch eine jumpList.
 JumpList enthält Sprungpositionen (jumpPosition) und deren Reihenfolge (jumpCount). Die Spielstein-Position ist immer ein Integer-Wert,
 diese wird aus dem Spielfeld (Board) berechnet.
+
+Sequenzdiagramm: Initialisierung der Spiele-Engine für 2 Spieler
+http://btuswphalma.googlecode.com/svn/wiki/SD_init_2-Player.jpg
+
+Abb.4 Sequenzdiagramm init 2 Spieler
