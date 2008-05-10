@@ -1,0 +1,40 @@
+#summary Überarbeiteter Entwurf der SpieleEngine (noch nicht fertig)
+#labels Phase-Design
+
+= Entwurf =
+
+Die Klasseneinteilung orientiert sich an dem Entwurfsdokumenten von CK.
+Die Methoden sind deutlich überarbeitet. Es fehlen noch einige Getter und Setter.
+Es fehlt noch das Zustandsdiagramm für den Manager sowie die Suquenzdiagramme (eins ist fertig)
+
+Sequenzdiagramme die noch erstellt werden sollen:
+  * Fehlerhafter Zug
+  * Zug bei dem ein Spieler fertig wird
+  * Zug bei dem das Spiel fertig wird
+  * Eine Beenden Nachricht
+  * Die Startphase der Spielengine
+
+=Zustandsdiagramme=
+Hier fehlen noch Benennungen der Übergänge
+
+http://btuswphalma.googlecode.com/svn/wiki/ZDGameTP2SB.png
+
+_Abb 1 Zustandsdiagramm Game_
+
+= Klassendiagramme =
+
+Um das gannze übersichtlicher zu machen zwei Diagramme. Die Pfeiltypen sind noch nicht 100% konsistent und nach den vorlieben von Umbrello
+
+http://btuswphalma.googlecode.com/svn/wiki/KDSpielEngineTP2SB.png
+
+_Abb 2 Klassendiagramm Spiele-Engine_
+
+http://btuswphalma.googlecode.com/svn/wiki/KDMessgesTP2SB.png
+
+_Abb 3 Klassendiagramm Nachrichten_
+
+=Sequenzdiagramme=
+
+http://btuswphalma.googlecode.com/svn/wiki/SqDKorrekterZugTP2SB.png
+
+_Abb 4 Sequenzdiagramm korrekter Zug_
