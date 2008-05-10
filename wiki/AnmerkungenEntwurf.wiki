@@ -1,6 +1,5 @@
-#summary One-sentence summary of this page.
+#summary Probleme und Inkonsistenzen die noch im Entwurf bestehen
 #labels Featured,Phase-Design
-Probleme und Inkonsistenzen die noch im Entwurf bestehen
 
 = Inkosistenzen =
 Unterschied im Vergleich zu Spielengine:
