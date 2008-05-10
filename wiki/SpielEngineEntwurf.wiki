@@ -5,7 +5,7 @@
 
 Erste Entwürfe der Spiele-Engine, diese soll v.a. die Spieler verwalten und die Zugprüfung durchführen.
 
-http://btuswphalma.googlecode.com/svn/wiki/EW_SpE_Manager_ZD.png
+http://btuswphalma.googlecode.com/svn/wiki/Manager-ZD(ck).png
 
 Abb.1 Zustandsdiagramm für Manager
 
