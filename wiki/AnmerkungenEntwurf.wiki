@@ -10,3 +10,6 @@ Unterschied im Vergleich zu Spielengine:
 =Änderungen=
 Im Vergleich zum Diagramm von ca. 04:40:
   * Die executeMove() Methode der Game Klasse bekommt den Rückgabewert int, in den einkodiert wird, ob der Zug normal durchgeführt wurde, oder ob es besondere Ereignisse gab, also ob ein Spieler fertig wurde und falls, dann welcher oder ob das Spiel fertig ist.
+
+=Kommunikation=
+GUI und SpieleEngine müssen sich noch über die Nachrichten einigen (was wird gebaraucht)
