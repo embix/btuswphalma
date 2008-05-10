@@ -38,3 +38,11 @@ _Abb 3 Klassendiagramm Nachrichten_
 http://btuswphalma.googlecode.com/svn/wiki/SqDKorrekterZugTP2SB.png
 
 _Abb 4 Sequenzdiagramm korrekter Zug_
+
+http://btuswphalma.googlecode.com/svn/wiki/SqDfalscherZugTP2SB.png
+
+_Abb 5 Sequenzdiagramm falsche Zug_
+
+http://btuswphalma.googlecode.com/svn/wiki/SqDSpielerFertigTP2SB.png
+
+_Abb 6 Sequenzdiagramm Spieler fertig_
