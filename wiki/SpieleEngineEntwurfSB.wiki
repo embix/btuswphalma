@@ -29,7 +29,7 @@ http://btuswphalma.googlecode.com/svn/wiki/KDSpielEngineTP2SB.png
 
 _Abb 2 Klassendiagramm Spiele-Engine_
 
-http://btuswphalma.googlecode.com/svn/wiki/KDMessgesTP2SB.png
+http://btuswphalma.googlecode.com/svn/wiki/KDMessagesTP2SB.png
 
 _Abb 3 Klassendiagramm Nachrichten_
 
