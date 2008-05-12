@@ -13,4 +13,7 @@ Abb.1 Automatenmodell
 http://btuswphalma.googlecode.com/svn/wiki/GuiTP2ClassDiagram.jpg
 Abb.2 Klassendiagramm
 
+=== Anmerkungen zum Klassendiagram ===
+Die gelb dargestellten Elemente werden durch die GUI Komponente realisiert. Die weiß dargestellten Komponennten werden für die Realisierung von Wunschkriterien benötigt - sie werden erst realisert, wenn die Musskriterien erfüllt sind. Die cyan dargestellten Elemente werden durch andere Komponenten des Projektes realisiert. Die Grau dargestellten Klassen entstammen dem verwendeten Framework.
+
 siehe auch [GuiAnalyse GUI Analyse], [http://code.google.com/p/btuswphalma/wiki/Produktentwurf Produktentwurf]
