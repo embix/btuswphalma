@@ -1,4 +1,5 @@
 #summary Die Schnittstellen IGuiCom, INetCom, IMessage und IGuiListener sowie die Nachrichtentypen MessageType.
+#labels Phase-Design
 
 = UML Diagramm =
 http://btuswphalma.googlecode.com/svn/wiki/Interfaces.jpg
