@@ -77,10 +77,14 @@ public class BoardPresentation extends JPanel {
     private void zeichneHausA(Graphics2D g2d, int xOffset, int yOffset, Color c){
 	// farbiges Dreieck zeichnen
 	Polygon triangle = new Polygon();
+	// obere Ecke
 	triangle.addPoint(RADIUS * xOffset, RADIUS * yOffset);
-	triangle.addPoint(RADIUS, RADIUS);
-	triangle.addPoint(RADIUS, RADIUS);
+	 //unten links Ecke
+	triangle.addPoint(RADIUS * (xOffset - 3), RADIUS * (yOffset + 6));
+	// unten rechts Ecke
+	triangle.addPoint(RADIUS * (xOffset + 3), RADIUS * (yOffset + 6));
 	g2d.setPaint(c);
+	g2d.fill(triangle);
 	
 	// die weissen Spielfelder zeichnen
 	int xpos;
@@ -88,8 +92,8 @@ public class BoardPresentation extends JPanel {
 
 	for (int i = 0; i <= 4; i++) {
 	    for (int j = 0; j < i; j++){
-		xpos = xOffset - i + 2*j;
-		ypos = yOffset + 2*i ;
+		xpos = xOffset+1 - i + 2*j;
+		ypos = yOffset-2 + 2*i ;
 		zeichneGrossenKreis(g2d, xpos, ypos, Color.WHITE);
 	    }
 	}
@@ -97,8 +101,10 @@ public class BoardPresentation extends JPanel {
     
     private void zeichneGrossenKreis(Graphics2D g2d, int x, int y, Color c){
 	g2d.setPaint(c);
+	// Skalierte Boardposition berechnen
 	int xpos = RADIUS * x;
 	int ypos = RADIUS * y;
+	// Kreismittelpunkt entspricht (xStart-xEnd, yStart-yEnd)
 	g2d.fillOval(xpos-RADIUS, ypos-RADIUS, 2*RADIUS, 2*RADIUS);
     }
     
