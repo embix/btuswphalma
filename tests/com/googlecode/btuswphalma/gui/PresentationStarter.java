@@ -10,7 +10,8 @@ package com.googlecode.btuswphalma.gui;
 public class PresentationStarter {
 
     /**
-     * Instanziert ein Presentation
+     * Instanziert ein Presentation Objekt zur optischen
+     * Begutachtung.
      * @param args
      */
     public static void main(String[] args) {
