@@ -1,11 +1,8 @@
-/** 
- * ScoreEntry.java
- * Beinhaltet einen Spielwertungseintrag (score entry) mit den Werten:
- * Spielername, Spielerwertung (Rang) und benoetigte Runden
- */
 package com.googlecode.btuswphalma.gameengine;
 
 /**
+ * Beinhaltet einen Spielwertungseintrag (score entry) mit den Werten:
+ * Spielername, Spielerwertung (Rang) und benoetigte Runden
  * @author Christoph 
  */
 public class ScoreEntry {

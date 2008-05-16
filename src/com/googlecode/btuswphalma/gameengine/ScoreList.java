@@ -1,13 +1,9 @@
-/**
- * ScoreList.java
- * 
- * Beinhaltet die Spielerwertungsliste die aus bis zu 6 Eintraegen besteht
- */
 package com.googlecode.btuswphalma.gameengine;
 
 import java.util.ArrayList;
 
 /**
+ * Beinhaltet die Spielerwertungsliste die aus bis zu 6 Eintraegen besteht
  * @author Christoph
  */
 public class ScoreList {
@@ -41,9 +37,10 @@ public class ScoreList {
 	}
 
 	/**
-	 * @param entry
-	 *            fuegt einen Eintrag in das Feld ein, Rang bestimmt dabei
-	 *            dessen Position im Feld
+	 * fuegt einen Eintrag in das Feld ein, Rang bestimmt dabei dessen Position
+	 * im Feld
+	 * 
+	 * @param entry Spielerwertungseintrag
 	 */
 	public void addEntry(ScoreEntry entry) {
 		int rank = entry.getRanking() - 1;
