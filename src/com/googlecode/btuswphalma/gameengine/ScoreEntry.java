@@ -14,21 +14,20 @@ public class ScoreEntry {
 	private int rounds;
 
 	/**
-	 * @param rank
-	 *            Rang in Spielwertung
-	 * @param spname
-	 *            Spielername
-	 * @param runden
-	 *            Runde in der der Spieler gewonnen hat
+	 * Konstruktor fuer einen Eintrag mit folgenden Werten:
+	 * @param rank int (Rang)
+	 * @param pname String (Spielername)
+	 * @param round int (benoetigte Runden)
 	 */
-	public ScoreEntry(int rank, String spname, int runden) {
+	public ScoreEntry(int rank, String pname, int round) {
 		this.ranking = rank;
-		this.name = spname;
-		this.rounds = runden;
+		this.name = pname;
+		this.rounds = round;
 	}
 
 	/**
-	 * @return Ausgabe des Ranges
+	 * gibt Spielerrang aus
+	 * @return int
 	 */
 	public int getRanking() {
 		return this.ranking;
@@ -36,14 +35,16 @@ public class ScoreEntry {
 
 	
 	/**
-	 * @return Ausgabe des Spielernamens
+	 * gibt Spielernamen aus
+	 * @return String
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * @return Ausgabe der Runden die der Spieler gebraucht hat
+	 * gibt Runden aus, die der Spieler gebraucht hat 
+	 * @return int
 	 */
 	public int getRounds() {
 		return this.rounds;
@@ -57,11 +58,11 @@ public class ScoreEntry {
 	 	this.ranking = rank; 
 	 }
 	 
-	 public void setName(String spname) { 
-	 	this.name = spname; 
+	 public void setName(String pname) { 
+	 	this.name = pname; 
 	 }
 	  
-	 public void setRounds(int runden) { 
-	 	this.rounds = runden; 
+	 public void setRounds(int round) { 
+	 	this.rounds = round; 
 	 }*/
 }

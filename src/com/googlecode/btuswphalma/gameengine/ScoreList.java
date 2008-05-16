@@ -3,33 +3,38 @@ package com.googlecode.btuswphalma.gameengine;
 import java.util.ArrayList;
 
 /**
- * Beinhaltet die Spielerwertungsliste die aus bis zu 6 Eintraegen besteht
+ * Beinhaltet die Spielerwertungsliste, die aus bis zu 6 Eintraegen besteht
  * @author Christoph
  */
 public class ScoreList {
 
-	//erzeugen einer ArrayList
+	/**
+	 * ArrayList(ScoreEntry)
+	 */
 	private ArrayList<ScoreEntry> scores;
 
 	/**
-	 * @param anz
-	 *            Spieleranzahl, bestimmt Feldgroeﬂe
+	 * Konstruktor, Anzahl der Spieler bestimmt Feldgroeﬂe
+	 * @param num
+	 *            int (Spieleranzahl)
 	 */
-	public ScoreList(int anz) {
-		this.scores = new ArrayList<ScoreEntry>(anz);
+	public ScoreList(int num) {
+		this.scores = new ArrayList<ScoreEntry>(num);
 	}
 
 	/**
-	 * @return gibt die komplette Spielerwertungsliste aus
+	 * gibt die komplette Spielerwertungsliste aus
+	 * @return ArrayList(ScoreEntry)
 	 */
 	public ArrayList<ScoreEntry> getScoreList() {
 		return this.scores;
 	}
 
 	/**
+	 * gibt einen Eintrag, anhand der Position im Feld, aus
 	 * @param rank
-	 *            Rang des Spielers bestimmt Position im Feld
-	 * @return gibt einen Eintrag aus der Liste, anhand der Position im Feld
+	 *            int
+	 * @return ScoreEntry 
 	 */
 	public ScoreEntry getEntry(int rank) {
 		ScoreEntry entry = scores.get(rank + 1);
@@ -39,8 +44,7 @@ public class ScoreList {
 	/**
 	 * fuegt einen Eintrag in das Feld ein, Rang bestimmt dabei dessen Position
 	 * im Feld
-	 * 
-	 * @param entry Spielerwertungseintrag
+	 * @param entry ScoreEntry
 	 */
 	public void addEntry(ScoreEntry entry) {
 		int rank = entry.getRanking() - 1;
