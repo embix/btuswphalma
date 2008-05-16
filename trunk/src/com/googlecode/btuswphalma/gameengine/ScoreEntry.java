@@ -1,13 +1,13 @@
 /** 
  * ScoreEntry.java
- * 
  * Beinhaltet einen Spielwertungseintrag (score entry) mit den Werten:
  * Spielername, Spielerwertung (Rang) und benoetigte Runden
- * 
- * @author Christoph
  */
 package com.googlecode.btuswphalma.gameengine;
 
+/**
+ * @author Christoph 
+ */
 public class ScoreEntry {
 
 	private int ranking;
@@ -16,24 +16,38 @@ public class ScoreEntry {
 
 	private int rounds;
 
-	/* der Konstruktor ScoreEntry der mit festen Parametern initialisiert wird */
+	/**
+	 * @param rank
+	 *            Rang in Spielwertung
+	 * @param spname
+	 *            Spielername
+	 * @param runden
+	 *            Runde in der der Spieler gewonnen hat
+	 */
 	public ScoreEntry(int rank, String spname, int runden) {
 		this.ranking = rank;
 		this.name = spname;
 		this.rounds = runden;
 	}
 
-	/* Ausgabe des Ranges dieses Eintrages */
+	/**
+	 * @return Ausgabe des Ranges
+	 */
 	public int getRanking() {
 		return this.ranking;
 	}
 
-	/* Ausgabe des Spielernamens dieses Eintrages */
+	
+	/**
+	 * @return Ausgabe des Spielernamens
+	 */
 	public String getName() {
 		return this.name;
 	}
 
-	/* Ausgabe der Runden die der Spieler gebraucht hat (aktueller Eintrag) */
+	/**
+	 * @return Ausgabe der Runden die der Spieler gebraucht hat
+	 */
 	public int getRounds() {
 		return this.rounds;
 	}

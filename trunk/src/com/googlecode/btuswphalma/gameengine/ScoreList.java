@@ -2,43 +2,48 @@
  * ScoreList.java
  * 
  * Beinhaltet die Spielerwertungsliste die aus bis zu 6 Eintraegen besteht
- * 
- * @author Christoph
  */
 package com.googlecode.btuswphalma.gameengine;
 
 import java.util.ArrayList;
 
+/**
+ * @author Christoph
+ */
 public class ScoreList {
 
-	/* erzeugen einer ArrayList */
+	//erzeugen einer ArrayList
 	private ArrayList<ScoreEntry> scores;
 
-	/*
-	 * initialisieren der Spielerwertungsliste, dessen Groeﬂe in Abhaengigkeit
-	 * der Spieleranzahl
+	/**
+	 * @param anz
+	 *            Spieleranzahl, bestimmt Feldgroeﬂe
 	 */
 	public ScoreList(int anz) {
 		this.scores = new ArrayList<ScoreEntry>(anz);
 	}
 
-	/* gibt die komplette Spielerwertungsliste aus */
+	/**
+	 * @return gibt die komplette Spielerwertungsliste aus
+	 */
 	public ArrayList<ScoreEntry> getScoreList() {
 		return this.scores;
 	}
 
-	/*
-	 * gibt einen Eintrag aus der Liste aus, anhand des Ranges (dieser muss
-	 * inkrementiert werden)
+	/**
+	 * @param rank
+	 *            Rang des Spielers bestimmt Position im Feld
+	 * @return gibt einen Eintrag aus der Liste, anhand der Position im Feld
 	 */
 	public ScoreEntry getEntry(int rank) {
 		ScoreEntry entry = scores.get(rank + 1);
 		return entry;
 	}
 
-	/*
-	 * fuegt einen Eintrag in die Liste hinzu, dabei bestimmt der Rang des
-	 * Eintrages die Position des Eintrages in der Liste
+	/**
+	 * @param entry
+	 *            fuegt einen Eintrag in das Feld ein, Rang bestimmt dabei
+	 *            dessen Position im Feld
 	 */
 	public void addEntry(ScoreEntry entry) {
 		int rank = entry.getRanking() - 1;
