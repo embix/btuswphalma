@@ -12,6 +12,9 @@ package com.googlecode.btuswphalma.hurz;
  */
 public class Hurz {
 
+	/**
+	 * 
+	 */
 	public Hurz() {
 	    System.out.println("You created HURZ!");
     }
