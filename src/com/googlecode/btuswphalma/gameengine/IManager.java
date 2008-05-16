@@ -6,8 +6,8 @@ package com.googlecode.btuswphalma.gameengine;
 import com.googlecode.btuswphalma.base.IMessage;
 
 /**
- * Eine Implemtierung des IManagers dient dazu das Spiel auszüfuhren,
- * inklusive der zeitlichen Steuerung. Das Interface dient auch dazu, dass die SpieleEngine und die Servergine nicht aufeinander warten müssen
+ * Eine Implementierung des IManagers dient dazu, das Spiel auszüfuhren,
+ * inklusive der zeitlichen Steuerung. Das Interface dient auch dazu, dass die Implementierung von SpieleEngine und die Servergine nicht aufeinander warten müssen
  * 
  * @author sebastian
  *
