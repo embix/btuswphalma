@@ -10,6 +10,8 @@ public class Board {
 	/** 2D Array für das Spielfeld (16 Reihen X 12 Zeichen) */
 	private byte[][] boardArray;
 	
+	//private byte bitmask = 0x01; //eventuell um den Status eines Feldpunktes zu bearbeiten
+	
 	/**
 	 * Konstruktor der, in Abhaengigkeit von der Spielerzahl,
 	 * das Spielfeld initialisiert 
