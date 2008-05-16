@@ -6,6 +6,7 @@ package com.googlecode.btuswphalma.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 
 import javax.swing.JPanel;
 
@@ -22,9 +23,11 @@ public class BoardPresentation extends JPanel {
     private static final long serialVersionUID = 1622559316573152181L;
     
     /**
-     * Durchmesser der Spielfeldkreise
+     * Der Radius der Spielfeldkreise, er dient
+     * gleichzeitig als Skalierungsfaktor fuer das
+     * sichtbare Spielfeld.
      */
-    public static final int DIAMETER = 25;  
+    public static final int RADIUS = 12;  
     
     /**
      * Konstruktor
@@ -51,16 +54,52 @@ public class BoardPresentation extends JPanel {
 	// Feldfarben definieren
 	g2d.setPaint(Color.WHITE);
 	
-	// zeichne oberes rotes Haus
-	for (int i = 0; i <= 4; i++) {
+	
+	// Haeuser zeichen
+	zeichneHausA(g2d, 14, 2, Color.RED); // oberes rotes Haus
+	zeichneHausA(g2d, 5, 20, Color.BLUE); // unten links blaues Haus
+	zeichneHausA(g2d, 23, 20, Color.GREEN); // unten rechts gruenes Haus
+	
+	// zeichne unteres rotes Haus
+	// TODO: rotes Hintergrund Dreieck zeichen
+	/*for (int i = 0; i <= 4; i++){
 	    g2d.setPaint(Color.WHITE);
 	    for (int j = 1; j <= i; j++){
-		int xpos = (int)((6 - (0.5 * i) + j ) * DIAMETER);
-		int ypos = DIAMETER * i;
-		g2d.fillOval(xpos, ypos, DIAMETER, DIAMETER);
+		xpos = (int)((6 - (0.5 * i) + j ) * RADIUS);
+		ypos = RADIUS * (17 - i);
+		g2d.fillOval(xpos, ypos, RADIUS, RADIUS);
 	    }
-	    
+	}*/
+	
+	// zeichne links oben gruenes Haus
+    }
+    
+    private void zeichneHausA(Graphics2D g2d, int xOffset, int yOffset, Color c){
+	// farbiges Dreieck zeichnen
+	Polygon triangle = new Polygon();
+	triangle.addPoint(RADIUS * xOffset, RADIUS * yOffset);
+	triangle.addPoint(RADIUS, RADIUS);
+	triangle.addPoint(RADIUS, RADIUS);
+	g2d.setPaint(c);
+	
+	// die weissen Spielfelder zeichnen
+	int xpos;
+	int ypos;
+
+	for (int i = 0; i <= 4; i++) {
+	    for (int j = 0; j < i; j++){
+		xpos = xOffset - i + 2*j;
+		ypos = yOffset + 2*i ;
+		zeichneGrossenKreis(g2d, xpos, ypos, Color.WHITE);
+	    }
 	}
+    }
+    
+    private void zeichneGrossenKreis(Graphics2D g2d, int x, int y, Color c){
+	g2d.setPaint(c);
+	int xpos = RADIUS * x;
+	int ypos = RADIUS * y;
+	g2d.fillOval(xpos-RADIUS, ypos-RADIUS, 2*RADIUS, 2*RADIUS);
     }
     
     // public void setBoard(Board b)
