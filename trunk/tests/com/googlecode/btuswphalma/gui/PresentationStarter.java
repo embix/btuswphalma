@@ -15,6 +15,9 @@ public class PresentationStarter {
      */
     public static void main(String[] args) {
 	Presentation pres = new Presentation();
+	System.out.println("Breite: " + pres.getWidth());
+	System.out.println("Hoehe: " + pres.getHeight());
+
     }
 
 }
