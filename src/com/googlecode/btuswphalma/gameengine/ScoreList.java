@@ -37,8 +37,7 @@ public class ScoreList {
 	 * @return ScoreEntry 
 	 */
 	public ScoreEntry getEntry(int rank) {
-		ScoreEntry entry = scores.get(rank + 1);
-		return entry;
+		return scores.get(rank - 1);
 	}
 
 	/**
@@ -47,7 +46,7 @@ public class ScoreList {
 	 * @param entry ScoreEntry
 	 */
 	public void addEntry(ScoreEntry entry) {
-		int rank = entry.getRanking() - 1;
-		scores.add(rank, entry);
+		int pos = entry.getRanking() + 1;
+		this.scores.add(pos, entry);
 	}
 }
