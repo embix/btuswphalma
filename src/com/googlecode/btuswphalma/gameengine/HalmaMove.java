@@ -13,10 +13,10 @@ public class HalmaMove {
 
 	/** ArrayList(BoardPositions)*/
 	private ArrayList<BoardPosition> positions =
-		new ArrayList<BoardPosition>();
+		new ArrayList<BoardPosition>(5);
 	
 	/**
-	 * Konstruktor, beinhaltet folgende
+	 * Konstruktor(parameter), beinhaltet folgende
 	 * @param pos ArrayList(BoardPosition)
 	 */
 	public HalmaMove(ArrayList<BoardPosition> pos) {
@@ -24,6 +24,13 @@ public class HalmaMove {
 			System.err.println("kein vollstaendiger Zug");
 		}
 		this.positions = pos;
+	}
+	
+	/**
+	 * Konstruktor leer
+	 */
+	public HalmaMove() {
+		this.positions = new ArrayList<BoardPosition>(5);
 	}
 
 	/**
@@ -64,7 +71,12 @@ public class HalmaMove {
 		return this.positions.get(pos);
 	}
 	
-	public void addBoardPosition(int pos) {
-		
+	/**
+	 * fuegt eine Spielfeldposition an das Ende des Feldes an
+	 * @param pos Boardposition (byte, byte)
+	 */
+	public void addBoardPosition(BoardPosition pos) {
+		int index = this.positions.size();
+		this.positions.add(index, pos);
 	}
 }
