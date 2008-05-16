@@ -1,3 +1,8 @@
+/**
+ * Basisschnittstelle für Nachrichtenobjekte
+ * 
+ */
+
 package com.googlecode.btuswphalma.base;
 
 public interface IMessage {
