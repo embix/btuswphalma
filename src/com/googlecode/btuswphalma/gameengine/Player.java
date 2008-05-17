@@ -25,10 +25,10 @@ public class Player {
 	 * @param round int (Runde in der der Spieler fertig wurde)
 	 */
 	public Player(int idnr, String pname, boolean spec, int round) {
-		this.id = idnr;
-		this.name = pname;
-		this.spectator = spec;
-		this.finishingRound = round;
+	this.id = idnr;
+	this.name = pname;
+	this.spectator = spec;
+	this.finishingRound = round;
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class Player {
 	 * @return int
 	 */
 	public int getID() {
-		return this.id;
+	return this.id;
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class Player {
 	 * @return String
 	 */
 	public String getName() {
-		return this.name;
+	return this.name;
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class Player {
 	 * @return boolean
 	 */
 	public boolean getSpectator() {
-		return this.spectator;
+	return this.spectator;
 	}
 	
 	/**
@@ -60,7 +60,7 @@ public class Player {
 	 * @return int
 	 */
 	public int getRounds() {
-		return this.finishingRound;
+	return this.finishingRound;
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public class Player {
 	 * @param spec boolean
 	 */
 	public void setSpec(boolean spec) {
-		this.spectator = spec;
+	this.spectator = spec;
 	}
 	
 	/**
@@ -76,6 +76,6 @@ public class Player {
 	 * @param round int
 	 */
 	public void setRound(int round) {
-		this.finishingRound = round;
+	this.finishingRound = round;
 	}
 }

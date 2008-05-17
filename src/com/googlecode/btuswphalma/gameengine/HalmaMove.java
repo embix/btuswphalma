@@ -21,17 +21,17 @@ public class HalmaMove {
      *                ArrayList(BoardPosition)
      */
     public HalmaMove(ArrayList<BoardPosition> pos) {
-	if (pos.size() < 2) {
-	    System.err.println("kein vollstaendiger Zug");
-	}
-	this.positions = pos;
+    if (pos.size() < 2) {
+    	System.err.println("kein vollstaendiger Zug");
+    }
+    this.positions = pos;
     }
 
     /**
      * Konstruktor leer
      */
     public HalmaMove() {
-	this.positions = new ArrayList<BoardPosition>(5);
+    this.positions = new ArrayList<BoardPosition>(5);
     }
 
     /**
@@ -40,7 +40,7 @@ public class HalmaMove {
      * @return Boardposition (byte, byte)
      */
     public BoardPosition getStartPosition() {
-	return this.positions.get(0);
+    return this.positions.get(0);
     }
 
     /**
@@ -49,19 +49,19 @@ public class HalmaMove {
      * @return Boardposition (byte, byte)
      */
     public BoardPosition getEndPosition() {
-	int lpos = this.positions.size() - 1;
-	return this.positions.get(lpos);
+    int lpos = this.positions.size() - 1;
+    return this.positions.get(lpos);
     }
 
     /**
-     * gibt die Anzal an Teilzügen aus. Jeder Zug besteht aus zumindest einem
-     * Teilzug. Schübe aus genau einem, Sprünge auch aus mehreren
+     * gibt die Anzal an Teilzuegen aus. Jeder Zug besteht aus zumindest einem
+     * Teilzug. Schuebe aus genau einem, Spruenge auch aus mehreren
      * 
      * @return int
      */
     public int getNumberOfPartMoves() {
-	int num = positions.size() - 1;
-	return num;
+    int num = positions.size() - 1;
+    return num;
     }
 
     /**
@@ -72,10 +72,10 @@ public class HalmaMove {
      * @return Boardposition (byte, byte)
      */
     public BoardPosition getPartPosition(int pos) {
-	if ((pos >= this.positions.size()) || (pos < 0)) {
-	    System.err.println("Position außerhalb des Feldes");
-	}
-	return this.positions.get(pos);
+    if ((pos >= this.positions.size()) || (pos < 0)) {
+    	System.err.println("Position ausserhalb des Feldes");
+    }
+    return this.positions.get(pos);
     }
 
     /**
@@ -85,7 +85,7 @@ public class HalmaMove {
      *                Boardposition (byte, byte)
      */
     public void addBoardPosition(BoardPosition pos) {
-	int index = this.positions.size();
-	this.positions.add(index, pos);
+    int index = this.positions.size();
+    this.positions.add(index, pos);
     }
 }
