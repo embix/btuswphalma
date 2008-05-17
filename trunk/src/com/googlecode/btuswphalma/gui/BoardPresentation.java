@@ -169,7 +169,7 @@ public class BoardPresentation extends JPanel {
     }
     
     /**
-     * Zeichnet einen großen Kreis
+     * Zeichnet einen großen Kreises
      * 
      * @param g2d gibt an, in welches Graphikobjekt gezeichnet werden soll
      * @param x gibt den x Wert des Mittelpunktes im Raster an
