@@ -7,7 +7,7 @@ package com.googlecode.btuswphalma.gameengine;
  */
 public class Board {
 
-	/** 2D Array f�r das Spielfeld (16 Reihen X 12 Zeichen) */
+	/** 2D Array für das Spielfeld (17 Reihen X 13 Spalten) */
 	private byte[][] boardArray;
 	
 	//private byte bitmask = 0x01; //eventuell um den Status eines Feldpunktes zu bearbeiten
