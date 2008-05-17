@@ -20,14 +20,12 @@ public interface IHalmaMoveChecker {
      * 
      * @param board
      *                das Spielbrett auf dem gezogen wird
-     * @param Move
+     * @param ove
      *                der Zug
      * @param player
      *                der Spieler der Zieht
      * @return konnte der Zugprüfer keinen Fehler finden (wahr: Zug OK)
      */
-    
-    // TODO: Sebastian - cool bleiben, bis das Board existiert
-    //public boolean checkMove(Board board, HalmaMove move, int player);
+    public boolean checkMove(Board board, HalmaMove move, int player);
 
 }
