@@ -60,20 +60,54 @@ public class BoardPresentation extends JPanel {
 	zeichneHausA(g2d, 5, 20, Color.BLUE); // unten links blaues Haus
 	zeichneHausA(g2d, 23, 20, Color.GREEN); // unten rechts gruenes Haus
 	
-	// zeichne unteres rotes Haus
-	// TODO: rotes Hintergrund Dreieck zeichen
-	/*for (int i = 0; i <= 4; i++){
-	    g2d.setPaint(Color.WHITE);
-	    for (int j = 1; j <= i; j++){
-		xpos = (int)((6 - (0.5 * i) + j ) * RADIUS);
-		ypos = RADIUS * (17 - i);
-		g2d.fillOval(xpos, ypos, RADIUS, RADIUS);
-	    }
-	}*/
-	
-	// zeichne links oben gruenes Haus
+	zeichneHausV(g2d, 5, 16, Color.GREEN); // oben links gruenes Haus
+	zeichneHausV(g2d, 23, 16, Color.BLUE); // oben rechts blaues Haus
+	zeichneHausV(g2d, 14, 34, Color.RED); // unteres rotes Haus
     }
     
+    /**
+     * Zeichne ein farbiges Haus in V-Form mit Bezugspunkt
+     * unten mitte enstrechend den Rasterpunkten.
+     * 
+     * @param g2d gibt an, in welches Graphikobjekt gezeichnet werden soll
+     * @param xOffset x-Wert des Bezugspunktes im Raster 
+     * @param yOffset y-Wert des Bezugspunktes im Raster
+     * @param c gibt die zu verwendende Farbe an
+     */
+    private void zeichneHausV(Graphics2D g2d, int xOffset, int yOffset, Color c){
+	// farbiges Dreieck zeichnen
+	Polygon triangle = new Polygon();
+	// obere Ecke
+	triangle.addPoint(RADIUS * xOffset, RADIUS * yOffset);
+	 //unten links Ecke
+	triangle.addPoint(RADIUS * (xOffset - 3), RADIUS * (yOffset - 6));
+	// unten rechts Ecke
+	triangle.addPoint(RADIUS * (xOffset + 3), RADIUS * (yOffset - 6));
+	g2d.setPaint(c);
+	g2d.fill(triangle);
+	
+	// die weissen Spielfelder zeichnen
+	int xpos;
+	int ypos;
+	// Aufbau von unten nach oben
+	for (int i = 0; i <= 4; i++) {
+	    for (int j = 0; j < i; j++){
+		xpos = xOffset+1 - i + 2*j;
+		ypos = yOffset+2 - 2*i ;
+		zeichneGrossenKreis(g2d, xpos, ypos, Color.WHITE);
+	    }
+	}
+    }
+    
+    /**
+     * Zeichne ein farbiges Haus in A-Form mit Bezugspunkt
+     * oben mitte enstrechend den Rasterpunkten.
+     * 
+     * @param g2d gibt an, in welches Graphikobjekt gezeichnet werden soll
+     * @param xOffset x-Wert des Bezugspunktes im Raster 
+     * @param yOffset y-Wert des Bezugspunktes im Raster
+     * @param c gibt die zu verwendende Farbe an
+     */
     private void zeichneHausA(Graphics2D g2d, int xOffset, int yOffset, Color c){
 	// farbiges Dreieck zeichnen
 	Polygon triangle = new Polygon();
@@ -89,7 +123,7 @@ public class BoardPresentation extends JPanel {
 	// die weissen Spielfelder zeichnen
 	int xpos;
 	int ypos;
-
+	// Aufbau von oben nach unten
 	for (int i = 0; i <= 4; i++) {
 	    for (int j = 0; j < i; j++){
 		xpos = xOffset+1 - i + 2*j;
@@ -99,6 +133,14 @@ public class BoardPresentation extends JPanel {
 	}
     }
     
+    /**
+     * Zeichnet einen großen Kreis
+     * 
+     * @param g2d gibt an, in welches Graphikobjekt gezeichnet werden soll
+     * @param x gibt den x Wert des Mittelpunktes im Raster an
+     * @param y gibt den y Wert des Mittelpunktes im Raster an
+     * @param c gibt die zu verwendende Farbe an
+     */
     private void zeichneGrossenKreis(Graphics2D g2d, int x, int y, Color c){
 	g2d.setPaint(c);
 	// Skalierte Boardposition berechnen
@@ -118,7 +160,7 @@ public class BoardPresentation extends JPanel {
      * Zeige das aktuell gesetzte Board auf dem Bildschirm an.
      */
     public void showBoard(){
-	
+	// TODO: implementieren
     }
     
     /**
@@ -128,5 +170,6 @@ public class BoardPresentation extends JPanel {
     public void showMove(){
 	showBoard(); // erst das Board anzeigen
 	// dann Zug darueberlegen
+	// TODO: implementieren
     }
 }
