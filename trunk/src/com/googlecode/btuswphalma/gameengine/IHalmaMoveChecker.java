@@ -20,7 +20,7 @@ public interface IHalmaMoveChecker {
      * 
      * @param board
      *                das Spielbrett auf dem gezogen wird
-     * @param ove
+     * @param move
      *                der Zug
      * @param player
      *                der Spieler der Zieht
