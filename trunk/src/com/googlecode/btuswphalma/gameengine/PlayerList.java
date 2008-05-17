@@ -19,7 +19,7 @@ public class PlayerList {
 	 * @param num int (Spieleranzahl)
 	 */
 	public PlayerList(int num) {
-		this.players = new ArrayList<Player>(num);
+	this.players = new ArrayList<Player>(num);
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class PlayerList {
 	 * @return ArrayList(Player)
 	 */
 	public ArrayList<Player> getPlayers() {
-		return this.players;
+	return this.players;
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class PlayerList {
 	 * @return Player
 	 */
 	public Player getPlayer(int id) {
-		return players.get(id - 1);
+	return players.get(id - 1);
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class PlayerList {
 	 * @param play Player
 	 */
 	public void addPlayer(Player play) {
-		int pos = play.getID() + 1;
-		this.players.add(pos, play);
+	int pos = play.getID() + 1;
+	this.players.add(pos, play);
 	}
 }

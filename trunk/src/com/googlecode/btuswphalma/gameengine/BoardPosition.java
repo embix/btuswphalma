@@ -19,8 +19,8 @@ public class BoardPosition {
 	 * @param y byte (y Koordinate)
 	 */
 	public BoardPosition(byte x, byte y) {
-		this.xPos = x;
-		this.yPos = y;
+	this.xPos = x;
+	this.yPos = y;
 	}
 	
 	/**
@@ -28,7 +28,7 @@ public class BoardPosition {
 	 * @return byte
 	 */
 	public byte getXPos() {
-		return this.xPos;
+	return this.xPos;
 	}
 	
 	/**
@@ -36,6 +36,6 @@ public class BoardPosition {
 	 * @return byte
 	 */
 	public byte getYPos() {
-		return this.yPos;
+	return this.yPos;
 	}
 }

@@ -7,7 +7,7 @@ package com.googlecode.btuswphalma.gameengine;
  */
 public class Board {
 
-	/** 2D Array für das Spielfeld (17 Reihen X 13 Spalten) */
+	/** 2D Array fuer das Spielfeld (17 Reihen X 13 Spalten) */
 	private byte[][] boardArray;
 	
 	//private byte bitmask = 0x01; //eventuell um den Status eines Feldpunktes zu bearbeiten
@@ -18,9 +18,9 @@ public class Board {
 	 * @param num int (Spieleranzahl)
 	 */
 	public Board(int num) {
-		this.boardArray = new byte[17][13];
-		//markUsablePositions();
-		//fillWithPlayers(num);
+	this.boardArray = new byte[17][13];
+	//markUsablePositions();
+	//fillWithPlayers(num);
 	}
 
 	/**
@@ -28,9 +28,9 @@ public class Board {
 	 * @return 	byte[][]  (Spielbrett)
 	 */
 	public byte[][] getBoardArryClone() {
-	    //FIXME hinten an das boardArray gehört ein .clone()
-		byte[][] clone = this.boardArray;
-		return clone;
+	//FIXME hinten an das boardArray gehoert ein .clone()
+	byte[][] clone = this.boardArray.clone();
+	return clone;
 	}
 	
 	/**
@@ -39,25 +39,25 @@ public class Board {
 	 * @return byte 
 	 */
 	public byte getPositionState(BoardPosition pos) {
-		byte x = pos.getXPos();
-		byte y = pos.getYPos();
-		return this.boardArray[x][y];
+	byte x = pos.getXPos();
+	byte y = pos.getYPos();
+	return this.boardArray[x][y];
 	}
 	
 	/**
-	 * setz den Wert von Board(spos) nach Board(epos) und loescht Board(spos)
+	 * tauscht die Werte von Board(spos) und Board(epos)
 	 * @param spos BoardPosition (byte, byte)
 	 * @param epos BoardPosition (byte, byte)
 	 */
 	public void exchangePositionState(BoardPosition spos, BoardPosition epos) {
-		byte xs = spos.getXPos();
-		byte ys = spos.getYPos();
-		byte xe = epos.getXPos();
-		byte ye = epos.getYPos();
-		byte toChange = this.boardArray[xs][ys];
-		//TODO vom Namen her war eigentlich gedacht, die Zustaende wirklich zu tauschen
-		//was auch bei dieser Implementierung einfach geht
-		this.boardArray[xe][ye] = toChange;
-		this.boardArray[xs][ys] = 0;
+	byte xs = spos.getXPos();
+	byte ys = spos.getYPos();
+	byte xe = epos.getXPos();
+	byte ye = epos.getYPos();
+	byte toChange = this.boardArray[xe][ye];
+	//TODO vom Namen her war eigentlich gedacht, die Zustaende wirklich zu tauschen
+	//was auch bei dieser Implementierung einfach geht
+	this.boardArray[xe][ye] = this.boardArray[xs][ys];
+	this.boardArray[xs][ys] = toChange;
 	}
 }

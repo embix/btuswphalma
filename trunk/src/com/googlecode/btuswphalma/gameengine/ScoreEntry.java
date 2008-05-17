@@ -20,9 +20,9 @@ public class ScoreEntry {
 	 * @param round int (benoetigte Runden)
 	 */
 	public ScoreEntry(int rank, String pname, int round) {
-		this.ranking = rank;
-		this.name = pname;
-		this.rounds = round;
+	this.ranking = rank;
+	this.name = pname;
+	this.rounds = round;
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class ScoreEntry {
 	 * @return int
 	 */
 	public int getRanking() {
-		return this.ranking;
+	return this.ranking;
 	}
 
 	
@@ -39,7 +39,7 @@ public class ScoreEntry {
 	 * @return String
 	 */
 	public String getName() {
-		return this.name;
+	return this.name;
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class ScoreEntry {
 	 * @return int
 	 */
 	public int getRounds() {
-		return this.rounds;
+	return this.rounds;
 	}
 
 	/*

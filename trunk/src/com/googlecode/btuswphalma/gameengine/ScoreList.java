@@ -19,7 +19,7 @@ public class ScoreList {
 	 *            int (Spieleranzahl)
 	 */
 	public ScoreList(int num) {
-		this.scores = new ArrayList<ScoreEntry>(num);
+	this.scores = new ArrayList<ScoreEntry>(num);
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class ScoreList {
 	 * @return ArrayList(ScoreEntry)
 	 */
 	public ArrayList<ScoreEntry> getScoreList() {
-		return this.scores;
+	return this.scores;
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class ScoreList {
 	 * @return ScoreEntry 
 	 */
 	public ScoreEntry getEntry(int rank) {
-		return scores.get(rank - 1);
+	return scores.get(rank - 1);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class ScoreList {
 	 * @param entry ScoreEntry
 	 */
 	public void addEntry(ScoreEntry entry) {
-		int pos = entry.getRanking() + 1;
-		this.scores.add(pos, entry);
+	int pos = entry.getRanking() + 1;
+	this.scores.add(pos, entry);
 	}
 }
