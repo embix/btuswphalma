@@ -47,4 +47,12 @@ public class PlayerList {
 	int pos = play.getID() + 1;
 	this.players.add(pos, play);
 	}
+	
+	/**
+	 * gibt Groeﬂe der Liste aus
+	 * @return int
+	 */
+	public int getPlayerListLength() {
+		return this.players.size();
+	}
 }
