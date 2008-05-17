@@ -34,3 +34,7 @@ Ein Bot ist ein computergesteuerter Spieler.
 Ein Dedicated Server ist ein Programm, welches ausschließlich als Server entsprechend der Aufgabe dient und sonst nichts tut.
 ==Highscoreliste==
 Die Highscoreliste ist eine Tabelle, die eine festgelegte Anzahl von Spielern beeinhaltet, denen zugeordnet wird wie oft sie insgesamt gewonnen haben und wieviel Runden ihr schnellster Sieg benötigte.
+==Slot==
+Ein Slot ist ein Platz, der durch etwas erwartetes besetzt werden kann.
+===Spielerslot===
+Für jeden abstrakten Spieler (Mensch, Computergegner) wird ein Slot zur Verfügung gestellt, die Anzahl der Slots einer Sessen geben somit an, wie viele menschliche + computergesteuerte Spieler mit einander spielen werden.
