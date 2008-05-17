@@ -49,7 +49,7 @@ public class HalmaMath {
      * 
      * @param startPos
      * @param endPos
-     * @return
+     * @return ob die Distanz einem Schub entspricht
      */
     public static boolean isPushDistance(BoardPosition startPos,
 	    BoardPosition endPos) {
@@ -68,7 +68,7 @@ public class HalmaMath {
      * 
      * @param startPos
      * @param endPos
-     * @return
+     * @return ob die Distanz einem (Teil-)Sprung entspricht
      */
     public static boolean isJumpDistance(BoardPosition startPos,
 	    BoardPosition endPos) {
