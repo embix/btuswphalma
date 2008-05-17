@@ -59,10 +59,45 @@ public class BoardPresentation extends JPanel {
 	zeichneHausA(g2d, 14, 2, Color.RED); // oberes rotes Haus
 	zeichneHausA(g2d, 5, 20, Color.BLUE); // unten links blaues Haus
 	zeichneHausA(g2d, 23, 20, Color.GREEN); // unten rechts gruenes Haus
-	
 	zeichneHausV(g2d, 5, 16, Color.GREEN); // oben links gruenes Haus
 	zeichneHausV(g2d, 23, 16, Color.BLUE); // oben rechts blaues Haus
 	zeichneHausV(g2d, 14, 34, Color.RED); // unteres rotes Haus
+	
+	zeichneHauptFeld(g2d); // Spielfeldmitte zeichnen
+    }
+    
+    /**
+     * Zeichne die Mitte des Spielfeldes
+     * 
+     * @param g2d gibt an, in welches Graphikobjekt gezeichnet werden soll
+     */
+    private void zeichneHauptFeld(Graphics2D g2d){
+	int xOffset = 10-1; // TODO: Offsets fuer x und y von zeichneHausX testen
+	int yOffset = 10+2;
+	
+	// die weissen Spielfelder zeichnen
+	int xpos;
+	int ypos;
+	// Aufbau von oben nach unten
+	for (int i = 0; i <= 4; i++) {
+	    for (int j = 0; j < i+5; j++){
+		xpos = xOffset+1 - i + 2*j;
+		ypos = yOffset-2 + 2*i ;
+		zeichneGrossenKreis(g2d, xpos, ypos, Color.WHITE);
+	    }
+	}
+	
+	// Aufbau von unten nach oben
+	xOffset = 10-1;
+	yOffset = 26-2;
+	// Aufbau von unten nach oben
+	for (int i = 0; i < 4; i++) {
+	    for (int j = 0; j < i+5; j++){
+		xpos = xOffset+1 - i + 2*j;
+		ypos = yOffset+2 - 2*i ;
+		zeichneGrossenKreis(g2d, xpos, ypos, Color.WHITE);
+	    }
+	}
     }
     
     /**
@@ -98,7 +133,7 @@ public class BoardPresentation extends JPanel {
 	    }
 	}
     }
-    
+   
     /**
      * Zeichne ein farbiges Haus in A-Form mit Bezugspunkt
      * oben mitte enstrechend den Rasterpunkten.
