@@ -7,7 +7,7 @@ package com.googlecode.btuswphalma.gameengine;
  */
 public class Board {
 
-	/** 2D Array für das Spielfeld (16 Reihen X 12 Zeichen) */
+	/** 2D Array fï¿½r das Spielfeld (16 Reihen X 12 Zeichen) */
 	private byte[][] boardArray;
 	
 	//private byte bitmask = 0x01; //eventuell um den Status eines Feldpunktes zu bearbeiten
@@ -28,6 +28,7 @@ public class Board {
 	 * @return 	byte[][]  (Spielbrett)
 	 */
 	public byte[][] getBoardArryClone() {
+	    //FIXME hinten an das boardArray gehÃ¶rt ein .clone()
 		byte[][] clone = this.boardArray;
 		return clone;
 	}
@@ -54,6 +55,8 @@ public class Board {
 		byte xe = epos.getXPos();
 		byte ye = epos.getYPos();
 		byte toChange = this.boardArray[xs][ys];
+		//TODO vom Namen her war eigentlich gedacht, die Zustaende wirklich zu tauschen
+		//was auch bei dieser Implementierung einfach geht
 		this.boardArray[xe][ye] = toChange;
 		this.boardArray[xs][ys] = 0;
 	}
