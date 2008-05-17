@@ -10,6 +10,8 @@ Dieses Array hat die Dimensionen 13x17
 
 Die Indizes (x,y) liegen also im zulässigen Bereich wenn gilt:
 
+*IN DER IMPLEMENTIERUNG X UND Y VERTAUSCHT!!!!!!!!!!!!!*
+
 http://btuswphalma.googlecode.com/svn/wiki/zulaessig.png
 
 Ob die Indizes auch eine Position im Array beschreibt, die tatsächlich ein Feld auf dem Halmafeld (sechszackigen Stern) ist ergibt sich aus dem Wahrheitswert dieser Formel:
