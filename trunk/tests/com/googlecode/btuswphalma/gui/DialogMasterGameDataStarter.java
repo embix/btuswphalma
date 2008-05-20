@@ -70,6 +70,5 @@ public class DialogMasterGameDataStarter
 	}else{
 	    System.out.println("Dialog nicht ok");
 	}
-	// TODO: Rueckgabedaten ausgeben
     }
 }
