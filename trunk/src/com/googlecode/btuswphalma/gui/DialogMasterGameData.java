@@ -148,6 +148,8 @@ public class DialogMasterGameData
     }
 
     /**
+     * Eventhandler fuer die Buttons
+     * 
      *  (non-Javadoc)
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
@@ -222,7 +224,7 @@ public class DialogMasterGameData
     }
     
     /**
-     * @return gibt den Aktuellen
+     * @return gibt den ausgewaehlten Mehspielermodus (Netz/Hotseat) zurueck
      */
     private GameMode getGameMode(){
 	GameMode mode;
