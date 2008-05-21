@@ -12,7 +12,7 @@ public class PlayerList {
 	/**
 	 * ArrayList(Player)
 	 */
-	private ArrayList<Player> players;
+	private ArrayList<Player> players = new ArrayList<Player>();
 
 	/**
 	 * Konstruktor, Anzahl der Spieler bestimmt Feldgroeﬂe 
@@ -21,6 +21,11 @@ public class PlayerList {
 	public PlayerList(int num) {
 	this.players = new ArrayList<Player>(num);
 	}
+	
+	/**
+	 * leerer Konstruktor
+	 */
+	public PlayerList() { }
 
 	/**
 	 * gibt komplette Spielerliste aus
