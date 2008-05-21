@@ -17,11 +17,16 @@ public class ScoreList {
 	 * Konstruktor, Anzahl der Spieler bestimmt Feldgroeﬂe
 	 * @param num
 	 *            int (Spieleranzahl)
-	 */
+	 *
 	public ScoreList(int num) {
 	this.scores = new ArrayList<ScoreEntry>(num);
-	}
+	}*/
 
+	/**
+	 * leerer Konstruktor
+	 */
+	public ScoreList() { }
+	
 	/**
 	 * gibt die komplette Spielerwertungsliste aus
 	 * @return ArrayList(ScoreEntry)
@@ -46,7 +51,14 @@ public class ScoreList {
 	 * @param entry ScoreEntry
 	 */
 	public void addEntry(ScoreEntry entry) {
-	int pos = entry.getRanking() + 1;
+	int pos = entry.getRanking() - 1;
 	this.scores.add(pos, entry);
+	}
+	
+	/**
+	 * fuegt einen Eintrag an das Ende der Liste
+	 */
+	public void addEntryToEnd(ScoreEntry entry) {
+	this.scores.add(entry);
 	}
 }
