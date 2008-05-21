@@ -12,7 +12,7 @@ package com.googlecode.btuswphalma.gameengine;
  */
 public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
 
-    /*
+    /**
      * (non-Javadoc)
      * 
      * @see com.googlecode.btuswphalma.gameengine.IHalmaMoveChecker#checkMove(com.googlecode.btuswphalma.gameengine.Board,
