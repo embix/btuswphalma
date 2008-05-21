@@ -11,7 +11,7 @@ public class ScoreList {
 	/**
 	 * ArrayList(ScoreEntry)
 	 */
-	private ArrayList<ScoreEntry> scores;
+	private ArrayList<ScoreEntry> scores = new ArrayList<ScoreEntry>();
 
 	/**
 	 * Konstruktor, Anzahl der Spieler bestimmt Feldgroeﬂe
@@ -52,13 +52,28 @@ public class ScoreList {
 	 */
 	public void addEntry(ScoreEntry entry) {
 	int pos = entry.getRanking() - 1;
-	this.scores.add(pos, entry);
+	if (pos < scores.size()) {
+		this.scores.remove(pos);
+		this.scores.add(pos, entry);
+	} else {
+		entry.setRanking(scores.size());
+		this.scores.add(entry);
+	}
 	}
 	
 	/**
 	 * fuegt einen Eintrag an das Ende der Liste
+	 * @param entry ScoreEntry
 	 */
 	public void addEntryToEnd(ScoreEntry entry) {
 	this.scores.add(entry);
+	}
+	
+	/**
+	 * gibt aktuelle Laenge der Liste aus
+	 * @return int
+	 */
+	public int getSize() {
+	return (this.scores.size());
 	}
 }

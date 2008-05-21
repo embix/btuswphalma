@@ -53,16 +53,28 @@ public class ScoreEntry {
 	/*
 	 * Setz-Methoden die den aktuellen Eintrag nach dessen Erstellung veraendern
 	 * koennen 
-	 * Verwendung wahrscheinlich nicht noetig 
-	 public void setRanking(int rank) { 
-	 	this.ranking = rank; 
-	 }
+	 * Verwendung wahrscheinlich nicht noetig */
+	/**
+	 * setz den Rang des Eintrages
+	 * @param rank int 
+	 */
+	public void setRanking(int rank) { 
+	this.ranking = rank; 
+	}
+	
+	/**
+	 * setzt den Spielernamen des Eintrages
+	 * @param pname String
+	 */
+	public void setName(String pname) { 
+	this.name = pname; 
+	}
 	 
-	 public void setName(String pname) { 
-	 	this.name = pname; 
-	 }
-	  
-	 public void setRounds(int round) { 
-	 	this.rounds = round; 
-	 }*/
+	/**
+	 * setz die Rundenanzahl des Eintrages
+	 * @param round int
+	 */
+	public void setRounds(int round) { 
+	this.rounds = round; 
+	}
 }
