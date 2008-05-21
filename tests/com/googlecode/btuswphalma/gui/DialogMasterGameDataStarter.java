@@ -41,6 +41,9 @@ public class DialogMasterGameDataStarter
     }
     
     /**
+     * Instanziert einen DialogMasterGameData zur optischen
+     * Begutachtung.
+     * 
      * @param args
      */
     public static void main(String[] args) {
@@ -52,7 +55,8 @@ public class DialogMasterGameDataStarter
     }
 
     /**
-     * Eventhandler
+     * Der Eventhandler erzeugt nach Betaetigung des Buttons den zu
+     * testenden Dialog und gibt seine Rueckgabewerte aus.
      * 
      *  (non-Javadoc)
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)

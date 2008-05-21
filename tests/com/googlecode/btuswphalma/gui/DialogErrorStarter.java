@@ -54,7 +54,8 @@ public class DialogErrorStarter
     }
     
     /**
-     * Eventhandler
+     * Der Eventhandler erzeugt nach Betaetigung des Buttons den zu
+     * testenden Dialog und gibt seine Rueckgabewerte aus.
      * 
      *  (non-Javadoc)
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
