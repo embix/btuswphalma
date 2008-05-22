@@ -20,7 +20,12 @@ public class ScoreEntry {
 	 * @param round int (benoetigte Runden)
 	 */
 	public ScoreEntry(int rank, String pname, int round) {
-	this.ranking = rank;
+	if ((rank<0) || (rank>6)) {
+		System.err.println("Rang nicht innerhalb von 1-6, setze default=6.");
+		this.ranking = 6;
+	} else {
+		this.ranking = rank;
+	}
 	this.name = pname;
 	this.rounds = round;
 	}
@@ -50,16 +55,17 @@ public class ScoreEntry {
 	return this.rounds;
 	}
 
-	/*
-	 * Setz-Methoden die den aktuellen Eintrag nach dessen Erstellung veraendern
-	 * koennen 
-	 * Verwendung wahrscheinlich nicht noetig */
 	/**
 	 * setz den Rang des Eintrages
 	 * @param rank int 
 	 */
 	public void setRanking(int rank) { 
-	this.ranking = rank; 
+	if ((rank<0) || (rank>6)) {
+		System.err.println("Rang nicht innerhalb von 1-6, setze default=6.");
+		this.ranking = 6;
+	} else {
+		this.ranking = rank;
+	}
 	}
 	
 	/**
