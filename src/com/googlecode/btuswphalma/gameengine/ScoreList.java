@@ -50,7 +50,7 @@ public class ScoreList {
 		this.scores.remove(pos);
 		this.scores.add(pos, entry);
 	} else {
-		entry.setRanking(scores.size());
+		entry.setRanking(scores.size() + 1);
 		this.scores.add(entry);
 	}
 	}
