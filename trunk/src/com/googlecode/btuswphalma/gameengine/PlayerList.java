@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class PlayerList {
 	
 	/**
-	 * ArrayList(Player)
+	 * ArrayList(Player), initial leer
 	 */
 	private ArrayList<Player> players = new ArrayList<Player>();
 
@@ -41,23 +41,43 @@ public class PlayerList {
 	 * @return Player
 	 */
 	public Player getPlayer(int id) {
-	return players.get(id - 1);
+	if ((id<=0) || (id>players.size())) {
+		System.err.println("Position ausserhalb der Liste!");
+		return null;
+	} else {
+		return players.get(id - 1);
+	}
 	}
 	
 	/**
-	 * fuegt einen Spieler, anhand seiner ID, in das Feld ein
+	 * ersetzt einen Spielereintrag, dabei seine ID = 
+	 * Position in der Liste
+	 * @param play Player
+	 */
+	public void setPlayer(Player play) {
+	int pos = play.getID() - 1;
+	if (pos < players.size()) {
+		this.players.remove(pos);
+		this.players.add(pos, play);
+	} else {
+		play.setID(pos+1);
+		this.players.add(play);
+	}
+	}
+	
+	/**
+	 * fuegt einen Spieler an das Ende der Liste an
 	 * @param play Player
 	 */
 	public void addPlayer(Player play) {
-	int pos = play.getID() + 1;
-	this.players.add(pos, play);
+	this.players.add(play);
 	}
 	
 	/**
 	 * gibt Groeße der Liste aus
 	 * @return int
 	 */
-	public int getPlayerListLength() {
+	public int getSize() {
 		return this.players.size();
 	}
 }
