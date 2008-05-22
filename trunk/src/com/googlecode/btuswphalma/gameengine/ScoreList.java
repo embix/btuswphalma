@@ -33,8 +33,8 @@ public class ScoreList {
 	 */
 	public ScoreEntry getEntry(int rank) {
 	if ((rank<=0) || (rank>scores.size())) {
-		System.err.println("Position ausserhalb der Liste! Ausgabe erster Eintrag.");
-		return scores.get(0);
+		System.err.println("Position ausserhalb der Liste!");
+		return null;
 	} else {
 		return scores.get(rank - 1);
 	}
