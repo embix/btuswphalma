@@ -60,7 +60,7 @@ public class PlayerList {
 		this.players.remove(pos);
 		this.players.add(pos, play);
 	} else {
-		play.setID(pos+1);
+		play.setID(players.size() + 1);
 		this.players.add(play);
 	}
 	}
