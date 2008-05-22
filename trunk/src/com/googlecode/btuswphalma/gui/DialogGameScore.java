@@ -5,14 +5,18 @@ package com.googlecode.btuswphalma.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 import com.googlecode.btuswphalma.gameengine.ScoreList;
@@ -22,12 +26,16 @@ import com.googlecode.btuswphalma.gameengine.ScoreEntry;
  * @author embix
  * 
  */
-public class DialogGameScore extends JDialog implements ActionListener {
+public class DialogGameScore
+	extends JDialog
+	implements ActionListener,
+		TableModelListener,
+		ListSelectionListener{
 
     private boolean ok;
     //private ScoreList scores;
     private JTable tableScores;
-
+    
     /**
      * Compiler generierte UID fuer diese Klasse. Wird durch Vererbung von
      * JDialog (serializable) notwendig.
@@ -50,7 +58,11 @@ public class DialogGameScore extends JDialog implements ActionListener {
 	// TODO: Tabelle anzeigen
 	ScoreTableModel model = new ScoreTableModel(scores);
 	tableScores = new JTable(model);
-	pane.add(new JScrollPane(tableScores), BorderLayout.CENTER);
+	tableScores.setPreferredScrollableViewportSize(new Dimension(300,80));
+	tableScores.getSelectionModel().addListSelectionListener(this);
+	tableScores.setFillsViewportHeight(true);
+	pane.add(tableScores.getTableHeader(), BorderLayout.PAGE_START);
+	pane.add(tableScores, BorderLayout.CENTER);
 	
 	/* allgemeiner Standard fuer Dialoge */
 	// OK
@@ -103,7 +115,8 @@ public class DialogGameScore extends JDialog implements ActionListener {
 
 	private int cols = 3;// statisch, nicht enkoppelt
 	private int rows;
-	private String daten[][];
+	private String data[][];
+	private String[] namen = {"Rang", "Name", "Runden"};
 
 	/**
 	 * @param scores gibt das Anzuzeigende Ergebnisobjekt
@@ -115,21 +128,45 @@ public class DialogGameScore extends JDialog implements ActionListener {
 	    if(rows > 6){
 		rows = 6;
 	    }
-	    daten = new String[rows][cols];
+	    data = new String[rows+1][cols];
 	    // Tabellenbeschriftung
-	    daten[0][0] = "Rang";
-	    daten[0][1] = "Name";
-	    daten[0][2] = "Runden";
 	    ScoreEntry entry;
-	    for(int i = 1; i <= rows; i++){
-		entry = scores.getEntry(i);
-		daten[i][0] = String.valueOf(entry.getRanking());
-		daten[i][1] = entry.getName();
-		daten[i][2] = String.valueOf(entry.getRounds());
+	    for(int i = 0; i < rows; i++){
+		entry = scores.getEntry(i+1);
+		data[i][0] = String.valueOf(entry.getRanking());
+		data[i][1] = entry.getName();
+		data[i][2] = String.valueOf(entry.getRounds());
+		System.out.println(data[i][0] + " " + data[i][1]+ " " + data[i][2]);
+	    }
+	    for(int i = 0; i < rows; i++){
+		for(int j = 0; j < cols; j++){
+		    System.out.print(getValueAt(i,j) + " "); // geht nicht - Warum?!
+		}
+		System.out.println();
 	    }
 	   
 	}
 
+	/**
+	 * @return gibt die Klasse der Daten der Spalte zurueck
+	 * @see javax.swing.table.AbstractTableModel#getColumnClass(int)
+	 */
+	@SuppressWarnings("unchecked")
+	public Class getColumnClass(int col){
+	    return String.class;
+	}
+	
+	/**
+	 * @return gibt den Namen der ensprechenden Spalte zurueck
+	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
+	 */
+	public String getColumnName(int col){
+	    if((col < cols) && (col >=0)){
+		return namen[col];
+	    }
+	    return null;
+	}
+	
 	/**
 	 * @return gibt die Anzahl der Spalten zurueck
 	 * @see javax.swing.table.TableModel#getColumnCount()
@@ -154,9 +191,26 @@ public class DialogGameScore extends JDialog implements ActionListener {
 	    // Einhaltung der Begrenzung pruefen
 	    if ((row < rows) && (row >= 0)
 		    && (col < cols) && (col >= 0)) {
-		return daten[row][col];
+		return data[row][col];
+	    }else{
+		return null;
 	    }
-	    return null;
 	}
+    }
+
+    /**
+     * Wird aufgerufen, wenn sich die Tabelle geaendert hat
+     * @see javax.swing.event.TableModelListener#tableChanged(javax.swing.event.TableModelEvent)
+     */
+    public void tableChanged(TableModelEvent event) {
+	
+    }
+
+    /**
+     * Wird aufgerufen, wenn sich Werte in der Tabelle geaendert haben
+     * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event.ListSelectionEvent)
+     */
+    public void valueChanged(ListSelectionEvent event) {
+	
     }
 }
