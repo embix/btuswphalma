@@ -38,4 +38,20 @@ public class BoardPosition {
 	public byte getYPos() {
 	return this.yPos;
 	}
+	
+	/**
+	 * ersetzt X Koordinate
+	 * @param x byte
+	 */
+	public void setXPos(byte x) {
+	this.xPos = x;
+	}
+
+	/**
+	 * ersetzt Y Koordinate
+	 * @param y byte
+	 */
+	public void setYPos(byte y) {
+	this.yPos = y;
+	}
 }
