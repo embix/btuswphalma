@@ -9,18 +9,9 @@ import java.util.ArrayList;
 public class ScoreList {
 
 	/**
-	 * ArrayList(ScoreEntry)
+	 * ArrayList(ScoreEntry), initial leer und 0-lang
 	 */
 	private ArrayList<ScoreEntry> scores = new ArrayList<ScoreEntry>();
-
-	/**
-	 * Konstruktor, Anzahl der Spieler bestimmt Feldgroe�e
-	 * @param num
-	 *            int (Spieleranzahl)
-	 *
-	public ScoreList(int num) {
-	this.scores = new ArrayList<ScoreEntry>(num);
-	}*/
 
 	/**
 	 * leerer Konstruktor
@@ -37,20 +28,23 @@ public class ScoreList {
 
 	/**
 	 * gibt einen Eintrag, anhand der Position im Feld, aus
-	 * @param rank
-	 *            int
+	 * @param rank int
 	 * @return ScoreEntry 
 	 */
 	public ScoreEntry getEntry(int rank) {
-	return scores.get(rank - 1);
+	if ((rank<=0) || (rank>scores.size())) {
+		System.err.println("Position ausserhalb der Liste! Ausgabe erster Eintrag.");
+		return scores.get(0);
+	} else {
+		return scores.get(rank - 1);
+	}
 	}
 
 	/**
-	 * fuegt einen Eintrag in das Feld ein, Rang bestimmt dabei dessen Position
-	 * im Feld
+	 * ersetzt einen Eintrag im Feld, Rang bestimmt dabei dessen Position
 	 * @param entry ScoreEntry
 	 */
-	public void addEntry(ScoreEntry entry) {
+	public void setEntry(ScoreEntry entry) {
 	int pos = entry.getRanking() - 1;
 	if (pos < scores.size()) {
 		this.scores.remove(pos);
@@ -65,7 +59,7 @@ public class ScoreList {
 	 * fuegt einen Eintrag an das Ende der Liste
 	 * @param entry ScoreEntry
 	 */
-	public void addEntryToEnd(ScoreEntry entry) {
+	public void addEntry(ScoreEntry entry) {
 	this.scores.add(entry);
 	}
 	

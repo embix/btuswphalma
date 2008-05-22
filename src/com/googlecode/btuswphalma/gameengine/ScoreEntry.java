@@ -20,7 +20,7 @@ public class ScoreEntry {
 	 * @param round int (benoetigte Runden)
 	 */
 	public ScoreEntry(int rank, String pname, int round) {
-	if ((rank<0) || (rank>6)) {
+	if ((rank<=0) || (rank>6)) {
 		System.err.println("Rang nicht innerhalb von 1-6, setze default=6.");
 		this.ranking = 6;
 	} else {
@@ -31,7 +31,7 @@ public class ScoreEntry {
 	}
 
 	/**
-	 * gibt Spielerrang aus
+	 * gibt Spielerrang aus 1-6
 	 * @return int
 	 */
 	public int getRanking() {
@@ -60,7 +60,7 @@ public class ScoreEntry {
 	 * @param rank int 
 	 */
 	public void setRanking(int rank) { 
-	if ((rank<0) || (rank>6)) {
+	if ((rank<=0) || (rank>6)) {
 		System.err.println("Rang nicht innerhalb von 1-6, setze default=6.");
 		this.ranking = 6;
 	} else {
