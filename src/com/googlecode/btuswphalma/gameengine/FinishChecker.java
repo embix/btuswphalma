@@ -42,9 +42,9 @@ public class FinishChecker {
 	 */
 	public boolean checkGameFinished(PlayerList players) {
 	boolean finished = false;
-	int noP = players.getSize();		//number of Players
+	int noP = players.getSize();					//number of Players
 	int noS = 0;									//number of Spectator 
-	for (int i=0; i<noP; i++) {
+	for (int i=1; i<noP; i++) {
 		if (players.getPlayer(i).getSpectator()) {
 			noS++;
 		}
