@@ -25,7 +25,12 @@ public class Player {
 	 * @param round int (Runde in der der Spieler fertig wurde)
 	 */
 	public Player(int idnr, String pname, boolean spec, int round) {
-	this.id = idnr;
+	if ((idnr<=0) || (idnr>6)) {
+		System.err.println("ID des Spieler entspricht nicht 1-6, setze default=6");
+		this.id = 6;
+	} else {
+		this.id = idnr;
+	}
 	this.name = pname;
 	this.spectator = spec;
 	this.finishingRound = round;
@@ -77,5 +82,26 @@ public class Player {
 	 */
 	public void setRound(int round) {
 	this.finishingRound = round;
+	}
+	
+	/**
+	 * ersetzt den Spielernamen
+	 * @param pname String
+	 */
+	public void setName(String pname) {
+	this.name = pname;
+	}
+	
+	/**
+	 * ersetzt die ID
+	 * @param idnr int
+	 */
+	public void setID(int idnr) {
+	if ((idnr<0) || (idnr>6)) {
+		System.err.println("ID entspricht nicht 1-6, setze default=6.");
+		this.id = 6;
+	} else {
+		this.id = idnr;
+	}
 	}
 }
