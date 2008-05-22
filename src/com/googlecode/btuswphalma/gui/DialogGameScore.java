@@ -8,34 +8,29 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 import com.googlecode.btuswphalma.gameengine.ScoreList;
 import com.googlecode.btuswphalma.gameengine.ScoreEntry;
 
 /**
- * @author embix
+ * Mit diesem Dialog sollen die Spielergebnisse angezeigt werden.
  * 
+ * @author embix
  */
 public class DialogGameScore
 	extends JDialog
-	implements ActionListener,
-		TableModelListener,
-		ListSelectionListener{
+	implements ActionListener {
 
     private boolean ok;
-    //private ScoreList scores;
     private JTable tableScores;
-    
+
     /**
      * Compiler generierte UID fuer diese Klasse. Wird durch Vererbung von
      * JDialog (serializable) notwendig.
@@ -55,15 +50,14 @@ public class DialogGameScore
 	BorderLayout bLay = new BorderLayout();
 	pane.setLayout(bLay);
 
-	// TODO: Tabelle anzeigen
+	// Tabelle anzeigen
 	ScoreTableModel model = new ScoreTableModel(scores);
 	tableScores = new JTable(model);
-	tableScores.setPreferredScrollableViewportSize(new Dimension(300,80));
-	tableScores.getSelectionModel().addListSelectionListener(this);
+	tableScores.setPreferredScrollableViewportSize(new Dimension(300, 80));
 	tableScores.setFillsViewportHeight(true);
 	pane.add(tableScores.getTableHeader(), BorderLayout.PAGE_START);
 	pane.add(tableScores, BorderLayout.CENTER);
-	
+
 	/* allgemeiner Standard fuer Dialoge */
 	// OK
 	JButton ok = new JButton("OK");
@@ -115,36 +109,33 @@ public class DialogGameScore
 
 	private int cols = 3;// statisch, nicht enkoppelt
 	private int rows;
-	private String data[][];
-	private String[] namen = {"Rang", "Name", "Runden"};
+	protected ArrayList<ScoreEntry> data;
+	private String[] namen = { "Rang", "Name", "Runden" };
 
 	/**
-	 * @param scores gibt das Anzuzeigende Ergebnisobjekt
-	 * an
+	 * Dem Konstruktor dieses TableModel's muessen bei der
+	 * Instanzierung die anzuzeigenden Daten als ScoreList
+	 * uebergeben werden.
+	 * 
+	 * @param scores gibt das Anzuzeigende Ergebnisobjekt an
 	 */
 	public ScoreTableModel(ScoreList scores) {
-	    //Statisch auf 6 Spieler begrenzen
-	    int rows = scores.getScoreList().size();
-	    if(rows > 6){
+	    // Statisch auf 6 Spieler begrenzen
+	    rows = scores.getScoreList().size();
+	    if (rows > 6) {
 		rows = 6;
 	    }
-	    data = new String[rows+1][cols];
+	    data = new ArrayList<ScoreEntry>();
 	    // Tabellenbeschriftung
 	    ScoreEntry entry;
-	    for(int i = 0; i < rows; i++){
-		entry = scores.getEntry(i+1);
-		data[i][0] = String.valueOf(entry.getRanking());
-		data[i][1] = entry.getName();
-		data[i][2] = String.valueOf(entry.getRounds());
-		System.out.println(data[i][0] + " " + data[i][1]+ " " + data[i][2]);
+	    for (int i = 0; i < rows; i++) {
+		entry = scores.getEntry(i + 1);
+		data.add(entry);
+		System.out
+			.println( data.get(i).getRanking() + " "
+				+ data.get(i).getName() + " "
+				+ data.get(i).getRounds());
 	    }
-	    for(int i = 0; i < rows; i++){
-		for(int j = 0; j < cols; j++){
-		    System.out.print(getValueAt(i,j) + " "); // geht nicht - Warum?!
-		}
-		System.out.println();
-	    }
-	   
 	}
 
 	/**
@@ -152,27 +143,27 @@ public class DialogGameScore
 	 * @see javax.swing.table.AbstractTableModel#getColumnClass(int)
 	 */
 	@SuppressWarnings("unchecked")
-	public Class getColumnClass(int col){
+	public Class getColumnClass(int col) {
 	    return String.class;
 	}
-	
+
 	/**
 	 * @return gibt den Namen der ensprechenden Spalte zurueck
 	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
 	 */
-	public String getColumnName(int col){
-	    if((col < cols) && (col >=0)){
+	public String getColumnName(int col) {
+	    if ((col < cols) && (col >= 0)) {
 		return namen[col];
 	    }
 	    return null;
 	}
-	
+
 	/**
 	 * @return gibt die Anzahl der Spalten zurueck
 	 * @see javax.swing.table.TableModel#getColumnCount()
 	 */
 	public int getColumnCount() {
-	    return cols; 
+	    return cols;
 	}
 
 	/**
@@ -189,28 +180,20 @@ public class DialogGameScore
 	 */
 	public Object getValueAt(int row, int col) {
 	    // Einhaltung der Begrenzung pruefen
-	    if ((row < rows) && (row >= 0)
-		    && (col < cols) && (col >= 0)) {
-		return data[row][col];
-	    }else{
+	    if ((row < rows) && (row >= 0) && (col < cols) && (col >= 0)) {
+		switch (col) {
+		case 0:
+		    return data.get(row).getRanking();
+		case 1:
+		    return data.get(row).getName();
+		case 2:
+		    return data.get(row).getRounds();
+		default:
+		    return null;
+		}
+	    } else {
 		return null;
 	    }
 	}
-    }
-
-    /**
-     * Wird aufgerufen, wenn sich die Tabelle geaendert hat
-     * @see javax.swing.event.TableModelListener#tableChanged(javax.swing.event.TableModelEvent)
-     */
-    public void tableChanged(TableModelEvent event) {
-	
-    }
-
-    /**
-     * Wird aufgerufen, wenn sich Werte in der Tabelle geaendert haben
-     * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event.ListSelectionEvent)
-     */
-    public void valueChanged(ListSelectionEvent event) {
-	
     }
 }
