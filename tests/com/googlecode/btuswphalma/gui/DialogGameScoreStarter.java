@@ -72,7 +72,7 @@ public class DialogGameScoreStarter extends JPanel implements ActionListener {
 	int i = 1;
 	for (String name : names) {
 	    score = new ScoreEntry(i,name,23+i*i);
-	    scores.addEntryToEnd(score);
+	    scores.addEntry(score);
 	    i++;
 	}
 	dialog = new DialogGameScore(owner, scores);

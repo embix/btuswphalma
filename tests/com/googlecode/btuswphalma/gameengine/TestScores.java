@@ -16,7 +16,7 @@ public class TestScores {
 		
 		for(int i=1; i<7; i++) {
 			ScoreEntry eintrag = new ScoreEntry(i, names[i-1], 12+i);
-			scoreliste.addEntryToEnd(eintrag);			
+			scoreliste.addEntry(eintrag);			
 		}
 		
 		for(int i=1; i<=scoreliste.getSize(); i++) {
@@ -28,7 +28,7 @@ public class TestScores {
 		int runde = 20;
 		String spname = "ersetzung";
 		ScoreEntry ersatz = new ScoreEntry(pos, spname, runde);
-		scoreliste.addEntry(ersatz);
+		scoreliste.setEntry(ersatz);
 		//System.out.println(scoreliste.getEntry(pos).getName());
 		
 		for(int i=1; i<=scoreliste.getSize(); i++) {
@@ -38,7 +38,7 @@ public class TestScores {
 		
 		spname = "anhang";
 		ScoreEntry anhang = new ScoreEntry(8, spname, runde);
-		scoreliste.addEntry(anhang);
+		scoreliste.setEntry(anhang);
 		
 		for(int i=1; i<=scoreliste.getSize();  i++) {
 			String x = scoreliste.getEntry(i).getName();
