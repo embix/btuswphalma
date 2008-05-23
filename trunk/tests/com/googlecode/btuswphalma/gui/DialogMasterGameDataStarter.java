@@ -12,37 +12,36 @@ import javax.swing.JPanel;
 
 /**
  * @author embix
- *
+ * 
  */
-public class DialogMasterGameDataStarter
-	extends JPanel
-	implements ActionListener {
-    
+public class DialogMasterGameDataStarter extends JPanel implements
+	ActionListener {
+
     /**
-     * Compiler generierte UID fuer diese Klasse. Wird durch Vererbung
-     * von JPanel (serializable) notwendig.
+     * Compiler generierte UID fuer diese Klasse. Wird durch Vererbung von
+     * JPanel (serializable) notwendig.
      */
     private static final long serialVersionUID = -5232324680081090145L;
-    
+
     private JFrame owner;
     private DialogMasterGameData dialog;
 
     /**
      * Konstruktor
      * 
-     * @param owner gibt an, zu welchem Container der Dialog-Startbutton
-     * gehoeren soll.
+     * @param owner
+     *                gibt an, zu welchem Container der Dialog-Startbutton
+     *                gehoeren soll.
      */
-    public DialogMasterGameDataStarter(JFrame owner){
+    public DialogMasterGameDataStarter(JFrame owner) {
 	this.owner = owner;
 	JButton b = new JButton("Call DialogMasterGameData");
 	b.addActionListener(this);
 	add(b);
     }
-    
+
     /**
-     * Instanziert einen DialogMasterGameData zur optischen
-     * Begutachtung.
+     * Instanziert einen DialogMasterGameData zur optischen Begutachtung.
      * 
      * @param args
      */
@@ -55,23 +54,24 @@ public class DialogMasterGameDataStarter
     }
 
     /**
-     * Der Eventhandler erzeugt nach Betaetigung des Buttons den zu
-     * testenden Dialog und gibt seine Rueckgabewerte aus.
+     * Der Eventhandler erzeugt nach Betaetigung des Buttons den zu testenden
+     * Dialog und gibt seine Rueckgabewerte aus.
      * 
-     *  (non-Javadoc)
+     * (non-Javadoc)
+     * 
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent event) {
 	dialog = new DialogMasterGameData(owner);
 	// hier gehts erst weiter, wenn Dialog geschlossen wurde
-	if(dialog.ok()){
+	if (dialog.ok()) {
 	    System.out.println("Dialog ok");
 	    MasterGameData mgd = dialog.getMasterGameData();
 	    System.out.println("Spielername:    " + mgd.playerName);
 	    System.out.println("Anzahl Spieler: " + mgd.playerCount);
 	    System.out.println("davon Ki:       " + mgd.aiCount);
 	    System.out.println("Game Mode:      " + mgd.gmod);
-	}else{
+	} else {
 	    System.out.println("Dialog nicht ok");
 	}
     }

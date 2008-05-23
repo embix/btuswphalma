@@ -8,12 +8,13 @@ import com.googlecode.btuswphalma.base.*;
  * @author ASM
  */
 public interface IDispatcher {
-	
-	/**
-	 * Sendet eine Nachricht an den Dispatcher
-	 * 
-	 * @param msg	Zu sendende Nachricht
-	 */
-	public void acceptMessage( IMessage msg );
-	
+
+    /**
+     * Sendet eine Nachricht an den Dispatcher
+     * 
+     * @param msg
+     *                Zu sendende Nachricht
+     */
+    public void acceptMessage(IMessage msg);
+
 }

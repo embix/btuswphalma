@@ -9,7 +9,7 @@ package com.googlecode.btuswphalma.gui;
  * gekapselt, da es momentan noch nicht sinnvoll erscheint.
  * 
  * @author embix
- *
+ * 
  */
 public class ClientGameData {
 

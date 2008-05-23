@@ -5,13 +5,13 @@ package com.googlecode.btuswphalma.gui;
 
 /**
  * @author embix
- *
+ * 
  */
 public class PresentationStarter {
 
     /**
-     * Instanziert ein Presentation Objekt zur optischen
-     * Begutachtung.
+     * Instanziert ein Presentation Objekt zur optischen Begutachtung.
+     * 
      * @param args
      */
     public static void main(String[] args) {

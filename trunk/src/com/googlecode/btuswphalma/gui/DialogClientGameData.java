@@ -20,45 +20,45 @@ import javax.swing.JTextField;
  * Modaler Dialog zur Eingabe der Spielerdaten der Clients
  * 
  * @author embix
- *
+ * 
  */
-public class DialogClientGameData
-	extends JDialog
-	implements ActionListener{
+public class DialogClientGameData extends JDialog implements ActionListener {
 
     private boolean ok;
     private JTextField fieldPlayerName;
     private ClientGameData clientGameData;
-    
+
     /**
-     * Compiler generierte UID fuer diese Klasse. Wird durch Vererbung
-     * von JDialog (serializable) notwendig.
+     * Compiler generierte UID fuer diese Klasse. Wird durch Vererbung von
+     * JDialog (serializable) notwendig.
      */
     private static final long serialVersionUID = -6412444075603132149L;
 
     /**
-     * @param owner gibt an, zu welchem Container der Dialog
-     * verankert werden soll.
+     * @param owner
+     *                gibt an, zu welchem Container der Dialog verankert werden
+     *                soll.
      */
-    public DialogClientGameData(JFrame owner){
-	super(owner, "Eingabe der Clientspieldaten",true);
-	
+    public DialogClientGameData(JFrame owner) {
+	super(owner, "Eingabe der Clientspieldaten", true);
+
 	Container pane = getContentPane();
 	GridBagLayout gridbag = new GridBagLayout();
 	pane.setLayout(gridbag);
 	GridBagConstraints c = new GridBagConstraints();
-	c.insets = new Insets(5,5,5,5);
-	
+	c.insets = new Insets(5, 5, 5, 5);
+
 	// Bereich fuer die Namenseingabe
 	JLabel label = new JLabel("Name");
 	c.gridwidth = 1;
 	gridbag.setConstraints(label, c);
 	pane.add(label);
-	fieldPlayerName = new JTextField(10); // Evtl. bestimmte Groesse erzwingen
+	fieldPlayerName = new JTextField(10); // Evtl. bestimmte Groesse
+						// erzwingen
 	c.gridwidth = GridBagConstraints.REMAINDER;
 	gridbag.setConstraints(fieldPlayerName, c);
 	pane.add(fieldPlayerName);
-	
+
 	/* allgemeiner Standard fuer Dialoge */
 	// OK
 	JButton ok = new JButton("OK");
@@ -79,18 +79,19 @@ public class DialogClientGameData
 	setResizable(false);
 	setVisible(true);
     }
-    
+
     /**
-     * Eventhandler fuer die Buttons 
+     * Eventhandler fuer die Buttons
      * 
      * (non-Javadoc)
+     * 
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent event) {
 	String cmd = event.getActionCommand();
-	if(cmd.equals("OK")){
+	if (cmd.equals("OK")) {
 	    // Namen pruefen
-	    if(getPlayerName().length() == 0){
+	    if (getPlayerName().length() == 0) {
 		fieldPlayerName.setText("Vorname");
 		fieldPlayerName.requestFocus();
 		return;
@@ -98,30 +99,30 @@ public class DialogClientGameData
 	    ok = true; // alle Daten korrekt
 	    dispose(); // Dialog beenden
 	}
-	if(cmd.equals("Abbrechen")){
+	if (cmd.equals("Abbrechen")) {
 	    ok = false; // abgebrochen
 	    dispose(); // Dialog beenden
 	}
     }
-    
+
     /**
-     * @return gibt ein die Spierlerdaten enthaltendes ClientGameData
-     * Objekt zurueck.
+     * @return gibt ein die Spierlerdaten enthaltendes ClientGameData Objekt
+     *         zurueck.
      * @see ClientGameData
      */
-    public ClientGameData getClientGameData(){
+    public ClientGameData getClientGameData() {
 	clientGameData = new ClientGameData();
 	clientGameData.playerName = getPlayerName();
 	return clientGameData;
     }
-    
+
     /**
      * @return gibt an, ob der Dialog erfolgreich ausgefuellt wurde
      */
-    public boolean ok(){
+    public boolean ok() {
 	return ok;
     }
-    
+
     /**
      * @return gibt den eingegebenen Spielernamen zurueck
      */

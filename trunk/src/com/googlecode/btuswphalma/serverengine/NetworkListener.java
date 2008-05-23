@@ -16,9 +16,9 @@ import com.googlecode.btuswphalma.gameengine.IManager;
 public class NetworkListener extends Thread {
 
     private Object netNotifyObject;
-    
+
     private INetCom network;
-    
+
     private IManager manager;
 
     private boolean die = false; // wird gesetzt wenn der Thread beenden soll
@@ -48,8 +48,6 @@ public class NetworkListener extends Thread {
     }
 
     /**
-     * (non-Javadoc)
-     * 
      * @see java.lang.Thread#run()
      */
     public void run() {

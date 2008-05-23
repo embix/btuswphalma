@@ -15,13 +15,14 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
     private IManager manager;
 
     private INetCom network;
-    
+
     private NetworkListener netThread;
 
     private java.util.Vector<IGuiListener> listeners = new java.util.Vector<IGuiListener>();
 
-    private java.util.concurrent.ArrayBlockingQueue<IMessage> msgQueue = new java.util.concurrent.ArrayBlockingQueue<IMessage>(8);
-    
+    private java.util.concurrent.ArrayBlockingQueue<IMessage> msgQueue
+    		= new java.util.concurrent.ArrayBlockingQueue<IMessage>(8);
+
     private boolean die = false;
 
     /**
@@ -42,8 +43,6 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
     }
 
     /**
-     * (non-Javadoc)
-     * 
      * @see com.googlecode.btuswphalma.base.IGuiCom#registerGuiListener(com.googlecode.btuswphalma.base.IGuiListener)
      */
     public void registerGuiListener(IGuiListener lst) {
@@ -51,8 +50,6 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
     }
 
     /**
-     * (non-Javadoc)
-     * 
      * @see com.googlecode.btuswphalma.base.IGuiCom#unregisterGuiListener(com.googlecode.btuswphalma.base.IGuiListener)
      */
     public void unregisterGuiListener(IGuiListener lst) {
@@ -60,16 +57,14 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
     }
 
     /**
-     * (non-Javadoc)
-     * 
      * @see com.googlecode.btuswphalma.base.IGuiCom#recvMessage(com.googlecode.btuswphalma.base.IMessage)
      */
     public void recvMessage(IMessage msg) {
 	msgQueue.add(msg);
     }
-    
+
     /**
-     *  Fordert den Dispatcher Thread auf, sich zu beenden
+     * Fordert den Dispatcher Thread auf, sich zu beenden
      */
     public void terminate() {
 	die = true;
@@ -84,7 +79,8 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
     private void dispatchMessage(IMessage msg) {
 	int msgDest = msg.getDestination();
 
-	// TP2: Sämtliche Spieler relevanten Nachrichten werden an die GUI geschickt.
+	// TP2: Sämtliche Spieler relevanten Nachrichten werden an die GUI
+	// geschickt.
 	// Daher auch die "seltsamen" Konstrukte if( true ) usw...
 	// Das muss für TP3 angepasst werden!
 
@@ -94,32 +90,33 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 	if (msgDest == -1) {
 	    manager.acceptMessage(msg);
 	} else {
-	    if (/*msgDest <= 1*/ true) {
+	    if (/* msgDest <= 1 */true) {
 		for (int i = 0; i < listeners.size(); i++) {
 		    listeners.get(i).recvdMessage(msg);
 		}
 	    }
 
-	    if (/*msgDest == 0 || msgDest > 1*/ false) {
+	    if (/* msgDest == 0 || msgDest > 1 */false) {
 		network.sendMessage(msg);
 	    }
 	}
     }
-    
-    /** (non-Javadoc)
+
+    /**
      * @see java.lang.Thread#run()
      */
     public void run() {
 	IMessage msg = null;
-	
-	while(!die) {
+
+	while (!die) {
 	    try {
-		msg = msgQueue.poll(250, java.util.concurrent.TimeUnit.MILLISECONDS );
+		msg = msgQueue.poll(250,
+			java.util.concurrent.TimeUnit.MILLISECONDS);
 	    } catch (InterruptedException e) {
 		die = true;
 	    }
-	    
-	    if( msg != null ) {
+
+	    if (msg != null) {
 		dispatchMessage(msg);
 	    }
 	}

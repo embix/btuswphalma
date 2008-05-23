@@ -23,7 +23,7 @@ public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
 	int moves = move.getNumberOfPartMoves();
 
 	if (player != board.getPositionState(move.getStartPosition())) {
-	    // player versuch einen Spielstein zu bewegen, der nicht ihm gehört
+	    // player versucht einen Spielstein zu bewegen, der nicht ihm gehört
 	    result = false;
 	    return result;
 	}

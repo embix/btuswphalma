@@ -4,7 +4,7 @@
 package com.googlecode.btuswphalma.gameengine;
 
 /**
- * Ein MoveChecker ist eigentlich eine Klasse die nur einen Algorithmus zu
+ * Ein MoveChecker ist eigentlich eine Klasse, die nur einen Algorithmus zu
  * verfügung stellt. Die Planung sieht zwei Implementierungen vor, eine die alle
  * Halmaregeln prüft, eine andere, die nur einige Mindestanforderungen an einen
  * Zug prüft.
