@@ -52,7 +52,10 @@ public class DialogGameScore extends JDialog implements ActionListener {
 	ScoreTableModel model = new ScoreTableModel(scores);
 	tableScores = new JTable(model);
 	tableScores.setPreferredScrollableViewportSize(new Dimension(300, 80));
-	tableScores.setFillsViewportHeight(true);
+	
+	// nicht in Java5 (SUN), kam erst mit Java6 (SUN)
+	//tableScores.setFillsViewportHeight(true); 
+	
 	pane.add(tableScores.getTableHeader(), BorderLayout.PAGE_START);
 	pane.add(tableScores, BorderLayout.CENTER);
 
