@@ -17,10 +17,10 @@ http://btuswphalma.googlecode.com/svn/wiki/EW_SpE_KD.png
 
 _Abb.3 Klassendiagramm für Spiele-Engine_
 
-Hinweis: TokenMove
+Hinweis:
 Ein TokenMove enthält, wenn ifPush wahr ist, nur startPosition und endPosition, wenn ifPush falsch ist, enhält TokenMove noch eine jumpList.
-JumpList enthält Sprungpositionen (jumpPosition) und deren Reihenfolge (jumpCount). Die Spielstein-Position ist immer ein Integer-Wert,
-diese wird aus dem Spielfeld (Board) berechnet.
+jumpList enthält Sprungpositionen (jumpPosition) und deren Reihenfolge (jumpCount). Die Spielstein-Position ist immer ein Integer-Wert,
+dieser wird aus dem Spielfeld (Board) berechnet.
 
 ==Sequenzdiagramm:==
 Initialisierung der Spiele-Engine für 2 Spieler
