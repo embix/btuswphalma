@@ -24,9 +24,7 @@ import com.googlecode.btuswphalma.gameengine.ScoreEntry;
  * 
  * @author embix
  */
-public class DialogGameScore
-	extends JDialog
-	implements ActionListener {
+public class DialogGameScore extends JDialog implements ActionListener {
 
     private boolean ok;
     private JTable tableScores;
@@ -113,11 +111,11 @@ public class DialogGameScore
 	private String[] namen = { "Rang", "Name", "Runden" };
 
 	/**
-	 * Dem Konstruktor dieses TableModel's muessen bei der
-	 * Instanzierung die anzuzeigenden Daten als ScoreList
-	 * uebergeben werden.
+	 * Dem Konstruktor dieses TableModel's muessen bei der Instanzierung die
+	 * anzuzeigenden Daten als ScoreList uebergeben werden.
 	 * 
-	 * @param scores gibt das Anzuzeigende Ergebnisobjekt an
+	 * @param scores
+	 *                gibt das Anzuzeigende Ergebnisobjekt an
 	 */
 	public ScoreTableModel(ScoreList scores) {
 	    // Statisch auf 6 Spieler begrenzen
@@ -132,7 +130,7 @@ public class DialogGameScore
 		entry = scores.getEntry(i + 1);
 		data.add(entry);
 		System.out
-			.println( data.get(i).getRanking() + " "
+			.println(data.get(i).getRanking() + " "
 				+ data.get(i).getName() + " "
 				+ data.get(i).getRounds());
 	    }

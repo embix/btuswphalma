@@ -7,13 +7,12 @@ import javax.swing.JFrame;
 
 /**
  * @author embix
- *
+ * 
  */
 public class BoardPresentationStarter {
 
     /**
-     * Instanziert ein BoardPresentation Objekt zur optischen
-     * Begutachtung.
+     * Instanziert ein BoardPresentation Objekt zur optischen Begutachtung.
      * 
      * @param args
      */
