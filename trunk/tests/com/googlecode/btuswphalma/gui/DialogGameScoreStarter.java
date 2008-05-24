@@ -64,7 +64,6 @@ public class DialogGameScoreStarter extends JPanel implements ActionListener {
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent event) {
-	// TODO: Spielergebnisliste erzeugen und übergeben
 	ScoreList scores = new ScoreList();
 	String names[] = { "Alfons", "Bertram", "Calligula", "Doro", "Eric",
 		"Fritz" };

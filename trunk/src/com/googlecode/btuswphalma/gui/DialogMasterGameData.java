@@ -99,12 +99,12 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	radioGameMode = new ButtonGroup();
 	radioGameMode.add(radioButtonHotseat);
 	radioGameMode.add(radioButtonNetplay);
-	radioButtonNetplay.setEnabled(false); // TODO: (TP3) spaeter loeschen
+	radioButtonNetplay.setEnabled(false); // TODO: (GUI)(TP3) Netplay disabled - spaeter loeschen
 	add(radioButtonHotseat);
 	add(radioButtonNetplay);
 
 	// Bereich fuer die Auswahl des Regelmodus
-	// TODO: (WunschKriterium) Regelmodus (mit Veto / regelkonform)
+	// TODO: (GUI) (WunschKriterium) Regelmodus (mit Veto / regelkonform)
 
 	/* allgemeiner Standard fuer Dialoge */
 	// OK
@@ -172,7 +172,7 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 		return;
 	    }
 	    // Anzahl KI Spieler pruefen
-	    // TODO: (TP4) 0 bis 2 KI Spieler erlauben
+	    // TODO: (GUI)(TP4) 0 bis 2 KI Spieler erlauben
 	    // pruefen, ob mehr KI als Gesamtspieler
 	    if (getAiPlayerCount() != 0) {
 		fieldAiPlayerCount.setText("0");
