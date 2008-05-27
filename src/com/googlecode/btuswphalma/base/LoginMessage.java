@@ -25,6 +25,20 @@ public class LoginMessage implements IMessage {
      */
     private int destination;
 
+    /**
+     * Die Login Message wird erzeugt
+     * 
+     * @param name gewuenschter Name
+     * @param source die eigene ID
+     * @param destination die Ziel ID
+     */
+    public LoginMessage(String name, int source, int destination) {
+	super();
+	this.name = name;
+	this.source = source;
+	this.destination = destination;
+    }
+
     /*
      * (non-Javadoc)
      * 
