@@ -15,7 +15,8 @@ public class TestServerEngine {
      * @param args
      */
     public static void main(String[] args) {
-	TestManager tManager = new TestManager();
+	// TODO: Wird später gebraucht
+	// TestManager tManager = new TestManager();
 	// TODO: To be finished...
     }
 
