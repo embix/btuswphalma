@@ -16,7 +16,8 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 
     private INetCom network;
 
-    private NetworkListener netThread;
+    // TODO: Wird später gebraucht
+    // private NetworkListener netThread;
 
     private java.util.Vector<IGuiListener> listeners = new java.util.Vector<IGuiListener>();
 
