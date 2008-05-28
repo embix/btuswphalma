@@ -11,6 +11,7 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
  * Controllerzustand nach Programmstart, zu diesem Zeitpunkt
  * sollen die Spieldaten eingegeben werden.
  * 
+ * @see see com.googlecode.btuswphalma.gui.GuiController
  * @author embix
  */
 public class SInputGameData implements IGuiState {
@@ -18,6 +19,14 @@ public class SInputGameData implements IGuiState {
     private GuiController controller;
     private boolean dataSend;
 
+    /**
+     * Kontstruktor fuer den Controllerzustand
+     * @param controller gibt den GuiController an, zu dem dieser
+     * Zustand gehoeren soll.
+     */
+    public SInputGameData(GuiController controller){
+	this.controller = controller;
+    }
     
     void sendGameData(MasterGameData gameData){
 	// TODO: (GUI) senden der Spieldaten ueber den MessageHandler
