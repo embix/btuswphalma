@@ -1,5 +1,5 @@
 /**
- * TODO: (GUI)  
+ * TODO: (GUI) minor bug (SunJava5, Linux)
  * 
  * Beim Betaetigen der Buttons werden diese zum Teil in der linken
  * oberen Ecke angezeigt - ein rezise (-> repaint) schafft zwar
