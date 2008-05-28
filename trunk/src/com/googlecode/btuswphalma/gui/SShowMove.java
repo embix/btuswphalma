@@ -115,7 +115,8 @@ public class SShowMove implements IGuiState {
      */
     public void recvScores(ScoreList s) {
 	controller.stateSessionEnd.recvScores(s);
-	controller.setState(controller.stateSessionEnd);
+	// Zustandswechsel: sollte implizit schon passiert sein
+	controller.setState(controller.stateSessionEnd); 
     }
 
 }
