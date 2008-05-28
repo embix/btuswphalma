@@ -100,7 +100,17 @@ public class SSessionEnd implements IGuiState {
 	if(!(dialog.ok())){
 	    // sollte nicht passieren
 	}
+	// Anschliessend neue Session starten, oder beenden
+	controller.setState(controller.stateInputGameData);
 	
+	// (GUI) TODO: unsauber! ordentlich machen
+	try {
+	    SInputGameData state = (SInputGameData)controller.stateInputGameData;
+	    state.promptGameData(); // neue Spieldateneingabe
+	} catch (RuntimeException e) {
+	    e.printStackTrace(); // Debugausgabe
+	    System.exit(1); // Programmende
+	}
     }
 
 }
