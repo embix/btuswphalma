@@ -51,7 +51,12 @@ public class GuiController {
      * haengt vom Bootprozess des Programms ab
      */
     private GuiController(){
-	// TODO: (GUI) Instanzierung der Zustaendsobjekte
+	// Instanzierung der Zustaendsobjekte
+	stateInputGameData = new SInputGameData(this);
+	stateMakeMove = new SMakeMove(this);
+	stateShowMove = new SShowMove(this);
+	stateSpectator = new SSpectator(this);
+	stateSessionEnd = new SSessionEnd(this);
 	// TODO: (GUI) Instanzierung der GUI-Hilfsklassen
     }
     
@@ -86,6 +91,9 @@ public class GuiController {
      * @param state der neue Zustand des Controllers
      */
     void setState(IGuiState state){
+	// TODO: (GUI) wenn beim Zustandswechsel eine Aktion erforderlich ist,
+	// soll diese ggf auch ausgefuehrt werden - umgeht unsaubere casts
+	// Ansatz: void commitChange(); // oder run();
 	this.state = state;
     }
     
