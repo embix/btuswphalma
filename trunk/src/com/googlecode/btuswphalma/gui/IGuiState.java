@@ -10,6 +10,11 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
 /**
  * IGuiState ist ein Interface zur Kapselung der Zustaende des GuiControllers.
  * 
+ * Da sich einige Methoden vom Verhalten her aehnlich sind, ist es
+ * moeglicherweise sinnvoll ein Refactoring dahingehend anzustreben,
+ * dass von einer IGuiState implementierenden Klasse aehnliche Zustaende
+ * abgeleitet werden.
+ * 
  * @author embix
  *
  */
