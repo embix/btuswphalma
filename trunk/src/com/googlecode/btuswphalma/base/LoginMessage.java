@@ -39,7 +39,7 @@ public class LoginMessage implements IMessage {
 	this.destination = destination;
     }
 
-    /*
+    /**
      * (non-Javadoc)
      * 
      * @see com.googlecode.btuswphalma.base.IMessage#getDestination()
@@ -57,7 +57,7 @@ public class LoginMessage implements IMessage {
 	return name;
     }
 
-    /*
+    /**
      * (non-Javadoc)
      * 
      * @see com.googlecode.btuswphalma.base.IMessage#getSource()
@@ -78,7 +78,7 @@ public class LoginMessage implements IMessage {
 	this.source = source;
     }
 
-    /*
+    /**
      * (non-Javadoc)
      * 
      * @see com.googlecode.btuswphalma.base.IMessage#getType()
