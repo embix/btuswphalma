@@ -7,6 +7,10 @@ package com.googlecode.btuswphalma.gui;
  * Der GuiController ist ein Zustandsautomat, der die Interaktion
  * mit dem Benutzer und der Engine steuert. Die einzelnen Zustaende
  * werden durch extra Klassen implementiert.
+ * Damit die externen Klassen nichts ueber den Aufbau des Controllers
+ * wissen muessen, waere es besser, das IGuiState-Interface selbst auch
+ * zu implementieren und die Aufrufe an den aktiven Zustand weiter zu
+ * leiten (bessere Kapselung).
  * 
  * @author embix
  *
