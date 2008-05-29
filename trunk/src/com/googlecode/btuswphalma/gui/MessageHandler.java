@@ -9,8 +9,10 @@ import com.googlecode.btuswphalma.base.IGuiListener;
 import com.googlecode.btuswphalma.base.IMessage;
 import com.googlecode.btuswphalma.base.MessageType;
 import com.googlecode.btuswphalma.base.MoveErrorMessage;
+import com.googlecode.btuswphalma.base.MoveMessage;
 import com.googlecode.btuswphalma.base.ScoreMessage;
 import com.googlecode.btuswphalma.gameengine.Board;
+import com.googlecode.btuswphalma.gameengine.HalmaMove;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
 
 /**
@@ -80,7 +82,7 @@ public class MessageHandler
 	    recvMsgPlayerFinished(msg);
 	    
 	default:
-	    // unbekannter Nachrichtentyp: wird nur geloggt
+	    // unbekannter Nachrichtentyp: wird nur fuer debugging geloggt
 	    System.out.println("(GUI)MessageHandler: unkown MessageType '" + type.toString() + "'");
 	}
 	
@@ -120,14 +122,15 @@ public class MessageHandler
     }
 
     /**
-     * Behandlungsroutine fuer Nachrichten des Typs 
-     * MT_LOGIN
+     * Die Behandlungsroutine fuer Nachrichten des Typs 
+     * MT_LOGIN tut nichts, da die LoginMessages nur in
+     * Richtung Engine versendet werden, folglich wird
+     * eine solche auch nicht erwartet.
      * 
      * @param msg gibt die zu behandelnde Nachricht an
      */
     private void recvMsgLogin(IMessage msg) {
-	// TODO Auto-generated method stub
-	
+	// wird ignoriert
     }
 
     /**
@@ -190,8 +193,9 @@ public class MessageHandler
     }
 
     /**
-     * Behandlungsroutine fuer Nachrichten des Typs
-     * MT_SCORES
+     * Die Behandlungsroutine fuer Nachrichten des Typs
+     * MT_SCORES uebergibt den Nachritchteninhalt an den
+     * Controller.
      * 
      * @param msg gibt die zu behandelnde Nachricht an
      */
@@ -210,6 +214,8 @@ public class MessageHandler
     /**
      * Behandlungsroutine fuer Nachrichten des Typs
      * MT_TERMINATE
+     * Fuer diesen Nachrichtentyp gibt es noch keine entsprechende
+     * Nachrichtenklasse, so dass zunaechst nichts passiert.
      * 
      * @param msg gibt die zu behandelnde Nachricht an
      */
@@ -236,7 +242,14 @@ public class MessageHandler
      * @param msg gibt die zu behandelnde Nachricht an
      */
     private void recvMsgMove(IMessage msg) {
-	// TODO Auto-generated method stub
+	// unsauber
+	try {
+	    MoveMessage moveMsg = (MoveMessage) msg;
+	    HalmaMove move = moveMsg.getMove();
+	    controller.getState().recvHalmaMove(move);
+	} catch (RuntimeException e) {
+	    e.printStackTrace();
+	}
 	
     }
 
@@ -248,8 +261,8 @@ public class MessageHandler
      * @param msg die zu sendende Nachricht
      */
     public void sendMessage(IMessage msg){
-	
+	// TODO: (GUI) Message Handling implementieren
     }
     
-    // TODO: (GUI) Message Handling implementieren
+    
 }
