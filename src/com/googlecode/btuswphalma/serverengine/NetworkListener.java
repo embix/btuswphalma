@@ -26,18 +26,17 @@ public class NetworkListener extends Thread {
     /**
      * Konstruiert ein NetworkListener
      * 
-     * @param o
-     *                Das Notifyobjekt der Netzwerkkomponente
      * @param n
      *                Die Netzwerkkomponente, von der Nachrichten abzuholen sind
      * @param m
      *                Der Manager, an den Netzwerknachrichten gesendet werden
      *                sollen.
      */
-    public NetworkListener(Object o, INetCom n, IManager m) {
-	netNotifyObject = o;
+    public NetworkListener(INetCom n, IManager m) {
 	network = n;
 	manager = m;
+
+	netNotifyObject = n.getNotifyObject();
     }
 
     /**
@@ -53,7 +52,9 @@ public class NetworkListener extends Thread {
     public void run() {
 	while (!die) {
 	    try {
-		netNotifyObject.wait(250);
+		synchronized (netNotifyObject) {
+		    netNotifyObject.wait(250);
+		}
 	    } catch (InterruptedException e) {
 		die = true;
 	    }
