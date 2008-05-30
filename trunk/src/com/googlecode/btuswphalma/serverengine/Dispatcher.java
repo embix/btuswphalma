@@ -6,8 +6,6 @@ import com.googlecode.btuswphalma.gameengine.IManager;
 /**
  * Hauptklasse der Server-Engine
  * 
- * Warnungen da noch nicht vollständig.
- * 
  * @author ASM
  */
 public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
@@ -16,22 +14,47 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 
     private INetCom network;
 
-    // TODO: Wird später gebraucht
-    // private NetworkListener netThread;
+    private NetworkListener netThread;
 
     private java.util.Vector<IGuiListener> listeners = new java.util.Vector<IGuiListener>();
 
-    private java.util.concurrent.ArrayBlockingQueue<IMessage> msgQueue
-    		= new java.util.concurrent.ArrayBlockingQueue<IMessage>(8);
+    private java.util.concurrent.ArrayBlockingQueue<IMessage> msgQueue =
+		new java.util.concurrent.ArrayBlockingQueue<IMessage>(32);
 
     private boolean die = false;
+
+    private boolean dispatcherNetTest = false; // TODO: wird für TP3 nicht mehr
+						// benötigt
 
     /**
      * Dispatcher Konstruktor Erzeugt interne Objekte
      */
     public Dispatcher() {
-	// TODO: IManager holen
-	// TODO: Netzwerkobjekt erzeugen
+	// TODO: Manager erzeugen
+	// TODO: Netzwerkobjekt/NetworkListener erzeugen und starten (TP 3)
+    }
+
+    /**
+     * Nur für Testzwecke
+     * 
+     * @param m
+     */
+    public void setManager(IManager m) {
+	manager = m;
+    }
+
+    /**
+     * Nur für Testzwecke
+     * 
+     * @param n
+     */
+    public void setNetwork(INetCom n) {
+	network = n;
+	dispatcherNetTest = true;
+
+	System.out.println("Starte Netzwerknachrichtenüberwachung...");
+	netThread = new NetworkListener(n, manager);
+	netThread.start();
     }
 
     /**
@@ -69,6 +92,11 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
      */
     public void terminate() {
 	die = true;
+
+	// TODO: Check nicht mehr notwendig für TP 3
+	if (dispatcherNetTest) {
+	    netThread.terminate();
+	}
     }
 
     /**
@@ -80,24 +108,18 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
     private void dispatchMessage(IMessage msg) {
 	int msgDest = msg.getDestination();
 
-	// TP2: Sämtliche Spieler relevanten Nachrichten werden an die GUI
-	// geschickt.
-	// Daher auch die "seltsamen" Konstrukte if( true ) usw...
-	// Das muss für TP3 angepasst werden!
-
-	// msgDest == -1: Nachricht für Spielengine
-	// msgDest == 0: Broadcast
-	// msgDest > 0: Nachricht für entsprechenden Spieler
 	if (msgDest == -1) {
 	    manager.acceptMessage(msg);
 	} else {
-	    if (/* msgDest <= 1 */true) {
+	    // TODO: Check auf dispatcherNetTest ist für TP3 nicht mehr
+	    // notwendig und wird da entfernt
+	    if (!dispatcherNetTest || msgDest <= 1) {
 		for (int i = 0; i < listeners.size(); i++) {
 		    listeners.get(i).recvdMessage(msg);
 		}
 	    }
 
-	    if (/* msgDest == 0 || msgDest > 1 */false) {
+	    if (dispatcherNetTest && (msgDest == 0 || msgDest > 1)) {
 		network.sendMessage(msg);
 	    }
 	}
