@@ -6,7 +6,7 @@ package com.googlecode.btuswphalma.serverengine;
 import com.googlecode.btuswphalma.base.*;
 
 /**
- * Basisobjekt für Server-Engine Test
+ * Basisobjekt fuer Server-Engine Test
  * 
  * @author ASM
  */
