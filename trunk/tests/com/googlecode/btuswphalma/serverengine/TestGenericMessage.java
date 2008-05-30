@@ -18,10 +18,18 @@ public class TestGenericMessage implements IMessage {
 
     private int dst;
 
-    TestGenericMessage(MessageType msgType, int msgSrc, int msgDst) {
+    /**
+     * @param msgType
+     * @param msgSrc
+     * @param msgDst
+     * @param d
+     */
+    public TestGenericMessage(MessageType msgType, int msgSrc, int msgDst) {
 	type = msgType;
 	src = msgSrc;
 	dst = msgDst;
+
+	// data = d;
     }
 
     /**
@@ -44,5 +52,4 @@ public class TestGenericMessage implements IMessage {
     public MessageType getType() {
 	return type;
     }
-
 }

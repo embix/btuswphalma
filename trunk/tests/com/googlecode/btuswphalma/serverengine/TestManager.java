@@ -11,15 +11,31 @@ import com.googlecode.btuswphalma.gameengine.IManager;
  * 
  * @author ASM
  */
-public class TestManager implements IManager {
+public class TestManager extends TestBaseObject implements IManager {
+
+    private IDispatcher dispatcher;
+
+    /**
+     * @param d
+     *                Dispatcher-Objekt, an welches Nachrichten geschickt werden
+     * @param t
+     *                Spieler, der die Nachrichten erhalten soll
+     * @param n
+     *                Anzahl der zu versendenden Nachrichten
+     */
+    public TestManager(IDispatcher d, int t, int n) {
+	super(MessageType.MT_BOARD, n, -1, t, "TestManager");
+	dispatcher = d;
+    }
 
     /**
      * @see com.googlecode.btuswphalma.gameengine.IManager#acceptMessage(com.googlecode.btuswphalma.base.IMessage)
      */
     public void acceptMessage(IMessage msg) {
-	System.out.println("TestManager: Nachricht erhalten...\n" + "Typ: "
-		+ msg.getType().toString() + "\n" + "Quelle: "
-		+ msg.getSource() + "\n" + "Ziel: " + msg.getDestination());
+	trackMessage(msg);
     }
 
+    protected void dispatchMessage(IMessage msg) {
+	dispatcher.acceptMessage(msg);
+    }
 }
