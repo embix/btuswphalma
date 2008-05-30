@@ -59,7 +59,15 @@ public class GuiController {
 	stateInputGameData = new SInputGameData(this);
 	stateMakeMove = new SMakeMove(this);
 	stateShowMove = new SShowMove(this);
+	
 	stateSpectator = new SSpectator(this);
+	/* TODO: (GUI) 
+	 * Fuer den Hotseatmode sollte es einen modifizierten
+	 * Spectator-Zustand geben, da sonst (nach fertig werden eines
+	 * Spielers) nicht mehr auf playerActivate reagiert wird.
+	 * Gegebenenfalls kann man auch stateSpectator=stateShowMove setzen.
+	 */ 
+	
 	stateSessionEnd = new SSessionEnd(this);
 	// TODO: (GUI) Instanzierung der GUI-Hilfsklassen
     }

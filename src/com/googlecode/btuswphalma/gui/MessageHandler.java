@@ -19,6 +19,8 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
  * Die Klasse MessageHandler stellt die wesentliche Schnittstelle nach
  * aussen (zur Spielengine, evtl. ueber das Netzwerk) dar und dient
  * dem Austausch der Nachrichten.
+ * Fuer die Hotseatvariante werden mehrere MessageHandler gleichzeitig
+ * verwendet (ist einebessere Architektur moeglich?)
  * 
  * @author embix
  *
@@ -26,7 +28,20 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
 public class MessageHandler
 	implements IGuiListener{
     
-    //private IGuiCom engine;
+    
+    /**
+     * Die Empfaenger ID entspricht immer der, der SpielEngine
+     * also (-1)
+     */
+    public static final int DESTINATION_ID = -1;
+    
+    /**
+     * Die Empfaenger ID des Messagehandlers wird erst festgelegt
+     * 
+     */
+    private int source;
+    
+    private IGuiCom engine;
     private GuiController controller;
     
     
@@ -37,11 +52,27 @@ public class MessageHandler
      * werden sollen.
      * @param controller gibt das Objekt an, welches die Gui steuert.
      */
-    MessageHandler(IGuiCom engine, GuiController controller){
-	// TODO: MessageHandler Messages an Engine senden lassen
-	// this.engine = engine;
+    private MessageHandler(IGuiCom engine, GuiController controller){
+	this.engine = engine;
+	// sich bei der Engine anmelden, damit Nachrichten empfangen werden koennen
+	this.engine.registerGuiListener(this);
 	this.controller = controller;
     }
+    
+    /**
+     * Erstellung des Messagehandlers fuer den Master
+     * sollte auf eins limitiert werden
+     * @param engine 
+     * @param controller 
+     * @return 
+     */
+    public static MessageHandler createMasterMessageHandler(IGuiCom engine, GuiController controller){
+	MessageHandler mh = new MessageHandler(engine, controller);
+	// TODO: (GUI) MessageHandler Instanzierung  fuer Master
+	return mh;
+    }
+    
+    // TODO: (GUI) Erstellung des MessageHandlers fuer (Hotseat)Clients 
     
     /**
      * Wird von aussen aufgerufen, wenn eine neue Nachricht ankommt.
@@ -262,7 +293,18 @@ public class MessageHandler
      */
     public void sendMessage(IMessage msg){
 	// TODO: (GUI) Message Handling implementieren
+	engine.recvMessage(msg);
     }
     
+    /**
+     * Sendet einen (eingegebenen) Zug an die Engine
+     * @param move gibt den zu versenden Zug an
+     */
+    public void sendMove(HalmaMove move){
+	// Zug in Nachrichten verpacken
+	MoveMessage moveMessage = new MoveMessage(source, DESTINATION_ID, move);
+	// und weiterleiten
+	sendMessage(moveMessage);
+    }
     
 }
