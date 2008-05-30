@@ -23,7 +23,7 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 
     private boolean die = false;
 
-    private boolean dispatcherNetTest = false; // TODO: wird für TP3 nicht mehr
+    private boolean dispatcherNetTest = false; // TODO: wird fuer TP3 nicht mehr
 						// benötigt
 
     /**
@@ -93,7 +93,7 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
     public void terminate() {
 	die = true;
 
-	// TODO: Check nicht mehr notwendig für TP 3
+	// TODO: Check nicht mehr notwendig fuer TP 3
 	if (dispatcherNetTest) {
 	    netThread.terminate();
 	}
@@ -111,7 +111,7 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 	if (msgDest == -1) {
 	    manager.acceptMessage(msg);
 	} else {
-	    // TODO: Check auf dispatcherNetTest ist für TP3 nicht mehr
+	    // TODO: Check auf dispatcherNetTest ist fuer TP3 nicht mehr
 	    // notwendig und wird da entfernt
 	    if (!dispatcherNetTest || msgDest <= 1) {
 		for (int i = 0; i < listeners.size(); i++) {
