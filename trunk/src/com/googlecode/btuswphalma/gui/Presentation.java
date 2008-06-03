@@ -40,8 +40,9 @@ public class Presentation extends JFrame {
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setLayout(new BorderLayout());
 	
+	// anpassen, da Boardpres mom auch auf 640x480 laeuft 
 	this.setSize(640, 480);
-	this.setVisible(true);
+	
 	
 	// das Menue darstellen
 	HalmaMenuBar menubar = new HalmaMenuBar();
@@ -54,9 +55,23 @@ public class Presentation extends JFrame {
 	// das Spielfeld anzeigen
 	BoardPresentation boardpres = controller.getBoardPres();
 	this.add(boardpres, BorderLayout.CENTER);
+	
+	// erst nach Anbindung der graphischen Komponenten sichtbar machen
+	this.setVisible(true);
     }
     
-    
+    /**
+     * Wenn ein neues Spiel gestartet werden soll (Menue->Neu) wird
+     * der Dialog zur Eingabe der Spieldaten aufgerufen.
+     */
+    private void startMaster(){
+	DialogMasterGameData mDialog = new DialogMasterGameData(this);
+	MasterGameData mData = mDialog.getMasterGameData();
+	// TODO: (GUI)Spieldaten verarbeiten
+	if(mData.playerCount > 1){
+	    // Namen der anderen Hotseatspieler erfragen
+	}
+    }
     
     
     /*
@@ -120,10 +135,13 @@ public class Presentation extends JFrame {
 	    String cmd = e.getActionCommand();
 	    
 	    if(obj instanceof JMenuItem){
-		// TODO: (GUI) Menueevents richtig behandeln
-		System.out.println("Menue: " + cmd);
+		// TODO: (GUI) Menuehandling sauber umsetzen
+		System.out.println("Menue: " + cmd);// debug Ausgabe
 		if(cmd.equals("ende")){
 		    System.exit(0);
+		}
+		if(cmd.equals("neu")){
+		    startMaster();
 		}
 	    }
 	}
