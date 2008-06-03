@@ -45,6 +45,7 @@ public interface IGuiState {
     /**
      * Wird vom MessageHandler aufgerufen, wenn durch die SpielEngine
      * eine neue Spielaufstellung uebermittelt wurde.
+     * 
      * @param b gibt das aktuelle Objekt fuer die Aufstellung an
      */
     public void recvBoard(Board b);
@@ -52,6 +53,7 @@ public interface IGuiState {
     /**
      * Wird vom MessageHandler aufgerufen, wenn durch die SpielEngine
      * die Spielergebnisse bekanntgegeben wurden.
+     * 
      * @param s gibt das Objekt fuer die Spielergebnisse an.
      */
     public void recvScores(ScoreList s);
