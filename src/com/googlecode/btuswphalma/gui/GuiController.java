@@ -3,6 +3,8 @@
  */
 package com.googlecode.btuswphalma.gui;
 
+import javax.swing.JFrame;
+
 /**
  * Der GuiController ist ein Zustandsautomat, der die Interaktion
  * mit dem Benutzer und der Engine steuert. Die einzelnen Zustaende
@@ -149,5 +151,16 @@ public class GuiController {
      */
     public Presentation getPresentation(){
 	return frame;
+    }
+
+    /**
+     * Mit dieser Methode werden die graphischen Komponenten mit dem
+     * fuer die Ausgabe zustaendigen Frame verbunden.
+     * 
+     * @param frame gibt das fuer die Darstellung zustaendige JFrame an
+     */
+    public void initialize(JFrame frame) {
+	// TODO: (GUI) eigene Darstellungselemente in das Frame einbetten
+	
     }
 }

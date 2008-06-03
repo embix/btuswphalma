@@ -13,4 +13,10 @@ package com.googlecode.btuswphalma.gui;
 public class InputHandler {
 
     // TODO: (GUI) Eingabehandling implementieren
+    
+   /* private void gotHalmaMove(){
+	
+    }*/
+    
+    
 }
