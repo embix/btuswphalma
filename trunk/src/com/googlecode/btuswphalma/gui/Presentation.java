@@ -50,14 +50,17 @@ public class Presentation extends JFrame {
 	setJMenuBar(menubar);
     }
     
+    
+    
+    
     /*
      * Innere Klassen fuer Anzeigeelemente, ggf "freilassen" in
      * eigene Datei, dabei dann aber auf Kopplungsprobleme achten.
      */
     
     /**
+     * Diese Klasse implementiert das Menue
      * @author embix
-     *
      */
     public class HalmaMenuBar extends JMenuBar{
 
@@ -65,7 +68,7 @@ public class Presentation extends JFrame {
 	JMenu menu;
 	
 	/**
-	 * 
+	 * Konstruktor fuer den Menuebalken
 	 */
 	public HalmaMenuBar(){
 	    // Menue Spiel
@@ -76,6 +79,13 @@ public class Presentation extends JFrame {
 	    add(menu);
 	}
 	
+	/**
+	 * Fuegt dem Menuepunkt Unterpunkte hinzu
+	 * 
+	 * @param label Angezeigter Titel
+	 * @param cmd Befehlsstring zu dem Titel
+	 * @param code Belegung fuer Tastenkombination (keine = -1)
+	 */
 	private void addItem(String label, String cmd, int code){
 	    JMenuItem mi = new JMenuItem(label);
 	    mi.setActionCommand(cmd);
@@ -104,6 +114,7 @@ public class Presentation extends JFrame {
 	    String cmd = e.getActionCommand();
 	    
 	    if(obj instanceof JMenuItem){
+		// TODO: (GUI) Menueevents richtig behandeln
 		System.out.println("Menue: " + cmd);
 		if(cmd.equals("ende")){
 		    System.exit(0);
