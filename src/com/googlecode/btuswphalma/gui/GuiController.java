@@ -3,11 +3,10 @@
  */
 package com.googlecode.btuswphalma.gui;
 
-import javax.swing.JFrame;
-
 import com.googlecode.btuswphalma.gameengine.Board;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
+import com.googlecode.btuswphalma.serverengine.Dispatcher;
 
 /**
  * Der GuiController ist ein Zustandsautomat, der die Interaktion
@@ -66,16 +65,28 @@ public class GuiController{
 	stateMakeMove = new SMakeMove(this);
 	stateShowMove = new SShowMove(this);
 	
-	stateSpectator = new SSpectator(this);
-	/* TODO: (GUI) 
-	 * Fuer den Hotseatmode sollte es einen modifizierten
-	 * Spectator-Zustand geben, da sonst (nach fertig werden eines
-	 * Spielers) nicht mehr auf playerActivate reagiert wird.
-	 * Gegebenenfalls kann man auch stateSpectator=stateShowMove setzen.
+	//stateSpectator = new SSpectator(this);
+	/* Fuer den Hotseatmode wird nicht der normale SSpectator-Zustand
+	 * verwendet, da sonst (nach fertig werden eines Spielers) nicht mehr
+	 * auf playerActivate reagiert wird.
+	 * Daher wird stateSpectator=stateShowMove gesetzt.
+	 * TODO: (GUI)(TP3) Unterscheidung zwischen Hotseat und Netzwerkspiel
+	 * betrachten und z.B. zwei Konstruktoren anbieten
 	 */ 
+	stateSpectator = stateShowMove;
 	
 	stateSessionEnd = new SSessionEnd(this);
+	
 	// TODO: (GUI) Instanzierung der GUI-Hilfsklassen
+	this.boardPres = new BoardPresentation();
+	this.builder = new BuilderHalmaMove();
+	this.inh = new InputHandler();
+	
+	// FIXME: (ALLE) Instanzierung Engine (gameengine und serverengine)
+	Dispatcher engine = new Dispatcher(); // hoffentlich reicht das...
+	this.mh = MessageHandler.createMasterMessageHandler(engine, this);
+	
+	// Presentation traegt sich selbst ein, siehe initialize()
     }
     
     /**
@@ -96,6 +107,8 @@ public class GuiController{
      * Gibt den aktuellen Zustand des Controllers zurueck, stattdessen
      * sollen die Methodenaufrufe direkt an den GuiController gerichtet
      * werden.
+     * Sollte nicht mehr verwendet werden, da saemtliche Methoden des
+     * Zustandes jetzt ueber den Controller angesprochen werden koennen.
      * 
      * @return der aktuelle Controllerzustand
      * @deprecated
@@ -165,10 +178,11 @@ public class GuiController{
      * Mit dieser Methode werden die graphischen Komponenten mit dem
      * fuer die Ausgabe zustaendigen Frame verbunden.
      * 
-     * @param frame gibt das fuer die Darstellung zustaendige JFrame an
+     * @param frame gibt das fuer die Darstellung zustaendige Presentation
      */
-    public void initialize(JFrame frame) {
+    public void initialize(Presentation frame) {
 	// TODO: (GUI) eigene Darstellungselemente in das Frame einbetten
+	this.frame = frame;
 	
     }
 
