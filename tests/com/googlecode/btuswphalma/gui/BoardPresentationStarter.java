@@ -145,7 +145,7 @@ public class BoardPresentationStarter extends JPanel implements ActionListener{
 	    // Spielzug erzeugen
 	    HalmaMove move = new HalmaMove();
 	    // (x)(y)-Folge der Einzelpositionen
-	    // Startposition liegt bewuss ausserhalb des Spielfeldes!
+	    // Startposition liegt bewusst ausserhalb des Spielfeldes!
 	    // dann Sprung aus dem Haus, dann Schub
 	    byte zugfolge[] = {12,0,7,3,6,5,7,6};
 	    // der Zug ist zwar ungueltig, aber ideal als Anzeigetest
