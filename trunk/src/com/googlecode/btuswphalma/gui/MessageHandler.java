@@ -127,7 +127,7 @@ public class MessageHandler
      * @param msg gibt die zu behandelnde Nachricht an
      */
     private void recvMsgPlayerFinished(IMessage msg) {
-	controller.getState().recvPlayerFinished();	
+	controller.recvPlayerFinished();	
     }
 
     /**
@@ -149,7 +149,7 @@ public class MessageHandler
      * @param msg gibt die zu behandelnde Nachricht an
      */
     private void recvMsgGameEnd(IMessage msg) {
-	controller.getState().recvPlayerFinished();	
+	controller.recvPlayerFinished();	
     }
 
     /**
@@ -172,7 +172,7 @@ public class MessageHandler
      * @param msg gibt die zu behandelnde Nachricht an
      */
     private void recvMsgPlayerActivate(IMessage msg) {
-	controller.getState().recvPlayerActivate();
+	controller.recvPlayerActivate();
     }
 
     /**
@@ -188,7 +188,7 @@ public class MessageHandler
 	try {
 	    MoveErrorMessage movErrMsg = (MoveErrorMessage) msg;
 	    String errStr = movErrMsg.getErrorString();
-	    controller.getState().recvMoveError(errStr);
+	    controller.recvMoveError(errStr);
 	} catch (RuntimeException e) {
 	    e.printStackTrace();
 	}
@@ -206,7 +206,7 @@ public class MessageHandler
 	try {
 	    BoardMessage boardMessage = (BoardMessage) msg;
 	    Board board = boardMessage.getBoard();
-	    controller.getState().recvBoard(board);
+	    controller.recvBoard(board);
 	} catch (RuntimeException e) {
 	    e.printStackTrace();
 	}
@@ -235,7 +235,7 @@ public class MessageHandler
 	try {
 	    ScoreMessage scoreMsg = (ScoreMessage) msg;
 	    ScoreList scores = scoreMsg.getScoreList();
-	    controller.getState().recvScores(scores);
+	    controller.recvScores(scores);
 	} catch (RuntimeException e) {
 	    e.printStackTrace();
 	}
@@ -277,7 +277,7 @@ public class MessageHandler
 	try {
 	    MoveMessage moveMsg = (MoveMessage) msg;
 	    HalmaMove move = moveMsg.getMove();
-	    controller.getState().recvHalmaMove(move);
+	    controller.recvHalmaMove(move);
 	} catch (RuntimeException e) {
 	    e.printStackTrace();
 	}

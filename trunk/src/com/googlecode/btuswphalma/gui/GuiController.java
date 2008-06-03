@@ -5,19 +5,23 @@ package com.googlecode.btuswphalma.gui;
 
 import javax.swing.JFrame;
 
+import com.googlecode.btuswphalma.gameengine.Board;
+import com.googlecode.btuswphalma.gameengine.HalmaMove;
+import com.googlecode.btuswphalma.gameengine.ScoreList;
+
 /**
  * Der GuiController ist ein Zustandsautomat, der die Interaktion
  * mit dem Benutzer und der Engine steuert. Die einzelnen Zustaende
  * werden durch extra Klassen implementiert.
  * Damit die externen Klassen nichts ueber den Aufbau des Controllers
- * wissen muessen, waere es besser, das IGuiState-Interface selbst auch
- * zu implementieren und die Aufrufe an den aktiven Zustand weiter zu
- * leiten (bessere Kapselung).
+ * wissen muessen, werden die durch das IGuiState-Interface geforderten
+ * Methoden angeboten und fuer den Aufrufer transparent an die aktiven
+ * Zustand weitergeleitet (bessere Kapselung).
  * 
  * @author embix
  *
  */
-public class GuiController {
+public class GuiController{
 
     private static GuiController controller;
     
@@ -89,10 +93,14 @@ public class GuiController {
     
     
     /**
-     * gibt den aktuellen Zustand des Controllers zurueck
+     * Gibt den aktuellen Zustand des Controllers zurueck, stattdessen
+     * sollen die Methodenaufrufe direkt an den GuiController gerichtet
+     * werden.
      * 
      * @return der aktuelle Controllerzustand
+     * @deprecated
      */
+    @Deprecated
     public IGuiState getState(){
 	return state;
     }
@@ -162,5 +170,87 @@ public class GuiController {
     public void initialize(JFrame frame) {
 	// TODO: (GUI) eigene Darstellungselemente in das Frame einbetten
 	
+    }
+
+    
+    
+    /*
+     * Hier kommen die Methoden, welche durch IGuiState implementiert
+     * werden muessen. Dabei werden die Aufrufe direkt an den aktiven
+     * Zustand weitergeleitet. 
+     */
+    
+    /**
+     * Wird vom MessageHandler aufgerufen, wenn durch die SpielEngine
+     * eine neue Spielaufstellung uebermittelt wurde.
+     * 
+     * @param b gibt das aktuelle Objekt fuer die Aufstellung an 
+     * @see com.googlecode.btuswphalma.gui.IGuiState#recvBoard(com.googlecode.btuswphalma.gameengine.Board)
+     */
+    public void recvBoard(Board b) {
+	this.state.recvBoard(b);	
+    }
+
+    /**
+     * Wird vom MessageHandler aufgerufen, wenn durch die SpielEngine
+     * das Ende der Session bekanntgegeben wurde.
+     * 
+     * @see com.googlecode.btuswphalma.gui.IGuiState#recvGameEnd()
+     */
+    public void recvGameEnd() {
+	this.state.recvGameEnd();
+    }
+    
+    /** 
+     * Wird vom MessageHandler aufgerufen, wenn von der SpielEngine ein
+     * Spielzug uebermittelt wurde. 
+     * 
+     * @param tm gibt den Spielzug an, der uebertragen werden soll
+     * @see com.googlecode.btuswphalma.gui.IGuiState#recvHalmaMove(com.googlecode.btuswphalma.gameengine.HalmaMove)
+     */
+    public void recvHalmaMove(HalmaMove tm) {
+	this.state.recvHalmaMove(tm);	
+    }
+
+    /**
+     * Wird vom MessageHandler aufgerufen, wenn von der SpielEngine
+     * ein Fehler uebermittelt wurde.
+     * 
+     * @param errStr ist der die Fehlerausgabe enthaltene String
+     * @see com.googlecode.btuswphalma.gui.IGuiState#recvMoveError(java.lang.String)
+     */
+    public void recvMoveError(String errStr) {
+	this.state.recvMoveError(errStr);
+    }
+
+    /**
+     * Wird vom MessageHandler aufgerufen, wenn der Spieler von der
+     * SpielEngine als naechster ausgewaehlt wurde.
+     * 
+     * @see com.googlecode.btuswphalma.gui.IGuiState#recvPlayerActivate()
+     */
+    public void recvPlayerActivate() {
+	this.state.recvPlayerActivate();	
+    }
+
+    /**
+     * Wird vom MessageHandler aufgerufen, wenn durch die SpielEngine
+     * festgestellt wurde, dass der Spieler fertig ist.
+     * 
+     * @see com.googlecode.btuswphalma.gui.IGuiState#recvPlayerFinished()
+     */
+    public void recvPlayerFinished() {
+	this.state.recvPlayerFinished();
+    }
+
+    /**
+     * Wird vom MessageHandler aufgerufen, wenn durch die SpielEngine
+     * die Spielergebnisse bekanntgegeben wurden.
+     * 
+     * @param s gibt das Objekt fuer die Spielergebnisse an.
+     * @see com.googlecode.btuswphalma.gui.IGuiState#recvScores(com.googlecode.btuswphalma.gameengine.ScoreList)
+     */
+    public void recvScores(ScoreList s) {
+	this.state.recvScores(s);	
     }
 }
