@@ -43,11 +43,17 @@ public class Presentation extends JFrame {
 	this.setSize(640, 480);
 	this.setVisible(true);
 	
+	// das Menue darstellen
+	HalmaMenuBar menubar = new HalmaMenuBar();
+	setJMenuBar(menubar);
+	
+	// mit dem Controller verbinden
 	controller = GuiController.getInstance();
 	controller.initialize(this);
 	
-	HalmaMenuBar menubar = new HalmaMenuBar();
-	setJMenuBar(menubar);
+	// das Spielfeld anzeigen
+	BoardPresentation boardpres = controller.getBoardPres();
+	this.add(boardpres, BorderLayout.CENTER);
     }
     
     
