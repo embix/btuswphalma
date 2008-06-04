@@ -9,14 +9,20 @@ http://btuswphalma.googlecode.com/svn/wiki/GuiTP2StateChart.jpg
 
 Abb.1 Automatenmodell
 
+Aus dem Automatenmodell heraus wurde die Klasse _GuiController_ entworfen. Um die Komplexität dieser Klasse nicht unüberschaubar werden zu lassen und da das Verhalten in jedem Zustand etwas anders ist, wurde für jeden Zustand eine eigene Zustandsklasse konstruiert.
+
+http://btuswphalma.googlecode.com/svn/wiki/GuiTP2ClassDiagram
+
+Abb.2 GuiController
+
 
 http://btuswphalma.googlecode.com/svn/wiki/GuiTP2ClassDiagram.jpg
-Abb.2 Überblick über die GUI-Komponente
+Abb.3 Überblick über die GUI-Komponente
 
 === Anmerkungen zum Klassendiagram ===
 Die gelb dargestellten Elemente werden durch die GUI Komponente realisiert. Die weiß dargestellten Komponennten werden für die Realisierung von Wunschkriterien benötigt - sie werden erst realisert, wenn die Musskriterien erfüllt sind. Die cyan dargestellten Elemente werden durch andere Komponenten des Projektes realisiert. Die Grau dargestellten Klassen entstammen dem verwendeten Framework.
 
 http://btuswphalma.googlecode.com/svn/wiki/GuiTP2ClassDiagramDialofenster.jpg
-Abb.3 Dialoge in der GUI-Komponente
+Abb.4 Dialoge in der GUI-Komponente
 
 siehe auch [GuiAnalyse GUI Analyse], [http://code.google.com/p/btuswphalma/wiki/Produktentwurf Produktentwurf]
