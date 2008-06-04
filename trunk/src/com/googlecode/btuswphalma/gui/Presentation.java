@@ -87,6 +87,7 @@ public class Presentation extends JFrame {
 
 	private static final long serialVersionUID = 1309789090746454939L;
 	JMenu menu;
+	MenuListener mlistener = new MenuListener();
 	
 	/**
 	 * Konstruktor fuer den Menuebalken
@@ -94,9 +95,11 @@ public class Presentation extends JFrame {
 	public HalmaMenuBar(){
 	    // Menue Spiel
 	    menu = new JMenu("Spiel");
-	    addItem("Neu", "neu", KeyEvent.VK_N);
+	    addItem("Neu", "neu", KeyEvent.VK_N,
+		    "<html>Startet ein neue Spielsession</html>");
 	    menu.addSeparator();
-	    addItem("Beenden", "ende", -1);
+	    addItem("Beenden", "ende", -1,
+		    "<html>Beendet die aktive Session und schliesst das Programm</html>");
 	    add(menu);
 	}
 	
@@ -107,13 +110,14 @@ public class Presentation extends JFrame {
 	 * @param cmd Befehlsstring zu dem Titel
 	 * @param code Belegung fuer Tastenkombination (keine = -1)
 	 */
-	private void addItem(String label, String cmd, int code){
+	private void addItem(String label, String cmd, int code, String toolTip){
 	    JMenuItem mi = new JMenuItem(label);
 	    mi.setActionCommand(cmd);
+	    mi.setToolTipText(toolTip);
 	    if(code != -1){
 		mi.setAccelerator(KeyStroke.getKeyStroke(code, InputEvent.CTRL_MASK));
 	    }
-	    mi.addActionListener(new MenuListener());
+	    mi.addActionListener(mlistener);
 	    menu.add(mi);
 	}
 	
