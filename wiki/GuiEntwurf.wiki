@@ -9,10 +9,9 @@ http://btuswphalma.googlecode.com/svn/wiki/GuiTP2StateChart.jpg
 
 Abb.1 Automatenmodell
 
-Aus dem Automatenmodell heraus wurde die Klasse _GuiController_ entworfen. Um die Komplexität dieser Klasse nicht unüberschaubar werden zu lassen und da das Verhalten in jedem Zustand etwas anders ist, wurde für jeden Zustand eine eigene Zustandsklasse konstruiert.
+Aus dem Automatenmodell heraus wurde die Klasse GuiController entworfen. Um die Komplexität dieser Klasse nicht unüberschaubar werden zu lassen und da das Verhalten in jedem Zustand etwas anders ist, wurde für jeden Zustand eine eigene Zustandsklasse konstruiert.
 
-http://btuswphalma.googlecode.com/svn/wiki/GuiTP2ClassDiagram
-
+http://btuswphalma.googlecode.com/svn/wiki/GuiTP2ClassDiagramControllerObject.jpg
 Abb.2 GuiController
 
 
