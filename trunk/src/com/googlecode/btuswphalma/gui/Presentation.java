@@ -14,6 +14,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+import javax.swing.border.BevelBorder;
 
 /**
  * Klasse des Containers fuer die gesamte Darstellung, alle graphischen
@@ -40,8 +41,8 @@ public class Presentation extends JFrame {
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setLayout(new BorderLayout());
 	
-	// anpassen, da Boardpres mom auch auf 640x480 laeuft 
-	this.setSize(640, 480);
+	// BoardPresentation waehlt Groesse aus RADIUS 
+	//this.setSize(640, 480);
 	
 	
 	// das Menue darstellen
@@ -54,7 +55,10 @@ public class Presentation extends JFrame {
 	
 	// das Spielfeld anzeigen
 	BoardPresentation boardpres = controller.getBoardPres();
+	boardpres.setBorder(new BevelBorder(BevelBorder.LOWERED));
 	this.add(boardpres, BorderLayout.CENTER);
+	
+	this.pack();
 	
 	// erst nach Anbindung der graphischen Komponenten sichtbar machen
 	this.setVisible(true);
@@ -66,10 +70,41 @@ public class Presentation extends JFrame {
      */
     private void startMaster(){
 	DialogMasterGameData mDialog = new DialogMasterGameData(this);
-	MasterGameData mData = mDialog.getMasterGameData();
-	// TODO: (GUI)Spieldaten verarbeiten
-	if(mData.playerCount > 1){
-	    // Namen der anderen Hotseatspieler erfragen
+	if(mDialog.ok()){
+	 // TODO: (GUI)Spieldaten verarbeiten
+	    MasterGameData mData = mDialog.getMasterGameData();
+	    if(mData.playerCount > 1){
+		// Namen der anderen Hotseatspieler erfragen
+	    }
+	}
+    }
+    
+    
+    /**
+     * Den Massstab fuer die Spielfelddarstellung vergrossern
+     */
+    private void increaseScale(){
+	// unsauber
+	int radius = controller.getBoardPres().getRadius();
+	System.out.print("radius="+radius+"\n");
+	radius +=2;
+	controller.getBoardPres().setRadius(radius);
+	if(radius == controller.getBoardPres().getRadius()){
+	    pack();
+	}
+    }
+    
+    /**
+     * Den Massstab fuer die Spielfelddarstellung verkleinern
+     */
+    private void decreaseScale(){
+	// unsauber
+	int radius = controller.getBoardPres().getRadius();
+	System.out.print("radius="+radius+"\n");
+	radius -=2;
+	controller.getBoardPres().setRadius(radius);
+	if(radius == controller.getBoardPres().getRadius()){
+	    pack();
 	}
     }
     
@@ -80,7 +115,7 @@ public class Presentation extends JFrame {
      */
     
     /**
-     * Diese Klasse implementiert das Menue
+     * Diese innere Klasse implementiert das Menue
      * @author embix
      */
     public class HalmaMenuBar extends JMenuBar{
@@ -95,11 +130,22 @@ public class Presentation extends JFrame {
 	public HalmaMenuBar(){
 	    // Menue Spiel
 	    menu = new JMenu("Spiel");
+	    
+	    // Menuepunkt Neu
 	    addItem("Neu", "neu", KeyEvent.VK_N,
 		    "<html>Startet ein neue Spielsession</html>");
+	    
 	    menu.addSeparator();
+	    // Menuepunkte Darstellung vergroessern/verkleinern
+	    addItem("<html>Darstellung vergr&ouml;&szlig;ern</html>", "groesser", KeyEvent.VK_PLUS,
+		    "<html>Vergr&ouml;&szlig;ert den Ma&szlig;stab f&uuml;r die<p> Darstellung des Spielfeldes</html>");
+	    addItem("Darstellung verkleinern", "kleiner", KeyEvent.VK_MINUS,
+		    "<html>Verkleinert den Ma&szlig;stab f&uuml;r die<p> Darstellung des Spielfeldes</html>");
+	    
+	    // Menuepunkt Beenden
 	    addItem("Beenden", "ende", -1,
-		    "<html>Beendet die aktive Session und schliesst das Programm</html>");
+		    "<html>Beendet die aktive Session und schlie&szlig;t das Programm</html>");
+	    
 	    add(menu);
 	}
 	
@@ -139,13 +185,19 @@ public class Presentation extends JFrame {
 	    String cmd = e.getActionCommand();
 	    
 	    if(obj instanceof JMenuItem){
-		// TODO: (GUI) Menuehandling sauber umsetzen
+		// TODO: (GUI) Menuehandling sauberer umsetzen
 		System.out.println("Menue: " + cmd);// debug Ausgabe
 		if(cmd.equals("ende")){
 		    System.exit(0);
 		}
 		if(cmd.equals("neu")){
 		    startMaster();
+		}
+		if(cmd.equals("groesser")){
+		    increaseScale();
+		}
+		if(cmd.equals("kleiner")){
+		    decreaseScale();
 		}
 	    }
 	}
