@@ -41,12 +41,14 @@ public class BoardPresentationStarter extends JPanel implements ActionListener{
 
     private JFrame owner;
     private BoardPresentation pres;
+    private int spieler = 4;
+    private JButton spielerbutton;
     
     /* Beschriftung der Buttons
      * waere als enum wohl besser aufgehoben, dann koennte man auch
      * die Instanzierung der Buttons automatisieren (Schleife)
      */ 
-    private static final String POS = "positioniere Spielstein";
+    //private static final String POS = "positioniere Spielstein";
     private static final String BRETT = "zeige Spielbrett";
     private static final String ZUG = "zeige Spielzug";
     private static final String HIDEBRETT = "verstecke Brett";
@@ -72,10 +74,11 @@ public class BoardPresentationStarter extends JPanel implements ActionListener{
 	JPanel p = new JPanel();
 	
 	// Button zum Positionieren eines Spielsteines
-	JButton b = new JButton(POS);
-	b.addActionListener(this);
-	p.add(b);
+	spielerbutton= new JButton(String.valueOf(spieler));
+	spielerbutton.addActionListener(this);
+	p.add(spielerbutton);
 	
+	JButton b;
 	// Button zum Setzen des Spielbretts mit Spielsteinen
 	b = new JButton(BRETT);
 	b.addActionListener(this);
@@ -128,17 +131,14 @@ public class BoardPresentationStarter extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent event) {
 	String cmd = event.getActionCommand();
 	// besser: in innere Klassen auslagern
-	if(cmd.equals(POS)){
-	    System.out.println("Button: " + POS);
-	    // Spielstein auf bestimmter Position anzeigen
-	}
 	if(cmd.equals(BRETT)){
 	    System.out.println("Button: " + BRETT);
 	    // Brett mit 4 Spielern in Startpostion erzeugen
-	    Board board = new Board(4);
+	    Board board = new Board(spieler);
 	    // Spielbrett uebergeben und anzeigen
 	    pres.setBoard(board);
 	    pres.showBoard();
+	    return;
 	}
 	if(cmd.equals(ZUG)){
 	    System.out.println("Button: " + ZUG);
@@ -156,16 +156,30 @@ public class BoardPresentationStarter extends JPanel implements ActionListener{
 	    // Spielzug uebergeben und anzeigen
 	    pres.setHalmaMove(move);
 	    pres.showMove();
+	    return;
 	}
 	if(cmd.equals(HIDEBRETT)){
 	    System.out.println("Button: " + HIDEBRETT);
 	    // Aufstellung verstecken
 	    pres.hideBoard();
+	    return;
 	}
 	if(cmd.equals(HIDEZUG)){
 	    System.out.println("Button: " + HIDEZUG);
 	    // Zug verstecken
 	    pres.hideMove();
+	    return;
 	}
+	if(true){
+	    System.out.println("Button: " + spieler );
+	    spieler = (spieler)%6;
+	    spieler++;
+	    spielerbutton.setText(String.valueOf(spieler));
+	    // schmutzig!
+	    ActionEvent e = new ActionEvent(this,1,BRETT);
+	    this.actionPerformed(e);
+	    return;
+	}
+	// hierhin eh kommt niemand
     }
 }

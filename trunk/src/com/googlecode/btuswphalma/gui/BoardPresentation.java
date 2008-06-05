@@ -509,4 +509,15 @@ public class BoardPresentation extends JPanel {
     public int getRadius(){
 	return radius;
     }
+    
+    /**
+     * Rechnet aus der auf den BoardPres-Objekt bezogenen Mousekoordianten
+     * 
+     * @param mouseX
+     * @param mouseY
+     * @return
+     */
+    public int gibRasterFromMouseX(int mouseX, int mouseY){
+	return 0;
+    }
 }
