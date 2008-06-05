@@ -182,8 +182,10 @@ public class GuiController{
      */
     public void initialize(Presentation frame) {
 	// TODO: (GUI) eigene Darstellungselemente in das Frame einbetten
+	// ist momentan innerhalb Presentation realisiert
 	this.frame = frame;
-	
+	// den Inputhandler auf die Boardpresaentation ansetzen
+	boardPres.addMouseListener(inh);
     }
 
     
