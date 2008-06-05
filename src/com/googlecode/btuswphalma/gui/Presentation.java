@@ -38,6 +38,10 @@ public class Presentation extends JFrame {
      * Initialisierung
      */
     public Presentation() {
+	this.setTitle("BTU SWP Halma");
+	
+	// TODO: (GUI) wenn mitten in Spielsession soll (modaler)
+	// Abfragedialog erscheinen - idealerweise mit Speicheroption
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setLayout(new BorderLayout());
 	
