@@ -133,7 +133,7 @@ public class Board {
     private void fillHouse(int pl, int h) {
 	switch (h) {
 	case 1:
-	    for (int i = 0; i < 5; i++) {
+	    for (int i = 0; i < 4; i++) {
 		for (int j = 0; j <= (i / 2); j++) {
 		    this.boardArray[i][6 + j] = (byte) pl;
 		    this.boardArray[i][6 - j] = (byte) pl;
@@ -143,47 +143,27 @@ public class Board {
 	    this.boardArray[3][4] = (byte) pl;
 	    break;
 	case 2:
-	    for (int i = 0; i < 5; i++) {
+	    for (int i = 0; i < 4; i++) {
 		for (int j = 0; j <= (i / 2); j++) {
-		    this.boardArray[8 - i][10 + j] = (byte) pl;
-		    this.boardArray[8 - i][10 - j] = (byte) pl;
+		    this.boardArray[7 - i][10 + j] = (byte) pl;
+		    this.boardArray[7 - i][10 - j] = (byte) pl;
 		}
 	    }
-	    this.boardArray[7][9] = (byte) pl;
-	    this.boardArray[5][8] = (byte) pl;
+	    this.boardArray[4][12] = (byte) pl;
+	    this.boardArray[6][11] = (byte) pl;
 	    break;
 	case 3:
-	    for (int i = 0; i < 5; i++) {
+	    for (int i = 0; i < 4; i++) {
 		for (int j = 0; j <= (i / 2); j++) {
-		    this.boardArray[8 + i][10 + j] = (byte) pl;
-		    this.boardArray[8 + i][10 - j] = (byte) pl;
+		    this.boardArray[9 + i][10 + j] = (byte) pl;
+		    this.boardArray[9 + i][10 - j] = (byte) pl;
 		}
 	    }
-	    this.boardArray[9][9] = (byte) pl;
-	    this.boardArray[11][8] = (byte) pl;
+	    this.boardArray[10][11] = (byte) pl;
+	    this.boardArray[12][12] = (byte) pl;
 	    break;
 	case 4:
-	    for (int i = 0; i < 5; i++) {
-		for (int j = 0; j <= (i / 2); j++) {
-		    this.boardArray[8 - i][2 + j] = (byte) pl;
-		    this.boardArray[8 - i][2 - j] = (byte) pl;
-		}
-	    }
-	    this.boardArray[7][1] = (byte) pl;
-	    this.boardArray[5][0] = (byte) pl;
-	    break;
-	case 5:
-	    for (int i = 0; i < 5; i++) {
-		for (int j = 0; j <= (i / 2); j++) {
-		    this.boardArray[8 + i][2 + j] = (byte) pl;
-		    this.boardArray[8 + i][2 - j] = (byte) pl;
-		}
-	    }
-	    this.boardArray[9][1] = (byte) pl;
-	    this.boardArray[11][0] = (byte) pl;
-	    break;
-	case 6:
-	    for (int i = 0; i < 5; i++) {
+	    for (int i = 0; i < 4; i++) {
 		for (int j = 0; j <= (i / 2); j++) {
 		    this.boardArray[16 - i][6 + j] = (byte) pl;
 		    this.boardArray[16 - i][6 - j] = (byte) pl;
@@ -191,6 +171,26 @@ public class Board {
 	    }
 	    this.boardArray[15][5] = (byte) pl;
 	    this.boardArray[13][4] = (byte) pl;
+	    break;
+	case 5:
+	    for (int i = 0; i < 4; i++) {
+		for (int j = 0; j <= (i / 2); j++) {
+		    this.boardArray[9 + i][1 + j] = (byte) pl;
+		    this.boardArray[9 + i][1 - j] = (byte) pl;
+		}
+	    }
+	    this.boardArray[12][3] = (byte) pl;
+	    this.boardArray[10][2] = (byte) pl;
+	    break;
+	case 6:
+	    for (int i = 0; i < 4; i++) {
+		for (int j = 0; j <= (i / 2); j++) {
+		    this.boardArray[7 - i][1 + j] = (byte) pl;
+		    this.boardArray[7 - i][1 - j] = (byte) pl;
+		}
+	    }
+	    this.boardArray[6][2] = (byte) pl;
+	    this.boardArray[4][3] = (byte) pl;
 	    break;
 	}
     }
