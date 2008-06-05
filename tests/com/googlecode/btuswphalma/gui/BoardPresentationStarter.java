@@ -147,7 +147,8 @@ public class BoardPresentationStarter extends JPanel implements ActionListener{
 	    // (x)(y)-Folge der Einzelpositionen
 	    // Startposition liegt bewusst ausserhalb des Spielfeldes!
 	    // dann Sprung aus dem Haus, dann Schub
-	    byte zugfolge[] = {12,0,7,3,6,5,7,6};
+	    /*byte zugfolge[] = {12,0,7,3,6,5,7,6};*/
+	    byte zugfolge[] = {12,0,7,3,6,5,7,6,9,6,10,4,11,6};
 	    // der Zug ist zwar ungueltig, aber ideal als Anzeigetest
 	    for(int i = 0; i < zugfolge.length -1; i += 2){
 		move.addBoardPosition(new BoardPosition(zugfolge[i], zugfolge[i+1]));
