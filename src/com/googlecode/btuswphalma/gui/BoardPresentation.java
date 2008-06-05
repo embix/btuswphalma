@@ -1,5 +1,5 @@
 /**
- * 
+ * TODO: (GUI) Entwurf abgleichen: private Methoden nachtragen
  */
 package com.googlecode.btuswphalma.gui;
 
@@ -52,6 +52,7 @@ public class BoardPresentation extends JPanel {
      * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
      */
     public void paintComponent(Graphics g) {
+	super.paintComponent(g);
 	// 2D Graphikobjekt extrahieren
 	Graphics2D g2d = null;
 	try {
@@ -316,11 +317,9 @@ public class BoardPresentation extends JPanel {
      *                gibt an, in welches Graphikobjekt gezeichnet werden soll
      */
     private void zeichneMove(Graphics2D g2d){
-	// TODO: (GUI) zeichneMove() implementieren
 	if(move == null){
 	    return; // kein Zug heisst nichts zu zeichnen
 	}
-	// TODO: Entwurf (GUI und SpieleEngine) aktualisieren mit aktueller HalmaMove Version
 	
 	// Postion in Boardbasis
 	BoardPosition vonPos;
@@ -342,7 +341,6 @@ public class BoardPresentation extends JPanel {
 	    yNach = gibRasterY(nachPos.getYPos()); // doppelt auch ausgelesen, Performance?
 	    
 	    // ein Pfeil waere wohl schoener, kann man ja spaeter noch machen
-	    //zeichneLinie(g2d, vonPos.getXPos(), vonPos.getYPos(), nachPos.getXPos(), nachPos.getYPos());
 	    zeichneLinie(g2d, xVon, yVon, xNach, yNach);
 	}
     }
@@ -453,7 +451,6 @@ public class BoardPresentation extends JPanel {
      *
      */
     public void hideMove(){
-	// TODO: (GUI) im Entwurf nachtragen
 	moveShow = false;
 	repaint();
     }
@@ -464,7 +461,6 @@ public class BoardPresentation extends JPanel {
      *
      */
     public void hideBoard(){
-	// TODO: (GUI) im Entwurf nachtragen
 	boardShow = false;
 	repaint();
     }
