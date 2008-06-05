@@ -33,7 +33,7 @@ public class BoardPresentation extends JPanel {
      * Der Radius der Spielfeldkreise, er dient gleichzeitig als
      * Skalierungsfaktor fuer das sichtbare Spielfeld.
      */
-    public static final int RADIUS = 12;
+    private int radius = 12;
 
     private Board board;
     private HalmaMove move;
@@ -45,7 +45,14 @@ public class BoardPresentation extends JPanel {
      */
     public BoardPresentation() {
 	// Anfordern der optimalen Groesse
-	Dimension preferredSize = new Dimension(28 * RADIUS, 36 * RADIUS);
+	optimizeSize();
+    }
+
+    /**
+     * uebergibt dem Container die optimale Groesse des Panels
+     */
+    private void optimizeSize() {
+	Dimension preferredSize = new Dimension(28 * radius, 36 * radius);
 	this.setPreferredSize(preferredSize);
     }
 
@@ -147,11 +154,11 @@ public class BoardPresentation extends JPanel {
 	// farbiges Dreieck zeichnen
 	Polygon triangle = new Polygon();
 	// obere Ecke
-	triangle.addPoint(RADIUS * xOffset, RADIUS * yOffset);
+	triangle.addPoint(radius * xOffset, radius * yOffset);
 	// unten links Ecke
-	triangle.addPoint(RADIUS * (xOffset - 3), RADIUS * (yOffset - 6));
+	triangle.addPoint(radius * (xOffset - 3), radius * (yOffset - 6));
 	// unten rechts Ecke
-	triangle.addPoint(RADIUS * (xOffset + 3), RADIUS * (yOffset - 6));
+	triangle.addPoint(radius * (xOffset + 3), radius * (yOffset - 6));
 	g2d.setPaint(c);
 	g2d.fill(triangle);
 
@@ -185,11 +192,11 @@ public class BoardPresentation extends JPanel {
 	// farbiges Dreieck zeichnen
 	Polygon triangle = new Polygon();
 	// obere Ecke
-	triangle.addPoint(RADIUS * xOffset, RADIUS * yOffset);
+	triangle.addPoint(radius * xOffset, radius * yOffset);
 	// unten links Ecke
-	triangle.addPoint(RADIUS * (xOffset - 3), RADIUS * (yOffset + 6));
+	triangle.addPoint(radius * (xOffset - 3), radius * (yOffset + 6));
 	// unten rechts Ecke
-	triangle.addPoint(RADIUS * (xOffset + 3), RADIUS * (yOffset + 6));
+	triangle.addPoint(radius * (xOffset + 3), radius * (yOffset + 6));
 	g2d.setPaint(c);
 	g2d.fill(triangle);
 
@@ -221,10 +228,10 @@ public class BoardPresentation extends JPanel {
     private void zeichneGrossenKreis(Graphics2D g2d, int x, int y, Color c) {
 	g2d.setPaint(c);
 	// Skalierte Boardposition berechnen
-	int xpos = RADIUS * x;
-	int ypos = RADIUS * y;
+	int xpos = radius * x;
+	int ypos = radius * y;
 	// Kreismittelpunkt entspricht (xStart-xEnd, yStart-yEnd)
-	g2d.fillOval(xpos - RADIUS, ypos - RADIUS, 2 * RADIUS, 2 * RADIUS);
+	g2d.fillOval(xpos - radius, ypos - radius, 2 * radius, 2 * radius);
     }
 
     /**
@@ -420,10 +427,10 @@ public class BoardPresentation extends JPanel {
     private void zeichneKleinenKreis(Graphics2D g2d, int x, int y, Color c) {
 	g2d.setPaint(c);
 	// Skalierte Boardposition berechnen
-	int xpos = RADIUS * x;
-	int ypos = RADIUS * y;
+	int xpos = radius * x;
+	int ypos = radius * y;
 	// Kreismittelpunkt entspricht (xStart-xEnd, yStart-yEnd)
-	g2d.fillOval(xpos - RADIUS / 2, ypos - RADIUS / 2, RADIUS, RADIUS);
+	g2d.fillOval(xpos - radius / 2, ypos - radius / 2, radius, radius);
     }
 
     /**
@@ -444,10 +451,10 @@ public class BoardPresentation extends JPanel {
 	    int yNach) {
 	g2d.setPaint(Color.BLACK);
 	// Skalierte Boardposition berechnen
-	xVon *= RADIUS;
-	yVon *= RADIUS;
-	xNach *= RADIUS;
-	yNach *= RADIUS;
+	xVon *= radius;
+	yVon *= radius;
+	xNach *= radius;
+	yNach *= radius;
 	// Zeichnen der Linie
 	g2d.drawLine(xVon, yVon, xNach, yNach);
     }
@@ -478,5 +485,28 @@ public class BoardPresentation extends JPanel {
     public void hideBoard() {
 	boardShow = false;
 	repaint();
+    }
+    
+    /**
+     * Setter fuer den Massstab der Zeichengrosse / Radius
+     * @param radius
+     */
+    public void setRadius(int radius){
+	if ((radius > 5) && (radius < 29)) {
+	    this.radius = radius;
+	}
+	optimizeSize();
+	repaint();
+	// repaint wird vom Container implizit durch pack() aufgerufen,
+	// allerdings macht pack nichts mehr, wenn die Grosse einmal
+	// die gleiche war...
+    }
+    
+    /**
+     * Getter fuer den Zeichenradius / Massstab
+     * @return gibt den aktuell verwendeten Zeichenradius zuruck
+     */
+    public int getRadius(){
+	return radius;
     }
 }
