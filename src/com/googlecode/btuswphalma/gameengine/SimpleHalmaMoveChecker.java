@@ -24,7 +24,7 @@ public class SimpleHalmaMoveChecker {
 		byte state = board.getPositionState(pos);
 		//wenn Position nicht frei oder auﬂerhalb, also nicht Null
 		if (state!=0) { result = false; }
-		i++;
+		i--;
 	}
 	return result;
 	}
