@@ -123,6 +123,7 @@ public class FinishChecker {
 	    break;
 	case 6:
 	    endHouse = (id + 3) % num;
+	    endHouse = (endHouse==0)?6:endHouse;
 	    break;
 	default:
 	    System.err.println("Falsche Spieleranzahl!");
@@ -148,7 +149,7 @@ public class FinishChecker {
 	int j = 0;
 	switch (endHouse) {
 	case 1:
-	    while (finished && i < 5) {
+	    while (finished && i < 4) {
 		while (finished && j <= (i / 2)) {
 		    if ((this.board[i][6 + j] != (byte) id)
 			    || (this.board[i][6 - j] != (byte) id)) {
@@ -164,71 +165,39 @@ public class FinishChecker {
 	    }
 	    break;
 	case 2:
-	    while (finished && i < 5) {
+	    while (finished && i < 4) {
 		while (finished && j <= (i / 2)) {
-		    if ((this.board[8 - i][10 + j] != (byte) id)
-			    || (this.board[8 - i][10 - j] != (byte) id)) {
+		    if ((this.board[7 - i][10 + j] != (byte) id)
+			    || (this.board[7 - i][10 - j] != (byte) id)) {
 			finished = false;
 		    }
 		    j++;
 		}
 		i++;
 	    }
-	    if ((this.board[7][9] != (byte) id)
-		    || (this.board[5][8] != (byte) id)) {
+	    if ((this.board[6][11] != (byte) id)
+		    || (this.board[4][12] != (byte) id)) {
 		finished = false;
 	    }
 	    break;
 	case 3:
-	    while (finished && i < 5) {
+	    while (finished && i < 4) {
 		while (finished && j <= (i / 2)) {
-		    if ((this.board[8 + i][10 + j] != (byte) id)
-			    || (this.board[8 + i][10 - j] != (byte) id)) {
+		    if ((this.board[9 + i][10 + j] != (byte) id)
+			    || (this.board[9 + i][10 - j] != (byte) id)) {
 			finished = false;
 		    }
 		    j++;
 		}
 		i++;
 	    }
-	    if ((this.board[9][9] != (byte) id)
-		    || (this.board[11][8] != (byte) id)) {
+	    if ((this.board[10][11] != (byte) id)
+		    || (this.board[12][12] != (byte) id)) {
 		finished = false;
 	    }
 	    break;
 	case 4:
-	    while (finished && i < 5) {
-		while (finished && j <= (i / 2)) {
-		    if ((this.board[8 - i][2 + j] != (byte) id)
-			    || (this.board[8 - i][2 - j] != (byte) id)) {
-			finished = false;
-		    }
-		    j++;
-		}
-		i++;
-	    }
-	    if ((this.board[7][1] != (byte) id)
-		    || (this.board[5][0] != (byte) id)) {
-		finished = false;
-	    }
-	    break;
-	case 5:
-	    while (finished && i < 5) {
-		while (finished && j <= (i / 2)) {
-		    if ((this.board[8 + i][2 + j] != (byte) id)
-			    || (this.board[8 + i][2 - j] != (byte) id)) {
-			finished = false;
-		    }
-		    j++;
-		}
-		i++;
-	    }
-	    if ((this.board[9][1] != (byte) id)
-		    || (this.board[11][0] != (byte) id)) {
-		finished = false;
-	    }
-	    break;
-	case 6:
-	    while (finished && i < 5) {
+	    while (finished && i < 4) {
 		while (finished && j <= (i / 2)) {
 		    if ((this.board[16 - i][6 + j] != (byte) id)
 			    || (this.board[16 - i][6 - j] != (byte) id)) {
@@ -240,6 +209,38 @@ public class FinishChecker {
 	    }
 	    if ((this.board[15][5] != (byte) id)
 		    || (this.board[13][4] != (byte) id)) {
+		finished = false;
+	    }
+	    break;
+	case 5:
+	    while (finished && i < 4) {
+		while (finished && j <= (i / 2)) {
+		    if ((this.board[9 + i][1 + j] != (byte) id)
+			    || (this.board[9 + i][1 - j] != (byte) id)) {
+			finished = false;
+		    }
+		    j++;
+		}
+		i++;
+	    }
+	    if ((this.board[10][2] != (byte) id)
+		    || (this.board[12][3] != (byte) id)) {
+		finished = false;
+	    }
+	    break;
+	case 6:
+	    while (finished && i < 4) {
+		while (finished && j <= (i / 2)) {
+		    if ((this.board[7 - i][1 + j] != (byte) id)
+			    || (this.board[7 - i][1 - j] != (byte) id)) {
+			finished = false;
+		    }
+		    j++;
+		}
+		i++;
+	    }
+	    if ((this.board[6][2] != (byte) id)
+		    || (this.board[4][3] != (byte) id)) {
 		finished = false;
 	    }
 	    break;
