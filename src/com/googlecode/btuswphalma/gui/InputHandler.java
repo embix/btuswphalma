@@ -54,6 +54,13 @@ public class InputHandler implements MouseListener{
 	// Debugausgabe
 	System.out.println("Mausklick an (" + event.getX() + "," + event.getY()
 		+ ")");
+	// entspricht der Rasterposition
+	// unsauber
+	BoardPresentation board = (BoardPresentation) event.getComponent();
+	int x = board.gibRasterXFromMouse(event.getX(), event.getY());
+	int y = board.gibRasterYFromMouse(event.getX(), event.getY());
+	System.out.println("Raster: (" + x + "," + y +")");
+	
 	// Beginn eines Teil-Zuges?
     }
 
