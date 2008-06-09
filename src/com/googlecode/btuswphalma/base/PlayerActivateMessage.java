@@ -19,10 +19,9 @@ public class PlayerActivateMessage extends AbstractMessage {
 	super(source, destination);
     }
 
-    /* (non-Javadoc)
+    /** (non-Javadoc)
      * @see com.googlecode.btuswphalma.base.IMessage#getType()
      */
-    @Override
     public MessageType getType() {
 	return MessageType.MT_PLAYERACTIVATE;
     }
