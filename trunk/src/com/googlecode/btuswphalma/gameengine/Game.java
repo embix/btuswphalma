@@ -116,7 +116,8 @@ public class Game {
 	if (gameState != ADDING_PLAYERS) {
 	    throw new Exception("game is in wrong state for this method");//TODO Exception Klasse
 	}
-	playerList.addPlayer(new Player(id,name,false,0));
+	//Der maximale Integerwert als initiale Rundenzahl, bei der gewonnen wurde.
+	playerList.addPlayer(new Player(id,name,false,Integer.MAX_VALUE));
 	if (playerList.getSize() == numberOfPlayers) {
 	    activePlayer = 1;
 	    round = 1;
