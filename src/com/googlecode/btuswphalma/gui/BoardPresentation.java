@@ -564,4 +564,38 @@ public class BoardPresentation extends JPanel {
 	}
 	return y;
     }
+    
+    /**
+     * Rechnet aus der auf den BoardPres-Objekt bezogenen Mousekoordianten
+     * in den touchierten Rasterpunkt um und gibt beide als Array aus.
+     * 
+     * @param mouseX
+     * @param mouseY
+     * @return Array of int, raster[0]=rasterX raster[1]=rasterY
+     */
+    public int[] gibRasterFromMouse(int mouseX, int mouseY){
+	int x = mouseX / radius;
+	int y = mouseY / radius;
+	int[] raster = {-1,-1};
+	// naechste gueltige Rasterlinie suchen
+	if((y % 2) == 1){
+	    y++;
+	}
+	if((y<2)||(y>35)){// ausserhalb des Spielfeldes
+	    return raster;
+	}
+	// Unterscheidung, je nach zeile
+	if((y % 4)==2){// erstes Feld hat Raster 2+2i
+	    if((x%2) == 1){
+		x++;
+	    }
+	}else{// erstes Feld hat Raster 3+2i
+	    if((x%2) == 0){
+		x++;
+	    }
+	}
+	raster[0] = x;
+	raster[1] = y;
+	return raster;
+    }
 }
