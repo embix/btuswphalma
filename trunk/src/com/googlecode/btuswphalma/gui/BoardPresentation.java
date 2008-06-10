@@ -46,6 +46,9 @@ public class BoardPresentation extends JPanel {
     public BoardPresentation() {
 	// Anfordern der optimalen Groesse
 	optimizeSize();
+	// Praesentations-Hack fuer HGFarbe
+	this.setBackground(new Color(0.5f,0.5f,0.5f));
+	//TODO: (GUI) minor: HG Farbe einstellbar machen
     }
 
     /**
