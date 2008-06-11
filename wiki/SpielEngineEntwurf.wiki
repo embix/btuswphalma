@@ -1,5 +1,5 @@
 ﻿#summary Entwurf der Spiele-Engine (TP2)
-#labels Phase-Design
+#labels Phase-Design,Deprecated
 
 = Spiel-Engine =
 
