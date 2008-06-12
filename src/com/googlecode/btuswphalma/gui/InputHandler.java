@@ -6,6 +6,8 @@ package com.googlecode.btuswphalma.gui;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import com.googlecode.btuswphalma.gameengine.BoardPosition;
+
 /**
  * Hilfsklasse zu Verarbeitung der Benutzereingaben, zB fuer
  * die Eingabe der Spielzuege.
@@ -60,6 +62,11 @@ public class InputHandler implements MouseListener{
 	int x = board.gibRasterXFromMouse(event.getX(), event.getY());
 	int y = board.gibRasterYFromMouse(event.getX(), event.getY());
 	System.out.println("Raster: (" + x + "," + y +")");
+	BoardPosition pos;
+	pos = board.gibBoardAusRaster(x, y);
+	byte xPos = pos.getXPos();
+	byte yPos = pos.getYPos();
+	System.out.println("Board:  (" + xPos + "," + yPos +")");
 	
 	// Beginn eines Teil-Zuges?
     }
