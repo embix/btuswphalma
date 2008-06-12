@@ -11,3 +11,9 @@ Die maximal verfügbare Zeit für diese Woche.
 ||Christian||6||0||0||2||2||5||2||17||
 ||Christoph||3||8||0||0||0||2||7||20||
 ||Σ||15||14||3||7||7||12||12||70||
+
+
+= Aufgabenverteilung =
+||Aufgabe||Datum||Zeitansatz||Verantwortlicher||
+||GUI|| || || ||
+||Instanzierung|| 
