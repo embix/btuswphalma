@@ -20,7 +20,7 @@ public class PlayerFinishedMessage extends AbstractMessage {
 	super(source, destination);
     }
 
-    /*
+    /**
      * (non-Javadoc)
      * 
      * @see com.googlecode.btuswphalma.base.IMessage#getType()
