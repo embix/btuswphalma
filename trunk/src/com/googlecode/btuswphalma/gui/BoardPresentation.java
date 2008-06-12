@@ -601,4 +601,49 @@ public class BoardPresentation extends JPanel {
 	raster[1] = y;
 	return raster;
     }
+    
+    
+    /**
+     * Berechnet die BoardPosition aus dem Graphikraster
+     * @param x x-Koordinate des Rasterpunktes
+     * @param y y-Koordinate des Rasterpunktes
+     * @return die enstprechende BoardPostition
+     */
+    public BoardPosition gibBoardAusRaster(int x, int y){
+    	BoardPosition pos;
+    	int[] raster = {x, y};
+    	pos = gibBoardAusRaster(raster);
+    	return pos;
+    }
+    
+    /**
+     * Berechnet die BoardPosition aus dem Graphikraster
+     * @param raster der Rasterpunkt als integerarray
+     * @return die enstprechende BoardPostition
+     */
+    public BoardPosition gibBoardAusRaster(int[] raster){
+    	byte xPos = -1;
+    	byte yPos = -1;
+   	
+     	if(raster.length == 2){
+    	    // sonst waere es ungueltig
+            try {
+		int x = raster[0];
+		int y = raster[1];
+		yPos = (byte) ((y-2)/2);
+		if(yPos % 2 == 0){
+		xPos = (byte) ((x-2)/2);
+		}else{
+		xPos = (byte) ((x-3)/2);
+		}
+	    } catch (RuntimeException e) {
+		// koennte bei ungueltigen werten kommen
+		e.printStackTrace();
+	    }
+    	}
+     	
+    	// TODO: (GUI) testen, ob x und y zu vertauschen sind
+    	BoardPosition pos = new BoardPosition(xPos, yPos);
+    	return pos;
+    }
 }
