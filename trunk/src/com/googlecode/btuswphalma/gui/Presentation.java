@@ -3,6 +3,8 @@
  */
 package com.googlecode.btuswphalma.gui;
 
+import com.googlecode.btuswphalma.base.LoginMessage;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -77,8 +79,19 @@ public class Presentation extends JFrame {
 	if(mDialog.ok()){
 	 // TODO: (GUI)Spieldaten verarbeiten
 	    MasterGameData mData = mDialog.getMasterGameData();
-	    if(mData.playerCount > 1){
-		// Namen der anderen Hotseatspieler erfragen
+	    controller.getEngine().createManager(mData.playerCount, true);
+	    
+	    controller.getMessageHandler().sendMessage(new LoginMessage(mData.playerName,1,-1));
+	   
+	    for(int i=1;i<mData.playerCount;i++) {
+		// Hotseat Pfad
+		DialogClientGameData mClientDlg = new DialogClientGameData(this);
+		
+		if(mClientDlg.ok()) {
+		    ClientGameData mClientData = mClientDlg.getClientGameData();
+		    
+		    controller.getMessageHandler().sendMessage(new LoginMessage(mClientData.playerName,i+1,-1));
+		}
 	    }
 	}
     }

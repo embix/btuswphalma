@@ -2,6 +2,7 @@ package com.googlecode.btuswphalma.serverengine;
 
 import com.googlecode.btuswphalma.base.*;
 import com.googlecode.btuswphalma.gameengine.IManager;
+import com.googlecode.btuswphalma.gameengine.Manager;
 
 /**
  * Hauptklasse der Server-Engine
@@ -19,7 +20,7 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
     private java.util.Vector<IGuiListener> listeners = new java.util.Vector<IGuiListener>();
 
     private java.util.concurrent.ArrayBlockingQueue<IMessage> msgQueue =
-		new java.util.concurrent.ArrayBlockingQueue<IMessage>(32);
+		new java.util.concurrent.ArrayBlockingQueue<IMessage>(128);
 
     private boolean die = false;
 
@@ -28,9 +29,11 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 
     /**
      * Dispatcher Konstruktor Erzeugt interne Objekte
+     * 
+     * @param numberOfPlayers 
+     * 				Anzahl der teilnehmenden Spieler (fuer die Spielengine)
      */
     public Dispatcher() {
-	// TODO: Manager erzeugen
 	// TODO: Netzwerkobjekt/NetworkListener erzeugen und starten (TP 3)
     }
 
@@ -55,6 +58,23 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 	System.out.println("Starte Netzwerknachrichtenüberwachung...");
 	netThread = new NetworkListener(n, manager);
 	netThread.start();
+    }
+    
+    /**
+     * Instanziert den Manager der Spielengine
+     * 
+     * @param numberOfPlayers
+     * 				Anzahl der teilnehmenden Spieler
+     * @param server
+     * 				Server- oder Clientengine instanzieren
+     */
+    public void createManager(int numberOfPlayers, boolean server) {
+	if(server) {
+	   manager = new Manager(numberOfPlayers,this); 
+	}
+	else {
+	    // TODO: TP 3
+	}
     }
 
     /**

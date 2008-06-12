@@ -35,6 +35,8 @@ public class GuiController{
     IGuiState stateSessionEnd;
     //IGuiState stateHighScoreShow; // Wunschkriterium, wird spaeter implementiert
     
+    private Dispatcher engine;
+    
    
     // Darstellung des Spielbrettes incl. der Aufstellung
     private BoardPresentation boardPres;
@@ -83,7 +85,7 @@ public class GuiController{
 	this.inh = new InputHandler();
 	
 	// FIXME: (ALLE) Instanzierung Engine (gameengine und serverengine)
-	Dispatcher engine = new Dispatcher(); // hoffentlich reicht das...
+	engine = new Dispatcher(); // hoffentlich reicht das...
 	this.mh = MessageHandler.createMasterMessageHandler(engine, this);
 	
 	// Presentation traegt sich selbst ein, siehe initialize()
@@ -172,6 +174,13 @@ public class GuiController{
      */
     public Presentation getPresentation(){
 	return frame;
+    }
+    
+    /**
+     * @return	Gibt den erzeugten Dispatcher zurück
+     */
+    public Dispatcher getEngine() {
+	return engine;
     }
 
     /**
