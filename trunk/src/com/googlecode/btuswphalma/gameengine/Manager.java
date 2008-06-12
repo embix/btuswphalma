@@ -90,7 +90,7 @@ public class Manager implements IManager, Runnable {
 	gameVariant = WITHOUT_VETO;
     }
 
-    /*
+    /**
      * Die Nachricht wird auf die Queue gelegt, und diese "benachtichtigt"
      * 
      * @see com.googlecode.btuswphalma.gameengine.IManager#acceptMessage(com.googlecode.btuswphalma.base.IMessage)
@@ -102,7 +102,7 @@ public class Manager implements IManager, Runnable {
 	}
     }
 
-    /*
+    /**
      * (non-Javadoc)
      * 
      * @see java.lang.Runnable#run()
