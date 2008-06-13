@@ -5,7 +5,7 @@ package com.googlecode.btuswphalma.gameengine;
 
 /**
  * Der RulesHalmaMoveChecker ueberprueft, ob ein Zug den Halmaregeln entspricht.
- * Es findet dabei eine vollständige Regelprüfung statt.
+ * Es findet dabei eine vollstaendige Regelpruefung statt.
  * 
  * @author sebastian
  * 
