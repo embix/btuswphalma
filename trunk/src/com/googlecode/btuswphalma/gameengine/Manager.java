@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.googlecode.btuswphalma.base.BoardMessage;
+import com.googlecode.btuswphalma.base.GameEndMessage;
 import com.googlecode.btuswphalma.base.IMessage;
 import com.googlecode.btuswphalma.base.LoginMessage;
 import com.googlecode.btuswphalma.base.MessageType;
@@ -31,16 +32,16 @@ public class Manager implements IManager, Runnable {
      */
     private static final int SERVER_ID = 1;
     /**
-     * Diese Adresse signaliert, dass eine Message an alle gehen soll
+     * Diese Adresse signalisiert, dass eine Message an alle gehen soll
      */
     // TODO woanders speichern
     private static final int BROADCAST_ID = 0;
     /**
-     * Spiel mit Regelprüfung, ohne Veto
+     * Spiel mit Regelpruefung, ohne Veto
      */
     private static final int WITHOUT_VETO = 0;
     /**
-     * Spiel mit einfacher Zugprüfung, mit Veto
+     * Spiel mit einfacher Zugpruefung, mit Veto
      */
     @SuppressWarnings("unused")
     private static final int WITH_VETO = 1;
@@ -49,12 +50,12 @@ public class Manager implements IManager, Runnable {
      */
     private static final long DISPLAY_TIME = 10000;
     /**
-     * Die Queue, in die von außen Nachrichten geschrieben werden. Diese
+     * Die Queue, in die von aussen Nachrichten geschrieben werden. Diese
      * Nachrichten werden dann von dem laufenden thread verarbeitet
      */
     private ConcurrentLinkedQueue<IMessage> msgQueue;
     /**
-     * Der Dispatcher dient dem Manager dazu Nchrichten an die Außenwelt
+     * Der Dispatcher dient dem Manager dazu Nachrichten an die Aussenwelt
      * schicken zu können
      */
     private IDispatcher dispatcher;
@@ -71,7 +72,7 @@ public class Manager implements IManager, Runnable {
 
     /**
      * Manager mit Spielvariante ohne Veto wird erzeugt. Die Spieleranzahl wird
-     * nur für das Game benötigt.
+     * nur fuer das Game benoetigt.
      * 
      * @param numberOfPlayers
      * @param dispatcher
@@ -91,7 +92,7 @@ public class Manager implements IManager, Runnable {
     }
 
     /**
-     * Die Nachricht wird auf die Queue gelegt, und diese "benachtichtigt"
+     * Die Nachricht wird auf die Queue gelegt, und diese "benachrichtigt"
      * 
      * @see com.googlecode.btuswphalma.gameengine.IManager#acceptMessage(com.googlecode.btuswphalma.base.IMessage)
      */
@@ -108,9 +109,39 @@ public class Manager implements IManager, Runnable {
      * @see java.lang.Runnable#run()
      */
     public void run() {
+	// die Spieler werden hinzugefuegt
 	runAddPlayers();
+	// das eigentliche Spiel laeuft
 	runGame();
-	// runEnd();
+	// das Spiel beenden
+	runEnd();
+    }
+
+    /**
+     * Die Endphase des Servers und der Clients wird eingeleitet.
+     */
+    private void runEnd() {
+	// TODO Auto-generated method stub
+	sendGameEndMessages();
+    }
+
+    /**
+     * An alle wird eine GameEndMessage geschickt
+     */
+    private void sendGameEndMessages() {
+	IMessage gameEndMessage = createGameEndMessage(BROADCAST_ID);
+	dispatcher.acceptMessage(gameEndMessage);
+    }
+
+    /**
+     * Eine GameEndMessage wird zurueckgegeben
+     * 
+     * @param destination
+     *                Die Zieladresse
+     * @return die GameEndMessage
+     */
+    private IMessage createGameEndMessage(int destination) {
+	return new GameEndMessage(SERVER_ID, destination);
     }
 
     /**
@@ -120,7 +151,7 @@ public class Manager implements IManager, Runnable {
 	if (gameVariant == WITHOUT_VETO) {
 	    runWithoutVeto();
 	} else if (gameVariant == WITH_VETO) {
-	    // runWithVeto();
+	    // TODO runWithVeto();
 	} else {
 	    // TODO hier beenden
 	}
@@ -133,37 +164,43 @@ public class Manager implements IManager, Runnable {
     private void runWithoutVeto() {
 	boolean playing = true;
 	IMessage msg;
-	// der erste Spieler wird aufgefordert/berechtigt, zu ziehen
-	initiateMove();
 	while (playing) {
+	    // Der Spieler wird aufgefordert zu ziehen
+	    initiateMove();
 	    // Methode ist blockierend
 	    msg = fetchMessage();
 	    if (msg.getType() == MessageType.MT_MOVE) {
+		// Wenn der Zug fehlerhaft war
 		if (!processMove((MoveMessage) msg)) {
 		    // es wird wieder ein Zug erwartet
 		    dispatcher
 			    .acceptMessage(createMoveErrorMessage("Ihr Zug war entsprach nicht den Regeln des Spiels Halma"));
-		    // TODO initiateMove() Hier weitermachen!
+		    initiateMove();
 		    continue;
 		}
 		// kein else da continue im if Block darueber
 		// Zug anzeigen
 		showMove();
-		// Warten
+		// Warten damit die Clients sich den Zug anschauen koennen
 		waitForTimeout();
-		/*
-		 * Der Zug wird ausgefuert, also Spielbrett und Spieler
-		 * umsetzten. die notwendigen Nachrichten werden versendet.
-		 * Falls das Spiel fertig ist, wird false zurueckgegeben.
-		 */
+		// Der Zug wird ausgefuehrt, also Spielbrett und Spieler
+		// umsetzten. die notwendigen Nachrichten werden versendet.
+		// Falls das Spiel fertig ist, wird false zurueckgegeben.
 		playing = performMove();
+	    } else if (msg.getType() == MessageType.MT_SAVE) {
+		// TODO Hier Speichern
+	    } else {
+		stopGameOnError();
 	    }
 	}
 
     }
 
     /**
-     * @return
+     * Der Zug wird ausgefuehrt. Je nach Ergebnis des Zuges werden
+     * unterschiedliche Aktionen ausgefuehrt.
+     * 
+     * @return laeuft das Spiel weiter
      */
     private boolean performMove() {
 	try {
@@ -211,9 +248,9 @@ public class Manager implements IManager, Runnable {
 	return new ScoreMessage(BROADCAST_ID, destination, scrLst);
     }
 
-    
     /**
      * Es wird eine ScoreList erstellt.
+     * 
      * @return die Scorelist
      */
     private ScoreList createScoreList() {
@@ -245,9 +282,10 @@ public class Manager implements IManager, Runnable {
 	for (int i = 0, j = 1, k = 0; i < plyrLst.size(); i++) {
 	    scoreList.addEntry(new ScoreEntry(j, plyrLst.get(i).getName(),
 		    plyrLst.get(i).getRounds()));
-	    //wenn der letzte Eintrag eingefuegt wurde, kann (darf) kein weiters j bestimmt werden.
-	    if(i == plyrLst.size()-1) {
-		//die for Schleife wird abbrechen.
+	    // wenn der letzte Eintrag eingefuegt wurde, kann (darf) kein
+	    // weiters j bestimmt werden.
+	    if (i == plyrLst.size() - 1) {
+		// die for Schleife wird abbrechen.
 		continue;
 	    }
 	    // Das j fuer den naechsten Spieler bestimmen. Wenn mehrere Spieler
@@ -358,11 +396,11 @@ public class Manager implements IManager, Runnable {
 
     /**
      * Es wird eine Nachricht erstellt, die den gespeicherten Zug des Spiels
-     * entaelt
+     * enthaelt
      * 
      * @param destination
      *                die Zieleadresse
-     * @return
+     * @return die MoveMessage
      */
     private IMessage createMoveMessage(int destination) {
 	return new MoveMessage(SERVER_ID, destination, game.getKeptMove());
@@ -408,8 +446,11 @@ public class Manager implements IManager, Runnable {
 	    // diese Methode ist blockierend
 	    msg = fetchMessage();
 	    if (msg.getType() == MessageType.MT_LOGIN) {
+		// wenn der letzte Spieler hinzugefuegt wurde, endet die
+		// Schleife
 		adding = addPlayer((LoginMessage) msg);
 	    } else {
+		// Ein falscher Nachrichtentyp fuehrt zuum Abbruch
 		stopGameOnError();
 	    }
 	}
@@ -420,7 +461,7 @@ public class Manager implements IManager, Runnable {
      * Eine Nachricht wird von der Warteschlange geholt. Diese Methode ist
      * blockierend.
      * 
-     * @return
+     * @return eine von der Warteschlange geholte Message
      */
     private IMessage fetchMessage() {
 	IMessage msg = null;
@@ -450,7 +491,8 @@ public class Manager implements IManager, Runnable {
      * Ein neuer Spieler wird zum Game hinzugefuegt.
      * 
      * @param msg
-     * @return
+     *                die LoginMessage eines Spielers
+     * @return sind noch weitere Spieler hinzufuegen
      */
     private boolean addPlayer(final LoginMessage msg) {
 	boolean result = false;
@@ -478,7 +520,7 @@ public class Manager implements IManager, Runnable {
      * Es wird eine MoveErrorMassage zurueckgegeben
      * 
      * @param string
-     * @return
+     * @return die MoveErrorMassage
      */
     private IMessage createMoveErrorMessage(String string) {
 	return new MoveErrorMessage(SERVER_ID, game.getActivePlayer(), string);
