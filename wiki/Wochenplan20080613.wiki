@@ -20,10 +20,16 @@ Die maximal verfügbare Zeit für diese Woche.
 ||340||Wissensaneignung Netzwerk||14.06.2006||2||SB||
 ||320||Analyse Netzwerkkomponente Server||14.06.2006||2||SB||
 ||321||Impl. Netzwerkkomponente Server||17-19.06.2006||6||SB||
-
-||300||Entwurf Spieldummy||16.06.2008||1||ganzes Team||
-||310||Entwurf Netzwerkkomponente -- Client||16.06.2008||1||ganzes Team||
-||320||Entwurf Netzwerkkomponente - Server||16.06.2008||1||ganzes Team||
+||219||Impl. GUI Darstellung||13+16-19.6.2006||8||MB||
+||341||Wissensaneignung GUI||13.06.2008||2||CH||
+||220||Impl. GUI Instanziierung||13/16-19.6.2006||10||CH||
+||340||Wissensaneignung Netzwerk||13.06.2008||3||CK||
+||213||Test Spieleengine||14.06.2008||6||CK||
+||310||Analyse Netzwerkkomponente Client||14.06.2008||2||CK||
+||311||Impl. Netzwerkkomponente Client||18/19.06.2008||4||CK||
+||300||Entwurf Spieldummy||16.06.2008||1x4||ganzes Team||
+||310||Entwurf Netzwerkkomponente -- Client||16.06.2008||1x4||ganzes Team||
+||320||Entwurf Netzwerkkomponente - Server||16.06.2008||1x4||ganzes Team||
 
 Weiterhin verbleiben 2h als Puffer für Beratertreffen, Arbeitgebertreffen und rollenspezifische Aufgaben.
 
