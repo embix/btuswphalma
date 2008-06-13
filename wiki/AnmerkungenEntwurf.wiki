@@ -1,5 +1,5 @@
 #summary Probleme und Inkonsistenzen die noch im Entwurf bestehen
-#labels Featured,Phase-Design
+#labels Phase-Design
 
 = Inkosistenzen =
 Unterschied im Vergleich zu Spielengine:
