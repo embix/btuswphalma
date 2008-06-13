@@ -67,8 +67,11 @@ public class Manager implements IManager, Runnable {
     /**
      * Die Gespielte Variante des Spiels.
      */
-    @SuppressWarnings("unused")
     private int gameVariant;
+    /**
+     * Wurde das Spiel angehalten/abgebrochen
+     */
+    private boolean gameHalted;
 
     /**
      * Manager mit Spielvariante ohne Veto wird erzeugt. Die Spieleranzahl wird
@@ -87,8 +90,9 @@ public class Manager implements IManager, Runnable {
 	    e.printStackTrace();
 	    System.exit(1);
 	}
-	this.dispatcher = dispatcher;
 	gameVariant = WITHOUT_VETO;
+	gameHalted = false;
+	this.dispatcher = dispatcher;
     }
 
     /**
@@ -121,7 +125,6 @@ public class Manager implements IManager, Runnable {
      * Die Endphase des Servers und der Clients wird eingeleitet.
      */
     private void runEnd() {
-	// TODO Auto-generated method stub
 	sendGameEndMessages();
     }
 
@@ -152,9 +155,9 @@ public class Manager implements IManager, Runnable {
 	    runWithoutVeto();
 	} else if (gameVariant == WITH_VETO) {
 	    // TODO runWithVeto();
-	} else {
-	    // TODO hier beenden
 	}
+	// Wenn keine der beiden Moeglichkeiten zutrifft (was nicht passieren
+	// sollte) wird das Spiel in runEnd beendet
     }
 
     /**
@@ -164,7 +167,7 @@ public class Manager implements IManager, Runnable {
     private void runWithoutVeto() {
 	boolean playing = true;
 	IMessage msg;
-	while (playing) {
+	while (playing && !gameHalted) {
 	    // Der Spieler wird aufgefordert zu ziehen
 	    initiateMove();
 	    // Methode ist blockierend
@@ -212,16 +215,18 @@ public class Manager implements IManager, Runnable {
 		performFinishingPlayerChange();
 		break;
 	    case Game.EXECUTE_MOVE_GAME_FINISHED:
-		// TODO muss ich noch was machen, oder laeuft das in runEnd()?
 		sendResults();
 		return false;
 	    default:
-		// TODO sollte nicht passieren, was wenn?
-		break;
+		stopGameOnError();
+		return false;
 	    }
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    // TODO Excpetions
+	    //e.printStackTrace();
+	    //Das Spiel wird Einfach beendet
+	    stopGameOnError();
+	    return false;
 	}
 	// wenn Antwortmoeglichkeit "false" wird schon oben gegeben.
 	return true;
@@ -231,7 +236,6 @@ public class Manager implements IManager, Runnable {
      * An alle Clients wird die Scorelist geschickt.
      */
     private void sendResults() {
-	// TODO Auto-generated method stub
 	IMessage scrMsg = createScoreMessage(BROADCAST_ID);
 	dispatcher.acceptMessage(scrMsg);
     }
@@ -427,6 +431,7 @@ public class Manager implements IManager, Runnable {
 	    result = game.checkAndKeepMove(msg.getMove(), msg.getDestination());
 	} catch (Exception e) {
 	    stopGameOnError();
+	    return false;
 	}
 	return result;
 
@@ -442,7 +447,7 @@ public class Manager implements IManager, Runnable {
 	 */
 	boolean adding = true;
 	IMessage msg = null;
-	while (adding) {
+	while (adding && !gameHalted) {
 	    // diese Methode ist blockierend
 	    msg = fetchMessage();
 	    if (msg.getType() == MessageType.MT_LOGIN) {
@@ -450,11 +455,10 @@ public class Manager implements IManager, Runnable {
 		// Schleife
 		adding = addPlayer((LoginMessage) msg);
 	    } else {
-		// Ein falscher Nachrichtentyp fuehrt zuum Abbruch
+		// Ein falscher Nachrichtentyp fuehrt zum Abbruch
 		stopGameOnError();
 	    }
 	}
-	// TODO Brett und Go verschicken?
     }
 
     /**
@@ -509,11 +513,12 @@ public class Manager implements IManager, Runnable {
      * Das Spiel wird geordnet beendet
      */
     private void stopGameOnError() {
-	// FIXME Server geordnet beenden, Clients benachrichtigen
+	// TODO Server geordnet beenden, Clients benachrichtigen
 	// da bei Erstellung die geordnete Beendigung noch nicht zur Verfuegung
 	// stand wird der Server abgeschossen, Clients werden ignoriert.
-	System.err.println("sebastian ist fuer dieses exit verantwortlich");
-	System.exit(1);
+	//System.err.println("sebastian ist fuer dieses exit verantwortlich");
+	//System.exit(1);
+	gameHalted = true;
     }
 
     /**
