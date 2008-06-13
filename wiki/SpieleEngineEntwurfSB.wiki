@@ -21,28 +21,32 @@ http://btuswphalma.googlecode.com/svn/wiki/ZDGameTP2SB.png
 
 _Abb 1 Zustandsdiagramm Game_
 
+http://btuswphalma.googlecode.com/svn/wiki/Manager-ZD(ck).jpg
+
+_Abb 2 Zustandsdiagramm Manager_
+
 = Klassendiagramme =
 
 Um das gannze übersichtlicher zu machen zwei Diagramme. Die Pfeiltypen sind noch nicht 100% konsistent und nach den vorlieben von Umbrello.
 
 http://btuswphalma.googlecode.com/svn/wiki/KDSpielEngineTP2SB.png
 
-_Abb 2 Klassendiagramm Spiele-Engine_
+_Abb 3 Klassendiagramm Spiele-Engine_
 
 http://btuswphalma.googlecode.com/svn/wiki/KDMessagesTP2SB.png
 
-_Abb 3 Klassendiagramm Nachrichten_
+_Abb 4 Klassendiagramm Nachrichten_
 
 =Sequenzdiagramme=
 
 http://btuswphalma.googlecode.com/svn/wiki/SqDKorrekterZugTP2SB.png
 
-_Abb 4 Sequenzdiagramm korrekter Zug_
+_Abb 5 Sequenzdiagramm korrekter Zug_
 
 http://btuswphalma.googlecode.com/svn/wiki/SqDfalscherZugTP2SB.png
 
-_Abb 5 Sequenzdiagramm falsche Zug_
+_Abb 6 Sequenzdiagramm falsche Zug_
 
 http://btuswphalma.googlecode.com/svn/wiki/SqDSpielerFertigTP2SB.png
 
-_Abb 6 Sequenzdiagramm Spieler fertig_
+_Abb 7 Sequenzdiagramm Spieler fertig_
