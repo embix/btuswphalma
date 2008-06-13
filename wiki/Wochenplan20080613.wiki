@@ -27,9 +27,9 @@ Die maximal verfügbare Zeit für diese Woche.
 ||213||Test Spieleengine||14.06.2008||6||CK||
 ||310||Analyse Netzwerkkomponente Client||14.06.2008||2||CK||
 ||311||Impl. Netzwerkkomponente Client||18/19.06.2008||4||CK||
-||300||Entwurf Spieldummy||16.06.2008||1x4||ganzes Team||
-||310||Entwurf Netzwerkkomponente -- Client||16.06.2008||1x4||ganzes Team||
-||320||Entwurf Netzwerkkomponente - Server||16.06.2008||1x4||ganzes Team||
+||300||Analyse Spieldummy||16.06.2008||1x4||ganzes Team||
+||310||Analyse Netzwerkkomponente -- Client||16.06.2008||1x4||ganzes Team||
+||320||Analyse Netzwerkkomponente - Server||16.06.2008||1x4||ganzes Team||
 
 Weiterhin verbleiben 2h als Puffer für Beratertreffen, Arbeitgebertreffen und rollenspezifische Aufgaben.
 
