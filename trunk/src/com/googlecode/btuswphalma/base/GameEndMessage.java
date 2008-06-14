@@ -13,7 +13,6 @@ public class GameEndMessage extends AbstractMessage {
     /* (non-Javadoc)
      * @see com.googlecode.btuswphalma.base.IMessage#getType()
      */
-    @Override
     public MessageType getType() {
 	return MessageType.MT_GAMEEND;
     }
