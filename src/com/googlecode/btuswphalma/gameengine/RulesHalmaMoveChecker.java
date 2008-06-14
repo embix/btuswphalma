@@ -15,7 +15,7 @@ public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
     /**
      * (non-Javadoc)
      * 
-     * @see com.googlecode.btuswphalma.gameengine.IHalmaMoveChecker#checkMove(com.googlecode.btuswphalma.gameengine.Board,
+     * @see com.googlecode.btuswphalma.gameengine.IHalmaMoveChecker#ctype filter texttype filter textheckMove(com.googlecode.btuswphalma.gameengine.Board,
      *      com.googlecode.btuswphalma.gameengine.HalmaMove, int)
      */
     public boolean checkMove(Board board, HalmaMove move, int player) {
