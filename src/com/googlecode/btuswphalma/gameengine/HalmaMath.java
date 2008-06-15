@@ -25,6 +25,9 @@ public class HalmaMath {
      * @return ist die BoardPosiotion auf dem Spielfeld
      */
     public static boolean isOnBoard(BoardPosition pos) {
+	if(pos == null) {
+	    return false;
+	}
 	return isOnBoard(pos.getXPos(), pos.getYPos());
     }
 
@@ -53,12 +56,23 @@ public class HalmaMath {
      */
     public static boolean isPushDistance(BoardPosition startPos,
 	    BoardPosition endPos) {
+	if(startPos == null || endPos == null) {
+	    return false;
+	}
 	byte xs = startPos.getXPos();
 	byte ys = startPos.getYPos();
 	byte xe = endPos.getXPos();
 	byte ye = endPos.getYPos();
+	boolean result;
 
-	return (Math.abs(xs - xe) + Math.abs(2 * (ys - ye) + (xs % 2 - xe % 2)) == PUSH_DISTANCE);
+	// return (Math.abs(xs - xe) + Math.abs(2 * (ys - ye) + (xs % 2 - xe %
+	// 2)) == PUSH_DISTANCE);
+
+	result = Math.abs(ys - ye) == 1 && (xs == xe)
+		         || Math.abs(2 * (ys - ye + (xs % 2)) - 1) == 1
+		            && Math.abs(xs - xe) == 1;
+
+	return result;
     }
 
     /**
@@ -72,14 +86,17 @@ public class HalmaMath {
      */
     public static boolean isJumpDistance(BoardPosition startPos,
 	    BoardPosition endPos) {
+	if(startPos == null || endPos == null) {
+	    return false;
+	}
 	byte xs = startPos.getXPos();
 	byte ys = startPos.getYPos();
 	byte xe = endPos.getXPos();
 	byte ye = endPos.getYPos();
 
 	return (((xs == xe) && (Math.abs(ys - ye) == 2))
-			// ein Sprung ohne vertikale Bewegung
-		|| ((Math.abs(xs - xe) == 2) && (Math.abs(ys - ye) == 1)));
-			// ein Sprung mit vertikaler Bewegung
+	// ein Sprung ohne vertikale Bewegung
+	|| ((Math.abs(xs - xe) == 2) && (Math.abs(ys - ye) == 1)));
+	// ein Sprung mit vertikaler Bewegung
     }
 }
