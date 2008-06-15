@@ -11,17 +11,26 @@ package com.googlecode.btuswphalma.gameengine;
  * 
  */
 public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
-
+    
     /**
-     * (non-Javadoc)
-     * 
-     * @see com.googlecode.btuswphalma.gameengine.IHalmaMoveChecker#ctype filter texttype filter textheckMove(com.googlecode.btuswphalma.gameengine.Board,
-     *      com.googlecode.btuswphalma.gameengine.HalmaMove, int)
+     * Fuer jeden zu pruefenden Zug merkt man sich die Startposition, damit
+     * ein wiederholtes Springen ueber diese erlaubt ist
+     */
+    BoardPosition moveStartPos = null;
+
+   
+    /**
+     *  (non-Javadoc)
+     * @see com.googlecode.btuswphalma.gameengine.IHalmaMoveChecker#checkMove(com.googlecode.btuswphalma.gameengine.Board, com.googlecode.btuswphalma.gameengine.HalmaMove, int)
      */
     public boolean checkMove(Board board, HalmaMove move, int player) {
+	if (board == null || move == null || player < 1 || player > 6) {
+	    return false;
+	}
 	boolean result = false;
 	int moves = move.getNumberOfPartMoves();
-
+	moveStartPos = move.getStartPosition();
+	
 	if (player != board.getPositionState(move.getStartPosition())) {
 	    // player versucht einen Spielstein zu bewegen, der nicht ihm gehört
 	    result = false;
@@ -29,6 +38,7 @@ public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
 	}
 
 	result = (moves > 0) && (isPush(board, move) || isJump(board, move));
+	moveStartPos = null;
 	return result;
     }
 
@@ -37,7 +47,7 @@ public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
      * 
      * @param board
      * @param move
-     * @return
+     * @return ist es ein Schub
      */
     private boolean isPush(Board board, HalmaMove move) {
 	boolean result = false;
@@ -47,7 +57,7 @@ public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
 
 	result = (moves == 1) && (board.getPositionState(startPos) > 0)
 		&& (board.getPositionState(endPos) == 0)
-		&& HalmaMath.isOnBoard(startPos) // TODO unnoetig
+		&& HalmaMath.isOnBoard(startPos) // TODO unnoetig?
 		&& HalmaMath.isOnBoard(endPos) // dito
 		&& HalmaMath.isPushDistance(startPos, endPos);
 	return result;
@@ -67,14 +77,18 @@ public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
 	int moves = move.getNumberOfPartMoves();
 	int i = 0;
 
-	// ersten Sprung prüfen
+	// ersten Sprung pruefen
 	result = isJumpStart(board, move.getPartPosition(i), move
 		.getPartPosition(i + 1));
+	// DEBUGGED dieses i++ wurde vergessen.
+	i++;
 	while (result && i < moves) {
-	    // Man muss das result nicht noch verunden,
+	    // Man muss das result nicht noch ver-unden,
 	    // weil dies implizit durch das while geschieht
 	    result = isJumpContinuation(board, move.getPartPosition(i), move
 		    .getPartPosition(i + 1));
+	    // DEBUGGED dieses i++ wurde vergessen.
+	    i++;
 	}
 
 	return result;
@@ -86,7 +100,7 @@ public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
      * @param board
      * @param startPos
      * @param endPos
-     * @return
+     * @return ist es der Beginn eines Sprunges
      */
     private boolean isJumpStart(Board board, BoardPosition startPos,
 	    BoardPosition endPos) {
@@ -112,14 +126,18 @@ public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
      * @param board
      * @param startPos
      * @param endPos
-     * @return
+     * @return ist es ein Teilsprung der nicht der Startsprung ist
      */
     private boolean isJumpContinuation(Board board, BoardPosition startPos,
 	    BoardPosition endPos) {
 	boolean result = false;
 	BoardPosition overleaptPos;
-	result = (board.getPositionState(startPos) == 0)
-		&& (board.getPositionState(endPos) == 0)
+	result = (board.getPositionState(startPos) == 0 || 
+		  (startPos.getXPos() == moveStartPos.getXPos() &&
+		   startPos.getYPos() == moveStartPos.getYPos()))
+		&& (board.getPositionState(endPos) == 0 || 
+			(endPos.getXPos() == moveStartPos.getXPos() &&
+			 endPos.getYPos() == moveStartPos.getYPos()))
 		&& HalmaMath.isOnBoard(startPos) // TODO unnoetig
 		&& HalmaMath.isOnBoard(endPos) // dito
 		&& HalmaMath.isJumpDistance(startPos, endPos);
