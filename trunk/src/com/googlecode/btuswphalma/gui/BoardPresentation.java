@@ -37,8 +37,10 @@ public class BoardPresentation extends JPanel {
 
     private Board board;
     private HalmaMove move;
+    private BoardPosition pos;
     private boolean boardShow; // soll die Belegung gezeichnet werden?
     private boolean moveShow; // soll der aktuelle Zug gezeichnet werden?
+    private boolean positionShow; // soll die aktuelle Position gezeichnet werden?
 
     /**
      * Konstruktor
@@ -76,14 +78,29 @@ public class BoardPresentation extends JPanel {
 
 	zeichneLeeresBrett(g2d);
 
+	// ggf aktuell gewaehlte Position zeichnen
+	if (positionShow){
+	    zeichnePosition(g2d);
+	}
+	
 	// erst das alte Spielbrett zeigen
 	if (boardShow) {
 	    zeichneBoard(g2d);
 	}
+	
 	// dann den aktuellen Zug darueberlegen
 	if (moveShow) {
 	    zeichneMove(g2d);
 	}
+    }
+
+    private void zeichnePosition(Graphics2D g2d) {
+	// TODO Auto-generated method stub
+	Color c = Color.YELLOW;
+	int x = gibRasterX(pos.getXPos(),pos.getYPos());
+	int y = gibRasterY(pos.getYPos());
+	
+	zeichneGrossenKreis(g2d, x, y, c);
     }
 
     /**
@@ -645,5 +662,23 @@ public class BoardPresentation extends JPanel {
     	// TODO: (GUI) testen, ob x und y zu vertauschen sind
     	BoardPosition pos = new BoardPosition(xPos, yPos);
     	return pos;
+    }
+
+    /**
+     * Zeichne die gewaehlte Position
+     * @param pos die zu zeichnende Position
+     */
+    public void showPosition(BoardPosition pos) {
+	this.pos = pos;
+	positionShow = true;
+	repaint();
+    }
+    
+    /**
+     * Verstecke die gewaehlte Position
+     */
+    public void hidePosition(){
+	positionShow = false;
+	repaint();
     }
 }

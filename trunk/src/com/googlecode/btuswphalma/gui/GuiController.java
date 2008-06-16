@@ -45,10 +45,10 @@ public class GuiController{
     private BuilderHalmaMove builder;
     
     // Hilfsklasse zum Verarbeiten der Benutzereingaben
-    private InputHandler inh;
+    InputHandler inh;
     
     // die Poststelle / Schnittstelle zu Engine (und Netz)
-    private MessageHandler mh;
+    MessageHandler mh;
     
     // das Hauptfenster
     private Presentation frame;
