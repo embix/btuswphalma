@@ -3,11 +3,15 @@
  */
 package com.googlecode.btuswphalma.gui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
+import java.awt.Stroke;
+//import java.awt.geom.GeneralPath;
+//import java.awt.geom.Path2D;
 
 import javax.swing.JPanel;
 
@@ -475,9 +479,31 @@ public class BoardPresentation extends JPanel {
 	yVon *= radius;
 	xNach *= radius;
 	yNach *= radius;
-	// Zeichnen der Linie
-	g2d.drawLine(xVon, yVon, xNach, yNach);
+	// Zeichnen der Linie mit proportionaler Breite
+	Stroke old = g2d.getStroke();
+	int thickness = 1+radius/4;
+	BasicStroke stroke = new BasicStroke(thickness,
+                BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER);
+        
+        g2d.setStroke(stroke);
+        g2d.drawLine(xVon, yVon, xNach, yNach);
+        g2d.setStroke(old);
+	//zeichnePfeil(g2d, xVon, yVon, xNach, yNach);
     }
+    
+    /*
+    private void zeichnePfeil(Graphics2D g2d, int xVon, int yVon, int xNach,
+	    int yNach) {
+	Stroke old = g2d.getStroke();
+	int thickness = 1+radius/4;
+	BasicStroke stroke = new BasicStroke(thickness,
+                BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER);
+        // Berechnung der Spitze
+	Path2D shape = new GeneralPath();
+        g2d.setStroke(stroke);
+        g2d.drawLine(xVon, yVon, xNach, yNach);
+        g2d.setStroke(old);
+    }*/
 
     /**
      * Zeige den aktuellen Zug ueber dem letzten Board auf dem Bildschirm an.
