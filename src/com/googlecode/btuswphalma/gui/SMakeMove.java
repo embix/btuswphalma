@@ -104,9 +104,9 @@ public class SMakeMove implements IGuiState {
      * 
      * @param hm gibt den zu uebertragenden Zug an
      */
-    void sendHalmaMove(HalmaMove hm){
-	// TODO: (GUI) implementieren, wenn der MessageHandler fertig ist
-	
+    void sendHalmaMove(){
+	HalmaMove hm = controller.inh.setMoveEntryModeOff();
+	controller.mh.sendMove(hm);
 	// nach dem Senden wird auf die Anzeige der Spielzuege gewartet
 	controller.setState(controller.stateShowMove);
     }
@@ -115,9 +115,7 @@ public class SMakeMove implements IGuiState {
      * gibt die Eingabe eines Zuges frei
      */
     void makeMove(){
-	// TODO: (GUI) implementieren, wenn das Zugeingabehandling fertig ist.
-	//HalmaMove hm, controller.getBuilder(). 
-	//sendHalmaMove(hm)
+	controller.inh.setMoveEntryModeOn();
     }
 
 }
