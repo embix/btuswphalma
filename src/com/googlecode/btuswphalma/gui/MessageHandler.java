@@ -64,7 +64,7 @@ public class MessageHandler
      * sollte auf eins limitiert werden
      * @param engine 
      * @param controller 
-     * @return 
+     * @return gibt einen MesssageHandler zurueck
      */
     public static MessageHandler createMasterMessageHandler(IGuiCom engine, GuiController controller){
 	MessageHandler mh = new MessageHandler(engine, controller);

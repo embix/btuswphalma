@@ -562,7 +562,7 @@ public class BoardPresentation extends JPanel {
      * 
      * @param mouseX
      * @param mouseY 
-     * @return gibt den X-Wert des
+     * @return gibt den X-Wert des entsprechenden Tasterpunktes
      */
     public int gibRasterXFromMouse(int mouseX, int mouseY){
 	int x = mouseX / radius;
@@ -596,7 +596,7 @@ public class BoardPresentation extends JPanel {
      * 
      * @param mouseX 
      * @param mouseY
-     * @return
+     * @return gibt den y-Wert des entsprechenden Rasterpunktes
      */
     public int gibRasterYFromMouse(int mouseX, int mouseY){
 	int x = mouseX / radius; x = x + x % x;// x wird momentan nicht benoetigt
