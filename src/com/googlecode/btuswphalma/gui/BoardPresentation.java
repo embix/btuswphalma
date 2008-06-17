@@ -10,8 +10,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Stroke;
-//import java.awt.geom.GeneralPath;
-//import java.awt.geom.Path2D;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Path2D;
 
 import javax.swing.JPanel;
 
@@ -377,7 +377,7 @@ public class BoardPresentation extends JPanel {
 						    // Performance?
 
 	    // ein Pfeil waere wohl schoener, kann man ja spaeter noch machen
-	    zeichneLinie(g2d, xVon, yVon, xNach, yNach);
+	    zeichnePfeil(g2d, xVon, yVon, xNach, yNach);
 	}
     }
 
@@ -458,7 +458,7 @@ public class BoardPresentation extends JPanel {
     }
 
     /**
-     * Zeichnen einer schwarzen Linie
+     * Zeichnen eines schwarzen Pfeils
      * 
      * @param g2d
      *                gibt an, in welches Graphikobjekt gezeichnet werden soll
@@ -471,7 +471,7 @@ public class BoardPresentation extends JPanel {
      * @param yNach
      *                gibt den y Wert des Zielpunktes im Raster an
      */
-    private void zeichneLinie(Graphics2D g2d, int xVon, int yVon, int xNach,
+    private void zeichnePfeil(Graphics2D g2d, int xVon, int yVon, int xNach,
 	    int yNach) {
 	g2d.setPaint(Color.BLACK);
 	// Skalierte Boardposition berechnen
@@ -479,27 +479,50 @@ public class BoardPresentation extends JPanel {
 	yVon *= radius;
 	xNach *= radius;
 	yNach *= radius;
+
+	Stroke old = g2d.getStroke();
+	int thickness = 1+radius/5;
+	int ratio = 4;
+	int sharpness = 8;
+	
+	BasicStroke stroke = new BasicStroke(thickness,
+                BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER);
+        // Berechnung der Spitze
+	
+	
+	Path2D shape = new GeneralPath();
+	int xH = ((ratio-1)*xNach + xVon) /ratio;
+	int yH = ((ratio-1)*yNach + yVon) /ratio;
+	int xS = -(yVon - yNach);
+	int yS =  (xVon - xNach);
+	int xHP1 = xH+(xS/sharpness);
+	int yHP1 = yH+(yS/sharpness);
+	int xHP2 = xH-(xS/sharpness);
+	int yHP2 = yH-(yS/sharpness);
+	
+	shape.moveTo(xVon, yVon);
+	shape.lineTo(xNach, yNach);
+	
+	shape.moveTo(xHP1,yHP1);
+	shape.lineTo(xNach, yNach);
+	shape.lineTo(xHP2, yHP2);
+	
+        g2d.setStroke(stroke);
+        g2d.draw(shape);
+        g2d.setStroke(old);
+
+    }
+
+
+    /*
+    private void zeichneLinie(Graphics2D g2d, int xVon, int yVon, int xNach,
+	    int yNach) {
 	// Zeichnen der Linie mit proportionaler Breite
 	Stroke old = g2d.getStroke();
 	int thickness = 1+radius/4;
 	BasicStroke stroke = new BasicStroke(thickness,
                 BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER);
         
-        g2d.setStroke(stroke);
-        g2d.drawLine(xVon, yVon, xNach, yNach);
-        g2d.setStroke(old);
-	//zeichnePfeil(g2d, xVon, yVon, xNach, yNach);
-    }
-    
-    /*
-    private void zeichnePfeil(Graphics2D g2d, int xVon, int yVon, int xNach,
-	    int yNach) {
-	Stroke old = g2d.getStroke();
-	int thickness = 1+radius/4;
-	BasicStroke stroke = new BasicStroke(thickness,
-                BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER);
-        // Berechnung der Spitze
-	Path2D shape = new GeneralPath();
         g2d.setStroke(stroke);
         g2d.drawLine(xVon, yVon, xNach, yNach);
         g2d.setStroke(old);
