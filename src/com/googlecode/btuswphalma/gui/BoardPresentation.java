@@ -11,7 +11,6 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Stroke;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Path2D;
 
 import javax.swing.JPanel;
 
@@ -490,7 +489,8 @@ public class BoardPresentation extends JPanel {
         // Berechnung der Spitze
 	
 	
-	Path2D shape = new GeneralPath();
+	// Java6:Path2D shape = new GeneralPath();
+	GeneralPath shape = new GeneralPath();
 	int xH = ((ratio-1)*xNach + xVon) /ratio;
 	int yH = ((ratio-1)*yNach + yVon) /ratio;
 	int xS = -(yVon - yNach);
