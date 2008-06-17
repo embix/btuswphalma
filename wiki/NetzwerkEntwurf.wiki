@@ -47,7 +47,7 @@ einkommende Nachricht vom Dispatcher:
 Beenden-Prozess:
 	* an alle Connection's:  Horch-Prozess beenden (Interrupt senden) und Socket.close()
 
-http://btuswphalma.googlecode.com/svn/wiki/EWnwkServer.png
+http://btuswphalma.googlecode.com/svn/wiki/EWnwkServer.PNG
 
 _Abb.1 Entwurfsklassendiagramm NWK Server_
 
@@ -71,6 +71,6 @@ einkommende Nachricht vom Dispatcher:
 	* analog zur Verarbeitung im Server, nur dass:
 	* senden aller Nachrichten an Server, unverändert
 
-http://btuswphalma.googlecode.com/svn/wiki/EWnwkClient.png
+http://btuswphalma.googlecode.com/svn/wiki/EWnwkClient.PNG
 
 _Abb.2 Entwurfsklassendiagramm NWK Client_
