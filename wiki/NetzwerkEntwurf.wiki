@@ -3,16 +3,16 @@
 = Entwurf Netzwerk =
 
 ==allgemein Netzwerk==
-NWK = Netzwerkkomponente
-Netzwerk über TCP/IP, blockierende Sockets, ein Server, 1-5 Clients
-Nachrichten im Netzwerk über NetMessage, diese ist serializable und enhält eine IMessage
+	* NWK = Netzwerkkomponente
+	* Netzwerk über TCP/IP, blockierende Sockets, ein Server, 1-5 Clients
+	* Nachrichten im Netzwerk über NetMessage, diese ist serializable und enhält eine IMessage
 
 ==NWK Server==
 
-Server-IP fest, Port frei wählbar (default Wert möglich)
-ServerSocket horcht solange auf einkommende Verbindungsversuche bis maximale Spielerzahl erreicht,
-weist der Verbindung mit einem Client einen Socket (mit jeweiligem In-/Outputstream) zu
-hat nur eine Queue für eingehende Nachrichten
+	* Server-IP fest, Port frei wählbar (default Wert möglich)
+	* ServerSocket horcht solange auf einkommende Verbindungsversuche bis maximale Spielerzahl erreicht,
+	* weist der Verbindung mit einem Client einen Socket (mit jeweiligem In-/Outputstream) zu
+	* hat nur eine Queue für eingehende Nachrichten
 
 Startphase:
 	* ServerSocket, mit Port und ev. Timeout, im Konstruktor von NWK Server erzeugt
@@ -47,14 +47,14 @@ einkommende Nachricht vom Dispatcher:
 Beenden-Prozess:
 	* an alle Connection's:  Horch-Prozess beenden (Interrupt senden) und Socket.close()
 
-http://btuswphalma.googlecode.com/svn/wiki/EW_NWK_Server.png
+http://btuswphalma.googlecode.com/svn/wiki/EWnwkServer.png
 
 _Abb.1 Entwurfsklassendiagramm NWK Server_
 
 ==NWK Client==
 
-hat keine extra Connection, Thread zum Nachrichtensenden /-empfangen im Client selbst
-hat nur die Verbindung mit dem Server
+	* hat keine extra Connection, Thread zum Nachrichtensenden /-empfangen im Client selbst
+	* hat nur die Verbindung mit dem Server
 
 Startphase:
 	* an Konstruktor von NWK Client wird Server-IP und -Port übergeben, Client 'merkt' sich beides
@@ -71,6 +71,6 @@ einkommende Nachricht vom Dispatcher:
 	* analog zur Verarbeitung im Server, nur dass:
 	* senden aller Nachrichten an Server, unverändert
 
-http://btuswphalma.googlecode.com/svn/wiki/EW_NWK_Client.png
+http://btuswphalma.googlecode.com/svn/wiki/EWnwkClient.png
 
-_Abb.1 Entwurfsklassendiagramm NWK Client_
+_Abb.2 Entwurfsklassendiagramm NWK Client_
