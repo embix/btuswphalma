@@ -19,35 +19,36 @@ Startphase:
 	* MessageQueue, NotifyObject und ConnectionMap ebenfalls vorher erzeugt
 	* ServerSocket schläft solange, bis Verbindungsversuch von außen, max. Spieleranzahl erreicht oder Timeout
 	* Schleife: id=2 bis (max. Spieleranzahl) do
-		Socket = ServerSocket.accept()
-		new Connection (Socket, id, NotifyObject, Queue)
-		ConnectionMap.putConnection(Connection)		//in HashMap: key=id, value=Connection
+		* Socket = ServerSocket.accept()
+		* new Connection (Socket, id, NotifyObject, Queue)
+		* ConnectionMap.putConnection(Connection)		//in HashMap: key=id, value=Connection
 	* wenn alle Sockets eingerichtet: run()
 
 einkommende Nachricht vom Netzwerk:
 	* in Connection: while(notInterrupted) do
-		readObject(ObjectOutputStream) try ... catch ... //blockierender Prozess
-		//NetMessage "rein" gekommen, aber nur als reines Objekt -> "wakeup"
-		Cast des Objektes auf NetMessage
-		hole IMessage heraus
-		ändere Destination =1  und from =id
-		IMessage auf MessageQueue
-		Notify auf NotifyObject
+		* readObject(ObjectOutputStream) try ... catch ... //blockierender Prozess
+		* //NetMessage "rein" gekommen, aber nur als reines Objekt -> "wakeup"
+		* Cast des Objektes auf NetMessage
+		* hole IMessage heraus
+		* ändere Destination =1  und from =id
+		* IMessage auf MessageQueue
+		* Notify auf NotifyObject
 
 einkommende Nachricht vom Dispatcher:
 	* IMessage 'msg' mit Destination =0 //broadcast
-		Schleife: while(hasnext) do		//key->Iterator als Laufindex
-			Connection = ConnectionMap.getNext
-			Connection.sendMessage(msg)
+		* Schleife: while(hasnext) do		//key->Iterator als Laufindex
+		* Connection = ConnectionMap.getNext
+		* Connection.sendMessage(msg)
 	* 'msg' mit Destination =2|3|4|5|6
-		Connection = ConnectionMap.get(key == destination)
-		Connection.sendMessage(msg)
+		* Connection = ConnectionMap.get(key == destination)
+		* Connection.sendMessage(msg)
 	* ansonsten Fehler abfangen
 
 Beenden-Prozess:
-	an alle Connection's:  Horch-Prozess beenden (Interrupt senden) und Socket.close()
+	* an alle Connection's:  Horch-Prozess beenden (Interrupt senden) und Socket.close()
 
 http://btuswphalma.googlecode.com/svn/wiki/EW_NWK_Server.png
+
 _Abb.1 Entwurfsklassendiagramm NWK Server_
 
 ==NWK Client==
@@ -60,7 +61,7 @@ Startphase:
 	* im Konstruktor wird der Thread gestartet
 	* in run() geschieht einmalig der Anmeldeprozess am Server
 	* danach wird in run die while(notInterrupted) -Schleife gestartet, die auf Nachrichten horcht
-		arbeitet in etwa analog zum Server
+		* arbeitet in etwa analog zum Server
 
 einkommende Nachricht vom Netzwerk:
 	* analog zur Verarbeitung im Server, nur dass:
@@ -71,4 +72,5 @@ einkommende Nachricht vom Dispatcher:
 	* senden aller Nachrichten an Server, unverändert
 
 http://btuswphalma.googlecode.com/svn/wiki/EW_NWK_Client.png
+
 _Abb.1 Entwurfsklassendiagramm NWK Client_
