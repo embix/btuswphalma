@@ -1,0 +1,89 @@
+Testprotokoll fuer die Zugeingabe
+Tester: embix
+Datum: 18.06.2008
+Reposversion: 339
+
+Aktion:
+	Testklasse ausfuehren
+erwartetes Ergebnis:
+	Das leere Spielfeld ist zu sehen, ebenso zwei
+	Schaltflaechen fuer die Zugeingabe und die
+	Zugbestaetigung. 
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	Ja
+
+Aktion:
+	nach einander auf mehrere gueltige und ungueltige
+ 	Spielfelder klicken
+erwartetes Ergebnis:
+ 	Es sollte sich nichts veraendern.
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	Ja
+
+Aktion:
+ 	die Schaltflaeche fuer die Zugeingabe betaetigen und
+ 	anschliessend einen Spielzug vom Typ Schub eingeben
+erwartetes Ergebnis:
+ 	Bei Betaetigung der Schaltflaeche erfolgt die
+ 	Konsolenausgabe, dass sich der Controllerzustand
+ 	von SShowMove nach SMakeMove geaendert hat.
+ 	Bei Eingabe des Zuges soll dieser auf dem Spielfeld
+ 	dargestellt und die Koordinaten ausgegeben werden.
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	Ja
+
+Aktion:
+ 	die Schaltflaeche fuer die Zugbestaetigung betaetigen,
+ 	danach auf gueltige und ungueltige Spielfelder klicken
+erwartetes Ergebnis:
+ 	Ein Wechsel des Controllerzustandes von SMakeMove nach
+ 	SShowMove sollte auf der Konsole ausgegeben werden.
+ 	Weiterhin sollte der Zug geloescht/ nicht mehr dargestellt
+ 	werden. Nach einem Klick auf das Spielbrett passiert
+ 	nichts.
+Beobachutung (sofern abweichend von Erwartung):
+	Der  Zug wird nicht geloescht.
+Testpunkt bestanden:
+	Nein
+	
+Aktion:
+ 	die Schaltflaeche fuer die Zugeingabe betaetigen und
+ 	anschliessend einen Spielzug vom Typ Sprung eingeben
+erwartetes Ergebnis:
+ 	Bei Betaetigung der Schaltflaeche erfolgt die
+ 	Konsolenausgabe, dass sich der Controllerzustand
+ 	von SShowMove nach SMakeMove geaendert hat.
+ 	Bei Eingabe des Zuges soll dieser auf dem Spielfeld
+ 	dargestellt und die Koordinaten ausgegeben werden.
+Beobachutung (sofern abweichend von Erwartung):
+	Der vorherige Zug wird durch Eingabe des neuen
+	geloescht.
+Testpunkt bestanden:
+	Ja
+
+Aktion:
+ 	die Schaltflaeche fuer die Zugbestaetigung betaetigen,
+ 	danach auf gueltige und ungueltige Spielfelder klicken
+erwartetes Ergebnis:
+ 	Ein Wechsel des Controllerzustandes von SMakeMove nach
+ 	SShowMove sollte auf der Konsole ausgegeben werden.
+ 	Weiterhin sollte der Zug geloescht/ nicht mehr dargestellt
+ 	werden. Nach einem Klick auf das Spielbrett passiert
+ 	nichts.
+Beobachutung (sofern abweichend von Erwartung):
+	Der Zug wird wieder nicht geloescht.
+Testpunkt bestanden:
+	Nein
+	
+Test bestanden:
+	Nein
+Was muss noch getan werden:
+	1)	Anzeige des Zuges ist nach der Abgabe bzw. dem Senden
+		zu loeschen.
+		SMakeMove.sendHalmaMove() ist Kandidat fuer die
+		Implementierung.
+	2)	Test anschliessend wiederholen
+Was sollte noch getan werden:
