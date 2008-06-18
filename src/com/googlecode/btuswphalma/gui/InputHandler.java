@@ -29,8 +29,8 @@ public class InputHandler implements MouseListener {
 	moveEntry = false;
 	
 	
-	// FIXME: NUR zum Testen der Zugeingabe
-	this.setMoveEntryModeOn();// zum testen...
+	// FIXME: (GUI) NUR zum Testen der Zugeingabe
+	//this.setMoveEntryModeOn();// zum testen...
     }
 
     /**
@@ -118,30 +118,32 @@ public class InputHandler implements MouseListener {
      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
      */
     public void mouseReleased(MouseEvent event) {
-	// Ende eines TeilZuges?
-	System.out.println("Mausklick aus (" + event.getX() + ","
-		+ event.getY() + ")");
-	// unsauber
-	try {
-	    BoardPresentation board = (BoardPresentation) event
+	if (moveEntry) {
+	    // Ende eines TeilZuges?
+	    System.out.println("Mausklick aus (" + event.getX() + ","
+		    + event.getY() + ")");
+	    // unsauber
+	    try {
+		BoardPresentation board = (BoardPresentation) event
 			.getComponent();
-	    /*int x = board.gibRasterXFromMouse(event.getX(), event.getY());
-	    int y = board.gibRasterYFromMouse(event.getX(), event.getY());
-	    System.out.println("Raster: (" + x + "," + y + ")");
-	    BoardPosition pos;
-	    pos = board.gibBoardAusRaster(x, y);
-	    
-	    board.showPosition(pos);
-	    
-	    builder.addPosition(pos);
-	    // Debugausgabe
-	    byte xPos = pos.getXPos();
-	    byte yPos = pos.getYPos();
-	    System.out.println("Board:  (" + xPos + "," + yPos + ")");*/
-	    board.setHalmaMove(builder.getMove());
-	    board.showMove();
-	} catch (RuntimeException e) {
-	    e.printStackTrace();
+		/*int x = board.gibRasterXFromMouse(event.getX(), event.getY());
+		int y = board.gibRasterYFromMouse(event.getX(), event.getY());
+		System.out.println("Raster: (" + x + "," + y + ")");
+		BoardPosition pos;
+		pos = board.gibBoardAusRaster(x, y);
+		
+		board.showPosition(pos);
+		
+		builder.addPosition(pos);
+		// Debugausgabe
+		byte xPos = pos.getXPos();
+		byte yPos = pos.getYPos();
+		System.out.println("Board:  (" + xPos + "," + yPos + ")");*/
+		board.setHalmaMove(builder.getMove());
+		board.showMove();
+	    } catch (RuntimeException e) {
+		e.printStackTrace();
+	    }
 	}
     }
 }
