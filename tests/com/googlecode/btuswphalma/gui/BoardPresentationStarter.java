@@ -1,9 +1,5 @@
 /**
- * TODO: (GUI) minor bug (SunJava5, Linux)
  * 
- * Beim Betaetigen der Buttons werden diese zum Teil in der linken
- * oberen Ecke angezeigt - ein rezise (-> repaint) schafft zwar
- * Abhilfe, ist aber nicht so, wie es sein sollte.
  */
 package com.googlecode.btuswphalma.gui;
 
