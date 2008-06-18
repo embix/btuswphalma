@@ -48,7 +48,7 @@ public class Manager implements IManager, Runnable {
     /**
      * Die Anzahl der Millisekunden, die der Spielzug angezeigt werden soll
      */
-    private static final long DISPLAY_TIME = 10000;
+    public static final long DISPLAY_TIME = 10000;
     /**
      * Die Queue, in die von aussen Nachrichten geschrieben werden. Diese
      * Nachrichten werden dann von dem laufenden thread verarbeitet
