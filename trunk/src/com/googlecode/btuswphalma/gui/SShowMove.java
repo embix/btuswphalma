@@ -119,7 +119,6 @@ public class SShowMove implements IRunnableGuiState {
 	controller.setState(controller.stateSessionEnd); 
     }
 
-    @Override
     public void run() {
 	// TODO Auto-generated method stub
 	

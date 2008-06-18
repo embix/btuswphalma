@@ -119,7 +119,6 @@ public class SMakeMove implements IRunnableGuiState {
 	controller.inh.setMoveEntryModeOn();
     }
 
-    @Override
     public void run() {
 	// TODO: (GUI) eine "Sie sind am Zug" Meldung waere schoen
 	
