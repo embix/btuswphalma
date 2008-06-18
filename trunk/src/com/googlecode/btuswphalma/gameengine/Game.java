@@ -245,6 +245,7 @@ public class Game {
 	    //Fehlzustand, das sollte nicht passieren
 	    throw new Exception("found no next player"); //TODO Exception Klasse
 	}
+	gameState = WAITING_MOVE;
 
     }
 
