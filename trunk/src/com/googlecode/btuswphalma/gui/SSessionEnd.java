@@ -12,7 +12,7 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
  * 
  * @author embix
  */
-public class SSessionEnd implements IGuiState {
+public class SSessionEnd implements IRunnableGuiState {
 
     private GuiController controller;
     
@@ -111,6 +111,12 @@ public class SSessionEnd implements IGuiState {
 	    e.printStackTrace(); // Debugausgabe
 	    System.exit(1); // Programmende
 	}
+    }
+
+    @Override
+    public void run() {
+	// TODO Auto-generated method stub
+	
     }
 
 }

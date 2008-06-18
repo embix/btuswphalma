@@ -1,5 +1,117 @@
 /**
+ * Testprotokoll fuer die Zugeingabe
  * 
+ * <p>
+ * Tester:
+ * <br>
+ * Datum:
+ * <br>
+ * Reposversion:
+ * </p>
+ * 
+ * 
+ * <p>
+ * Aktion:
+ * 	Testklasse ausfuehren
+ * <br>
+ * erwartetes Ergebnis:
+ * 	Das leere Spielfeld ist zu sehen, ebenso zwei
+ * 	Schaltflaechen fuer die Zugeingabe und die
+ * 	Zugbestaetigung. 
+ * <br>
+ * Beobachutung (sofern abweichend von Erwartung):
+ * Testpunkt bestanden:
+ * </p>
+ * 
+ * 
+ * <p>
+ * Aktion:
+ * 	nach einander auf mehrere gueltige und ungueltige
+ * 	Spielfelder klicken
+ * <br>
+ * erwartetes Ergebnis:
+ * 	Es sollte sich nichts veraendern.
+ * <br>
+ * Beobachutung (sofern abweichend von Erwartung):
+ * Testpunkt bestanden:
+ * </p>
+ * 
+ * 
+ * <p>
+ * Aktion:
+ * 	die Schaltflaeche fuer die Zugeingabe betaetigen und
+ * 	anschliessend einen Spielzug vom Typ Schub eingeben
+ * <br>
+ * erwartetes Ergebnis:
+ * 	Bei Betaetigung der Schaltflaeche erfolgt die
+ * 	Konsolenausgabe, dass sich der Controllerzustand
+ * 	von SShowMove nach SMakeMove geaendert hat.
+ * 	Bei Eingabe des Zuges soll dieser auf dem Spielfeld
+ * 	dargestellt und die Koordinaten ausgegeben werden.
+ * <br>
+ * Beobachutung (sofern abweichend von Erwartung):
+ * Testpunkt bestanden:
+ * </p>
+ * 
+ * 
+ * <p>
+ * Aktion:
+ * 	die Schaltflaeche fuer die Zugbestaetigung betaetigen,
+ * 	danach auf gueltige und ungueltige Spielfelder klicken
+ * <br>
+ * erwartetes Ergebnis:
+ * 	Ein Wechsel des Controllerzustandes von SMakeMove nach
+ * 	SShowMove sollte auf der Konsole ausgegeben werden.
+ * 	Weiterhin sollte der Zug geloescht/ nicht mehr dargestellt
+ * 	werden. Nach einem Klick auf das Spielbrett passiert
+ * 	nichts.
+ * <br>
+ * Beobachutung (sofern abweichend von Erwartung):
+ * Testpunkt bestanden:
+ * </p>
+ * 
+ * 
+ * <p>
+ * Aktion:
+ * 	die Schaltflaeche fuer die Zugeingabe betaetigen und
+ * 	anschliessend einen Spielzug vom Typ Sprung eingeben
+ * <br>
+ * erwartetes Ergebnis:
+ * 	Bei Betaetigung der Schaltflaeche erfolgt die
+ * 	Konsolenausgabe, dass sich der Controllerzustand
+ * 	von SShowMove nach SMakeMove geaendert hat.
+ * 	Bei Eingabe des Zuges soll dieser auf dem Spielfeld
+ * 	dargestellt und die Koordinaten ausgegeben werden.
+ * <br>
+ * Beobachutung (sofern abweichend von Erwartung):
+ * Testpunkt bestanden:
+ * </p>
+ * 
+ * 
+ * <p>
+ * Aktion:
+ * 	die Schaltflaeche fuer die Zugbestaetigung betaetigen,
+ * 	danach auf gueltige und ungueltige Spielfelder klicken
+ * <br>
+ * erwartetes Ergebnis:
+ * 	Ein Wechsel des Controllerzustandes von SMakeMove nach
+ * 	SShowMove sollte auf der Konsole ausgegeben werden.
+ * 	Weiterhin sollte der Zug geloescht/ nicht mehr dargestellt
+ * 	werden. Nach einem Klick auf das Spielbrett passiert
+ * 	nichts.
+ * <br>
+ * Beobachutung (sofern abweichend von Erwartung):
+ * Testpunkt bestanden:
+ * </p>
+ * 
+ * 
+ * <p>
+ * Test bestanden:
+ * <br>
+ * Was muss noch getan werden:
+ * <br>
+ * Was sollte noch getan werden:
+ * </p>
  */
 package com.googlecode.btuswphalma.gui;
 
@@ -10,18 +122,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.googlecode.btuswphalma.gameengine.HalmaMove;
-
 /**
- * @author embix
- * <h2>Testklasse fuer die Zugeingabe</h2>
- * 
+ * Testklasse fuer die Zugeingabe
+ * <p>
  * Zunaechst werden alle Klassen bereitgestellt, die zur
  * Zugeingabe benoetigt werden. Anschliessend kann man
  * zur Zugeingabe auffordern. Nach erfolgter Zugeingabe
  * ist eine Bestaetigung abzugeben, was zur Ausgabe der
  * Zugfolge fuehren soll. Schliesslich kann die Zugeingabe
  * wieder aktiviert werden.
+ * </p>
+ * @author embix
  */
 public class InputHandlingScenario
 	extends JPanel{
@@ -36,7 +147,6 @@ public class InputHandlingScenario
     private BoardPresentation pres;
     private InputHandler inh;
     private GuiController controller;
-    private HalmaMove move;
 
     /**
      * Konstruktor fuer die Zugeingabetestklasse
@@ -78,6 +188,9 @@ public class InputHandlingScenario
 	this.owner.add(this);	
     }
     
+    /**
+     * Zugeingabe beginnen
+     */
     @SuppressWarnings("deprecation")
     private void moveModeOn(){
 	System.out.println("Alter Controllerzustand ist: " + controller.getState().getClass());
@@ -85,11 +198,21 @@ public class InputHandlingScenario
 	System.out.println("Neuer Controllerzustand ist: " + controller.getState().getClass());
     }
     
+    /**
+     * Zugeingabe abschliessen
+     */
     @SuppressWarnings("deprecation")
     private void moveModeOff(){
 	System.out.println("Alter Controllerzustand ist: " + controller.getState().getClass());
-	move = inh.setMoveEntryModeOff();
-	controller.recvHalmaMove(move);
+	// unsauber
+	try {
+	    SMakeMove movstate = (SMakeMove) controller.getState();
+	    movstate.sendHalmaMove();
+	} catch (RuntimeException e) {
+	    e.printStackTrace();
+	    System.err.println("Nicht erwarteter Zustand, senden Fehlgeschlagen");
+	}
+	
 	System.out.println("Neuer Controllerzustand ist: " + controller.getState().getClass());
     }
     

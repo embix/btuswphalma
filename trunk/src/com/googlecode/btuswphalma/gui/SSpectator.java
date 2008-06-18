@@ -13,7 +13,7 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
  * 
  * @author embix
  */
-public class SSpectator implements IGuiState {
+public class SSpectator implements IRunnableGuiState {
 
     private GuiController controller;
     
@@ -110,6 +110,12 @@ public class SSpectator implements IGuiState {
     public void recvScores(ScoreList s) {
 	controller.stateSessionEnd.recvScores(s);
 	controller.setState(controller.stateSessionEnd);
+    }
+
+    @Override
+    public void run() {
+	// TODO Auto-generated method stub
+	
     }
 
 }

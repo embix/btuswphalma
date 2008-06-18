@@ -15,7 +15,7 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
  * @see see com.googlecode.btuswphalma.gui.GuiController
  * @author embix
  */
-public class SShowMove implements IGuiState {
+public class SShowMove implements IRunnableGuiState {
     
     private GuiController controller;
     
@@ -117,6 +117,12 @@ public class SShowMove implements IGuiState {
 	controller.stateSessionEnd.recvScores(s);
 	// Zustandswechsel: sollte implizit schon passiert sein
 	controller.setState(controller.stateSessionEnd); 
+    }
+
+    @Override
+    public void run() {
+	// TODO Auto-generated method stub
+	
     }
 
 }
