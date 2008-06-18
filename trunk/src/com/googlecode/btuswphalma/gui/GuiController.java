@@ -79,6 +79,10 @@ public class GuiController{
 	
 	stateSessionEnd = new SSessionEnd(this);
 	
+	// FIXME: (GUI) initialen Controllerzustand setzen
+	//this.state = stateInputGameData
+	
+	
 	// TODO: (GUI) Instanzierung der GUI-Hilfsklassen
 	this.boardPres = new BoardPresentation();
 	this.builder = new BuilderHalmaMove();
