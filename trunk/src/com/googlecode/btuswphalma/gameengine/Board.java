@@ -194,4 +194,28 @@ public class Board {
 	    break;
 	}
     }
+
+    /**
+     * Eine Zeichenkette die das Spielbrett darstellt wird zurueckgegeben. Es
+     * ist String mit 17 Zeilen und 13 Zeichen je Zeile. Die Nummern der Spieler
+     * und die 0 als Spielfelmakierung werden ausgegeben die unbenutzten
+     * Positionen die nicht auf dem Spielfeld sind werden zu Leerzeichen
+     * 
+     * @return der darstellende String
+     */
+    @Override
+    public String toString() {
+	StringBuilder output = new StringBuilder(221);
+	for (int i = 0; i < boardArray.length; i++) {
+	    for (int j = 0; j < boardArray[0].length; j++) {
+		if (boardArray[i][j] > -1) {
+		    output.append(boardArray[i][j]);
+		} else {
+		    output.append(' ');
+		}
+	    }
+	    output.append('\n');
+	}
+	return output.toString();
+    }
 }
