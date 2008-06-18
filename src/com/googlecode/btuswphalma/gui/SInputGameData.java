@@ -143,7 +143,6 @@ public class SInputGameData implements IRunnableGuiState {
 
     }
 
-    @Override
     public void run() {
 	// TODO Auto-generated method stub
 	

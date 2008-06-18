@@ -113,7 +113,6 @@ public class SSessionEnd implements IRunnableGuiState {
 	}
     }
 
-    @Override
     public void run() {
 	// TODO Auto-generated method stub
 	
