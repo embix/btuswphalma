@@ -25,14 +25,14 @@ public class GuiController{
     private static GuiController controller;
     
     // der gegenwaertige Zustand des Controllers
-    private IGuiState state;
+    private IRunnableGuiState state;
 
     // alle moeglichen Zustaende des Controllers
-    IGuiState stateInputGameData;
-    IGuiState stateMakeMove;
-    IGuiState stateShowMove;
-    IGuiState stateSpectator;
-    IGuiState stateSessionEnd;
+    IRunnableGuiState stateInputGameData;
+    IRunnableGuiState stateMakeMove;
+    IRunnableGuiState stateShowMove;
+    IRunnableGuiState stateSpectator;
+    IRunnableGuiState stateSessionEnd;
     //IGuiState stateHighScoreShow; // Wunschkriterium, wird spaeter implementiert
     
     private Dispatcher engine;
@@ -120,7 +120,7 @@ public class GuiController{
      * @deprecated
      */
     @Deprecated
-    public IGuiState getState(){
+    public IRunnableGuiState getState(){
 	return state;
     }
     
@@ -131,11 +131,12 @@ public class GuiController{
      * 
      * @param state der neue Zustand des Controllers
      */
-    void setState(IGuiState state){
+    void setState(IRunnableGuiState state){
 	// TODO: (GUI) wenn beim Zustandswechsel eine Aktion erforderlich ist,
 	// soll diese ggf auch ausgefuehrt werden - umgeht unsaubere casts
 	// Ansatz: void commitChange(); // oder run();
 	this.state = state;
+	this.state.run();
     }
     
     /**

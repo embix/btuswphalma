@@ -14,7 +14,7 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
  * @see see com.googlecode.btuswphalma.gui.GuiController
  * @author embix
  */
-public class SInputGameData implements IGuiState {
+public class SInputGameData implements IRunnableGuiState {
     
     private GuiController controller;
     private boolean dataSend;
@@ -141,6 +141,12 @@ public class SInputGameData implements IGuiState {
     public void recvScores(ScoreList s) {
 	// wird ignoriert
 
+    }
+
+    @Override
+    public void run() {
+	// TODO Auto-generated method stub
+	
     }
 
 }

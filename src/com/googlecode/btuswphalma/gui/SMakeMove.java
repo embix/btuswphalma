@@ -11,7 +11,7 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
  * @author embix
  *
  */
-public class SMakeMove implements IGuiState {
+public class SMakeMove implements IRunnableGuiState {
 
     private GuiController controller;
     
@@ -115,7 +115,15 @@ public class SMakeMove implements IGuiState {
      * gibt die Eingabe eines Zuges frei
      */
     void makeMove(){
+	// dem Inputhandler erlauben, Zuege aufzuzeichen
 	controller.inh.setMoveEntryModeOn();
+    }
+
+    @Override
+    public void run() {
+	// TODO: (GUI) eine "Sie sind am Zug" Meldung waere schoen
+	
+	makeMove();
     }
 
 }
