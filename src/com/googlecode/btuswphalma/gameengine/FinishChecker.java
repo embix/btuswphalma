@@ -158,6 +158,7 @@ public class FinishChecker {
 		    j++;
 		}
 		i++;
+		j=0;
 	    }
 	    if ((this.board[1][5] != (byte) id)
 		    || (this.board[3][4] != (byte) id)) {
@@ -174,6 +175,7 @@ public class FinishChecker {
 		    j++;
 		}
 		i++;
+		j=0;
 	    }
 	    if ((this.board[6][11] != (byte) id)
 		    || (this.board[4][12] != (byte) id)) {
@@ -190,6 +192,7 @@ public class FinishChecker {
 		    j++;
 		}
 		i++;
+		j=0;
 	    }
 	    if ((this.board[10][11] != (byte) id)
 		    || (this.board[12][12] != (byte) id)) {
@@ -206,6 +209,7 @@ public class FinishChecker {
 		    j++;
 		}
 		i++;
+		j=0;
 	    }
 	    if ((this.board[15][5] != (byte) id)
 		    || (this.board[13][4] != (byte) id)) {
@@ -222,6 +226,7 @@ public class FinishChecker {
 		    j++;
 		}
 		i++;
+		j=0;
 	    }
 	    if ((this.board[10][2] != (byte) id)
 		    || (this.board[12][3] != (byte) id)) {
@@ -238,6 +243,7 @@ public class FinishChecker {
 		    j++;
 		}
 		i++;
+		j=0;
 	    }
 	    if ((this.board[6][2] != (byte) id)
 		    || (this.board[4][3] != (byte) id)) {
