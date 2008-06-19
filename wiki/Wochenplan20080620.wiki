@@ -11,3 +11,28 @@ Die maximal verfügbare Zeit für diese Woche.
 ||Christian||6||0||0||2||2||5||2||17||
 ||Christoph||5||5||0||0||0||4||6||20||
 ||Σ||16||11||3||7||6||13||12||68||
+
+= Aufgabenverteilung =
+||AP||Aufgabe||Datum||Zeitansatz||Verantwortlich||
+||322||Impl. NW Server||||10||SB||
+||323||Test NW Server||||4||SB||
+||390||Review||||3||SB||
+||351||Reflexion TP3||||1||SB||
+||219||Impl. GUI Darstellung||||4||MB||
+||350||Planung TP4||||2||MB||
+||390||Review||||3||MB||
+||351+352||Reflexion TP3||||2||MB||
+||220||Impl. GUI Instanziierung||||2||CH||
+||219||Impl. GUI Darstellung||||3||CH||
+||351||Reflexion TP3||||1||CH||
+||390||Review||||2||CH||
+||480||Planung/Vorbereitung fuer Poster||||1||CH||
+||482||Planung/Vorbereitung fuer Handbuch||||1||CH||
+||312||Impl. NW Client||||8||CK||
+||313||Test NW Client||||5||CK||
+||351+352||Reflexion TP3||||3||CK||
+||390||Review||||2||CK||
+
+Weiterhin verbleiben 2h als Puffer für Beratertreffen, Arbeitgebertreffen und rollenspezifische Aufgaben.
+
+Wenn wir mit der Implemtierung/Einzeltest früher fertig werden, können wir die Integrationstest noch in diesem TP machen - ansonsten rutschen die in TP4 und es wird etwas anstrengender.
