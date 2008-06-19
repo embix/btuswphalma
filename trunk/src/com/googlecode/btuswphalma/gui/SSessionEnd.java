@@ -113,6 +113,10 @@ public class SSessionEnd implements IRunnableGuiState {
 	}
     }
 
+    /**
+     * Wird beim Zustandswechsel vom Controller aus auf dem neuen
+     * Zustand aufgerufen.
+     */
     public void run() {
 	// TODO Auto-generated method stub
 	

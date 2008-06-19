@@ -119,6 +119,10 @@ public class SMakeMove implements IRunnableGuiState {
 	controller.inh.setMoveEntryModeOn();
     }
 
+    /**
+     * Wird beim Zustandswechsel vom Controller aus auf dem neuen
+     * Zustand aufgerufen.
+     */
     public void run() {
 	// TODO: (GUI) eine "Sie sind am Zug" Meldung waere schoen
 	
