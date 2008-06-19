@@ -3,6 +3,7 @@
  */
 package com.googlecode.btuswphalma.gui;
 
+import com.googlecode.btuswphalma.base.LoginMessage;
 import com.googlecode.btuswphalma.gameengine.Board;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
@@ -13,6 +14,7 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
  * 
  * @see see com.googlecode.btuswphalma.gui.GuiController
  * @author embix
+ * @author ASM
  */
 public class SInputGameData implements IRunnableGuiState {
     
@@ -45,11 +47,43 @@ public class SInputGameData implements IRunnableGuiState {
 	boolean master = true;// entsprechend der Fallunterscheidung
 	
 	if(master){
-	   DialogMasterGameData dialog = new DialogMasterGameData(controller.getPresentation());
-	   sendGameData(dialog.getMasterGameData()); 
+	   promtMasterGameData(); 
 	}else{
-	    DialogClientGameData dialog = new DialogClientGameData(controller.getPresentation());
-	    sendGameData(dialog.getClientGameData());
+	   promtClientGameData();
+	}
+	
+	dataSend = true;	// TODO: ist dataSend wirklich notwendig?
+    }
+    
+    void promtClientGameData() {
+	DialogClientGameData dialog = new DialogClientGameData(controller.getPresentation());
+	
+	if(dialog.ok()) {
+	    ClientGameData mData = dialog.getClientGameData();
+	    controller.getMessageHandler().sendMessage(new LoginMessage(mData.playerName,1,-1));
+	}
+    }
+    
+    void promtMasterGameData() {
+	DialogMasterGameData dialog = new DialogMasterGameData(controller.getPresentation());
+	
+	if(dialog.ok()) {
+	    MasterGameData mData = dialog.getMasterGameData();
+	    controller.getEngine().createManager(mData.playerCount, true);
+	    
+	    controller.getMessageHandler().sendMessage(new LoginMessage(mData.playerName,1,-1));
+	    
+	    if(mData.gmod == GameMode.HOT_SEAT ) {
+		// Hotseat Modus -> Infos für die anderen Spieler abholen
+		for(int i=1;i<mData.playerCount;i++) {
+			DialogClientGameData mClientDlg = new DialogClientGameData(controller.getPresentation());
+			
+			if(mClientDlg.ok()) {
+			    ClientGameData mClientData = mClientDlg.getClientGameData();
+			    controller.getMessageHandler().sendMessage(new LoginMessage(mClientData.playerName,i+1,-1));
+			}
+		    }
+	    }
 	}
     }
     
@@ -148,7 +182,8 @@ public class SInputGameData implements IRunnableGuiState {
      * Zustand aufgerufen.
      */
     public void run() {
-	// TODO Auto-generated method stub
+	promptGameData();
+	controller.getEngine().start();	// starte Nachrichtenverteilung im Dispatcher
 	
     }
 
