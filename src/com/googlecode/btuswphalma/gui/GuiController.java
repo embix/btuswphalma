@@ -18,6 +18,7 @@ import com.googlecode.btuswphalma.serverengine.Dispatcher;
  * Zustand weitergeleitet (bessere Kapselung).
  * 
  * @author embix
+ * @author ASM
  *
  */
 public class GuiController{
@@ -200,6 +201,15 @@ public class GuiController{
 	this.frame = frame;
 	// den Inputhandler auf die Boardpresaentation ansetzen
 	boardPres.addMouseListener(inh);
+    }
+    
+    /**
+     * Startet ein neues Spiel
+     */
+    public void newGame() {
+	// TODO: Sollte das so bleiben müssen wir den Entwurf anpassen
+	state = stateInputGameData;
+	state.run();
     }
 
     

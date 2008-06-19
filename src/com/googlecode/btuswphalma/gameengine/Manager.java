@@ -478,14 +478,14 @@ public class Manager implements IManager, Runnable {
 	     * Die Schleife verhindert dass wir weitermachen, obwohl jemand
 	     * anders die Queue wieder leer gemacht hat (hier ueberflüssig)
 	     */
-	    while (msgQueue.isEmpty()) {
+	    while((msg = msgQueue.poll()) == null ) {
 		try {
 		    msgQueue.wait();
 		} catch (InterruptedException e) {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		}
-		msg = msgQueue.remove();
+		// msg = msgQueue.remove();
 	    }
 	}
 	return msg;

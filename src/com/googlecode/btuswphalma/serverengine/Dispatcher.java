@@ -12,6 +12,8 @@ import com.googlecode.btuswphalma.gameengine.Manager;
 public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 
     private IManager manager;
+    
+    private Thread managerThread;
 
     private INetCom network;
 
@@ -75,6 +77,10 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 	else {
 	    // TODO: TP 3
 	}
+	
+	// Manager müssen immer von Runnable abgeleitet werden
+	managerThread = new Thread((Runnable)manager);
+	managerThread.start();
     }
 
     /**

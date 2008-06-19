@@ -3,8 +3,6 @@
  */
 package com.googlecode.btuswphalma.gui;
 
-import com.googlecode.btuswphalma.base.LoginMessage;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +22,7 @@ import javax.swing.border.BevelBorder;
  * verbunden.
  * 
  * @author embix
+ * @author ASM
  * 
  */
 public class Presentation extends JFrame {
@@ -73,8 +72,10 @@ public class Presentation extends JFrame {
     /**
      * Wenn ein neues Spiel gestartet werden soll (Menue->Neu) wird
      * der Dialog zur Eingabe der Spieldaten aufgerufen.
+     * 
+     * @deprecated
      */
-    private void startMaster(){
+    /*private void startMaster(){
 	DialogMasterGameData mDialog = new DialogMasterGameData(this);
 	if(mDialog.ok()){
 	 // TODO: (GUI)Spieldaten verarbeiten
@@ -94,7 +95,7 @@ public class Presentation extends JFrame {
 		}
 	    }
 	}
-    }
+    }*/
     
     
     /**
@@ -208,7 +209,8 @@ public class Presentation extends JFrame {
 		    System.exit(0);
 		}
 		if(cmd.equals("neu")){
-		    startMaster();
+		    // startMaster();
+		    controller.newGame();
 		}
 		if(cmd.equals("groesser")){
 		    increaseScale();
