@@ -56,7 +56,7 @@ public class Manager implements IManager, Runnable {
     private ConcurrentLinkedQueue<IMessage> msgQueue;
     /**
      * Der Dispatcher dient dem Manager dazu Nachrichten an die Aussenwelt
-     * schicken zu können
+     * schicken zu koennen
      */
     private IDispatcher dispatcher;
     /**
@@ -122,7 +122,7 @@ public class Manager implements IManager, Runnable {
     }
 
     /**
-     * Die Nachrichten zum Hinzufügen der Spieler wird abgeholt und verarbeitet.
+     * Die Nachrichten zum Hinzufuegen der Spieler wird abgeholt und verarbeitet.
      */
     private void runAddPlayers() {
         /*
@@ -246,7 +246,7 @@ public class Manager implements IManager, Runnable {
         boolean result = false;
         try {
             result = game.addPlayer(msg.getSource(), msg.getName());
-        } catch (Exception e) {
+        } catch (GameException e) {
             e.printStackTrace();
             stopGameOnError();
         }
@@ -275,7 +275,7 @@ public class Manager implements IManager, Runnable {
         boolean result = false;
         try {
             result = game.checkAndKeepMove(msg.getMove(), msg.getDestination());
-        } catch (Exception e) {
+        } catch (GameException e) {
             stopGameOnError();
             return false;
         }
@@ -318,8 +318,7 @@ public class Manager implements IManager, Runnable {
 		stopGameOnError();
 		return false;
 	    }
-	} catch (Exception e) {
-	    // TODO Excpetions
+	} catch (GameException e) {
 	    // e.printStackTrace();
 	    // Das Spiel wird Einfach beendet
 	    stopGameOnError();
@@ -349,9 +348,10 @@ public class Manager implements IManager, Runnable {
     private void performNormalPlayerChange() {
         try {
             game.executePlayerChange();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
+        } catch (GameException e) {
             e.printStackTrace();
+            stopGameOnError();
+            return;
         }
         initiateMove();
     }
