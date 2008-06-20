@@ -85,7 +85,7 @@ public class Manager implements IManager, Runnable {
 	// Bei eine unzulaessigen Spielerzahl wird eine Exception geworfen
 	try {
 	    game = new Game(numberOfPlayers);
-	} catch (Exception e) {
+	} catch (GameException e) {
 	    System.err.println("Couldn't create onject of type Game");
 	    e.printStackTrace();
 	    System.exit(1);
