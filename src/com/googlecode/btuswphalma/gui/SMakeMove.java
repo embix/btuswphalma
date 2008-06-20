@@ -3,6 +3,12 @@
  */
 package com.googlecode.btuswphalma.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import com.googlecode.btuswphalma.gameengine.Board;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
@@ -14,6 +20,12 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
 public class SMakeMove implements IRunnableGuiState {
 
     private GuiController controller;
+    private JButton butZugBestaetigen;
+
+    /* eigendlich <code>Presentation pres<code>, aber
+     * dann funktioniert das InputHandlingScenario nicht
+     */
+    private JFrame pres;
     
     /**
      * Kontstruktor fuer den Controllerzustand
@@ -117,6 +129,16 @@ public class SMakeMove implements IRunnableGuiState {
     void makeMove(){
 	// dem Inputhandler erlauben, Zuege aufzuzeichen
 	controller.inh.setMoveEntryModeOn();
+	// Button fuer Zugbestaetigung einbinden
+	pres = controller.getPresentation();
+	butZugBestaetigen = new JButton("<html>Zug best&auml;tigen</html>");
+	butZugBestaetigen.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e){
+		pres.remove(butZugBestaetigen);
+		sendHalmaMove();
+	    }
+	});
+	pres.add(butZugBestaetigen);
     }
 
     /**
