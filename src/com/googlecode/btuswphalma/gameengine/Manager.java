@@ -81,8 +81,8 @@ public class Manager implements IManager, Runnable {
      * @param dispatcher
      */
     public Manager(int numberOfPlayers, IDispatcher dispatcher) {
-
 	msgQueue = new ConcurrentLinkedQueue<IMessage>();
+	// Bei eine unzulaessigen Spielerzahl wird eine Exception geworfen
 	try {
 	    game = new Game(numberOfPlayers);
 	} catch (Exception e) {
@@ -122,42 +122,40 @@ public class Manager implements IManager, Runnable {
     }
 
     /**
-     * Die Endphase des Servers und der Clients wird eingeleitet.
+     * Die Nachrichten zum Hinzufügen der Spieler wird abgeholt und verarbeitet.
      */
-    private void runEnd() {
-	sendGameEndMessages();
-    }
-
-    /**
-     * An alle wird eine GameEndMessage geschickt
-     */
-    private void sendGameEndMessages() {
-	IMessage gameEndMessage = createGameEndMessage(BROADCAST_ID);
-	dispatcher.acceptMessage(gameEndMessage);
-    }
-
-    /**
-     * Eine GameEndMessage wird zurueckgegeben
-     * 
-     * @param destination
-     *                Die Zieladresse
-     * @return die GameEndMessage
-     */
-    private IMessage createGameEndMessage(int destination) {
-	return new GameEndMessage(SERVER_ID, destination);
+    private void runAddPlayers() {
+        /*
+         * Solange das Spiel noch neue Spieler erwartet, werden neu Spieler
+         * hinzugefuegt.
+         */
+        boolean adding = true;
+        IMessage msg = null;
+        while (adding && !gameHalted) {
+            // diese Methode ist blockierend
+            msg = fetchMessage();
+            if (msg.getType() == MessageType.MT_LOGIN) {
+        	// wenn der letzte Spieler hinzugefuegt wurde, endet die
+        	// Schleife
+        	adding = addPlayer((LoginMessage) msg);
+            } else {
+        	// Ein falscher Nachrichtentyp fuehrt zum Abbruch
+        	stopGameOnError();
+            }
+        }
     }
 
     /**
      * Das Spiel wird gespielt. Hier aber nur Entscheidung ueber Spieltyp.
      */
     private void runGame() {
-	if (gameVariant == WITHOUT_VETO) {
-	    runWithoutVeto();
-	} else if (gameVariant == WITH_VETO) {
-	    // TODO runWithVeto();
-	}
-	// Wenn keine der beiden Moeglichkeiten zutrifft (was nicht passieren
-	// sollte) wird das Spiel in runEnd beendet
+        if (gameVariant == WITHOUT_VETO) {
+            runWithoutVeto();
+        } else if (gameVariant == WITH_VETO) {
+            // TODO runWithVeto();
+        }
+        // Wenn keine der beiden Moeglichkeiten zutrifft (was nicht passieren
+        // sollte) wird das Spiel in runEnd beendet
     }
 
     /**
@@ -165,38 +163,137 @@ public class Manager implements IManager, Runnable {
      * wird eine Nachricht abgeholt und dann verarbeitet.
      */
     private void runWithoutVeto() {
-	boolean playing = true;
-	IMessage msg;
-	while (playing && !gameHalted) {
-	    // Der Spieler wird aufgefordert zu ziehen
-	    initiateMove();
-	    // Methode ist blockierend
-	    msg = fetchMessage();
-	    if (msg.getType() == MessageType.MT_MOVE) {
-		// Wenn der Zug fehlerhaft war
-		if (!processMove((MoveMessage) msg)) {
-		    // es wird wieder ein Zug erwartet
-		    dispatcher
-			    .acceptMessage(createMoveErrorMessage("Ihr Zug war entsprach nicht den Regeln des Spiels Halma"));
-		    initiateMove();
-		    continue;
-		}
-		// kein else da continue im if Block darueber
-		// Zug anzeigen
-		showMove();
-		// Warten damit die Clients sich den Zug anschauen koennen
-		waitForTimeout();
-		// Der Zug wird ausgefuehrt, also Spielbrett und Spieler
-		// umsetzten. die notwendigen Nachrichten werden versendet.
-		// Falls das Spiel fertig ist, wird false zurueckgegeben.
-		playing = performMove();
-	    } else if (msg.getType() == MessageType.MT_SAVE) {
-		// TODO Hier Speichern
-	    } else {
-		stopGameOnError();
-	    }
-	}
+        boolean playing = true;
+        IMessage msg;
+        while (playing && !gameHalted) {
+            // Der Spieler wird aufgefordert zu ziehen
+            initiateMove();
+            // Methode ist blockierend
+            msg = fetchMessage();
+            if (msg.getType() == MessageType.MT_MOVE) {
+        	// Wenn der Zug fehlerhaft war
+        	if (!processMove((MoveMessage) msg)) {
+        	    // es wird wieder ein Zug erwartet
+        	    dispatcher
+        		    .acceptMessage(createMoveErrorMessage("Ihr Zug war entsprach nicht den Regeln des Spiels Halma"));
+        	    initiateMove();
+        	    continue;
+        	}
+        	// kein else da continue im if Block darueber
+        	// Zug anzeigen
+        	showMove();
+        	// Warten damit die Clients sich den Zug anschauen koennen
+        	waitForTimeout();
+        	// Der Zug wird ausgefuehrt, also Spielbrett und Spieler
+        	// umsetzten. die notwendigen Nachrichten werden versendet.
+        	// Falls das Spiel fertig ist, wird false zurueckgegeben.
+        	playing = performMove();
+            } else if (msg.getType() == MessageType.MT_SAVE) {
+        	// TODO Hier Speichern
+            } else {
+        	stopGameOnError();
+            }
+        }
+    
+    }
 
+    /**
+     * Die Endphase des Servers und der Clients wird eingeleitet.
+     */
+    private void runEnd() {
+        sendGameEndMessages();
+    }
+
+    /**
+     * Eine Nachricht wird von der Warteschlange geholt. Diese Methode ist
+     * blockierend.
+     * 
+     * @return eine von der Warteschlange geholte Message
+     */
+    private IMessage fetchMessage() {
+        IMessage msg = null;
+        /*
+         * Es wird auf die Queue synchronisiert, weil aus ihr etwas entnommen
+         * werden soll.
+         */
+        synchronized (msgQueue) {
+            /*
+             * Es wird zunaechst versucht eine Nachricht von der Queue zu
+             * holen. Falls diese leer ist, wird null zurueckgegeben und man
+             * "schlaeft" auf die Queue. In dieser Warteschlange kann null keine
+             * gewuenschte Nachricht gewesen sein (null einfuegen nicht erlaubt)
+             */
+            while ((msg = msgQueue.poll()) == null) {
+        	try {
+        	    msgQueue.wait();
+        	} catch (InterruptedException e) {
+        	    // TODO Auto-generated catch block
+        	    e.printStackTrace();
+        	}
+            }
+        }
+        return msg;
+    }
+
+    /**
+     * Ein neuer Spieler wird zum Game hinzugefuegt.
+     * 
+     * @param msg
+     *                die LoginMessage eines Spielers
+     * @return sind noch weitere Spieler hinzufuegen
+     */
+    private boolean addPlayer(final LoginMessage msg) {
+        boolean result = false;
+        try {
+            result = game.addPlayer(msg.getSource(), msg.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+            stopGameOnError();
+        }
+        return result;
+    }
+
+    /**
+     * Ein Zug wird initiiert. Dazu wird an alle das aktuelle Spielbrett
+     * geschickt und der Spieler der jetzt an der Reihe ist, bekommt eine
+     * Aktivierungsnachricht
+     */
+    private void initiateMove() {
+        IMessage boardMsg;
+        IMessage plyrActvtMsg;
+        boardMsg = createBoardMessage(BROADCAST_ID);
+        plyrActvtMsg = createPlayerActivateMessage(game.getActivePlayer());
+        dispatcher.acceptMessage(boardMsg);
+        dispatcher.acceptMessage(plyrActvtMsg);
+    }
+
+    /**
+     * @param msg
+     * @return ist der Zug gelungen
+     */
+    private boolean processMove(final MoveMessage msg) {
+        boolean result = false;
+        try {
+            result = game.checkAndKeepMove(msg.getMove(), msg.getDestination());
+        } catch (Exception e) {
+            stopGameOnError();
+            return false;
+        }
+        return result;
+    
+    }
+
+    /**
+     * Es wird gewartet, bis das Timeout ablaeuft. Diese Funktion dient dazu,
+     * den Spielern Zeit zu lassen, sich den Spielzug anzuschaun.
+     */
+    private void waitForTimeout() {
+        try {
+            Thread.sleep(DISPLAY_TIME);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -223,8 +320,8 @@ public class Manager implements IManager, Runnable {
 	    }
 	} catch (Exception e) {
 	    // TODO Excpetions
-	    //e.printStackTrace();
-	    //Das Spiel wird Einfach beendet
+	    // e.printStackTrace();
+	    // Das Spiel wird Einfach beendet
 	    stopGameOnError();
 	    return false;
 	}
@@ -233,23 +330,45 @@ public class Manager implements IManager, Runnable {
     }
 
     /**
-     * An alle Clients wird die Scorelist geschickt.
+     * Es werden die Nachrichten, die die GUI zum anzeigen eines Zuges braucht
+     * erstellt und verschickt
      */
-    private void sendResults() {
-	IMessage scrMsg = createScoreMessage(BROADCAST_ID);
-	dispatcher.acceptMessage(scrMsg);
+    private void showMove() {
+        IMessage boardMsg;
+        IMessage moveMsg;
+        boardMsg = createBoardMessage(BROADCAST_ID);
+        moveMsg = createMoveMessage(BROADCAST_ID);
+        dispatcher.acceptMessage(boardMsg);
+        dispatcher.acceptMessage(moveMsg);
+    
     }
 
     /**
-     * Eine ScoreMessage wird erzeugt und zurueckgegeben.
-     * 
-     * @param destination
-     *                die Zieladresse
-     * @return die ScoreMessage
+     * Durchfuehren eines Spielerwechsels. Kein Spieler wurde fertig.
      */
-    private IMessage createScoreMessage(int destination) {
-	ScoreList scrLst = createScoreList();
-	return new ScoreMessage(BROADCAST_ID, destination, scrLst);
+    private void performNormalPlayerChange() {
+        try {
+            game.executePlayerChange();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        initiateMove();
+    }
+
+    /**
+     * Durchfuehren eines Spielerwechsels. Ein Spieler wurde fertig. Dieser wird
+     * benachrichtigt, sonst normaler Wechsel
+     */
+    private void performFinishingPlayerChange() {
+        IMessage plyrFnshdMsg;
+        // Der noch aktive Spieler ist fertig geworden, also erhaelt er eine
+        // entsprechende Nachricht
+        plyrFnshdMsg = createPlayerFinishedMessage(game.getActivePlayer());
+        dispatcher.acceptMessage(plyrFnshdMsg);
+        // nachdem der Spieler benachrichtigt wurde, ist der weitere
+        // Spielerwechsel normal
+        performNormalPlayerChange();
     }
 
     /**
@@ -307,18 +426,64 @@ public class Manager implements IManager, Runnable {
     }
 
     /**
-     * Durchfuehren eines Spielerwechsels. Ein Spieler wurde fertig. Dieser wird
-     * benachrichtigt, sonst normaler Wechsel
+     * Das Spiel wird geordnet beendet
      */
-    private void performFinishingPlayerChange() {
-	IMessage plyrFnshdMsg;
-	// Der noch aktive Spieler ist fertig geworden, also erhaelt er eine
-	// entsprechende Nachricht
-	plyrFnshdMsg = createPlayerFinishedMessage(game.getActivePlayer());
-	dispatcher.acceptMessage(plyrFnshdMsg);
-	// nachdem der Spieler benachrichtigt wurde, ist der weitere
-	// Spielerwechsel normal
-	performNormalPlayerChange();
+    private void stopGameOnError() {
+	// TODO Server geordnet beenden, Clients benachrichtigen
+	// da bei Erstellung die geordnete Beendigung noch nicht zur Verfuegung
+	// stand wird der Server abgeschossen, Clients werden ignoriert.
+	// System.err.println("sebastian ist fuer dieses exit verantwortlich");
+	// System.exit(1);
+	gameHalted = true;
+    }
+
+    /**
+     * An alle wird eine GameEndMessage geschickt
+     */
+    private void sendGameEndMessages() {
+        IMessage gameEndMessage = createGameEndMessage(BROADCAST_ID);
+        dispatcher.acceptMessage(gameEndMessage);
+    }
+
+    /**
+     * An alle Clients wird die Scorelist geschickt.
+     */
+    private void sendResults() {
+        IMessage scrMsg = createScoreMessage(BROADCAST_ID);
+        dispatcher.acceptMessage(scrMsg);
+    }
+
+    /**
+     * Es wird eine MoveErrorMassage zurueckgegeben
+     * 
+     * @param string
+     * @return die MoveErrorMassage
+     */
+    private IMessage createMoveErrorMessage(String string) {
+	return new MoveErrorMessage(SERVER_ID, game.getActivePlayer(), string);
+    }
+
+    /**
+     * Eine GameEndMessage wird zurueckgegeben
+     * 
+     * @param destination
+     *                Die Zieladresse
+     * @return die GameEndMessage
+     */
+    private IMessage createGameEndMessage(int destination) {
+        return new GameEndMessage(SERVER_ID, destination);
+    }
+
+    /**
+     * Eine ScoreMessage wird erzeugt und zurueckgegeben.
+     * 
+     * @param destination
+     *                die Zieladresse
+     * @return die ScoreMessage
+     */
+    private IMessage createScoreMessage(int destination) {
+        ScoreList scrLst = createScoreList();
+        return new ScoreMessage(BROADCAST_ID, destination, scrLst);
     }
 
     /**
@@ -330,34 +495,7 @@ public class Manager implements IManager, Runnable {
      * @return eine PlayerFinishedMessage
      */
     private IMessage createPlayerFinishedMessage(int activePlayer) {
-	return new PlayerFinishedMessage(SERVER_ID, activePlayer);
-    }
-
-    /**
-     * Durchfuehren eines Spielerwechsels. Kein Spieler wurde fertig.
-     */
-    private void performNormalPlayerChange() {
-	try {
-	    game.executePlayerChange();
-	} catch (Exception e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-	initiateMove();
-    }
-
-    /**
-     * Ein Zug wird initiiert. Dazu wird an alle das aktuelle Spielbrett
-     * geschickt und der Spieler der jetzt an der Reihe ist, bekommt eine
-     * Aktivierungsnachricht
-     */
-    private void initiateMove() {
-	IMessage boardMsg;
-	IMessage plyrActvtMsg;
-	boardMsg = createBoardMessage(BROADCAST_ID);
-	plyrActvtMsg = createPlayerActivateMessage(game.getActivePlayer());
-	dispatcher.acceptMessage(boardMsg);
-	dispatcher.acceptMessage(plyrActvtMsg);
+        return new PlayerFinishedMessage(SERVER_ID, activePlayer);
     }
 
     /**
@@ -368,34 +506,7 @@ public class Manager implements IManager, Runnable {
      * @return die PlayerActivateMessage
      */
     private IMessage createPlayerActivateMessage(int destination) {
-	return new PlayerActivateMessage(SERVER_ID, game.getActivePlayer());
-    }
-
-    /**
-     * Es wird gewartet, bis das Timeout ablaeuft. Diese Funktion dient dazu,
-     * den Spielern Zeit zu lassen, sich den Spielzug anzuschaun.
-     */
-    private void waitForTimeout() {
-	try {
-	    Thread.sleep(DISPLAY_TIME);
-	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-    }
-
-    /**
-     * Es werden die Nachrichten, die die GUI zum anzeigen eines Zuges braucht
-     * erstellt und verschickt
-     */
-    private void showMove() {
-	IMessage boardMsg;
-	IMessage moveMsg;
-	boardMsg = createBoardMessage(BROADCAST_ID);
-	moveMsg = createMoveMessage(BROADCAST_ID);
-	dispatcher.acceptMessage(boardMsg);
-	dispatcher.acceptMessage(moveMsg);
-
+        return new PlayerActivateMessage(SERVER_ID, game.getActivePlayer());
     }
 
     /**
@@ -407,7 +518,7 @@ public class Manager implements IManager, Runnable {
      * @return die MoveMessage
      */
     private IMessage createMoveMessage(int destination) {
-	return new MoveMessage(SERVER_ID, destination, game.getKeptMove());
+        return new MoveMessage(SERVER_ID, destination, game.getKeptMove());
     }
 
     /**
@@ -418,117 +529,7 @@ public class Manager implements IManager, Runnable {
      * @return ein Message mit einem Board
      */
     private IMessage createBoardMessage(int destination) {
-	return new BoardMessage(SERVER_ID, destination, game.getBoard());
-    }
-
-    /**
-     * @param msg
-     * @return ist der Zug gelungen
-     */
-    private boolean processMove(final MoveMessage msg) {
-	boolean result = false;
-	try {
-	    result = game.checkAndKeepMove(msg.getMove(), msg.getDestination());
-	} catch (Exception e) {
-	    stopGameOnError();
-	    return false;
-	}
-	return result;
-
-    }
-
-    /**
-     * Die Nachrichten zum Hinzufügen der Spieler wird abgeholt und verarbeitet.
-     */
-    private void runAddPlayers() {
-	/*
-	 * Solange das Spiel noch neue Spieler erwartet, werden neu Spieler
-	 * hinzugefuegt.
-	 */
-	boolean adding = true;
-	IMessage msg = null;
-	while (adding && !gameHalted) {
-	    // diese Methode ist blockierend
-	    msg = fetchMessage();
-	    if (msg.getType() == MessageType.MT_LOGIN) {
-		// wenn der letzte Spieler hinzugefuegt wurde, endet die
-		// Schleife
-		adding = addPlayer((LoginMessage) msg);
-	    } else {
-		// Ein falscher Nachrichtentyp fuehrt zum Abbruch
-		stopGameOnError();
-	    }
-	}
-    }
-
-    /**
-     * Eine Nachricht wird von der Warteschlange geholt. Diese Methode ist
-     * blockierend.
-     * 
-     * @return eine von der Warteschlange geholte Message
-     */
-    private IMessage fetchMessage() {
-	IMessage msg = null;
-	/*
-	 * Es wird auf die Queue synchronisiert, weil aus ihr etwas entnommen
-	 * werden soll.
-	 */
-	synchronized (msgQueue) {
-	    /*
-	     * Die Schleife verhindert dass wir weitermachen, obwohl jemand
-	     * anders die Queue wieder leer gemacht hat (hier ueberflüssig)
-	     */
-	    while((msg = msgQueue.poll()) == null ) {
-		try {
-		    msgQueue.wait();
-		} catch (InterruptedException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}
-		// msg = msgQueue.remove();
-	    }
-	}
-	return msg;
-    }
-
-    /**
-     * Ein neuer Spieler wird zum Game hinzugefuegt.
-     * 
-     * @param msg
-     *                die LoginMessage eines Spielers
-     * @return sind noch weitere Spieler hinzufuegen
-     */
-    private boolean addPlayer(final LoginMessage msg) {
-	boolean result = false;
-	try {
-	    result = game.addPlayer(msg.getSource(), msg.getName());
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    stopGameOnError();
-	}
-	return result;
-    }
-
-    /**
-     * Das Spiel wird geordnet beendet
-     */
-    private void stopGameOnError() {
-	// TODO Server geordnet beenden, Clients benachrichtigen
-	// da bei Erstellung die geordnete Beendigung noch nicht zur Verfuegung
-	// stand wird der Server abgeschossen, Clients werden ignoriert.
-	//System.err.println("sebastian ist fuer dieses exit verantwortlich");
-	//System.exit(1);
-	gameHalted = true;
-    }
-
-    /**
-     * Es wird eine MoveErrorMassage zurueckgegeben
-     * 
-     * @param string
-     * @return die MoveErrorMassage
-     */
-    private IMessage createMoveErrorMessage(String string) {
-	return new MoveErrorMessage(SERVER_ID, game.getActivePlayer(), string);
+        return new BoardMessage(SERVER_ID, destination, game.getBoard());
     }
 
 }
