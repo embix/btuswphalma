@@ -131,6 +131,7 @@ public class SMakeMove implements IRunnableGuiState {
 	controller.inh.setMoveEntryModeOn();
 	// Button fuer Zugbestaetigung einbinden
 	pres = controller.getPresentation();
+	// FIXME: Button _neben_ / _unter_ dem Spielfeld anzeigen!
 	butZugBestaetigen = new JButton("<html>Zug best&auml;tigen</html>");
 	butZugBestaetigen.addActionListener(new ActionListener(){
 	    public void actionPerformed(ActionEvent e){
