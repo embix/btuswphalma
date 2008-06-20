@@ -1,10 +1,10 @@
-package com.googlecode.btuswphalma.gameengine;
+ package com.googlecode.btuswphalma.gameengine;
 
 /**
  * Diese Klasse realisiert das eigentliche Halmaspiel. Nachdem alle Spieler
- * hinzugefügt wurden, beginnt das eigentliche Spiel. Züge werden übergeben und
- * geprüft. Wenn ein Zug die Prüfung übersteht, muss er noch bestetigt werden
- * und dann der Spielerwechselvolzogen werden.
+ * hinzugefuegt wurden, beginnt das eigentliche Spiel. Zuege werden uebergeben und
+ * geprueft. Wenn ein Zug die Pruefung uebersteht, muss er noch bestaetigt werden
+ * und dann der Spielerwechsel vollzogen werden.
  * 
  * @author sebastian
  * 
@@ -12,7 +12,7 @@ package com.googlecode.btuswphalma.gameengine;
 public class Game {
     
     /**
-     * Zustand in dem Spieler hinzugefügt werden
+     * Zustand in dem Spieler hinzugefuegt werden
      */
     private static final int ADDING_PLAYERS = 0;
     /**
@@ -20,7 +20,7 @@ public class Game {
      */
     private static final int WAITING_MOVE = 1;
     /**
-     * Zustand, in dem auf Bestätigung oder Verwerfen des Zuges von aussen gewartet wird
+     * Zustand, in dem auf Bestaetigung oder Verwerfen des Zuges von aussen gewartet wird
      */
     private static final int KEEPING_MOVE = 2;
     /**
@@ -45,7 +45,7 @@ public class Game {
     public static final int EXECUTE_MOVE_GAME_FINISHED = 2;
 
     /**
-     * Rundenzähler
+     * Rundenzaehler
      */
     private int round;
     /**
@@ -53,7 +53,7 @@ public class Game {
      */
     private int activePlayer;
     /**
-     * Zug der noch auf die Auführung wartet
+     * Zug der noch auf die Auffuehrung wartet
      */
     private HalmaMove keptMove;
     /**
@@ -70,11 +70,11 @@ public class Game {
      */
     private PlayerList playerList;
     /**
-     * Der Zugprüfer
+     * Der Zugpruefer
      */
     private IHalmaMoveChecker moveChecker;
     /**
-     * Der Endeprüfer
+     * Der Endepruefer
      */
     private FinishChecker finishChecker;
     /**
@@ -83,14 +83,14 @@ public class Game {
     private int gameState;
 
     /**
-     * Es wird ein Spiel für die Anzahl an Spielern gesartet.
+     * Es wird ein Spiel fuer die Anzahl an Spielern gestartet.
      * 
      * @param numberOfPlayers die gewuenschte Spielerzahl
      * @throws Exception 
      */
     public Game(int numberOfPlayers) throws Exception {
 	if (numberOfPlayers < 2 || numberOfPlayers == 5 || numberOfPlayers > 6) {
-	    //falsche anzahl an Spielern
+	    //falsche Anzahl an Spielern
 	    throw new Exception("wrong number of players");
 	}
 	round = 0;
@@ -105,11 +105,11 @@ public class Game {
     }
     
     /**
-     * Wenn das Spiel noch neue Spieler werwartet kann ein Spieler hinzugefügt werden
+     * Wenn das Spiel noch neue Spieler erwartet kann ein Spieler hinzugefuegt werden
      * 
      * @param id die Nummer des Spielers (von 1-6)
      * @param name der Name des Spielers
-     * @return Koennen noch weitere Spieler hunzugefuegt werden
+     * @return Koennen noch weitere Spieler hinzugefuegt werden
      * @throws Exception Methode wird im falschen Zustand aufgerufen
      */
     public boolean addPlayer(int id, String name) throws Exception {
@@ -132,15 +132,15 @@ public class Game {
     
 
     /**
-     * Es wird ein HalmaMove geprüft und gegebenfalls gespeichert. Nur wenn die
-     * Prüfung des Zugs diesen als korrekt verifiziert hat, wird der Zug
-     * gespeichert. Zurückgegebn wird das Ergebnis der Prüfung.
+     * Es wird ein HalmaMove geprueft und gegebenenfalls gespeichert. Nur wenn die
+     * Pruefung des Zugs diesen als korrekt verifiziert hat, wird der Zug
+     * gespeichert. Zurueckgegeben wird das Ergebnis der Pruefung.
      * 
      * @param move
      *                Der Spielzug
      * @param player
-     *                Der Spieler der ihn durchführt
-     * @return Ergebnis der Zugprüfung
+     *                Der Spieler der ihn durchfuehrt
+     * @return Ergebnis der Zugpruefung
      * @throws Exception 
      */
     public boolean checkAndKeepMove(HalmaMove move, int player) throws Exception {
@@ -165,8 +165,8 @@ public class Game {
     }
 
     /**
-     * Der Zug wird ausgeführt, also das Spielbrett umgesetzt. Der aktive
-     * Spieler wird nicht geändert.
+     * Der Zug wird ausgefuehrt, also das Spielbrett umgesetzt. Der aktive
+     * Spieler wird nicht geaendert.
      * 
      * @return Normaler Zug oder ein Spieler ist fertig oder das Spiel ist zu
      *         Ende.
@@ -199,8 +199,8 @@ public class Game {
     }
 
     /**
-     * Der gespeicherte Zug wird zurückgenommen. Wenn das Spiel nicht beendet
-     * ist, soll danach wieder ein neuer Zug angenommen werden können.
+     * Der gespeicherte Zug wird zurueckgenommen. Wenn das Spiel nicht beendet
+     * ist, soll danach wieder ein neuer Zug angenommen werden koennen.
      * @throws Exception 
      */
     public void discardMove() throws Exception {
@@ -213,7 +213,7 @@ public class Game {
     }
 
     /**
-     * Der aktive Spieler wird auf den nächsten Spieler gesetzt, der an der
+     * Der aktive Spieler wird auf den naechsten Spieler gesetzt, der an der
      * Reihe ist.
      * @throws Exception 
      */
@@ -228,7 +228,7 @@ public class Game {
 	for (int i = 0; i < numberOfPlayers - 1; i++) {
 	    /*
 	     * Spielernummern von 1 bis numberOfPlayers, beginnend bei dem Spieler nach dem aktiven
-	     * pruefen, ob ie noch im Spiel sind
+	     * pruefen, ob sie noch im Spiel sind
 	     */
 	    nextPlayerId = ((activePlayer + i) % numberOfPlayers) + 1;
 	    player = playerList.getPlayer(nextPlayerId);
@@ -268,7 +268,7 @@ public class Game {
     }
 
     /**
-     * Gibt den gespeicherten HalmaMove zurück
+     * Gibt den gespeicherten HalmaMove zurueck
      * 
      * @return der gespeicherte HalmaMove
      */
@@ -277,7 +277,7 @@ public class Game {
     }
 
     /**
-     * Gibt das Board zurück
+     * Gibt das Board zurueck
      * 
      * @return das Board
      */
@@ -286,7 +286,7 @@ public class Game {
     }
 
     /**
-     * gibt die Spielerliste zurück
+     * gibt die Spielerliste zurueck
      * 
      * @return the playerList
      */
