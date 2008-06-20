@@ -1,6 +1,10 @@
 ﻿#summary Entwurf der Netzwerkkomponenten (TP3)
 
 = Entwurf Netzwerk =
+==Problem==
+die Methode getId() gibt es schon für Thread schon vergeben.
+
+Vorschlag -> abändern von id zi playerId
 
 ==allgemein Netzwerk==
 	* NWK = Netzwerkkomponente
