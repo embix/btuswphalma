@@ -86,12 +86,12 @@ public class Game {
      * Es wird ein Spiel fuer die Anzahl an Spielern gestartet.
      * 
      * @param numberOfPlayers die gewuenschte Spielerzahl
-     * @throws Exception 
+     * @throws GameException 
      */
-    public Game(int numberOfPlayers) throws Exception {
+    public Game(int numberOfPlayers) throws GameException {
 	if (numberOfPlayers < 2 || numberOfPlayers == 5 || numberOfPlayers > 6) {
 	    //falsche Anzahl an Spielern
-	    throw new Exception("wrong number of players");
+	    throw new GameException("wrong number of players");
 	}
 	round = 0;
 	activePlayer = 0;
@@ -110,11 +110,11 @@ public class Game {
      * @param id die Nummer des Spielers (von 1-6)
      * @param name der Name des Spielers
      * @return Koennen noch weitere Spieler hinzugefuegt werden
-     * @throws Exception Methode wird im falschen Zustand aufgerufen
+     * @throws GameException Methode wird im falschen Zustand aufgerufen
      */
-    public boolean addPlayer(int id, String name) throws Exception {
+    public boolean addPlayer(int id, String name) throws GameException {
 	if (gameState != ADDING_PLAYERS) {
-	    throw new Exception("game is in wrong state for this method");//TODO Exception Klasse
+	    throw new GameException("game is in wrong state for this method");
 	}
 	//Der maximale Integerwert als initiale Rundenzahl, bei der gewonnen wurde.
 	playerList.addPlayer(new Player(id,name,false,Integer.MAX_VALUE));
@@ -141,13 +141,13 @@ public class Game {
      * @param player
      *                Der Spieler der ihn durchfuehrt
      * @return Ergebnis der Zugpruefung
-     * @throws Exception 
+     * @throws GameException 
      */
-    public boolean checkAndKeepMove(HalmaMove move, int player) throws Exception {
+    public boolean checkAndKeepMove(HalmaMove move, int player) throws GameException {
 	
 	boolean result = false; //Das Ergebnis, ist es ein korrekter Zug
 	if(gameState != WAITING_MOVE) {
-	    throw new Exception("game is in wrong state for this method");//TODO Exception Klasse
+	    throw new GameException("game is in wrong state for this method");
 	}
 	//nur der aktive Spieler darf einen Zug machen
 	if (player != activePlayer) {
@@ -170,13 +170,13 @@ public class Game {
      * 
      * @return Normaler Zug oder ein Spieler ist fertig oder das Spiel ist zu
      *         Ende.
-     * @throws Exception 
+     * @throws GameException 
      */
-    public int executeMove() throws Exception {
+    public int executeMove() throws GameException {
 	Player player;
 	int result = EXECUTE_MOVE_NORMAL;
 	if(gameState != KEEPING_MOVE) {
-	    throw new Exception("game is in wrong state for this method");//TODO Exception Klasse
+	    throw new GameException("game is in wrong state for this method");
 	}
 	board.exchangePositionState(keptMove.getStartPosition(), keptMove.getEndPosition());
 	gameState = HOLDING_PLAYER;
@@ -201,11 +201,11 @@ public class Game {
     /**
      * Der gespeicherte Zug wird zurueckgenommen. Wenn das Spiel nicht beendet
      * ist, soll danach wieder ein neuer Zug angenommen werden koennen.
-     * @throws Exception 
+     * @throws GameException 
      */
-    public void discardMove() throws Exception {
+    public void discardMove() throws GameException {
 	if(gameState != KEEPING_MOVE) {
-	    throw new Exception("game is in wrong state for this method");//TODO Exception Klasse
+	    throw new GameException("game is in wrong state for this method");
 	}
 	keptMove = null;
 	gameState = WAITING_MOVE;
@@ -215,14 +215,14 @@ public class Game {
     /**
      * Der aktive Spieler wird auf den naechsten Spieler gesetzt, der an der
      * Reihe ist.
-     * @throws Exception 
+     * @throws GameException 
      */
-    public void executePlayerChange() throws Exception {
+    public void executePlayerChange() throws GameException {
 	int oldActivePlayer = activePlayer;
 	int nextPlayerId;
 	Player player;
 	if(gameState != HOLDING_PLAYER) {
-	    throw new Exception("game is in wrong state for this method");//TODO Exception Klasse
+	    throw new GameException("game is in wrong state for this method");
 	}
 	
 	for (int i = 0; i < numberOfPlayers - 1; i++) {
@@ -243,7 +243,7 @@ public class Game {
 	    round++;
 	} else if (activePlayer == oldActivePlayer) {
 	    //Fehlzustand, das sollte nicht passieren
-	    throw new Exception("found no next player"); //TODO Exception Klasse
+	    throw new GameException("found no next player"); 
 	}
 	gameState = WAITING_MOVE;
 
