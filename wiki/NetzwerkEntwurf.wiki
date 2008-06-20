@@ -4,7 +4,7 @@
 ==Problem==
 die Methode getId() gibt es für Thread schon.
 
-Vorschlag -> abändern von id zi playerId
+Vorschlag -> abändern von id in playerId
 
 ==allgemein Netzwerk==
 	* NWK = Netzwerkkomponente
