@@ -89,29 +89,41 @@ public class MessageHandler
 	switch(type){
 	case MT_MOVE:
 	    recvMsgMove(msg);
+	    break;
 	case MT_PLAYERDATA:
 	    recvMsgPlayerData(msg);
+	    break;
 	case MT_TERMINATE:
 	    recvMsgTerminate(msg);
+	    break;
 	case MT_SCORES:
 	    recvMsgScores(msg);
+	    break;
 	case MT_VETO:
 	    recvMsgVeto(msg);
+	    break;
 	case MT_BOARD:
 	    recvMsgBoard(msg);
+	    break;
 	case MT_MOVEERROR:
 	    recvMsgMoveError(msg);
+	    break;
 	case MT_PLAYERACTIVATE:
 	    recvMsgPlayerActivate(msg);
+	    break;
 	case MT_LOGIN:
 	    recvMsgLogin(msg);
+	    break;
 	case MT_GAMEEND:
 	    recvMsgGameEnd(msg);
+	    break;
 	case MT_SAVE:
 	    recvMsgSave(msg);
+	    break;
 	case MT_PLAYERFINISHED:
 	    recvMsgPlayerFinished(msg);
-	    
+	    break;
+	
 	default:
 	    // unbekannter Nachrichtentyp: wird nur fuer debugging geloggt
 	    System.out.println("(GUI)MessageHandler: unkown MessageType '" + type.toString() + "'");
