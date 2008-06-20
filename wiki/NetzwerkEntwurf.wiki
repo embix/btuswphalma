@@ -2,7 +2,7 @@
 
 = Entwurf Netzwerk =
 ==Problem==
-die Methode getId() gibt es schon für Thread schon vergeben.
+die Methode getId() gibt es für Thread schon.
 
 Vorschlag -> abändern von id zi playerId
 
