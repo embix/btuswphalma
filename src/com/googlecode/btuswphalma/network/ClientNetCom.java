@@ -25,28 +25,57 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
     /** InputStream des Sockets */
     private InputStream instream;
     /** OutputStream des Sockets */
-    private OutputStream outstrem;
+    private OutputStream outstream;
+    /** Object für Streams */
+    private Object obj;
     
     /**
      * Konstruktor vom Client, der sich gleich zum Server verbindet
      * @param ip :int (IP-Adresse des Servers)
      * @param port :int (Port des Servers)
      */
-    public ClientNetCom(InetAddress ip, int port) throws IOException {
-    	this.notifyObject = new Object();
-    	this.messageQueue = new ConcurrentLinkedQueue<IMessage>();
-    	this.socket = new Socket(ip, port);
-    	this.instream = socket.getInputStream();
-    	this.outstrem = socket.getOutputStream();
-    	new Thread (this).start();
-    	//TODO Socket aufsetzen, verbinden, run aufrufen
+    public ClientNetCom(InetAddress ip, int port) {
+  	this.notifyObject = new Object();
+   	this.messageQueue = new ConcurrentLinkedQueue<IMessage>();
+   	try {
+   		this.socket = new Socket(ip, port);
+   	} catch (IOException e) {}
+   	try {
+   		this.instream = socket.getInputStream();
+   	} catch (IOException e) {}
+   	try {
+   		this.outstream = socket.getOutputStream();
+   	} catch (IOException e) {}
+   	new Thread (this).start();
+   	//TODO Socket aufsetzen, verbinden, run aufrufen
     }
     
     /**
      * horcht InputStream ab, behandelt eingehende Nachrichten
      */
+    @Override
     public void run() {
-    	//run-Methode, horcht Stream ab
+   	while (!this.isInterrupted()) {
+   		try {
+   			//blockierendes Lesen
+   			this.obj = (Object)instream.read();
+   		} catch (IOException e) {}
+   		NetMessage netmsg = new NetMessage();
+   		netmsg = (NetMessage)this.obj;
+   		IMessage msg = netmsg.getMessage();
+   		//TODO msg.setDestination(1);
+   		this.messageQueue.add(msg);
+   		this.notifyObject.notify();
+   	}
+   	try {
+   		instream.close();
+   	} catch (IOException e) {}
+   	try {
+   		outstream.close();
+   	} catch (IOException e) {}
+   	try {
+   		socket.close();
+   	} catch (IOException e) {}
     }
 	
     /**
@@ -55,7 +84,12 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
      * @param msg :IMessage (die zu versendende Nachricht)
      */
 	public void sendMessage(IMessage msg) {
-		//TODO eine Nachricht versenden
+	NetMessage netmsg = new NetMessage();
+	netmsg.setMessage(msg);
+	this.obj = (Object)netmsg;
+	try {
+		outstream.write((byte[])obj);
+	} catch (IOException e) {}
 	}
 	
 	/**
@@ -63,8 +97,7 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
 	 * @return Object
 	 */
 	public Object getNotifyObject() {
-		//TODO das notifyObject holen
-		return this.notifyObject;
+	return this.notifyObject;
 	}
 	
 	/**
@@ -72,8 +105,7 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
 	 * @return boolean
 	 */
 	public boolean hasMessage() {
-		//TODO Liste abfragen, ob leer oder nicht
-		return (!(this.messageQueue.isEmpty()));
+	return (!(this.messageQueue.isEmpty()));
 	}
 
 	/**
@@ -81,9 +113,8 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
 	 * @return IMessage
 	 */
 	public IMessage getMessage() {
-		//TODO oberste Msg von der Liste zurueck geben
-		IMessage msg = this.messageQueue.remove();
-		return msg;
+	IMessage msg = this.messageQueue.remove();
+	return msg;
 	}
 	
 }

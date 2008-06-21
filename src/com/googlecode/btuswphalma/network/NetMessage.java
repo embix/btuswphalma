@@ -14,6 +14,27 @@ public class NetMessage implements Serializable {
 	private static final long serialVersionUID = 5162642829861881918L;
 	
 	/** die verpackte IMessage */
-	public IMessage msg;
+	private IMessage msg;
+	
+	/**
+	 * leerer Konstruktor
+	 */
+	public NetMessage() {}
+	
+	/**
+	 * fuegt die zu verpackende IMessage ein
+	 * @param msg IMessage
+	 */
+	public void setMessage(IMessage msg) {
+	this.msg = msg;
+	}
+	
+	/**
+	 * gibt die verpackte IMessage zurueck
+	 * @return IMessage
+	 */
+	public IMessage getMessage() {
+	return (this.msg);
+	}
 	
 }
