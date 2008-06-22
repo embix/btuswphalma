@@ -8,7 +8,7 @@ package com.googlecode.btuswphalma.base;
 public interface INetCom {
 
     /**
-     * Versendet Nachrichten über ein Netzwerkobjekt
+     * Versendet Nachrichten ueber ein Netzwerkobjekt
      * 
      * @param msg
      *                Zu sendende Nachricht
@@ -16,7 +16,7 @@ public interface INetCom {
     public void sendMessage(IMessage msg);
 
     /**
-     * Gibt ein Notifikationsobjekt zurück, über welches Listener über neue
+     * Gibt ein Notifikationsobjekt zurueck, ueber welches Listener ueber neue
      * Nachrichten vom Netzwerk informiert werden.
      * 
      * @return Notifikationsobjekt
@@ -24,7 +24,7 @@ public interface INetCom {
     public Object getNotifyObject();
 
     /**
-     * Prüft, ob Netwerknachrichten in der Warteschlange sind
+     * Prueft, ob Netzwerknachrichten in der Warteschlange sind
      * 
      * @return true, falls Nachrichtenobjekte in der Warteschlange stehen; false
      *         sonst
@@ -32,9 +32,9 @@ public interface INetCom {
     public boolean hasMessage();
 
     /**
-     * Gibt das nächste in der Warteschlange stehende Objekt zurück
+     * Gibt das naechste in der Warteschlange stehende Objekt zuraeck
      * 
-     * @return Das nächste Nachrichtenobjekt
+     * @return Das naechste Nachrichtenobjekt
      */
     public IMessage getMessage();
 
