@@ -175,7 +175,7 @@ public class Manager implements IManager, Runnable {
         	if (!processMove((MoveMessage) msg)) {
         	    // es wird wieder ein Zug erwartet
         	    dispatcher
-        		    .acceptMessage(createMoveErrorMessage("Ihr Zug war entsprach nicht den Regeln des Spiels Halma"));
+        		    .acceptMessage(createMoveErrorMessage("Ihr Zug entsprach nicht den Regeln des Spiels Halma"));
         	    initiateMove();
         	    continue;
         	}
