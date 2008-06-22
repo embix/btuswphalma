@@ -3,7 +3,7 @@
  */
 package com.googlecode.btuswphalma.network;
 
-import java.net.InetAddress;
+//import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -23,6 +23,10 @@ public class ServerNetCom extends Thread implements INetCom {
     Object notifyObject;
     ServerSocket serverSocket;
     
+    /**
+     * @param port
+     * @param playerNum
+     */
     public ServerNetCom(int port, int playerNum) {
 	this.playerNum = playerNum;
 	connectionMap = new HashMap<Integer, Connection>(playerNum);
