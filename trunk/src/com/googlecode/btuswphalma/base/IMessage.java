@@ -8,23 +8,23 @@ package com.googlecode.btuswphalma.base;
 public interface IMessage {
     
     /**
-     * Gibt den Nachrichtentyp zurück.
+     * Gibt den Nachrichtentyp zurueck.
      * 
      * @return	Nachrichtentyp der Nachricht
      */
     public MessageType getType();
     
     /**
-     * Gibt die ID des Empfängers der Nachricht zurück.
+     * Gibt die ID des Empfaengers der Nachricht zurueck.
      * 
-     * @return	ID des Empfängers der Nachricht
+     * @return	ID des Empfaengers der Nachricht
      */
     public int getDestination();
     
     /**
-     * Gibt die ID des Absenders der Nachricht zurück.
+     * Gibt die ID des Absenders der Nachricht zurueck.
      * 
-     * @return	ID des Absanders der Nachricht.
+     * @return	ID des Absenders der Nachricht.
      */
     public int getSource();
 
