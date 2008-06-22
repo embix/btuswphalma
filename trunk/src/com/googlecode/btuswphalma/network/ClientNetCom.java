@@ -26,7 +26,7 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
     private InputStream instream;
     /** OutputStream des Sockets */
     private OutputStream outstream;
-    /** Object für Streams */
+    /** Objekt fuer Streams */
     private Object obj;
     
     /**
