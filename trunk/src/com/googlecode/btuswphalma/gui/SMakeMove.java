@@ -3,6 +3,7 @@
  */
 package com.googlecode.btuswphalma.gui;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -136,10 +137,12 @@ public class SMakeMove implements IRunnableGuiState {
 	butZugBestaetigen.addActionListener(new ActionListener(){
 	    public void actionPerformed(ActionEvent e){
 		pres.remove(butZugBestaetigen);
+		pres.pack();
 		sendHalmaMove();
 	    }
 	});
-	pres.add(butZugBestaetigen);
+	pres.add(butZugBestaetigen,BorderLayout.AFTER_LAST_LINE);
+	pres.pack();
     }
 
     /**
