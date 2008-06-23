@@ -107,10 +107,16 @@ public class Connection extends Thread {
     }
 
     // TODO ich weiß nicht, was diese Methode soll
+    /**
+     * @param msg
+     */
     public void putMessageOnQueue(IMessage msg) {
 
     }
 
+    /**
+     * @return
+     */
     public int getPlayerId() {
 	return playerId;
     }
