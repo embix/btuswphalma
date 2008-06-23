@@ -24,14 +24,14 @@ public class RulesHalmaMoveChecker implements IHalmaMoveChecker {
      * @see com.googlecode.btuswphalma.gameengine.IHalmaMoveChecker#checkMove(com.googlecode.btuswphalma.gameengine.Board, com.googlecode.btuswphalma.gameengine.HalmaMove, int)
      */
     public boolean checkMove(Board board, HalmaMove move, int player) {
-	if (board == null || move == null || player < 1 || player > 6) {
+	if (board == null || move == null || move.getNumberOfPartMoves() < 1||player < 1 || player > 6) {
 	    return false;
 	}
 	boolean result = false;
 	int moves = move.getNumberOfPartMoves();
 	moveStartPos = move.getStartPosition();
 	
-	if (player != board.getPositionState(move.getStartPosition())) {
+	if (player != board.getPositionState(moveStartPos)) {
 	    // player versucht einen Spielstein zu bewegen, der nicht ihm gehört
 	    result = false;
 	    return result;
