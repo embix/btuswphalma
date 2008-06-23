@@ -124,8 +124,9 @@ public class SShowMove implements IRunnableGuiState {
      * Zustand aufgerufen.
      */
     public void run() {
-	// TODO Auto-generated method stub
-	
+	// Zugeingabe/-anzeige loeschen
+	controller.getBoardPres().hideMove();
+	// auf neues Board / Move /... warten
     }
 
 }
