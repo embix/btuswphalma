@@ -88,4 +88,16 @@ public class HalmaMove {
 	int index = this.positions.size();
 	this.positions.add(index, pos);
     }
+
+    /**
+     * Ein Move wird als Liste der BoardPositions in der Form
+     * <code>[BoardPosition_1, BoardPosition_2, ... , BoardPosition_n]</code>
+     * ausgegeben
+     * 
+     * @return ein String der den Move darstellt
+     */
+    @Override
+    public String toString() {
+	return positions.toString();
+    }
 }
