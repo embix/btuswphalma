@@ -64,4 +64,13 @@ public class BoardPosition {
     public void setYPos(byte y) {
 	this.yPos = y;
     }
+    
+    /**
+     * Eine BoardPosition wird als 2-Tupel in der Form [xpos, ypos] ausgegeben
+     * @return ein String der die BoardPosition darstellt 
+     */
+    @Override
+    public String toString() {
+	return "[" + xPos + ", " + yPos + "]";
+    }
 }
