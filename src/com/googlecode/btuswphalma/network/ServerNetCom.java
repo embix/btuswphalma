@@ -15,7 +15,6 @@ import com.googlecode.btuswphalma.base.INetCom;
 import com.googlecode.btuswphalma.base.IReaddressableMessage;
 import com.googlecode.btuswphalma.base.MessageAddresses;
 import com.googlecode.btuswphalma.base.MessageType;
-import com.googlecode.btuswphalma.base.NetMessage;
 
 /**
  * @author sebastian
