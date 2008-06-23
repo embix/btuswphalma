@@ -24,6 +24,7 @@ public class Board {
     public Board(int num) {
 	this.boardArray = new byte[17][13];
 	markUsablePositions();
+	//Was bei falscher Spielerzahl
 	fillWithPlayers(num);
     }
 
@@ -48,6 +49,10 @@ public class Board {
     public byte getPositionState(BoardPosition pos) {
 	byte x = pos.getXPos();
 	byte y = pos.getYPos();
+	//Ein ungueltige Position ausserhalb des Arrays abfangen
+	if (x < 0 || x > 16 || y < 0 || y > 12) {
+	    return -1;
+	}
 	return this.boardArray[x][y];
     }
 
@@ -64,10 +69,13 @@ public class Board {
 	byte ys = spos.getYPos();
 	byte xe = epos.getXPos();
 	byte ye = epos.getYPos();
+	//FIXME was bei falschen Eingaben, Exception?
+	//vorerst nichts
+	if (xs < 0 || xs > 16 || ys < 0 || ys > 12 || 
+	    xe < 0 || xe > 16 || ye < 0 || ye > 12) {
+	    return;
+	}
 	byte toChange = this.boardArray[xe][ye];
-	// TODO vom Namen her war eigentlich gedacht, die Zustaende wirklich zu
-	// tauschen
-	// was auch bei dieser Implementierung einfach geht
 	this.boardArray[xe][ye] = this.boardArray[xs][ys];
 	this.boardArray[xs][ys] = toChange;
     }
