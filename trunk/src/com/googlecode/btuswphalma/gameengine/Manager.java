@@ -48,7 +48,7 @@ public class Manager implements IManager, Runnable {
     /**
      * Die Anzahl der Millisekunden, die der Spielzug angezeigt werden soll
      */
-    public static final long DISPLAY_TIME = 10000;
+    public static final long DISPLAY_TIME = 100;//FIXME fuer den Test
     /**
      * Die Queue, in die von aussen Nachrichten geschrieben werden. Diese
      * Nachrichten werden dann von dem laufenden thread verarbeitet
@@ -274,7 +274,7 @@ public class Manager implements IManager, Runnable {
     private boolean processMove(final MoveMessage msg) {
         boolean result = false;
         try {
-            result = game.checkAndKeepMove(msg.getMove(), msg.getDestination());
+            result = game.checkAndKeepMove(msg.getMove(), msg.getSource());
         } catch (GameException e) {
             stopGameOnError();
             return false;
@@ -353,7 +353,6 @@ public class Manager implements IManager, Runnable {
             stopGameOnError();
             return;
         }
-        initiateMove();
     }
 
     /**
