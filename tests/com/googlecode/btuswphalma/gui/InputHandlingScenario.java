@@ -7,6 +7,10 @@
  * Datum:
  * <br>
  * Reposversion:
+ * <br>
+ * Buildumgebung/Compiler und Betriebssystem:
+ * <br>
+ * Laufzeitumgebung und Betriebssystem:
  * </p>
  * 
  * 
