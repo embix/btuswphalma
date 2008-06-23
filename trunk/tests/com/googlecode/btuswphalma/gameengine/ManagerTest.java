@@ -15,12 +15,19 @@ import com.googlecode.btuswphalma.base.MessageType;
 import com.googlecode.btuswphalma.base.MoveMessage;
 import com.googlecode.btuswphalma.serverengine.IDispatcher;
 
+/**
+ * @author embix
+ *
+ */
 public class ManagerTest implements IDispatcher {
 
     Manager manager;
     ConcurrentLinkedQueue<IMessage> answers = new ConcurrentLinkedQueue<IMessage>();
     int SLEEP_TIME = 10;
 
+    /**
+     * @throws InterruptedException
+     */
     @Test
     public void testAcceptMessage() throws InterruptedException {
 	String player1 = "Player1";
