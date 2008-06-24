@@ -43,16 +43,16 @@ public class SInputGameData implements IRunnableGuiState {
     }
     
     void promptGameData(){
-	// TODO: (GUI) Auswahldialog: Master oder Client
-	boolean master = true;// entsprechend der Fallunterscheidung
-	
-	if(master){
-	   promtMasterGameData(); 
-	}else{
-	   promtClientGameData();
+	// Auswahldialog: Master oder Client
+	DialogMasterOrClient dialog = new DialogMasterOrClient(controller.getPresentation());
+	if(dialog.ok()){
+	    if(dialog.isMaster()){
+		promtMasterGameData();
+	    }else{
+		promtClientGameData();
+	    }
+	    dataSend = true;	// TODO: ist dataSend wirklich notwendig?
 	}
-	
-	dataSend = true;	// TODO: ist dataSend wirklich notwendig?
     }
     
     void promtClientGameData() {
