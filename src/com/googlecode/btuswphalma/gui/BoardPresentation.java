@@ -100,8 +100,8 @@ public class BoardPresentation extends JPanel {
     private void zeichnePosition(Graphics2D g2d) {
 	// TODO Auto-generated method stub
 	Color c = Color.YELLOW;
-	int x = gibRasterX(pos.getXPos(),pos.getYPos());
-	int y = gibRasterY(pos.getYPos());
+	int x = gibRasterX(pos.getYPos(),pos.getXPos());
+	int y = gibRasterY(pos.getXPos());
 	
 	zeichneGrossenKreis(g2d, x, y, c);
     }
@@ -368,11 +368,11 @@ public class BoardPresentation extends JPanel {
 						    // ausgelesen
 
 	    // Umrechnung Boardbasis in Rasterpunkte
-	    xVon = gibRasterX(vonPos.getXPos(), vonPos.getYPos());
-	    yVon = gibRasterY(vonPos.getYPos()); // doppelt ausgelesen,
+	    xVon = gibRasterX(vonPos.getYPos(), vonPos.getXPos());
+	    yVon = gibRasterY(vonPos.getXPos()); // doppelt ausgelesen,
 						    // Performance?
-	    xNach = gibRasterX(nachPos.getXPos(), nachPos.getYPos());
-	    yNach = gibRasterY(nachPos.getYPos()); // doppelt auch ausgelesen,
+	    xNach = gibRasterX(nachPos.getYPos(), nachPos.getXPos());
+	    yNach = gibRasterY(nachPos.getXPos()); // doppelt auch ausgelesen,
 						    // Performance?
 
 	    // ein Pfeil waere wohl schoener, kann man ja spaeter noch machen
@@ -709,7 +709,7 @@ public class BoardPresentation extends JPanel {
     	}
      	
     	// TODO: (GUI) testen, ob x und y zu vertauschen sind
-    	BoardPosition pos = new BoardPosition(xPos, yPos);
+    	BoardPosition pos = new BoardPosition(yPos, xPos);
     	return pos;
     }
 

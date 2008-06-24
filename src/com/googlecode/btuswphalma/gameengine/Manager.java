@@ -274,7 +274,10 @@ public class Manager implements IManager, Runnable {
     private boolean processMove(final MoveMessage msg) {
         boolean result = false;
         try {
-            result = game.checkAndKeepMove(msg.getMove(), msg.getSource());
+            //System.err.println("ZZZ Move"+msg.getMove().toString());//TODO ZZZ Debugging Ausgabe
+            //System.err.println("ZZZ Von"+msg.getSource());
+            //result = game.checkAndKeepMove(msg.getMove(), msg.getSource());
+            result = game.checkAndKeepMove(msg.getMove(), game.getActivePlayer());//FIXME ZZZ nur zum test
         } catch (GameException e) {
             stopGameOnError();
             return false;
