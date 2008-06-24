@@ -12,7 +12,7 @@ import java.util.Queue;
 import com.googlecode.btuswphalma.base.IMessage;
 import com.googlecode.btuswphalma.base.IReaddressableMessage;
 import com.googlecode.btuswphalma.base.MessageAddresses;
-import com.googlecode.btuswphalma.base.NetMessage;
+import com.googlecode.btuswphalma.base.MessageType;
 
 /**
  * @author sebastian
@@ -68,7 +68,6 @@ public class Connection extends Thread {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	this.start();
     }
 
     /**
@@ -79,24 +78,10 @@ public class Connection extends Thread {
      */
     @Override
     public void run() {
-	IReaddressableMessage msg;
-	NetMessage ntMsg;
+	
+	
 	while (!isInterrupted()) {
-	    try {
-		ntMsg = (NetMessage) inputStream.readObject();
-		msg = (IReaddressableMessage) ntMsg.getMessage();
-		msg.setDestination(MessageAddresses.MANAGER_ADDRESS);
-		msg.setSource(playerId);
-		messageQueue.add(msg);
-		notifyObject.notify();
-	    } catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    } catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-
+	    receiveMessage();
 	}
 	try {
 	    socket.close();
@@ -105,17 +90,70 @@ public class Connection extends Thread {
 	    e.printStackTrace();
 	}
     }
+    
+    private void receiveMessage() {
+	IReaddressableMessage msg;
+	    NetMessage ntMsg;
+	    try {
+		ntMsg = (NetMessage) inputStream.readObject();
+		msg = (IReaddressableMessage) ntMsg.getMessage();
+		msg.setDestination(MessageAddresses.MANAGER_ADDRESS);
+		msg.setSource(playerId);
+		messageQueue.add(msg);
+		synchronized (notifyObject) {
+		    notifyObject.notify();
+		}
+	    } catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    } catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+    }
+    
+    /**
+     * Eine Login-Nachricht wird empfangen und zum Abholen vorbereitet
+     * @throws NetworkException
+     */
+    public void receiveLoginMessage() throws NetworkException {
+	IReaddressableMessage msg;
+	    NetMessage ntMsg;
+	    try {
+		ntMsg = (NetMessage) inputStream.readObject();
+		msg = (IReaddressableMessage) ntMsg.getMessage();
+		if (msg.getType() != MessageType.MT_LOGIN) {
+		    throw new NetworkException();
+		}
+		msg.setDestination(MessageAddresses.MANAGER_ADDRESS);
+		msg.setSource(playerId);
+		messageQueue.add(msg);
+		synchronized (notifyObject) {
+		    notifyObject.notify();
+		    System.out.println("notified Login");
+		}
+	    } catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.getCause().printStackTrace();
+		e.printStackTrace();
+	    } catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+    }
 
     // TODO ich weiß nicht, was diese Methode soll
     /**
      * @param msg
      */
     public void putMessageOnQueue(IMessage msg) {
-
+	// TODO ich weiß nicht, was diese Methode soll
     }
 
     /**
-     * @return
+     * Die zu dieser Connection gehoerende Identitaet/Adresse
+     * 
+     * @return die Identitaet
      */
     public int getPlayerId() {
 	return playerId;
