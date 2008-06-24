@@ -3,9 +3,14 @@ package com.googlecode.btuswphalma.network;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import com.googlecode.btuswphalma.base.IMessage;
 import com.googlecode.btuswphalma.base.INetCom;
+import com.googlecode.btuswphalma.base.IReaddressableMessage;
+import com.googlecode.btuswphalma.base.MessageAddresses;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress; 
 import java.net.Socket;
 
@@ -18,14 +23,19 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
 	
 	/** das Java-Object um den Thread aufzuwecken */
 	private Object notifyObject;
+	
 	/** die Nachrichtenliste */
     private ConcurrentLinkedQueue<IMessage> messageQueue;
+    
     /** der Socket des Clients */
     private Socket socket;
+    
     /** InputStream des Sockets */
-    private InputStream instream;
+    private ObjectInputStream instream;
+    
     /** OutputStream des Sockets */
-    private OutputStream outstream;
+    private ObjectOutputStream outstream;
+    
     /** Objekt fuer Streams */
     private Object obj;
     
@@ -41,10 +51,12 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
    		this.socket = new Socket(ip, port);
    	} catch (IOException e) {}
    	try {
-   		this.instream = socket.getInputStream();
+   		InputStream is = socket.getInputStream();
+   		this.instream = new ObjectInputStream(is);
    	} catch (IOException e) {}
    	try {
-   		this.outstream = socket.getOutputStream();
+   		OutputStream os = socket.getOutputStream();
+   		this.outstream = new ObjectOutputStream(os);
    	} catch (IOException e) {}
    	new Thread (this).start();
    	//TODO Socket aufsetzen, verbinden, run aufrufen
@@ -58,12 +70,15 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
    	while (!this.isInterrupted()) {
    		try {
    			//blockierendes Lesen
-   			this.obj = (Object)instream.read();
-   		} catch (IOException e) {}
+   			this.obj = instream.readObject();
+   		} 
+   		catch (IOException e) {}
+   		catch (ClassNotFoundException e ) {}
    		NetMessage netmsg = new NetMessage();
    		netmsg = (NetMessage)this.obj;
-   		IMessage msg = netmsg.getMessage();
-   		//TODO msg.setDestination(1);
+   		//IMessage msg = netmsg.getMessage();
+   		IReaddressableMessage msg = (IReaddressableMessage)netmsg.getMessage();
+   		msg.setDestination(MessageAddresses.GUI_ADDRESS);
    		this.messageQueue.add(msg);
    		this.notifyObject.notify();
    	}
@@ -88,7 +103,7 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
 	netmsg.setMessage(msg);
 	this.obj = (Object)netmsg;
 	try {
-		outstream.write((byte[])obj);
+		outstream.writeObject(obj);
 	} catch (IOException e) {}
 	}
 	
@@ -113,8 +128,12 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
 	 * @return IMessage
 	 */
 	public IMessage getMessage() {
-	IMessage msg = this.messageQueue.remove();
-	return msg;
+	if (hasMessage()) {
+		IMessage msg = this.messageQueue.remove();
+		return msg;
+	} else {
+		return null;
+	}
 	}
 	
 }
