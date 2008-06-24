@@ -19,7 +19,17 @@ public class NetMessage implements Serializable {
 	/**
 	 * leerer Konstruktor
 	 */
-	public NetMessage() {}
+	public NetMessage() {
+	    msg = null;
+	}
+	
+	/**
+	 * Ein NetMessage mit Inhalt wird erzeugt.
+	 * @param msg die beinhaltete Nachricht
+	 */
+	public NetMessage(IMessage msg) {
+	    this.msg = msg;
+	}
 	
 	/**
 	 * fuegt die zu verpackende IMessage ein

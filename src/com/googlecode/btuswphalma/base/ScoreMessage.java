@@ -10,10 +10,14 @@ import com.googlecode.btuswphalma.gameengine.ScoreList;
  * 
  * @author embix
  * @see com.googlecode.btuswphalma.base.IMessage
- * @see com.googlecode.btusqphalme.base.MessageType
+ * @see com.googlecode.btuswphalma.base.MessageType
  */
 public class ScoreMessage extends AbstractMessage {
 
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = -3469696818605366797L;
     private ScoreList scores;
     
     /**

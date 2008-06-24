@@ -1,5 +1,7 @@
 package com.googlecode.btuswphalma.gameengine;
 
+import java.io.Serializable;
+
 /**
  * Spielerdaten beinhalten: ID, Spielename, ist Spieler Beobachter, Runde in der
  * der Spieler fertig geworden ist
@@ -7,7 +9,12 @@ package com.googlecode.btuswphalma.gameengine;
  * @author Christoph
  * 
  */
-public class Player {
+public class Player implements Serializable {
+
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = -6126418797286564770L;
 
     private int id;
 

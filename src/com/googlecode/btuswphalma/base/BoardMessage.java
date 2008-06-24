@@ -10,10 +10,14 @@ import com.googlecode.btuswphalma.gameengine.Board;
  * 
  * @author embix
  * @see com.googlecode.btuswphalma.base.IMessage
- * @see com.googlecode.btusqphalme.base.MessageType
+ * @see com.googlecode.btuswphalma.base.MessageType
  */
 public class BoardMessage extends AbstractMessage {
 
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = -6450447118396009957L;
     private Board board;
     
     /**

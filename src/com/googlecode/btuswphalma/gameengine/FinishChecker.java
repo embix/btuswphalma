@@ -17,6 +17,7 @@ public class FinishChecker {
      * leerer Konstruktor
      */
     public FinishChecker() {
+	board = null;
     }
 
     /**

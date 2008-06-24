@@ -10,7 +10,14 @@ package com.googlecode.btuswphalma.base;
  */
 public class GameEndMessage extends AbstractMessage {
 
-    /* (non-Javadoc)
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = -5447593640952354229L;
+
+    /**
+     * Der Type ist MT_GAMEEND
+     * 
      * @see com.googlecode.btuswphalma.base.IMessage#getType()
      */
     public MessageType getType() {

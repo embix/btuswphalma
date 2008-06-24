@@ -12,6 +12,11 @@ package com.googlecode.btuswphalma.base;
 public class PlayerActivateMessage extends AbstractMessage {
 
     /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = -6871779182722025529L;
+
+    /**
      * @param source die Quelladresse
      * @param destination die Zieladresse
      */

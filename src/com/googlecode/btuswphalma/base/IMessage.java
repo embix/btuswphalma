@@ -1,11 +1,13 @@
 package com.googlecode.btuswphalma.base;
 
+import java.io.Serializable;
+
 /**
  * Basisschnittstelle fuer Nachrichtenobjekte
  * 
  * @author ASM
  */
-public interface IMessage {
+public interface IMessage extends Serializable {
     
     /**
      * Gibt den Nachrichtentyp zurueck.

@@ -1,5 +1,6 @@
 package com.googlecode.btuswphalma.gameengine;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,17 +8,23 @@ import java.util.ArrayList;
  * 
  * @author Christoph
  */
-public class ScoreList {
+public class ScoreList implements Serializable {
 
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = -4207190505343804334L;
+    
     /**
      * ArrayList(ScoreEntry), initial leer und 0-lang
      */
-    private ArrayList<ScoreEntry> scores = new ArrayList<ScoreEntry>();
+    private ArrayList<ScoreEntry> scores;
 
     /**
      * leerer Konstruktor
      */
     public ScoreList() {
+	scores = new ArrayList<ScoreEntry>();
     }
 
     /**

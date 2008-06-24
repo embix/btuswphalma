@@ -1,5 +1,6 @@
 package com.googlecode.btuswphalma.gameengine;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,8 +10,13 @@ import java.util.ArrayList;
  * @author Christoph
  * 
  */
-public class HalmaMove {
+public class HalmaMove implements Serializable {
 
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = 4576425541143715548L;
+    
     /** ArrayList(BoardPositions) */
     private ArrayList<BoardPosition> positions = new ArrayList<BoardPosition>(5);
 

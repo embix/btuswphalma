@@ -13,6 +13,11 @@ package com.googlecode.btuswphalma.base;
 public class PlayerFinishedMessage extends AbstractMessage {
 
     /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = 8004075974582705597L;
+
+    /**
      * @param source
      * @param destination
      */
