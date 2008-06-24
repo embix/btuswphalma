@@ -43,6 +43,7 @@ public class ManagerTest implements IDispatcher {
      * 
      * @throws InterruptedException
      */
+    @SuppressWarnings("deprecation")
     @Test
     public void pushTest() throws InterruptedException {
 	String player1 = "Player1";
@@ -68,6 +69,9 @@ public class ManagerTest implements IDispatcher {
 
 	int[][] mov = { { 3, 5 }, { 4, 5 } };
 	testMove(mov, 1);
+	
+	//der soll sicher nicht mehr laufen evtl vorher schoener machen
+	managerThread.stop();
 
     }
 
