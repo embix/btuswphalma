@@ -1,12 +1,19 @@
 package com.googlecode.btuswphalma.gameengine;
 
+import java.io.Serializable;
+
 /**
  * Beinhaltet einen Spielwertungseintrag (score entry) mit den Werten:
  * Spielername, Spielerwertung (Rang) und benoetigte Runden
  * 
  * @author Christoph
  */
-public class ScoreEntry {
+public class ScoreEntry implements Serializable {
+
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = -2666931723347494116L;
 
     private int ranking;
 

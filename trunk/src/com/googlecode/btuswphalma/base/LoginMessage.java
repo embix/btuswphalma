@@ -13,6 +13,10 @@ package com.googlecode.btuswphalma.base;
 public class LoginMessage extends AbstractMessage {
 
     /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = 4028803987744953231L;
+    /**
      * Der gewuenschte Name des Benutzers
      */
     private String name;

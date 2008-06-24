@@ -10,10 +10,14 @@ import com.googlecode.btuswphalma.gameengine.HalmaMove;
  * 
  * @author embix
  * @see com.googlecode.btuswphalma.base.IMessage
- * @see com.googlecode.btusqphalme.base.MessageType
+ * @see com.googlecode.btuswphalma.base.MessageType
  */
 public class MoveMessage extends AbstractMessage {
 
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = 8296735754599422482L;
     private HalmaMove move;
     
     /**

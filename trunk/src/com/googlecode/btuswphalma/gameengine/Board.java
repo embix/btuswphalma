@@ -1,13 +1,20 @@
 package com.googlecode.btuswphalma.gameengine;
 
+import java.io.Serializable;
+
 /**
  * Das Board (Spielbrett) enthaelt alle Spielfeldpositionen und die Positionen
  * aller Spielfeldsteine
  * 
  * @author Christoph
  */
-public class Board {
+public class Board implements Serializable {
 
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = 5167854478596171751L;
+    
     /** 2D Array fuer das Spielfeld (17 Reihen X 13 Spalten) */
     private byte[][] boardArray;
 

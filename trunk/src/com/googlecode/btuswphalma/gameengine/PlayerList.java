@@ -1,5 +1,6 @@
 package com.googlecode.btuswphalma.gameengine;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,12 +9,17 @@ import java.util.ArrayList;
  * @author Christoph
  * 
  */
-public class PlayerList {
+public class PlayerList implements Serializable {
 
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = -8698942119379573898L;
+    
     /**
      * ArrayList(Player), initial leer
      */
-    private ArrayList<Player> players = new ArrayList<Player>();
+    private ArrayList<Player> players;
 
     /**
      * Konstruktor, Anzahl der Spieler bestimmt Feldgroesse
@@ -29,6 +35,7 @@ public class PlayerList {
      * leerer Konstruktor
      */
     public PlayerList() {
+	players = new ArrayList<Player>();
     }
 
     /**

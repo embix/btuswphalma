@@ -8,11 +8,15 @@ package com.googlecode.btuswphalma.base;
  * 
  * @author embix
  * @see com.googlecode.btuswphalma.base.IMessage
- * @see com.googlecode.btusqphalme.base.MessageType
+ * @see com.googlecode.btuswphalma.base.MessageType
  */
 public class MoveErrorMessage
 	extends AbstractMessage {
     
+    /**
+     * generierte UID
+     */
+    private static final long serialVersionUID = 4648219282672628053L;
     private String errorString;
     
     /**
