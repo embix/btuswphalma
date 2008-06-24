@@ -16,7 +16,7 @@ public class SimpleHalmaMoveChecker {
      * @param board
      * @param move
      * @param player
-     * @return
+     * @return ist der Zug korrekt
      * 
      * @see com.googlecode.btuswphalma.gameengine.IHalmaMoveChecker#checkMove(com.googlecode.btuswphalma.gameengine.Board,
      *      com.googlecode.btuswphalma.gameengine.HalmaMove, int)
