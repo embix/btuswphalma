@@ -10,20 +10,13 @@ package com.googlecode.btuswphalma.base;
  * @author sebastian
  * 
  */
-public class LoginMessage implements IMessage {
+public class LoginMessage extends AbstractMessage {
 
     /**
      * Der gewuenschte Name des Benutzers
      */
     private String name;
-    /**
-     * Die ID des Quell-Clients
-     */
-    private int source;
-    /**
-     * Die ID des Ziel-Clients
-     */
-    private int destination;
+    
 
     /**
      * Die Login Message wird erzeugt
@@ -33,53 +26,25 @@ public class LoginMessage implements IMessage {
      * @param destination die Ziel ID
      */
     public LoginMessage(String name, int source, int destination) {
-	super();
+	super(source, destination);
 	this.name = name;
-	this.source = source;
-	this.destination = destination;
     }
 
-    /**
-     * (non-Javadoc)
-     * 
-     * @see com.googlecode.btuswphalma.base.IMessage#getDestination()
-     */
-    public int getDestination() {
-	return destination;
-    }
+    
 
     /**
      * Gibt den gewuenschten Namen zurueck
      * 
-     * @return
+     * @return der gewuenschte Name
      */
     public String getName() {
 	return name;
     }
 
-    /**
-     * (non-Javadoc)
-     * 
-     * @see com.googlecode.btuswphalma.base.IMessage#getSource()
-     */
-    public int getSource() {
-	return source;
-    }
 
+    
     /**
-     * Mit dieser Methode wird die Quelle einer Nachricht gesetzt. Dies ist
-     * noetig, da ein Client beim anmelden seine Nummer noch nicht kennt und
-     * also nicht die richtige Nummer angeben kann.
-     * 
-     * @param source
-     *                the source to set
-     */
-    public void setSource(int source) {
-	this.source = source;
-    }
-
-    /**
-     * (non-Javadoc)
+     * Vom Typ Login
      * 
      * @see com.googlecode.btuswphalma.base.IMessage#getType()
      */
