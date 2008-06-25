@@ -12,6 +12,11 @@ import com.googlecode.btuswphalma.base.*;
  */
 public class TestGenericMessage implements IMessage {
 
+    /**
+     * UID ist gefordert, weil implizit serializable
+     */
+    private static final long serialVersionUID = -3160891781904399568L;
+
     private MessageType type;
 
     private int src;
