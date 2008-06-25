@@ -4,7 +4,6 @@
 package com.googlecode.btuswphalma.serverengine;
 
 import com.googlecode.btuswphalma.base.*;
-import com.googlecode.btuswphalma.gameengine.IManager;
 
 /**
  * NetworkListener stellt einen Thread zur verfügung, der das Notifyobjekt der
@@ -18,8 +17,8 @@ public class NetworkListener extends Thread {
     private Object netNotifyObject;
 
     private INetCom network;
-
-    private IManager manager;
+    
+    private Dispatcher dispatcher;
 
     private boolean die = false; // wird gesetzt wenn der Thread beenden soll
 
@@ -28,13 +27,12 @@ public class NetworkListener extends Thread {
      * 
      * @param n
      *                Die Netzwerkkomponente, von der Nachrichten abzuholen sind
-     * @param m
-     *                Der Manager, an den Netzwerknachrichten gesendet werden
-     *                sollen.
+     * @param d	
+     * 			Dispatcher ueber den Nachrichten versendet werden
      */
-    public NetworkListener(INetCom n, IManager m) {
+    public NetworkListener(INetCom n, Dispatcher d) {
 	network = n;
-	manager = m;
+	dispatcher = d;
 
 	netNotifyObject = n.getNotifyObject();
     }
@@ -61,7 +59,8 @@ public class NetworkListener extends Thread {
 
 	    while (network.hasMessage()) {
 		IMessage msg = network.getMessage();
-		manager.acceptMessage(msg);
+		
+		dispatcher.dispatchNetworkMessage(msg);
 	    }
 	}
     }

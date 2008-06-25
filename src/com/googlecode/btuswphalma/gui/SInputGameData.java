@@ -47,29 +47,31 @@ public class SInputGameData implements IRunnableGuiState {
 	DialogMasterOrClient dialog = new DialogMasterOrClient(controller.getPresentation());
 	if(dialog.ok()){
 	    if(dialog.isMaster()){
-		promtMasterGameData();
+		promptMasterGameData();
 	    }else{
-		promtClientGameData();
+		promptClientGameData();
 	    }
 	    dataSend = true;	// TODO: ist dataSend wirklich notwendig?
 	}
     }
     
-    void promtClientGameData() {
+    void promptClientGameData() {
 	DialogClientGameData dialog = new DialogClientGameData(controller.getPresentation());
 	
 	if(dialog.ok()) {
 	    ClientGameData mData = dialog.getClientGameData();
+	    controller.getEngine().createManager(1, false, false);	// TODO: Instanzierung der Clientengine noch nicht bestimmt
+	    
 	    controller.getMessageHandler().sendMessage(new LoginMessage(mData.playerName,1,-1));
 	}
     }
     
-    void promtMasterGameData() {
+    void promptMasterGameData() {
 	DialogMasterGameData dialog = new DialogMasterGameData(controller.getPresentation());
 	
 	if(dialog.ok()) {
 	    MasterGameData mData = dialog.getMasterGameData();
-	    controller.getEngine().createManager(mData.playerCount, true);
+	    controller.getEngine().createManager(mData.playerCount, true, mData.gmod == GameMode.HOT_SEAT);
 	    
 	    controller.getMessageHandler().sendMessage(new LoginMessage(mData.playerName,1,-1));
 	    
@@ -184,7 +186,6 @@ public class SInputGameData implements IRunnableGuiState {
     public void run() {
 	promptGameData();
 	controller.getEngine().start();	// starte Nachrichtenverteilung im Dispatcher
-	
     }
 
 }
