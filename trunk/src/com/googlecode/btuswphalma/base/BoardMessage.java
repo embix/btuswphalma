@@ -19,6 +19,7 @@ public class BoardMessage extends AbstractMessage {
      */
     private static final long serialVersionUID = -6450447118396009957L;
     private Board board;
+    private int activePlayer;
     
     /**
      * Erzeugt eine neue Nachricht vom Typ BoardMessage
@@ -26,10 +27,12 @@ public class BoardMessage extends AbstractMessage {
      * @param source Sender als int-ID
      * @param destination Ziel als int-ID
      * @param board gibt die zu verschickende Auftstellung an
+     * @param activePlayer der Spieler der gerade am Zug ist
      */
-    public BoardMessage(int source, int destination, Board board) {
+    public BoardMessage(int source, int destination, Board board, int activePlayer) {
 	super(source, destination);
 	this.board = board;
+	this.activePlayer = activePlayer;
     }
 
     /**
@@ -45,7 +48,15 @@ public class BoardMessage extends AbstractMessage {
      * Spielaufstellung als Board-Objekt
      * @return gibt das neue Board an
      */
-    public Board getBoard(){
+    public Board getBoard() {
 	return board;
+    }
+    
+    /**
+     * Der Spieler der gerade am Zug ist wird zurueckgegeben
+     * @return der gerade aktiver Spieler
+     */
+    public int getActivePlayer() {
+	return activePlayer;
     }
 }

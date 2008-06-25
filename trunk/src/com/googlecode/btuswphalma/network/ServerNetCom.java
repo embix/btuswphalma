@@ -73,6 +73,7 @@ public class ServerNetCom extends Thread implements INetCom {
      * @see com.googlecode.btuswphalma.base.INetCom#getMessage()
      */
     public IMessage getMessage() {
+	//die Warteschlange gibt selbst null zurueck, wenn leer
 	return messageQueue.poll();
     }
 
