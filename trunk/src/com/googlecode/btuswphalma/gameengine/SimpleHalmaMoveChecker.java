@@ -25,13 +25,13 @@ public class SimpleHalmaMoveChecker {
 	boolean result = true;
 	BoardPosition pos;
 	byte state;
-	int i = move.getNumberOfPartMoves()+1;
+	int i = move.getSize();
 	if (i<=1) { 
 		//wenn weniger oder genau eine Position im Move -> Fehler
 		result = false;
 	}
-	while ((i >= 1) && result) {
-	    pos = move.getPartPosition(i);
+	while ((i > 1) && result) {
+	    pos = move.getPartPosition(i-1);
 	    state = board.getPositionState(pos);
 	    // wenn Position nicht frei oder ausserhalb, also nicht Null
 	    // aber ohne Startposition
