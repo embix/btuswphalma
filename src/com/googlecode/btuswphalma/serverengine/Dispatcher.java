@@ -78,6 +78,7 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 	}
 	
 	this.server = server;
+	this.hotseat = hs;
 	
 	// Manager müssen immer von Runnable abgeleitet werden
 	managerThread = new Thread((Runnable)manager);
