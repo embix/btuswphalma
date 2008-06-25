@@ -106,4 +106,12 @@ public class HalmaMove implements Serializable {
     public String toString() {
 	return positions.toString();
     }
+    
+    /**
+     * gibt Anzahl der Elemente aus
+     * @return int
+     */
+    public int getSize() {
+    return positions.size();
+    }
 }

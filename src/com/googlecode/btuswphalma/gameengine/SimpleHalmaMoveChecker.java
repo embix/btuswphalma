@@ -23,15 +23,30 @@ public class SimpleHalmaMoveChecker {
      */
     public boolean checkMove(Board board, HalmaMove move, int player) {
 	boolean result = true;
-	int i = move.getNumberOfPartMoves() + 1;
-	while ((i >= 0) && result) {
-	    BoardPosition pos = move.getPartPosition(i);
-	    byte state = board.getPositionState(pos);
-	    // wenn Position nicht frei oder au�erhalb, also nicht Null
-	    if (state != 0) {
+	BoardPosition pos;
+	byte state;
+	int i = move.getNumberOfPartMoves()+1;
+	if (i<=1) { 
+		//wenn weniger oder genau eine Position im Move -> Fehler
 		result = false;
+	}
+	while ((i >= 1) && result) {
+	    pos = move.getPartPosition(i);
+	    state = board.getPositionState(pos);
+	    // wenn Position nicht frei oder ausserhalb, also nicht Null
+	    // aber ohne Startposition
+	    if (state != 0) {
+	    	result = false;
 	    }
 	    i--;
+	}
+	//prueft Startposition des Zuges, ob gewaehlter Stein dem Spieler gehoert
+	if (result) {
+		pos = move.getStartPosition();
+		state = board.getPositionState(pos);
+		if (state != (byte)player) {
+			result = false;
+		}
 	}
 	return result;
     }
