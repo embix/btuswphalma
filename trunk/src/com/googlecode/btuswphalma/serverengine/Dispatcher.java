@@ -25,18 +25,15 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 		new java.util.concurrent.ArrayBlockingQueue<IMessage>(128);
 
     private boolean die = false;
-
-    private boolean dispatcherNetTest = false; // TODO: wird fuer TP3 nicht mehr
-						// benötigt
+    
+    private boolean server;
+    
+    private boolean hotseat;
 
     /**
      * Dispatcher Konstruktor Erzeugt interne Objekte
-     * 
-     * @param numberOfPlayers 
-     * 				Anzahl der teilnehmenden Spieler (fuer die Spielengine)
      */
     public Dispatcher() {
-	// TODO: Netzwerkobjekt/NetworkListener erzeugen und starten (TP 3)
     }
 
     /**
@@ -55,10 +52,10 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
      */
     public void setNetwork(INetCom n) {
 	network = n;
-	dispatcherNetTest = true;
+	hotseat = true;
 
 	System.out.println("Starte Netzwerknachrichtenüberwachung...");
-	netThread = new NetworkListener(n, manager);
+	netThread = new NetworkListener(n, this);
 	netThread.start();
     }
     
@@ -69,18 +66,42 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
      * 				Anzahl der teilnehmenden Spieler
      * @param server
      * 				Server- oder Clientengine instanzieren
+     * @param hs
+     * 				Hotseat oder Netzwerkmodus
      */
-    public void createManager(int numberOfPlayers, boolean server) {
+    public void createManager(int numberOfPlayers, boolean server, boolean hs) {
 	if(server) {
 	   manager = new Manager(numberOfPlayers,this); 
 	}
 	else {
-	    // TODO: TP 3
+	    manager = null;
 	}
+	
+	this.server = server;
 	
 	// Manager müssen immer von Runnable abgeleitet werden
 	managerThread = new Thread((Runnable)manager);
 	managerThread.start();
+    }
+    
+    private void dispatchToGui(IMessage msg) {
+	for (int i = 0; i < listeners.size(); i++) {
+	    listeners.get(i).recvdMessage(msg);
+	}
+    }
+    
+    /**
+     * Verteilt Netzwerknachrichten
+     * 
+     * @param msg 	Zu verteilende Nachricht
+     */
+    public void dispatchNetworkMessage(IMessage msg) {
+	if(server) {
+	    manager.acceptMessage(msg);
+	}
+	else {
+	    dispatchToGui(msg);
+	}
     }
 
     /**
@@ -110,7 +131,13 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
      * @see com.googlecode.btuswphalma.base.IGuiCom#recvMessage(com.googlecode.btuswphalma.base.IMessage)
      */
     public void recvMessage(IMessage msg) {
-	msgQueue.add(msg);
+	if(server) {
+	    msgQueue.add(msg);
+	}
+	else {
+	    // Als Client können die Nachrichten direkt an das Netzwerk geleitet werden
+	    network.sendMessage(msg);
+	}
     }
 
     /**
@@ -119,8 +146,7 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
     public void terminate() {
 	die = true;
 
-	// TODO: Check nicht mehr notwendig fuer TP 3
-	if (dispatcherNetTest) {
+	if (!hotseat) {
 	    netThread.terminate();
 	}
     }
@@ -137,15 +163,11 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 	if (msgDest == -1) {
 	    manager.acceptMessage(msg);
 	} else {
-	    // TODO: Check auf dispatcherNetTest ist fuer TP3 nicht mehr
-	    // notwendig und wird da entfernt
-	    if (!dispatcherNetTest || msgDest <= 1) {
-		for (int i = 0; i < listeners.size(); i++) {
-		    listeners.get(i).recvdMessage(msg);
-		}
+	    if (hotseat || msgDest <= 1) {
+		dispatchToGui(msg);
 	    }
 
-	    if (dispatcherNetTest && (msgDest == 0 || msgDest > 1)) {
+	    if (!hotseat && (msgDest == 0 || msgDest > 1)) {
 		network.sendMessage(msg);
 	    }
 	}
