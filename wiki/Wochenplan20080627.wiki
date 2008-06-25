@@ -1,0 +1,17 @@
+﻿#summary Der Wochenplan für die Woche vom 27.06.2008 bis 03.07.2008
+
+= Verfügbare Zeit =
+
+Die maximal verfügbare Zeit für diese Woche.
+
+|| ||Fr||Sa||So||Mo||Di||Mi||Do||Σ||
+|| ||27.06.2008||28.06.2008||29.06.2008||30.06.2008||01.07.2008||02.07.2008||03.07.2008|| ||
+||Sebastian B.||0||0||0||0||0||0||0||0||
+||Michel||0||0||0||0||0||0||0||0||
+||Christian||0||0||0||0||0||0||0||0||
+||Christoph||0||5||2||2||2||3||6||20||
+||Σ||0||5||2||2||2||3||6||20||
+
+= Aufgabenverteilung =
+||AP||Aufgabe||Datum||Zeitansatz||Verantwortlich||
+||xxx||TODO||Datum||h||wer||
