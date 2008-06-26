@@ -13,13 +13,13 @@ Vorschlag -> abändern von id in playerId
 
 ==NWK Server==
 
-	* Server-IP fest, Port frei wählbar (default Wert möglich)
+	* Server-IP fest, Port frei wählbar (Defaultwert möglich)
 	* ServerSocket horcht solange auf einkommende Verbindungsversuche bis maximale Spielerzahl erreicht,
 	* weist der Verbindung mit einem Client einen Socket (mit jeweiligem In-/Outputstream) zu
 	* hat nur eine Queue für eingehende Nachrichten
 
 Startphase:
-	* ServerSocket, mit Port und ev. Timeout, im Konstruktor von NWK Server erzeugt
+	* ServerSocket, mit Port und eventuell Timeout, im Konstruktor von NWK Server erzeugt
 	* MessageQueue, NotifyObject und ConnectionMap ebenfalls vorher erzeugt
 	* ServerSocket schläft solange, bis Verbindungsversuch von außen, max. Spieleranzahl erreicht oder Timeout
 	* Schleife: id=2 bis (max. Spieleranzahl) do
