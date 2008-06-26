@@ -14,4 +14,4 @@ Die maximal verfügbare Zeit für diese Woche.
 
 = Aufgabenverteilung =
 ||AP||Aufgabe||Datum||Zeitansatz||Verantwortlich||
-||xxx||TODO||Datum||h||wer||
+||350||Planung TP4||27.06||2||Team||
