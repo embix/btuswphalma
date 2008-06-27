@@ -195,8 +195,8 @@ public class DialogClientGameData extends JDialog implements ActionListener {
 	}
 	catch(UnknownHostException e) {
 	    JOptionPane.showMessageDialog(null,
-		    "Fehler beim Verarbeiten der IP Adresse/des Hostnamens:\n"
-		    + e.getMessage());
+		    "Fehler beim Verarbeiten der IP Adresse/des Hostnamens.\n"
+		    + "Möglicherweise konnte der angegebene Hostname nicht aufgelöst werden." );
 	    a = null;
 	}
 	return a;
