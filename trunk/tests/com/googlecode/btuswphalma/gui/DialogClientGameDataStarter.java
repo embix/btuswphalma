@@ -60,7 +60,7 @@ public class DialogClientGameDataStarter extends JPanel implements
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent event) {
-	dialog = new DialogClientGameData(owner);
+	dialog = new DialogClientGameData(owner,true);
 	// hier gehts erst weiter, wenn Dialog geschlossen wurde
 	if (dialog.ok()) {
 	    System.out.println("Dialog ok");

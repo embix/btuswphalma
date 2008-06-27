@@ -32,5 +32,10 @@ public class MasterGameData {
      * Anteil der Spielerslots, die durch Computergegner besetzt werden
      */
     public int aiCount = 0; // fuer TP2 und TP3 keine AI
+    
+    /**
+     * Port an dem der Server lauschen soll
+     */
+    public int port;
 
 }
