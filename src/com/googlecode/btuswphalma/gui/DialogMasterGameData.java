@@ -34,6 +34,10 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
     private JRadioButton radioButtonHotseat;
     private JRadioButton radioButtonNetplay;
     private JTextField fieldAiPlayerCount;
+    private JTextField fieldPort;
+    
+    private String defaultPort = "32334";	// TODO: Sollte vlt. irgendwo zentral als Konstante
+						// definiert sein
 
     /**
      * Compiler generierte UID fuer diese Klasse. Wird durch Vererbung von
@@ -90,6 +94,19 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	c.gridwidth = GridBagConstraints.REMAINDER;
 	gridbag.setConstraints(fieldAiPlayerCount, c);
 	pane.add(fieldAiPlayerCount);
+	
+	// Bereich fuer die Portnummereingabe
+	label = new JLabel("Netzwerk Port");
+	c.gridwidth = 1;
+	gridbag.setConstraints(label, c);
+	pane.add(label);
+	fieldPort = new JTextField(10);
+	c.gridwidth = GridBagConstraints.REMAINDER;
+	gridbag.setConstraints(fieldPort, c);
+	pane.add(fieldPort);
+	
+	fieldPort.setText(defaultPort);
+	fieldPort.setEnabled(false);	// Hotseat ist Standardmodus
 
 	// Bereich fuer die Auswahl des Mehrspielermodus
 	radioButtonHotseat = new JRadioButton("Hotseat", true);
@@ -99,7 +116,6 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	radioGameMode = new ButtonGroup();
 	radioGameMode.add(radioButtonHotseat);
 	radioGameMode.add(radioButtonNetplay);
-	radioButtonNetplay.setEnabled(false); // TODO: (GUI)(TP3) Netplay disabled - spaeter loeschen
 	add(radioButtonHotseat);
 	add(radioButtonNetplay);
 
@@ -144,6 +160,7 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	masterGameData.playerName = getPlayerName();
 	masterGameData.playerCount = getPlayerCount();
 	masterGameData.aiCount = getAiPlayerCount();
+	masterGameData.port = getPort();
 	masterGameData.gmod = getGameMode();
 	return masterGameData;
     }
@@ -179,6 +196,12 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 		fieldAiPlayerCount.requestFocus();
 		return;
 	    }
+	    
+	    if(getPort() == 0 || (getPort() > 65535)) {
+		fieldPort.setText(defaultPort);
+		fieldPort.requestFocus();
+		return;
+	    }
 
 	    ok = true; // alle Daten korrekt
 	    dispose(); // Dialog beenden
@@ -188,6 +211,14 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	    dispose(); // Dialog beenden
 	}
 	// sonst war es ein Klick in die Checkboxen
+	
+	if(cmd.equals("Hotseat")) {
+	    fieldPort.setEnabled(false);
+	}
+	
+	if(cmd.equals("Netzwerkspiel")) {
+	    fieldPort.setEnabled(true);
+	}
     }
 
     /**
@@ -221,6 +252,19 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	    aiplayer = 0;
 	}
 	return aiplayer;
+    }
+    
+    /**
+     * @return gibt den eingegebenen Netzwerkport zurueck
+     */
+    private int getPort() {
+	int port;
+	try {
+	    port = Integer.parseInt(fieldPort.getText());
+	} catch (java.lang.NumberFormatException ex) {
+	    port = 0;
+	}
+	return port;
     }
 
     /**

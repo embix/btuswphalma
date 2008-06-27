@@ -528,7 +528,7 @@ public class Manager implements IManager, Runnable {
      * @return ein Message mit einem Board
      */
     private IMessage createBoardMessage(int destination) {
-        return new BoardMessage(SERVER_ID, destination, game.getBoard());
+        return new BoardMessage(SERVER_ID, destination, game.getBoard(), game.getActivePlayer());
     }
 
 }

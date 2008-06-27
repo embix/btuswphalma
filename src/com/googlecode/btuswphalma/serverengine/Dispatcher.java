@@ -3,6 +3,9 @@ package com.googlecode.btuswphalma.serverengine;
 import com.googlecode.btuswphalma.base.*;
 import com.googlecode.btuswphalma.gameengine.IManager;
 import com.googlecode.btuswphalma.gameengine.Manager;
+import com.googlecode.btuswphalma.network.ServerNetCom;
+import com.googlecode.btuswphalma.network.ClientNetCom;
+import java.net.InetAddress;
 
 /**
  * Hauptklasse der Server-Engine
@@ -83,6 +86,31 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 	// Manager müssen immer von Runnable abgeleitet werden
 	managerThread = new Thread((Runnable)manager);
 	managerThread.start();
+    }
+    
+    /**
+     * Instanziert das Netzwerksystem
+     * @param ip
+     * 				IP Adresse des Servers (nur notwendig wenn server)
+     * @param port
+     * 				Port zu dem verbunden bzw. an dem gelaucht werden soll
+     * 
+     * @param numOfPlayers
+     * 				Anzahl der teilnehmenden Spieler (nur notwendig wenn server)
+     * @param server
+     * 				Gibt an, ob das Server- oder Clientnetzwerk
+     * 				instanziert werden soll
+     */
+    public void createNetwork(InetAddress ip, int port, int numOfPlayers, boolean server) {
+	if(server) {
+	    network = new ServerNetCom(port, numOfPlayers);
+	}
+	else {
+	    network = new ClientNetCom(ip, port);
+	}
+	
+	netThread = new NetworkListener(network, this);
+	netThread.start();
     }
     
     private void dispatchToGui(IMessage msg) {

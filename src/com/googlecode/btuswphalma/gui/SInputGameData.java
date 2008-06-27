@@ -56,13 +56,14 @@ public class SInputGameData implements IRunnableGuiState {
     }
     
     void promptClientGameData() {
-	DialogClientGameData dialog = new DialogClientGameData(controller.getPresentation());
+	DialogClientGameData dialog = new DialogClientGameData(controller.getPresentation(),false);
 	
 	if(dialog.ok()) {
-	    ClientGameData mData = dialog.getClientGameData();
-	    controller.getEngine().createManager(1, false, false);	// TODO: Instanzierung der Clientengine noch nicht bestimmt
+	    ClientGameData cData = dialog.getClientGameData();
+	    controller.getEngine().createManager(1, false, false);
+	    controller.getEngine().createNetwork(cData.ip, cData.port, 0, false);
 	    
-	    controller.getMessageHandler().sendMessage(new LoginMessage(mData.playerName,1,-1));
+	    controller.getMessageHandler().sendMessage(new LoginMessage(cData.playerName,1,-1));
 	}
     }
     
@@ -78,13 +79,16 @@ public class SInputGameData implements IRunnableGuiState {
 	    if(mData.gmod == GameMode.HOT_SEAT ) {
 		// Hotseat Modus -> Infos für die anderen Spieler abholen
 		for(int i=1;i<mData.playerCount;i++) {
-			DialogClientGameData mClientDlg = new DialogClientGameData(controller.getPresentation());
+			DialogClientGameData mClientDlg = new DialogClientGameData(controller.getPresentation(),true);
 			
 			if(mClientDlg.ok()) {
 			    ClientGameData mClientData = mClientDlg.getClientGameData();
 			    controller.getMessageHandler().sendMessage(new LoginMessage(mClientData.playerName,i+1,-1));
 			}
 		    }
+	    } else {
+		// playerCount kann so uebergeben werden da ServerNetCom immer Anzahl Clients plus 1 haben will.
+		controller.getEngine().createNetwork(null, mData.port, mData.playerCount, true);
 	    }
 	}
     }

@@ -15,18 +15,29 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * Modaler Dialog zur Eingabe der Spielerdaten der Clients
  * 
  * @author embix
+ * @author ASM
  * 
  */
 public class DialogClientGameData extends JDialog implements ActionListener {
 
     private boolean ok;
     private JTextField fieldPlayerName;
+    private JTextField fieldIpAddress;
+    private JTextField fieldPort;
     private ClientGameData clientGameData;
+    
+    private boolean hotseat;
+    
+    private String defaultPort = "32334";	// TODO: Zentralisieren?
 
     /**
      * Compiler generierte UID fuer diese Klasse. Wird durch Vererbung von
@@ -38,9 +49,13 @@ public class DialogClientGameData extends JDialog implements ActionListener {
      * @param owner
      *                gibt an, zu welchem Container der Dialog verankert werden
      *                soll.
+     * @param hs 
+     *			gibt an, ob dies ein Clientdialog für den Hotseatmodus sein soll
      */
-    public DialogClientGameData(JFrame owner) {
+    public DialogClientGameData(JFrame owner, boolean hs) {
 	super(owner, "Eingabe der Clientspieldaten", true);
+	
+	hotseat = hs;
 
 	Container pane = getContentPane();
 	GridBagLayout gridbag = new GridBagLayout();
@@ -58,6 +73,35 @@ public class DialogClientGameData extends JDialog implements ActionListener {
 	c.gridwidth = GridBagConstraints.REMAINDER;
 	gridbag.setConstraints(fieldPlayerName, c);
 	pane.add(fieldPlayerName);
+	
+	// Bereich fuer die IP-Adresse
+	label = new JLabel("IP Adresse/Hostname");
+	c.gridwidth = 1;
+	gridbag.setConstraints(label, c);
+	pane.add(label);
+	fieldIpAddress = new JTextField(10);
+	c.gridwidth = GridBagConstraints.REMAINDER;
+	gridbag.setConstraints(fieldIpAddress, c);
+	pane.add(fieldIpAddress);
+	
+	if(hotseat) {
+	    fieldIpAddress.setEnabled(false);
+	}
+	
+	// Bereich fuer den Port
+	label = new JLabel("Netzwerk Port");
+	c.gridwidth = 1;
+	gridbag.setConstraints(label, c);
+	pane.add(label);
+	fieldPort = new JTextField(10);
+	c.gridwidth = GridBagConstraints.REMAINDER;
+	gridbag.setConstraints(fieldPort, c);
+	pane.add(fieldPort);
+	
+	fieldPort.setText(defaultPort);
+	if(hotseat) {
+	    fieldPort.setEnabled(false);
+	}
 
 	/* allgemeiner Standard fuer Dialoge */
 	// OK
@@ -103,6 +147,13 @@ public class DialogClientGameData extends JDialog implements ActionListener {
 	    ok = false; // abgebrochen
 	    dispose(); // Dialog beenden
 	}
+	
+	// Copy & Paste vom Masterdialog :/
+	if(getPort() == 0 || (getPort() > 65535)) {
+		fieldPort.setText(defaultPort);
+		fieldPort.requestFocus();
+		return;
+	    }
     }
 
     /**
@@ -113,6 +164,11 @@ public class DialogClientGameData extends JDialog implements ActionListener {
     public ClientGameData getClientGameData() {
 	clientGameData = new ClientGameData();
 	clientGameData.playerName = getPlayerName();
+	
+	if(!hotseat) {
+        	clientGameData.ip = getIpAddress();
+        	clientGameData.port = getPort();
+	}
 	return clientGameData;
     }
 
@@ -128,5 +184,34 @@ public class DialogClientGameData extends JDialog implements ActionListener {
      */
     private String getPlayerName() {
 	return fieldPlayerName.getText();
+    }
+    
+    private InetAddress getIpAddress()
+    {
+	InetAddress a;
+	
+	try {
+	    a = InetAddress.getByName(fieldIpAddress.getText());
+	}
+	catch(UnknownHostException e) {
+	    JOptionPane.showMessageDialog(null,
+		    "Fehler beim Verarbeiten der IP Adresse/des Hostnamens:\n"
+		    + e.getMessage());
+	    a = null;
+	}
+	return a;
+    }
+    
+    /**
+     * @return gibt den eingegebenen Netzwerkport zurueck
+     */
+    private int getPort() {
+	int port;
+	try {
+	    port = Integer.parseInt(fieldPort.getText());
+	} catch (java.lang.NumberFormatException ex) {
+	    port = 0;
+	}
+	return port;
     }
 }
