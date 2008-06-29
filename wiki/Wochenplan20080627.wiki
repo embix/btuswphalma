@@ -28,5 +28,5 @@ Die maximal verfügbare Zeit für diese Woche.
 ||219||GUI Impl. Darstellung||07.07||1||Christian||
 ||331||Integrationstest||01.-03.07||5||Christian||
 ||330||Test Netzwerk integriert||28.06||3||Christoph||
-||331||Integrationstest||28.06||2||Cristoph||
+||331||Integrationstest||28.06||2||Christoph||
 ||413||Projektordner||29.06-03.07||10||Christoph||
