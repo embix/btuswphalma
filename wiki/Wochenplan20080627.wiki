@@ -16,3 +16,17 @@ Die maximal verfügbare Zeit für diese Woche.
 ||AP||Aufgabe||Datum||Zeitansatz||Verantwortlich||
 ||350||Planung TP4||27.06||2||Team||
 ||401||Analyse Computerspieler||30.06||1||Team||
+||404||Wissensaneignung KI||27+28.06||4||Sebastian||
+||330||Test Netzwerk integriert||29.06||3||Sebastian||
+||215||Test Hotseat integriert||30.06||2||Sebastian||
+||402||Entwurf Computerspieler||01.07-03.07||6||Sebastian||
+||404||Wissensaneignung KI||30.06+01.07||2||Michel||
+||215||Test Hotseat integriert||02.07||2||Michel||
+||330||Test Netzwerk integriert||03.07||2||Michel||
+||404||Wissensaneignung KI||27.06||2||Christian||
+||215||Test Hotseat integriert||27.06||2||Christian||
+||219||GUI Impl. Darstellung||07.07||1||Christian||
+||331||Integrationstest||01.-03.07||5||Christian||
+||330||Test Netzwerk integriert||28.06||3||Christoph||
+||331||Integrationstest||28.06||2||Cristoph||
+||413||Projektordner||29.06-03.07||10||Christoph||
