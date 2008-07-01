@@ -1,0 +1,70 @@
+Testprtokoll fuer Spielstart mit Netzwerk
+Tester: Sebastian Becker
+Datum 01.07.2008
+
+
+Repoversion: 419
+Aktion:
+	Zwei GUIs starten, Netzwerkspiel als Server und Client starten.
+erwartetes Ergebenis:
+	Auf beiden GUIs Spielfeld mit Steinen anzeigen, Server am Zug
+Beobachutung (sofern abweichend von Erwartung):
+	Eine Exception wird vom Client geworfen.
+Testpunkt bestanden:
+	Nein.
+
+
+Repoversion: 419+
+Aktion:
+	Zwei GUIs starten, Netzwerkspiel als Server und Client starten.
+erwartetes Ergebenis:
+	Auf beiden GUIs Spielfeld mit Steinen anzeigen, Server am Zug
+Beobachutung (sofern abweichend von Erwartung):
+	Eine Exception wird vom Client geworfen.
+Testpunkt bestanden:
+	Nein.
+
+
+Repoversion: 419++
+Aktion:
+	Zwei GUIs starten, Netzwerkspiel als Server und Client starten.
+erwartetes Ergebenis:
+	Auf beiden GUIs Spielfeld mit Steinen anzeigen, Server am Zug
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	Ja.
+
+
+Repoversion: 419++
+Aktion:
+	Zwei GUIs starten, Netzwerkspiel als Server und Client starten.
+	Ein paar Zuege machen.
+erwartetes Ergebenis:
+	Auf beiden GUIs Spielfeld mit Steinen anzeigen, Spielzuege korrekt anzeigen
+Beobachutung (sofern abweichend von Erwartung):
+	Zuege werden nicht erkannt.
+Testpunkt bestanden:
+	Nein.
+
+
+Repoversion: 422
+Aktion:
+	Zwei GUIs starten, Netzwerkspiel als Server und Client starten.
+	Ein paar Zuege machen.
+erwartetes Ergebenis:
+	Auf beiden GUIs Spielfeld mit Steinen anzeigen, Spielzuege korrekt anzeigen
+Beobachutung (sofern abweichend von Erwartung):
+	Spielfeld beim Client wird nicht aktualisiert
+Testpunkt bestanden:
+	Nein.
+
+
+Repoversion: 422
+Aktion:
+	Zwei GUIs starten, Netzwerkspiel als Server und Client starten.
+	Ein paar Zuege machen.
+erwartetes Ergebenis:
+	Auf beiden GUIs Spielfeld mit Steinen anzeigen, Spielzuege korrekt anzeigen
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	Ja.
