@@ -1,12 +1,14 @@
 package com.googlecode.btuswphalma.gameengine;
 
+import java.io.Serializable;
+
 /**
  * beschreibt eine Position eines Spielsteines auf dem Spielbrett
  * 
  * @author Christoph
  * 
  */
-public class BoardPosition {
+public class BoardPosition implements Serializable {
 
     /** x Koordinate */
     private byte xPos;

@@ -16,6 +16,10 @@ public class GameEndMessage extends AbstractMessage {
     public MessageType getType() {
 	return MessageType.MT_GAMEEND;
     }
+    
+    public GameEndMessage() {
+	// TODO Auto-generated constructor stub
+    }
 
     /**
      * Es wird nur der Konstruktor der Superklasse aufgerufen.

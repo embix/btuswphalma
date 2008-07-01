@@ -16,6 +16,10 @@ public class BoardMessage extends AbstractMessage {
 
     private Board board;
     
+    public BoardMessage() {
+	// TODO Auto-generated constructor stub
+    }
+    
     /**
      * Erzeugt eine neue Nachricht vom Typ BoardMessage
      * 

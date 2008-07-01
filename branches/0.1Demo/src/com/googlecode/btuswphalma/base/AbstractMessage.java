@@ -16,6 +16,9 @@ public abstract class AbstractMessage implements IReaddressableMessage {
 
     // Die ID des Ziel-Clients
     private int destination;
+    public AbstractMessage() {
+	// TODO Auto-generated constructor stub
+    }
 
     /**
      * Erzeugt eine neue Nachricht

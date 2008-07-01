@@ -170,13 +170,15 @@ public class Manager implements IManager, Runnable {
             initiateMove();
             // Methode ist blockierend
             msg = fetchMessage();
+            System.out.println(msg.getType());//TODO ZZZ
             if (msg.getType() == MessageType.MT_MOVE) {
         	// Wenn der Zug fehlerhaft war
         	if (!processMove((MoveMessage) msg)) {
         	    // es wird wieder ein Zug erwartet
+        	    System.out.println("FalscheZug");
         	    dispatcher
         		    .acceptMessage(createMoveErrorMessage("Ihr Zug entsprach nicht den Regeln des Spiels Halma"));
-        	    initiateMove();
+        	    
         	    continue;
         	}
         	// kein else da continue im if Block darueber
@@ -211,6 +213,7 @@ public class Manager implements IManager, Runnable {
      * @return eine von der Warteschlange geholte Message
      */
     private IMessage fetchMessage() {
+	System.out.println("Fetch");//TODO ZZZ
         IMessage msg = null;
         /*
          * Es wird auf die Queue synchronisiert, weil aus ihr etwas entnommen
@@ -232,6 +235,7 @@ public class Manager implements IManager, Runnable {
         	}
             }
         }
+        System.out.println("Fetched");//TODO ZZZ
         return msg;
     }
 
@@ -279,6 +283,7 @@ public class Manager implements IManager, Runnable {
             //result = game.checkAndKeepMove(msg.getMove(), msg.getSource());
             result = game.checkAndKeepMove(msg.getMove(), game.getActivePlayer());//FIXME ZZZ nur zum test
         } catch (GameException e) {
+            e.printStackTrace();
             stopGameOnError();
             return false;
         }
@@ -324,6 +329,7 @@ public class Manager implements IManager, Runnable {
 	} catch (GameException e) {
 	    // e.printStackTrace();
 	    // Das Spiel wird Einfach beendet
+	    e.printStackTrace();
 	    stopGameOnError();
 	    return false;
 	}

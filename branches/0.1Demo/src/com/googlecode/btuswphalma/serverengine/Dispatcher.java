@@ -89,7 +89,9 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
      * @see com.googlecode.btuswphalma.serverengine.IDispatcher#acceptMessage(com.googlecode.btuswphalma.base.IMessage)
      */
     public void acceptMessage(IMessage msg) {
+	System.out.println("Disp: "+msg.getType());
 	msgQueue.add(msg);
+	System.out.println("Diso: "+msgQueue);
     }
 
     /**
@@ -110,7 +112,9 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
      * @see com.googlecode.btuswphalma.base.IGuiCom#recvMessage(com.googlecode.btuswphalma.base.IMessage)
      */
     public void recvMessage(IMessage msg) {
+	System.out.println("GUI schickt");
 	msgQueue.add(msg);
+	System.out.println("GUI hat geschickt");
     }
 
     /**
@@ -141,6 +145,7 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 	    // notwendig und wird da entfernt
 	    if (!dispatcherNetTest || msgDest <= 1) {
 		for (int i = 0; i < listeners.size(); i++) {
+		    System.out.println("DISP: to GUI");
 		    listeners.get(i).recvdMessage(msg);
 		}
 	    }
@@ -166,8 +171,10 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 	    }
 
 	    if (msg != null) {
+		System.out.println("dispatching");
 		dispatchMessage(msg);
 	    }
 	}
+	System.out.println("DISPATCHER TOD");
     }
 }

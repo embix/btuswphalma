@@ -3,9 +3,12 @@ package com.googlecode.btuswphalma.network;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import com.googlecode.btuswphalma.base.IMessage;
 import com.googlecode.btuswphalma.base.INetCom;
+import com.googlecode.btuswphalma.base.IReaddressableMessage;
+import com.googlecode.btuswphalma.base.MessageAddresses;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress; 
 import java.net.Socket;
 
@@ -23,9 +26,10 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
     /** der Socket des Clients */
     private Socket socket;
     /** InputStream des Sockets */
-    private InputStream instream;
+    //HACK
+    private ObjectInputStream instream;
     /** OutputStream des Sockets */
-    private OutputStream outstream;
+    private ObjectOutputStream outstream;
     /** Objekt fuer Streams */
     private Object obj;
     
@@ -37,16 +41,20 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
     public ClientNetCom(InetAddress ip, int port) {
   	this.notifyObject = new Object();
    	this.messageQueue = new ConcurrentLinkedQueue<IMessage>();
+   	//HACK
+   	System.out.println("YYY0");
    	try {
    		this.socket = new Socket(ip, port);
+   	   	System.out.println("YYY1");
+   	   	System.out.println(socket.isConnected());
+   		this.instream = new ObjectInputStream(socket.getInputStream());
+   	   	System.out.println("YYY2");
+   		this.outstream = new ObjectOutputStream(socket.getOutputStream());
+   	   	System.out.println("YYY3");
    	} catch (IOException e) {}
-   	try {
-   		this.instream = socket.getInputStream();
-   	} catch (IOException e) {}
-   	try {
-   		this.outstream = socket.getOutputStream();
-   	} catch (IOException e) {}
-   	new Thread (this).start();
+   	System.out.println("YYY4");
+   	//Hack
+   	start();
    	//TODO Socket aufsetzen, verbinden, run aufrufen
     }
     
@@ -58,14 +66,24 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
    	while (!this.isInterrupted()) {
    		try {
    			//blockierendes Lesen
-   			this.obj = (Object)instream.read();
-   		} catch (IOException e) {}
+   			this.obj = instream.readObject();
+   		} catch (IOException e) {
+   		    
+   		} catch (ClassNotFoundException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
    		NetMessage netmsg = new NetMessage();
    		netmsg = (NetMessage)this.obj;
-   		IMessage msg = netmsg.getMessage();
-   		//TODO msg.setDestination(1);
+   		IReaddressableMessage msg = (IReaddressableMessage) netmsg.getMessage();
+   		//HACK 
+   		msg.setDestination(MessageAddresses.GUI_ADDRESS);
+   		
    		this.messageQueue.add(msg);
-   		this.notifyObject.notify();
+   		synchronized (notifyObject) {
+		    this.notifyObject.notify();
+		}
+   		
    	}
    	try {
    		instream.close();
@@ -83,13 +101,14 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
      * NetMessage als "Huelle"
      * @param msg :IMessage (die zu versendende Nachricht)
      */
-	public void sendMessage(IMessage msg) {
-	NetMessage netmsg = new NetMessage();
-	netmsg.setMessage(msg);
-	this.obj = (Object)netmsg;
+    	public void sendMessage(IMessage msg) {
+	NetMessage netmsg = new NetMessage(msg);
+	//netmsg.setMessage(msg);
 	try {
-		outstream.write((byte[])obj);
-	} catch (IOException e) {}
+		outstream.writeObject(netmsg);
+	} catch (IOException e) {
+	    
+	}
 	}
 	
 	/**
