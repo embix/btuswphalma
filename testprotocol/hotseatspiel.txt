@@ -1,0 +1,75 @@
+Testprotokoll fuer regelkonformes Hotseatspiel
+Tester:
+Datum:
+Reposversion:
+Buildumgebung/Compiler und Betriebssystem:
+Laufzeitumgebung und Betriebssystem:
+
+Aktion:
+	PresentationStarter ausfuehren
+erwartetes Ergebnis:
+	Das Menue und das leere Spielfeld sind zu sehen.
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	
+
+Aktion:
+	Ueber Menuepunkt "Neu" ein Hotseatspiel mit 2 Teilnehmern
+	starten.
+erwartetes Ergebnis:
+ 	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
+ 	fuer die Zugbestaetigung ist freigeschaltet.
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	
+
+Aktion:
+ 	Beginnend mit dem roten Spieler abwechselnd gueltige Zuege
+ 	eingeben, bis einer der Spieler bei Eingabe des naechsten
+ 	Zuges im Zielhaus angekommen ist.
+erwartetes Ergebnis:
+	Sofern gueltige Zuege eingegeben werden (nicht verklickt ;-)
+	ist nach Zugbestaetigung die neue Aufstellung sichtbar.
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	
+
+Aktion:
+	Der letzte Spielstein des fast fertigen Spielers wird in
+	das Zielhaus gezogen.
+erwartetes Ergebnis:
+	Es wird die Tabelle mit den Spielergebnissen angezeigt.
+	Dabei erscheinen die Spieler in der Reihenfolge, mit der sie
+	im jeweiligen Zielhaus angekommen sind und die benoetigten
+	Zuege werden angezeigt.
+Beobachutung (sofern abweichend von Erwartung):
+	
+Testpunkt bestanden:
+	
+	
+Aktion:
+ 	Bei dem Ergebnisdialog auf OK druecken.
+erwartetes Ergebnis:
+ 	Es werden die Daten fuer eine weiter Session abgefragt.
+Beobachutung (sofern abweichend von Erwartung):
+	
+Testpunkt bestanden:
+	
+
+Aktion:
+ 	Das Spiel ueber das Menue beenden.
+erwartetes Ergebnis:
+	Die Anwendung wird ordnungsgemaess beendet.
+Beobachutung (sofern abweichend von Erwartung):
+	
+Testpunkt bestanden:
+
+	
+Test bestanden:
+	
+Was muss noch getan werden:
+	1)	
+	2)	
+Was sollte noch getan werden:
+	1)	
+	2)	
