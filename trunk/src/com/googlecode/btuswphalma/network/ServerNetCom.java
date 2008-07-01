@@ -64,6 +64,7 @@ public class ServerNetCom extends Thread implements INetCom {
 	messageQueue = new ConcurrentLinkedQueue<IMessage>();
 	notifyObject = new Object();
 	// TODO muss hier der Thread gestartet werden, oder wird er gestartet
+	this.start();
     }
 
     /**

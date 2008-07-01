@@ -7,6 +7,7 @@ import com.googlecode.btuswphalma.base.BoardMessage;
 import com.googlecode.btuswphalma.base.IGuiCom;
 import com.googlecode.btuswphalma.base.IGuiListener;
 import com.googlecode.btuswphalma.base.IMessage;
+import com.googlecode.btuswphalma.base.MessageAddresses;
 import com.googlecode.btuswphalma.base.MessageType;
 import com.googlecode.btuswphalma.base.MoveErrorMessage;
 import com.googlecode.btuswphalma.base.MoveMessage;
@@ -39,7 +40,7 @@ public class MessageHandler
      * Die Empfaenger ID des Messagehandlers wird erst festgelegt
      * 
      */
-    private int source;
+    private int source = MessageAddresses.GUI_ADDRESS;
     
     private IGuiCom engine;
     private GuiController controller;
