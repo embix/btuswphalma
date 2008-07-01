@@ -15,11 +15,11 @@ Testpunkt bestanden:
 
 Aktion:
 	Ueber Menuepunkt "Neu" ein Hotseatspiel mit 2 Teilnehmern
-	starten.
+	starten. (Als Spielleiter)
 erwartetes Ergebnis:
  	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
  	fuer die Zugbestaetigung ist freigeschaltet.
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 Testpunkt bestanden:
 	
 
@@ -30,7 +30,7 @@ Aktion:
 erwartetes Ergebnis:
 	Sofern gueltige Zuege eingegeben werden (nicht verklickt ;-)
 	ist nach Zugbestaetigung die neue Aufstellung sichtbar.
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 Testpunkt bestanden:
 	
 
@@ -42,7 +42,7 @@ erwartetes Ergebnis:
 	Dabei erscheinen die Spieler in der Reihenfolge, mit der sie
 	im jeweiligen Zielhaus angekommen sind und die benoetigten
 	Zuege werden angezeigt.
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 	
 Testpunkt bestanden:
 	
@@ -51,7 +51,7 @@ Aktion:
  	Bei dem Ergebnisdialog auf OK druecken.
 erwartetes Ergebnis:
  	Es werden die Daten fuer eine weiter Session abgefragt.
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 	
 Testpunkt bestanden:
 	
@@ -60,7 +60,7 @@ Aktion:
  	Das Spiel ueber das Menue beenden.
 erwartetes Ergebnis:
 	Die Anwendung wird ordnungsgemaess beendet.
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 	
 Testpunkt bestanden:
 

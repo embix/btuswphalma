@@ -1,0 +1,146 @@
+Testprotokoll fuer regelkonformes Hotseatspiel
+Tester: embix
+Datum: 01.07.2008
+Reposversion: 424
+Buildumgebung/Compiler und Betriebssystem: Sun 1.5 SDK, Linux
+Laufzeitumgebung und Betriebssystem: Sun 1.5.0.15 JRE, Linux
+
+Aktion:
+	PresentationStarter ausfuehren
+erwartetes Ergebnis:
+	Das Menue und das leere Spielfeld sind zu sehen.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	Ja
+
+Aktion:
+	Ueber Menuepunkt "Neu" ein Hotseatspiel mit 2 Teilnehmern
+	starten. (Als Spielleiter)
+erwartetes Ergebnis:
+ 	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
+ 	fuer die Zugbestaetigung ist freigeschaltet.
+Beobachtung (sofern abweichend von Erwartung):
+	
+Testpunkt bestanden:
+	Ja
+
+Aktion:
+ 	Beginnend mit dem roten Spieler abwechselnd gueltige Zuege
+ 	eingeben, bis einer der Spieler bei Eingabe des naechsten
+ 	Zuges im Zielhaus angekommen ist.
+erwartetes Ergebnis:
+	Sofern gueltige Zuege eingegeben werden (nicht verklickt ;-)
+	ist nach Zugbestaetigung die neue Aufstellung sichtbar.
+Beobachtung (sofern abweichend von Erwartung):
+	Der rote Spieler macht einen regelkonformen Sprung, danach
+	wird die neue Aufstellung angezeigt. Nach Eingabe eines
+	regelkonformen Zuges fuer den gruenen Spieler wird dieser
+	mit der Meldung "Ihr Zug entsprach nicht den Regeln des
+	Spiels Halma" zurueck gewiesen.
+	Weitere Versuche mit gruen und anderen Spielern scheiterten
+	mit selbiger Fehlermeldung.
+Testpunkt bestanden:
+	nein
+
+Aktion:
+	Der letzte Spielstein des fast fertigen Spielers wird in
+	das Zielhaus gezogen.
+erwartetes Ergebnis:
+	Es wird die Tabelle mit den Spielergebnissen angezeigt.
+	Dabei erscheinen die Spieler in der Reihenfolge, mit der sie
+	im jeweiligen Zielhaus angekommen sind und die benoetigten
+	Zuege werden angezeigt.
+Beobachtung (sofern abweichend von Erwartung):
+	
+Testpunkt bestanden:
+	
+	
+Aktion:
+ 	Bei dem Ergebnisdialog auf OK druecken.
+erwartetes Ergebnis:
+ 	Es werden die Daten fuer eine weiter Session abgefragt.
+Beobachtung (sofern abweichend von Erwartung):
+	
+Testpunkt bestanden:
+	
+
+Aktion:
+ 	Das Spiel ueber das Menue beenden.
+erwartetes Ergebnis:
+	Die Anwendung wird ordnungsgemaess beendet.
+Beobachtung (sofern abweichend von Erwartung):
+	
+Testpunkt bestanden:
+
+	
+Test bestanden:
+	nein
+Was muss noch getan werden:
+	1)	Finden und beseitigen des gefundenen Fehlers
+	2)	Situation auf anderen Platforms/Umgebungen testen
+Was sollte noch getan werden:
+	1)	
+	2)	
+	
+
+Testprotokoll fuer regelkonformes Hotseatspiel
+Tester: embix
+Datum: 01.07.2008
+Reposversion: 424
+Buildumgebung/Compiler und Betriebssystem: Sun 1.6 SDK, Linux
+Laufzeitumgebung und Betriebssystem: Sun 1.6.0.06 JRE, Linux
+
+Bemerkung: Ablauf genau wie beim ersten Testdurchlauf
+
+Test bestanden:
+	nein
+Was muss noch getan werden:
+	1)	Finden und beseitigen des gefundenen Fehlers
+
+
+Testprotokoll fuer regelkonformes Hotseatspiel
+Tester: embix
+Datum: 01.07.2008
+Reposversion: 424
+Buildumgebung/Compiler und Betriebssystem: openjdk 6, Linux
+Laufzeitumgebung und Betriebssystem: openjdk 6, Linux
+
+Bemerkung: Ablauf genau wie beim ersten Testdurchlauf
+
+Test bestanden:
+	nein
+Was muss noch getan werden:
+	1)	Finden und beseitigen des gefundenen Fehlers
+	2)	ggf. Issue, sofern Fehler nicht auf Anhieb
+		zu finden.
+
+
+Testprotokoll fuer regelkonformes Hotseatspiel
+Tester: embix
+Datum: 01.07.2008
+Reposversion: 424
+Buildumgebung/Compiler und Betriebssystem: GJC, Linux
+Laufzeitumgebung und Betriebssystem: GCJ, Linux
+
+Aktion:
+	PresentationStarter ausfuehren
+erwartetes Ergebnis:
+	Das Menue und das leere Spielfeld sind zu sehen.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	Ja
+
+Aktion:
+	Ueber Menuepunkt "Neu" ein Hotseatspiel mit 2 Teilnehmern
+	starten. (Als Spielleiter)
+erwartetes Ergebnis:
+ 	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
+ 	fuer die Zugbestaetigung ist freigeschaltet.
+Beobachtung (sofern abweichend von Erwartung):
+	Menue reagiert nicht auf Klicks, Tastenkombinationen werden
+	auch nicht angenommen.
+Testpunkt bestanden:
+	Nein
+Was muss noch getan werden:
+	1)	Nicht unterstuetzte Umgebung -> im Handbuch aufnehmen als inkompatibel
+	

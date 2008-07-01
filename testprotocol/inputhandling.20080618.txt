@@ -9,7 +9,7 @@ erwartetes Ergebnis:
 	Das leere Spielfeld ist zu sehen, ebenso zwei
 	Schaltflaechen fuer die Zugeingabe und die
 	Zugbestaetigung. 
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 Testpunkt bestanden:
 	Ja
 
@@ -18,7 +18,7 @@ Aktion:
  	Spielfelder klicken
 erwartetes Ergebnis:
  	Es sollte sich nichts veraendern.
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 Testpunkt bestanden:
 	Ja
 
@@ -31,7 +31,7 @@ erwartetes Ergebnis:
  	von SShowMove nach SMakeMove geaendert hat.
  	Bei Eingabe des Zuges soll dieser auf dem Spielfeld
  	dargestellt und die Koordinaten ausgegeben werden.
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 Testpunkt bestanden:
 	Ja
 
@@ -44,7 +44,7 @@ erwartetes Ergebnis:
  	Weiterhin sollte der Zug geloescht/ nicht mehr dargestellt
  	werden. Nach einem Klick auf das Spielbrett passiert
  	nichts.
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 	Der  Zug wird nicht geloescht.
 Testpunkt bestanden:
 	Nein
@@ -58,7 +58,7 @@ erwartetes Ergebnis:
  	von SShowMove nach SMakeMove geaendert hat.
  	Bei Eingabe des Zuges soll dieser auf dem Spielfeld
  	dargestellt und die Koordinaten ausgegeben werden.
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 	Der vorherige Zug wird durch Eingabe des neuen
 	geloescht.
 Testpunkt bestanden:
@@ -73,7 +73,7 @@ erwartetes Ergebnis:
  	Weiterhin sollte der Zug geloescht/ nicht mehr dargestellt
  	werden. Nach einem Klick auf das Spielbrett passiert
  	nichts.
-Beobachutung (sofern abweichend von Erwartung):
+Beobachtung (sofern abweichend von Erwartung):
 	Der Zug wird wieder nicht geloescht.
 Testpunkt bestanden:
 	Nein
