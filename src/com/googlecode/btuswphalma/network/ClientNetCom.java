@@ -53,19 +53,15 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
 	this.messageQueue = new ConcurrentLinkedQueue<IMessage>();
 	try {
 	    this.socket = new Socket(ip, port);
-	} catch (IOException e) {
-	}
-	try {
 	    InputStream is = socket.getInputStream();
 	    this.instream = new ObjectInputStream(is);
-	} catch (IOException e) {
-	}
-	try {
 	    OutputStream os = socket.getOutputStream();
 	    this.outstream = new ObjectOutputStream(os);
 	} catch (IOException e) {
+	    e.printStackTrace();
+	    System.err.println(ip.getHostAddress() + ":" + port);
 	}
-	new Thread(this).start();
+	this.start();
 	// TODO Socket aufsetzen, verbinden, run aufrufen
     }
 
@@ -88,7 +84,9 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
 		    .getMessage();
 	    msg.setDestination(MessageAddresses.GUI_ADDRESS);
 	    this.messageQueue.add(msg);
-	    this.notifyObject.notify();
+	    synchronized (notifyObject) {
+		this.notifyObject.notify();
+	    }
 	}
 	try {
 	    instream.close();
