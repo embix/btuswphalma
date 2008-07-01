@@ -23,7 +23,7 @@
  * 	Schaltflaechen fuer die Zugeingabe und die
  * 	Zugbestaetigung. 
  * <br>
- * Beobachutung (sofern abweichend von Erwartung):
+ * Beobachtung (sofern abweichend von Erwartung):
  * Testpunkt bestanden:
  * </p>
  * 
@@ -36,7 +36,7 @@
  * erwartetes Ergebnis:
  * 	Es sollte sich nichts veraendern.
  * <br>
- * Beobachutung (sofern abweichend von Erwartung):
+ * Beobachtung (sofern abweichend von Erwartung):
  * Testpunkt bestanden:
  * </p>
  * 
@@ -53,7 +53,7 @@
  * 	Bei Eingabe des Zuges soll dieser auf dem Spielfeld
  * 	dargestellt und die Koordinaten ausgegeben werden.
  * <br>
- * Beobachutung (sofern abweichend von Erwartung):
+ * Beobachtung (sofern abweichend von Erwartung):
  * Testpunkt bestanden:
  * </p>
  * 
@@ -70,7 +70,7 @@
  * 	werden. Nach einem Klick auf das Spielbrett passiert
  * 	nichts.
  * <br>
- * Beobachutung (sofern abweichend von Erwartung):
+ * Beobachtung (sofern abweichend von Erwartung):
  * Testpunkt bestanden:
  * </p>
  * 
@@ -87,7 +87,7 @@
  * 	Bei Eingabe des Zuges soll dieser auf dem Spielfeld
  * 	dargestellt und die Koordinaten ausgegeben werden.
  * <br>
- * Beobachutung (sofern abweichend von Erwartung):
+ * Beobachtung (sofern abweichend von Erwartung):
  * Testpunkt bestanden:
  * </p>
  * 
@@ -104,7 +104,7 @@
  * 	werden. Nach einem Klick auf das Spielbrett passiert
  * 	nichts.
  * <br>
- * Beobachutung (sofern abweichend von Erwartung):
+ * Beobachtung (sofern abweichend von Erwartung):
  * Testpunkt bestanden:
  * </p>
  * 
