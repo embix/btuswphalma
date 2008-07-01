@@ -21,6 +21,10 @@ public class NetMessage implements Serializable {
 	 */
 	public NetMessage() {}
 	
+	public NetMessage(IMessage msg) {
+	this.msg = msg;
+	}
+	
 	/**
 	 * fuegt die zu verpackende IMessage ein
 	 * @param msg IMessage

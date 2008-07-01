@@ -4,7 +4,6 @@
 package com.googlecode.btuswphalma.network;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -12,9 +11,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.googlecode.btuswphalma.base.IMessage;
 import com.googlecode.btuswphalma.base.INetCom;
-import com.googlecode.btuswphalma.base.IReaddressableMessage;
 import com.googlecode.btuswphalma.base.MessageAddresses;
-import com.googlecode.btuswphalma.base.MessageType;
 
 /**
  * @author sebastian
@@ -53,9 +50,11 @@ public class ServerNetCom extends Thread implements INetCom {
     private ServerSocket serverSocket;
 
     /**
-     * 
-     * @param port
-     * @param playerNum
+     * Eine Server fuer eine bestimmte Anzahl an Verbindungen wird erstellt.
+     * Die Anzahl der Verbindungen ist um eins geringer als die uebergebene
+     * Anzahl von Spielern
+     * @param port die Portnummer
+     * @param playerNum die Anzahl der Halmaspieler. Einer mehr als Verbindungen
      */
     public ServerNetCom(int port, int playerNum) {
 	// TODO Fehler bei falschen Werten
@@ -65,6 +64,7 @@ public class ServerNetCom extends Thread implements INetCom {
 	messageQueue = new ConcurrentLinkedQueue<IMessage>();
 	notifyObject = new Object();
 	// TODO muss hier der Thread gestartet werden, oder wird er gestartet
+	start();
     }
 
     /**
@@ -92,6 +92,7 @@ public class ServerNetCom extends Thread implements INetCom {
      * @see com.googlecode.btuswphalma.base.INetCom#hasMessage()
      */
     public boolean hasMessage() {
+	System.out.println(messageQueue.size());
 	return !messageQueue.isEmpty();
     }
 
@@ -194,40 +195,25 @@ public class ServerNetCom extends Thread implements INetCom {
      */
     private void handleNewSocket(Socket newSocket, int playerId) {
 
-	fetchAndSendLogin(newSocket, playerId);
 	Connection connection = new Connection(newSocket, playerId,
 		messageQueue, notifyObject);
-	connectionMap.put(playerId, connection);
-    }
-
-    /**
-     * Ein von einem neuen Socket muss zunaechst eine LoginMessage abgeholt und
-     * geschickt werden
-     * 
-     * @param newSocket
-     * @param currentPlayerNum
-     */
-    private void fetchAndSendLogin(Socket newSocket, int currentPlayerNum) {
 	try {
-	    NetMessage ntMsg = (NetMessage) new ObjectInputStream(newSocket
-		    .getInputStream()).readObject();
-	    IReaddressableMessage msg = (IReaddressableMessage) ntMsg
-		    .getMessage();
-	    if (msg.getType() == MessageType.MT_LOGIN) {
-		msg.setDestination(MessageAddresses.MANAGER_ADDRESS);
-		msg.setSource(currentPlayerNum);
-		messageQueue.add(msg);
-		notifyObject.notify();
-	    } else {
-		// TODO Falsche Nachricht, was dann
-	    }
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (ClassNotFoundException e) {
+	    connection.receiveLoginMessage();
+	} catch (NetworkException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
+	connection.start();
+	connectionMap.put(playerId, connection);
     }
+
+    //HACK
+    public void killNetwork() {
+	this.interrupt();
+	for (Connection con : connectionMap.values()) {
+	    con.interrupt();
+	}
+    }
+    
 
 }

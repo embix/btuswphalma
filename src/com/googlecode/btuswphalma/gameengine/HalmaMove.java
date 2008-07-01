@@ -1,5 +1,6 @@
 package com.googlecode.btuswphalma.gameengine;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @author Christoph
  * 
  */
-public class HalmaMove {
+public class HalmaMove implements Serializable {
 
     /** ArrayList(BoardPositions) */
     private ArrayList<BoardPosition> positions = new ArrayList<BoardPosition>(5);

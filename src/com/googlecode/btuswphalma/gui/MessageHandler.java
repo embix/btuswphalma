@@ -85,6 +85,7 @@ public class MessageHandler
      */
     public void recvdMessage(IMessage msg) {
 	MessageType type = msg.getType();
+	System.out.println("GUI recvd: "+type);
 	// unschoen (feste Kopplung), geht sicher besser
 	switch(type){
 	case MT_MOVE:

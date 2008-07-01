@@ -15,6 +15,10 @@ public class MoveErrorMessage
     
     private String errorString;
     
+    public MoveErrorMessage() {
+	// TODO Auto-generated constructor stub
+    }
+    
     /**
      * Erzeugt eine neue Nachricht vom Typ MoveErrorMessage
      * 

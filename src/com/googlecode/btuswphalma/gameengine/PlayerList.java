@@ -1,5 +1,6 @@
 package com.googlecode.btuswphalma.gameengine;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Christoph
  * 
  */
-public class PlayerList {
+public class PlayerList implements Serializable {
 
     /**
      * ArrayList(Player), initial leer

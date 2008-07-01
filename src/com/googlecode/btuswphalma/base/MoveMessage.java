@@ -16,6 +16,10 @@ public class MoveMessage extends AbstractMessage {
 
     private HalmaMove move;
     
+    public MoveMessage() {
+	// TODO Auto-generated constructor stub
+    }
+    
     /**
      * * Erzeugt eine neue Nachricht vom Typ MoveMessage
      * 
