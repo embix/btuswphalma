@@ -59,7 +59,7 @@ Testpunkt bestanden:
 	Nein.
 
 
-Repoversion: 422
+Repoversion: 423
 Aktion:
 	Zwei GUIs starten, Netzwerkspiel als Server und Client starten.
 	Ein paar Zuege machen.
