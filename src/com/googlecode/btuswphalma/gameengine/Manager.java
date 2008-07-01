@@ -13,11 +13,13 @@ import com.googlecode.btuswphalma.base.BoardMessage;
 import com.googlecode.btuswphalma.base.GameEndMessage;
 import com.googlecode.btuswphalma.base.IMessage;
 import com.googlecode.btuswphalma.base.LoginMessage;
+import com.googlecode.btuswphalma.base.MessageAddresses;
 import com.googlecode.btuswphalma.base.MessageType;
 import com.googlecode.btuswphalma.base.MoveErrorMessage;
 import com.googlecode.btuswphalma.base.MoveMessage;
 import com.googlecode.btuswphalma.base.PlayerActivateMessage;
 import com.googlecode.btuswphalma.base.PlayerFinishedMessage;
+import com.googlecode.btuswphalma.base.PlayerListMessage;
 import com.googlecode.btuswphalma.base.ScoreMessage;
 import com.googlecode.btuswphalma.serverengine.IDispatcher;
 
@@ -30,12 +32,13 @@ public class Manager implements IManager, Runnable {
     /**
      * Die Adresse des Servers. Diese ist immer 1
      */
+    // TODO welche adresse aus MessageAddresses
     private static final int SERVER_ID = 1;
     /**
      * Diese Adresse signalisiert, dass eine Message an alle gehen soll
      */
     // TODO woanders speichern
-    private static final int BROADCAST_ID = 0;
+    private static final int BROADCAST_ID = MessageAddresses.BROADCAST_ADDRESS;
     /**
      * Spiel mit Regelpruefung, ohne Veto
      */
@@ -48,7 +51,7 @@ public class Manager implements IManager, Runnable {
     /**
      * Die Anzahl der Millisekunden, die der Spielzug angezeigt werden soll
      */
-    public static final long DISPLAY_TIME = 100;//FIXME fuer den Test
+    public static final long DISPLAY_TIME = 100;// FIXME fuer den Test
     /**
      * Die Queue, in die von aussen Nachrichten geschrieben werden. Diese
      * Nachrichten werden dann von dem laufenden thread verarbeitet
@@ -122,40 +125,41 @@ public class Manager implements IManager, Runnable {
     }
 
     /**
-     * Die Nachrichten zum Hinzufuegen der Spieler wird abgeholt und verarbeitet.
+     * Die Nachrichten zum Hinzufuegen der Spieler wird abgeholt und
+     * verarbeitet.
      */
     private void runAddPlayers() {
-        /*
-         * Solange das Spiel noch neue Spieler erwartet, werden neu Spieler
-         * hinzugefuegt.
-         */
-        boolean adding = true;
-        IMessage msg = null;
-        while (adding && !gameHalted) {
-            // diese Methode ist blockierend
-            msg = fetchMessage();
-            if (msg.getType() == MessageType.MT_LOGIN) {
-        	// wenn der letzte Spieler hinzugefuegt wurde, endet die
-        	// Schleife
-        	adding = addPlayer((LoginMessage) msg);
-            } else {
-        	// Ein falscher Nachrichtentyp fuehrt zum Abbruch
-        	stopGameOnError();
-            }
-        }
+	/*
+	 * Solange das Spiel noch neue Spieler erwartet, werden neu Spieler
+	 * hinzugefuegt.
+	 */
+	boolean adding = true;
+	IMessage msg = null;
+	while (adding && !gameHalted) {
+	    // diese Methode ist blockierend
+	    msg = fetchMessage();
+	    if (msg.getType() == MessageType.MT_LOGIN) {
+		// wenn der letzte Spieler hinzugefuegt wurde, endet die
+		// Schleife
+		adding = addPlayer((LoginMessage) msg);
+	    } else {
+		// Ein falscher Nachrichtentyp fuehrt zum Abbruch
+		stopGameOnError();
+	    }
+	}
     }
 
     /**
      * Das Spiel wird gespielt. Hier aber nur Entscheidung ueber Spieltyp.
      */
     private void runGame() {
-        if (gameVariant == WITHOUT_VETO) {
-            runWithoutVeto();
-        } else if (gameVariant == WITH_VETO) {
-            // TODO runWithVeto();
-        }
-        // Wenn keine der beiden Moeglichkeiten zutrifft (was nicht passieren
-        // sollte) wird das Spiel in runEnd beendet
+	if (gameVariant == WITHOUT_VETO) {
+	    runWithoutVeto();
+	} else if (gameVariant == WITH_VETO) {
+	    // TODO runWithVeto();
+	}
+	// Wenn keine der beiden Moeglichkeiten zutrifft (was nicht passieren
+	// sollte) wird das Spiel in runEnd beendet
     }
 
     /**
@@ -163,45 +167,45 @@ public class Manager implements IManager, Runnable {
      * wird eine Nachricht abgeholt und dann verarbeitet.
      */
     private void runWithoutVeto() {
-        boolean playing = true;
-        IMessage msg;
-        while (playing && !gameHalted) {
-            // Der Spieler wird aufgefordert zu ziehen
-            initiateMove();
-            // Methode ist blockierend
-            msg = fetchMessage();
-            if (msg.getType() == MessageType.MT_MOVE) {
-        	// Wenn der Zug fehlerhaft war
-        	if (!processMove((MoveMessage) msg)) {
-        	    // es wird wieder ein Zug erwartet
-        	    dispatcher
-        		    .acceptMessage(createMoveErrorMessage("Ihr Zug entsprach nicht den Regeln des Spiels Halma"));
-        	    initiateMove();
-        	    continue;
-        	}
-        	// kein else da continue im if Block darueber
-        	// Zug anzeigen
-        	showMove();
-        	// Warten damit die Clients sich den Zug anschauen koennen
-        	waitForTimeout();
-        	// Der Zug wird ausgefuehrt, also Spielbrett und Spieler
-        	// umsetzten. die notwendigen Nachrichten werden versendet.
-        	// Falls das Spiel fertig ist, wird false zurueckgegeben.
-        	playing = performMove();
-            } else if (msg.getType() == MessageType.MT_SAVE) {
-        	// TODO Hier Speichern
-            } else {
-        	stopGameOnError();
-            }
-        }
-    
+	boolean playing = true;
+	IMessage msg;
+	while (playing && !gameHalted) {
+	    // Der Spieler wird aufgefordert zu ziehen
+	    initiateMove();
+	    // Methode ist blockierend
+	    msg = fetchMessage();
+	    if (msg.getType() == MessageType.MT_MOVE) {
+		// Wenn der Zug fehlerhaft war
+		if (!processMove((MoveMessage) msg)) {
+		    // es wird wieder ein Zug erwartet
+		    dispatcher
+			    .acceptMessage(createMoveErrorMessage("Ihr Zug entsprach nicht den Regeln des Spiels Halma"));
+		    initiateMove();
+		    continue;
+		}
+		// kein else da continue im if Block darueber
+		// Zug anzeigen
+		showMove();
+		// Warten damit die Clients sich den Zug anschauen koennen
+		waitForTimeout();
+		// Der Zug wird ausgefuehrt, also Spielbrett und Spieler
+		// umsetzten. die notwendigen Nachrichten werden versendet.
+		// Falls das Spiel fertig ist, wird false zurueckgegeben.
+		playing = performMove();
+	    } else if (msg.getType() == MessageType.MT_SAVE) {
+		// TODO Hier Speichern
+	    } else {
+		stopGameOnError();
+	    }
+	}
+
     }
 
     /**
      * Die Endphase des Servers und der Clients wird eingeleitet.
      */
     private void runEnd() {
-        sendGameEndMessages();
+	sendGameEndMessages();
     }
 
     /**
@@ -211,28 +215,28 @@ public class Manager implements IManager, Runnable {
      * @return eine von der Warteschlange geholte Message
      */
     private IMessage fetchMessage() {
-        IMessage msg = null;
-        /*
-         * Es wird auf die Queue synchronisiert, weil aus ihr etwas entnommen
-         * werden soll.
-         */
-        synchronized (msgQueue) {
-            /*
-             * Es wird zunaechst versucht eine Nachricht von der Queue zu
-             * holen. Falls diese leer ist, wird null zurueckgegeben und man
-             * "schlaeft" auf die Queue. In dieser Warteschlange kann null keine
-             * gewuenschte Nachricht gewesen sein (null einfuegen nicht erlaubt)
-             */
-            while ((msg = msgQueue.poll()) == null) {
-        	try {
-        	    msgQueue.wait();
-        	} catch (InterruptedException e) {
-        	    // TODO Auto-generated catch block
-        	    e.printStackTrace();
-        	}
-            }
-        }
-        return msg;
+	IMessage msg = null;
+	/*
+	 * Es wird auf die Queue synchronisiert, weil aus ihr etwas entnommen
+	 * werden soll.
+	 */
+	synchronized (msgQueue) {
+	    /*
+	     * Es wird zunaechst versucht eine Nachricht von der Queue zu holen.
+	     * Falls diese leer ist, wird null zurueckgegeben und man "schlaeft"
+	     * auf die Queue. In dieser Warteschlange kann null keine
+	     * gewuenschte Nachricht gewesen sein (null einfuegen nicht erlaubt)
+	     */
+	    while ((msg = msgQueue.poll()) == null) {
+		try {
+		    msgQueue.wait();
+		} catch (InterruptedException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+	    }
+	}
+	return msg;
     }
 
     /**
@@ -243,28 +247,29 @@ public class Manager implements IManager, Runnable {
      * @return sind noch weitere Spieler hinzufuegen
      */
     private boolean addPlayer(final LoginMessage msg) {
-        boolean result = false;
-        try {
-            result = game.addPlayer(msg.getSource(), msg.getName());
-        } catch (GameException e) {
-            e.printStackTrace();
-            stopGameOnError();
-        }
-        return result;
+	boolean result = false;
+	try {
+	    result = game.addPlayer(msg.getSource(), msg.getName());
+	} catch (GameException e) {
+	    e.printStackTrace();
+	    stopGameOnError();
+	}
+	return result;
     }
 
     /**
-     * Ein Zug wird initiiert. Dazu wird an alle das aktuelle Spielbrett
-     * geschickt und der Spieler der jetzt an der Reihe ist, bekommt eine
-     * Aktivierungsnachricht
+     * Ein Zug wird initiiert. Dazu wird an alle das aktuelle Spielbrett und die
+     * aktuelle Spielerliste geschickt und der Spieler der jetzt an der Reihe
+     * ist, bekommt eine Aktivierungsnachricht
      */
     private void initiateMove() {
-        IMessage boardMsg;
-        IMessage plyrActvtMsg;
-        boardMsg = createBoardMessage(BROADCAST_ID);
-        plyrActvtMsg = createPlayerActivateMessage(game.getActivePlayer());
-        dispatcher.acceptMessage(boardMsg);
-        dispatcher.acceptMessage(plyrActvtMsg);
+	IMessage boardMsg = createBoardMessage(BROADCAST_ID);
+	int activePlayer = game.getActivePlayer();
+	IMessage plyrActvtMsg = createPlayerActivateMessage(activePlayer);
+	IMessage plyrLstMsg = createPlayerListMessage(BROADCAST_ID);
+	dispatcher.acceptMessage(boardMsg);
+	dispatcher.acceptMessage(plyrLstMsg);
+	dispatcher.acceptMessage(plyrActvtMsg);
     }
 
     /**
@@ -272,15 +277,21 @@ public class Manager implements IManager, Runnable {
      * @return ist der Zug gelungen
      */
     private boolean processMove(final MoveMessage msg) {
-        boolean result = false;
-        try {
-            result = game.checkAndKeepMove(msg.getMove(), msg.getSource());
-        } catch (GameException e) {
-            stopGameOnError();
-            return false;
-        }
-        return result;
-    
+	boolean result = false;
+	try {
+	    // System.err.println("ZZZ Move"+msg.getMove().toString());//TODO
+	    // ZZZ Debugging Ausgabe
+	    // System.err.println("ZZZ Von"+msg.getSource());
+	    result = game.checkAndKeepMove(msg.getMove(), msg.getSource());
+//	    result = game.checkAndKeepMove(msg.getMove(), game
+//		    .getActivePlayer());// FIXME ZZZ nur zum test
+	} catch (GameException e) {
+	    e.printStackTrace();
+	    stopGameOnError();
+	    return false;
+	}
+	return result;
+
     }
 
     /**
@@ -288,12 +299,12 @@ public class Manager implements IManager, Runnable {
      * den Spielern Zeit zu lassen, sich den Spielzug anzuschaun.
      */
     private void waitForTimeout() {
-        try {
-            Thread.sleep(DISPLAY_TIME);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+	try {
+	    Thread.sleep(DISPLAY_TIME);
+	} catch (InterruptedException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
 
     /**
@@ -321,6 +332,7 @@ public class Manager implements IManager, Runnable {
 	} catch (GameException e) {
 	    // e.printStackTrace();
 	    // Das Spiel wird Einfach beendet
+	    e.printStackTrace();
 	    stopGameOnError();
 	    return false;
 	}
@@ -333,26 +345,26 @@ public class Manager implements IManager, Runnable {
      * erstellt und verschickt
      */
     private void showMove() {
-        IMessage boardMsg;
-        IMessage moveMsg;
-        boardMsg = createBoardMessage(BROADCAST_ID);
-        moveMsg = createMoveMessage(BROADCAST_ID);
-        dispatcher.acceptMessage(boardMsg);
-        dispatcher.acceptMessage(moveMsg);
-    
+	IMessage boardMsg;
+	IMessage moveMsg;
+	boardMsg = createBoardMessage(BROADCAST_ID);
+	moveMsg = createMoveMessage(BROADCAST_ID);
+	dispatcher.acceptMessage(boardMsg);
+	dispatcher.acceptMessage(moveMsg);
+
     }
 
     /**
      * Durchfuehren eines Spielerwechsels. Kein Spieler wurde fertig.
      */
     private void performNormalPlayerChange() {
-        try {
-            game.executePlayerChange();
-        } catch (GameException e) {
-            e.printStackTrace();
-            stopGameOnError();
-            return;
-        }
+	try {
+	    game.executePlayerChange();
+	} catch (GameException e) {
+	    e.printStackTrace();
+	    stopGameOnError();
+	    return;
+	}
     }
 
     /**
@@ -360,14 +372,14 @@ public class Manager implements IManager, Runnable {
      * benachrichtigt, sonst normaler Wechsel
      */
     private void performFinishingPlayerChange() {
-        IMessage plyrFnshdMsg;
-        // Der noch aktive Spieler ist fertig geworden, also erhaelt er eine
-        // entsprechende Nachricht
-        plyrFnshdMsg = createPlayerFinishedMessage(game.getActivePlayer());
-        dispatcher.acceptMessage(plyrFnshdMsg);
-        // nachdem der Spieler benachrichtigt wurde, ist der weitere
-        // Spielerwechsel normal
-        performNormalPlayerChange();
+	IMessage plyrFnshdMsg;
+	// Der noch aktive Spieler ist fertig geworden, also erhaelt er eine
+	// entsprechende Nachricht
+	plyrFnshdMsg = createPlayerFinishedMessage(game.getActivePlayer());
+	dispatcher.acceptMessage(plyrFnshdMsg);
+	// nachdem der Spieler benachrichtigt wurde, ist der weitere
+	// Spielerwechsel normal
+	performNormalPlayerChange();
     }
 
     /**
@@ -440,16 +452,16 @@ public class Manager implements IManager, Runnable {
      * An alle wird eine GameEndMessage geschickt
      */
     private void sendGameEndMessages() {
-        IMessage gameEndMessage = createGameEndMessage(BROADCAST_ID);
-        dispatcher.acceptMessage(gameEndMessage);
+	IMessage gameEndMessage = createGameEndMessage(BROADCAST_ID);
+	dispatcher.acceptMessage(gameEndMessage);
     }
 
     /**
      * An alle Clients wird die Scorelist geschickt.
      */
     private void sendResults() {
-        IMessage scrMsg = createScoreMessage(BROADCAST_ID);
-        dispatcher.acceptMessage(scrMsg);
+	IMessage scrMsg = createScoreMessage(BROADCAST_ID);
+	dispatcher.acceptMessage(scrMsg);
     }
 
     /**
@@ -470,7 +482,7 @@ public class Manager implements IManager, Runnable {
      * @return die GameEndMessage
      */
     private IMessage createGameEndMessage(int destination) {
-        return new GameEndMessage(SERVER_ID, destination);
+	return new GameEndMessage(SERVER_ID, destination);
     }
 
     /**
@@ -481,8 +493,8 @@ public class Manager implements IManager, Runnable {
      * @return die ScoreMessage
      */
     private IMessage createScoreMessage(int destination) {
-        ScoreList scrLst = createScoreList();
-        return new ScoreMessage(BROADCAST_ID, destination, scrLst);
+	ScoreList scrLst = createScoreList();
+	return new ScoreMessage(BROADCAST_ID, destination, scrLst);
     }
 
     /**
@@ -494,7 +506,7 @@ public class Manager implements IManager, Runnable {
      * @return eine PlayerFinishedMessage
      */
     private IMessage createPlayerFinishedMessage(int activePlayer) {
-        return new PlayerFinishedMessage(SERVER_ID, activePlayer);
+	return new PlayerFinishedMessage(SERVER_ID, activePlayer);
     }
 
     /**
@@ -505,7 +517,7 @@ public class Manager implements IManager, Runnable {
      * @return die PlayerActivateMessage
      */
     private IMessage createPlayerActivateMessage(int destination) {
-        return new PlayerActivateMessage(SERVER_ID, game.getActivePlayer());
+	return new PlayerActivateMessage(SERVER_ID, game.getActivePlayer());
     }
 
     /**
@@ -517,7 +529,7 @@ public class Manager implements IManager, Runnable {
      * @return die MoveMessage
      */
     private IMessage createMoveMessage(int destination) {
-        return new MoveMessage(SERVER_ID, destination, game.getKeptMove());
+	return new MoveMessage(SERVER_ID, destination, game.getKeptMove());
     }
 
     /**
@@ -528,7 +540,20 @@ public class Manager implements IManager, Runnable {
      * @return ein Message mit einem Board
      */
     private IMessage createBoardMessage(int destination) {
-        return new BoardMessage(SERVER_ID, destination, game.getBoard(), game.getActivePlayer());
+	return new BoardMessage(SERVER_ID, destination, game.getBoard(), game
+		.getActivePlayer());
+    }
+
+    /**
+     * Erzeugt eine {@link PlayerListMessage}
+     * 
+     * @param destination
+     *                Zieladresse
+     * @return die PlayerListMessage
+     */
+    private IMessage createPlayerListMessage(int destination) {
+	return new PlayerListMessage(SERVER_ID, destination, game
+		.getPlayerList());
     }
 
 }
