@@ -119,8 +119,10 @@ Testprotokoll fuer regelkonformes Hotseatspiel
 Tester: embix
 Datum: 01.07.2008
 Reposversion: 424
-Buildumgebung/Compiler und Betriebssystem: GJC, Linux
-Laufzeitumgebung und Betriebssystem: GCJ, Linux
+Buildumgebung/Compiler und Betriebssystem: java-1.5.0-gcj-4.2-1.5.0.0
+	GNU Classpath, Linux
+Laufzeitumgebung und Betriebssystem: java-1.5.0-gcj-4.2-1.5.0.0
+	GNU Classpath, Linux
 
 Aktion:
 	PresentationStarter ausfuehren
@@ -143,4 +145,78 @@ Testpunkt bestanden:
 	Nein
 Was muss noch getan werden:
 	1)	Nicht unterstuetzte Umgebung -> im Handbuch aufnehmen als inkompatibel
+
+
+
+
+
+
+Testprotokoll fuer regelkonformes Hotseatspiel
+Tester: embix
+Datum: 01.07.2008
+Reposversion: 429
+Buildumgebung/Compiler und Betriebssystem: Sun 1.5 SDK, Linux
+Laufzeitumgebung und Betriebssystem: Sun 1.5.0.15 JRE, Linux
+
+Aktion:
+	PresentationStarter ausfuehren
+erwartetes Ergebnis:
+	Das Menue und das leere Spielfeld sind zu sehen.
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja	
+
+Aktion:
+	Ueber Menuepunkt "Neu" ein Hotseatspiel mit 2 Teilnehmern
+	starten. (Als Spielleiter)
+erwartetes Ergebnis:
+ 	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
+ 	fuer die Zugbestaetigung ist freigeschaltet.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja
+
+Aktion:
+ 	Beginnend mit dem roten Spieler abwechselnd gueltige Zuege
+ 	eingeben, bis einer der Spieler bei Eingabe des naechsten
+ 	Zuges im Zielhaus angekommen ist.
+erwartetes Ergebnis:
+	Sofern gueltige Zuege eingegeben werden (nicht verklickt ;-)
+	ist nach Zugbestaetigung die neue Aufstellung sichtbar.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja
+
+Aktion:
+	Der letzte Spielstein des fast fertigen Spielers wird in
+	das Zielhaus gezogen.
+erwartetes Ergebnis:
+	Es wird die Tabelle mit den Spielergebnissen angezeigt.
+	Dabei erscheinen die Spieler in der Reihenfolge, mit der sie
+	im jeweiligen Zielhaus angekommen sind und die benoetigten
+	Zuege werden angezeigt.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja
 	
+Aktion:
+ 	Bei dem Ergebnisdialog auf OK druecken.
+erwartetes Ergebnis:
+ 	Es werden die Daten fuer eine weiter Session abgefragt.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja
+
+Aktion:
+ 	Das Spiel ueber das Menue beenden.
+erwartetes Ergebnis:
+	Die Anwendung wird ordnungsgemaess beendet.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja
+	
+Test bestanden:
+	ja	
+Was muss noch getan werden:
+Was sollte noch getan werden:
+	1)	Hotseat: Anzeigen (Name und Farbe) des aktiven Spielers
