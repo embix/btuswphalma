@@ -72,6 +72,10 @@ public class Manager implements IManager, Runnable {
      */
     private int gameVariant;
     /**
+     * Wird im Hotseat-Modus gespielt
+     */
+    private boolean hotSeat;
+    /**
      * Wurde das Spiel angehalten/abgebrochen
      */
     private boolean gameHalted;
@@ -81,7 +85,9 @@ public class Manager implements IManager, Runnable {
      * nur fuer das Game benoetigt.
      * 
      * @param numberOfPlayers
+     *                Die Spieleranzahl
      * @param dispatcher
+     *                der Dispatcher
      */
     public Manager(int numberOfPlayers, IDispatcher dispatcher) {
 	msgQueue = new ConcurrentLinkedQueue<IMessage>();
@@ -94,6 +100,35 @@ public class Manager implements IManager, Runnable {
 	    System.exit(1);
 	}
 	gameVariant = WITHOUT_VETO;
+	hotSeat = false;
+	gameHalted = false;
+	this.dispatcher = dispatcher;
+    }
+
+    /**
+     * Manager mit Spielvariante ohne Veto wird erzeugt. Die Spieleranzahl wird
+     * nur fuer das Game benoetigt. Es wird entschieden, ob im Hotseat-Modus
+     * gespielt wird, oder nicht
+     * 
+     * @param numberOfPlayers
+     *                Die Spieleranzahl
+     * @param dispatcher
+     *                der Dispatcher
+     * @param hotSeat
+     *                True fuer Hotseat, false fuer Netzwerk
+     */
+    public Manager(int numberOfPlayers, IDispatcher dispatcher, boolean hotSeat) {
+	msgQueue = new ConcurrentLinkedQueue<IMessage>();
+	// Bei eine unzulaessigen Spieleranzahl wird eine Exception geworfen
+	try {
+	    game = new Game(numberOfPlayers);
+	} catch (GameException e) {
+	    System.err.println("Couldn't create onject of type Game");
+	    e.printStackTrace();
+	    System.exit(1);
+	}
+	gameVariant = WITHOUT_VETO;
+	this.hotSeat = hotSeat;
 	gameHalted = false;
 	this.dispatcher = dispatcher;
     }
@@ -279,12 +314,12 @@ public class Manager implements IManager, Runnable {
     private boolean processMove(final MoveMessage msg) {
 	boolean result = false;
 	try {
-	    // System.err.println("ZZZ Move"+msg.getMove().toString());//TODO
-	    // ZZZ Debugging Ausgabe
-	    // System.err.println("ZZZ Von"+msg.getSource());
-	    result = game.checkAndKeepMove(msg.getMove(), msg.getSource());
-//	    result = game.checkAndKeepMove(msg.getMove(), game
-//		    .getActivePlayer());// FIXME ZZZ nur zum test
+	    if (!hotSeat) {
+		result = game.checkAndKeepMove(msg.getMove(), msg.getSource());
+	    } else {
+		int activePlayer = game.getActivePlayer();
+		result = game.checkAndKeepMove(msg.getMove(), activePlayer);
+	    }
 	} catch (GameException e) {
 	    e.printStackTrace();
 	    stopGameOnError();

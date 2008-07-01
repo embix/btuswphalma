@@ -74,7 +74,7 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
      */
     public void createManager(int numberOfPlayers, boolean server, boolean hs) {
 	if(server) {
-	   manager = new Manager(numberOfPlayers,this); 
+	   manager = new Manager(numberOfPlayers,this,hs); 
 	}
 	else {
 	    manager = null;
