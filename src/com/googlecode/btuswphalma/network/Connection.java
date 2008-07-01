@@ -169,6 +169,8 @@ public class Connection extends Thread {
 	try {
 	    outputStream.writeObject(new NetMessage(msg));
 	    outputStream.flush();
+	    //TODO DBG
+	    outputStream.reset();
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
