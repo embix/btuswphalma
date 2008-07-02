@@ -1,0 +1,91 @@
+Testprotokoll fuer regelkonformes Netzwerkspiel
+Tester:
+Datum:
+Reposversion:
+(Master)Buildumgebung/Compiler und Betriebssystem:
+(Master)Laufzeitumgebung und Betriebssystem:
+(Client)Buildumgebung/Compiler und Betriebssystem:
+(Client)Laufzeitumgebung und Betriebssystem:
+
+
+Aktion:
+	(Master) PresentationStarter ausfuehren
+	(Client) PresentationStarter ausfuehren
+erwartetes Ergebnis:
+	Das Menue und das leere Spielfeld sind zu sehen.
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	
+
+Aktion:
+	(Master) Ueber Menuepunkt "Neu" ein Netzwerkspiel mit 2 Teilnehmern
+	starten. (Als Spielleiter)
+erwartetes Ergebnis:
+ 	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
+ 	fuer die Zugbestaetigung ist freigeschaltet.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	
+
+Aktion:
+	(Client) Ueber Menuepunkt "Neu" ein Netzwerkspiel als Teilnehmer
+	starten.
+erwartetes Ergebnis:
+ 	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
+ 	fuer die Zugbestaetigung ist nicht freigeschaltet.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:	
+
+
+
+Aktion:
+ 	Beginnend mit dem roten Spieler (Master) abwechselnd gueltige
+	Zuege eingeben, bis einer der Spieler bei Eingabe des naechsten
+ 	Zuges im Zielhaus angekommen ist.
+erwartetes Ergebnis:
+	Sofern gueltige Zuege eingegeben werden (nicht verklickt ;-)
+	ist nach Zugbestaetigung die neue Aufstellung und der vom
+	anderen Spieler gemachte Zug sichtbar.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	
+
+Aktion:
+	Der letzte Spielstein des fast fertigen Spielers wird in
+	das Zielhaus gezogen.
+erwartetes Ergebnis:
+	Es wird die Tabelle mit den Spielergebnissen angezeigt.
+	Dabei erscheinen die Spieler in der Reihenfolge, mit der sie
+	im jeweiligen Zielhaus angekommen sind und die benoetigten
+	Zuege werden angezeigt.
+Beobachtung (sofern abweichend von Erwartung):
+	
+Testpunkt bestanden:
+	
+	
+Aktion:
+ 	Bei dem Ergebnisdialog auf OK druecken.
+erwartetes Ergebnis:
+ 	Es werden die Daten fuer eine weiter Session abgefragt.
+Beobachtung (sofern abweichend von Erwartung):
+	
+Testpunkt bestanden:
+	
+
+Aktion:
+ 	Das Spiel ueber das Menue beenden.
+erwartetes Ergebnis:
+	Die Anwendung wird ordnungsgemaess beendet.
+Beobachtung (sofern abweichend von Erwartung):
+	
+Testpunkt bestanden:
+
+	
+Test bestanden:
+	
+Was muss noch getan werden:
+	1)	
+	2)	
+Was sollte noch getan werden:
+	1)	
+	2)	

@@ -1,0 +1,103 @@
+Testprotokoll fuer regelkonformes Netzwerkspiel
+Tester: embix
+Datum: 02.07.2008
+Reposversion: 430
+(Master)Buildumgebung/Compiler und Betriebssystem:
+	Sun 1.6 JDK, Win XP
+(Master)Laufzeitumgebung und Betriebssystem:
+	Sun 1.6 JRE, Win XP
+(Client)Buildumgebung/Compiler und Betriebssystem:
+	Sun 1.6 JDK, Win XP
+(Client)Laufzeitumgebung und Betriebssystem:
+	Sun 1.6 JRE, Win XP
+
+Aktion:
+	(Master) PresentationStarter ausfuehren
+	(Client) PresentationStarter ausfuehren
+erwartetes Ergebnis:
+	Das Menue und das leere Spielfeld sind zu sehen.
+Beobachutung (sofern abweichend von Erwartung):
+	Master und Client werden auf dem gleichen System ausgeführt
+	(loopback)
+Testpunkt bestanden:
+	
+
+Aktion:
+	(Master) Ueber Menuepunkt "Neu" ein Netzwerkspiel mit 2 Teilnehmern
+	starten. (Als Spielleiter)
+erwartetes Ergebnis:
+ 	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
+ 	fuer die Zugbestaetigung ist freigeschaltet.
+Beobachtung (sofern abweichend von Erwartung):
+	die Firewall meldet sich zu Wort
+Testpunkt bestanden:
+	ja
+
+Aktion:
+	(Client) Ueber Menuepunkt "Neu" ein Netzwerkspiel als Teilnehmer
+	starten.
+erwartetes Ergebnis:
+ 	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
+ 	fuer die Zugbestaetigung ist nicht freigeschaltet.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:	
+	ja
+
+
+Aktion:
+ 	Beginnend mit dem roten Spieler (Master) abwechselnd gueltige
+	Zuege eingeben, bis einer der Spieler bei Eingabe des naechsten
+ 	Zuges im Zielhaus angekommen ist.
+erwartetes Ergebnis:
+	Sofern gueltige Zuege eingegeben werden (nicht verklickt ;-)
+	ist nach Zugbestaetigung die neue Aufstellung und der vom
+	anderen Spieler gemachte Zug sichtbar.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja
+
+Aktion:
+	Der letzte Spielstein des fast fertigen Spielers wird in
+	das Zielhaus gezogen.
+erwartetes Ergebnis:
+	Es wird die Tabelle mit den Spielergebnissen angezeigt.
+	Dabei erscheinen die Spieler in der Reihenfolge, mit der sie
+	im jeweiligen Zielhaus angekommen sind und die benoetigten
+	Zuege werden angezeigt.
+Beobachtung (sofern abweichend von Erwartung):
+	Beim Master werden die Spielergebnisse angezeigt. Beim Client
+	jedoch, wird nichts angezeigt.
+Testpunkt bestanden:
+	nein
+	
+Aktion:
+ 	Bei dem Ergebnisdialog auf OK druecken.
+erwartetes Ergebnis:
+ 	Es werden die Daten fuer eine weiter Session abgefragt.
+Beobachtung (sofern abweichend von Erwartung):
+	Master ok, Client zeigt weiterhin den letzten Zug an.
+Testpunkt bestanden:
+	nein
+
+Aktion:
+ 	Das Spiel ueber das Menue beenden.
+erwartetes Ergebnis:
+	Die Anwendung wird ordnungsgemaess beendet.
+Beobachtung (sofern abweichend von Erwartung):
+	nachdem der Master beendet wurde steigt die CPU-Last
+	des Clients auf 100%, der Client laesst sich normal
+	beenden
+Testpunkt bestanden:
+	ja
+	
+Test bestanden:
+	nein
+Was muss noch getan werden:
+	1)	Spielergebnisausgabe fuer die Clients einbinden,
+		anschliessend wieder Sessiondaten abfragen
+	2)	anschliessend erneut
+Was sollte noch getan werden:
+	1)	Hinweis im Handbuch zur Firewall
+	2)	Nach Einbinden der Spielergebnisausgabe erneuten
+		Testlauf durchfuehren um zu sehen ob damit auch
+		das CPU-Last Problem geloest wird.
