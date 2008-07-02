@@ -118,10 +118,11 @@ public class SMakeMove implements IRunnableGuiState {
      * @param hm gibt den zu uebertragenden Zug an
      */
     void sendHalmaMove(){
+	controller.setState(controller.stateShowMove);
+	
+	// versende den Zug
 	HalmaMove hm = controller.inh.setMoveEntryModeOff();
 	controller.mh.sendMove(hm);
-	// nach dem Senden wird auf die Anzeige der Spielzuege gewartet
-	controller.setState(controller.stateShowMove);
     }
     
     /**
