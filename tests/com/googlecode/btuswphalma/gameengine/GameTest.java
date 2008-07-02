@@ -5,10 +5,17 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import com.googlecode.btuswphalma.base.MoveMessage;
 
 /**
  * @author sebastian
@@ -137,6 +144,40 @@ public class GameTest {
     @Ignore
     public void testGetPlayerList() {
 	fail("Not yet implemented");
+    }
+    
+    /**
+     * Testet ein 2-Personen-Spiel, das Spieler 2 gewinnt
+     * @throws Exception
+     */
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testSavedGame1() throws Exception {
+	ObjectInputStream ois = new ObjectInputStream(new FileInputStream("tests/com/googlecode/btuswphalma/gameengine/storedMoves/HalmaSpiel2SpielerGruenGewinnt"));
+	LinkedList<MoveMessage> moveMsgs = (LinkedList<MoveMessage>)ois.readObject();
+	
+	Game game = new Game(2);
+	assertTrue(game.addPlayer(1, "Winner"));
+	assertFalse(game.addPlayer(2, "Looser"));
+	MoveMessage msg;
+	HalmaMove mov;
+	int plyr;
+	
+	for (int i = 0; i < moveMsgs.size()-1; i++) {
+	    msg = moveMsgs.get(i);
+	    mov = msg.getMove();
+	    plyr = msg.getSource();
+	    assertTrue(game.checkAndKeepMove(mov, plyr));
+	    assertEquals(Game.EXECUTE_MOVE_NORMAL, game.executeMove());
+	    game.executePlayerChange();
+	}
+	
+	msg = moveMsgs.getLast();
+	mov = msg.getMove();
+	plyr = msg.getSource();
+	assertTrue(game.checkAndKeepMove(mov, plyr));
+	assertEquals(Game.EXECUTE_MOVE_GAME_FINISHED, game.executeMove());
+	    
     }
 
     /**
