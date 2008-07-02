@@ -82,6 +82,10 @@ public class ClientNetCom extends Thread implements INetCom, Runnable {
 	    // IMessage msg = netmsg.getMessage();
 	    IReaddressableMessage msg = (IReaddressableMessage) netmsg
 		    .getMessage();
+	    //zu Testzwecken
+	    String msgType = msg.getClass().toString();
+	    System.err.println(msgType);
+	    //Ausgabe der angekommenen Nachrichten
 	    msg.setDestination(MessageAddresses.GUI_ADDRESS);
 	    this.messageQueue.add(msg);
 	    synchronized (notifyObject) {
