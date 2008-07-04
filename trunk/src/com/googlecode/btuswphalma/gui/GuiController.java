@@ -3,8 +3,11 @@
  */
 package com.googlecode.btuswphalma.gui;
 
+import java.awt.BorderLayout;
+
 import com.googlecode.btuswphalma.gameengine.Board;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
+import com.googlecode.btuswphalma.gameengine.PlayerList;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
 import com.googlecode.btuswphalma.serverengine.Dispatcher;
 
@@ -51,6 +54,9 @@ public class GuiController{
     // die Poststelle / Schnittstelle zu Engine (und Netz)
     MessageHandler mh;
     
+    // Darstellung der Spielerliste
+    PlayerListPresentation plp;
+    
     // das Hauptfenster
     private Presentation frame;
     
@@ -88,6 +94,7 @@ public class GuiController{
 	this.boardPres = new BoardPresentation();
 	this.builder = new BuilderHalmaMove();
 	this.inh = new InputHandler();
+	this.plp = new PlayerListPresentation();
 	
 	// FIXME: (ALLE) Instanzierung Engine (gameengine und serverengine)
 	engine = new Dispatcher(); // hoffentlich reicht das...
@@ -201,6 +208,8 @@ public class GuiController{
 	this.frame = frame;
 	// den Inputhandler auf die Boardpresaentation ansetzen
 	boardPres.addMouseListener(inh);
+	// die Spielerliste ankoppeln
+	this.frame.add(plp, BorderLayout.LINE_END);
     }
     
     /**
@@ -292,5 +301,14 @@ public class GuiController{
      */
     public void recvScores(ScoreList s) {
 	this.state.recvScores(s);	
+    }
+
+    /**
+     * Wird vom MessageHandler aufgerufen, wenn eine Spielerliste
+     * gesendet wurde.
+     * @param plrLst die Spielerliste
+     */
+    public void recvPlayerList(PlayerList plrLst) {
+	this.state.recvPlayerList(plrLst);
     }
 }

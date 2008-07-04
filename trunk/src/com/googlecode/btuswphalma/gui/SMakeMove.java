@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 
 import com.googlecode.btuswphalma.gameengine.Board;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
+import com.googlecode.btuswphalma.gameengine.PlayerList;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
 
 /**
@@ -154,6 +155,15 @@ public class SMakeMove implements IRunnableGuiState {
 	// TODO: (GUI) eine "Sie sind am Zug" Meldung waere schoen
 	
 	makeMove();
+    }
+
+    /**
+     * Wird aufgerufen, wenn eine Spielerliste bekanntgegeben wurde
+     * 
+     * @param plrLst die Spielerliste
+     */
+    public void recvPlayerList(PlayerList plrLst) {
+	controller.plp.process(plrLst);
     }
 
 }

@@ -98,8 +98,7 @@ public class BoardPresentation extends JPanel {
     }
 
     private void zeichnePosition(Graphics2D g2d) {
-	// TODO Auto-generated method stub
-	Color c = Color.YELLOW;
+	Color c = Color.ORANGE; // YELLOW wird von einem Spieler verwendet
 	//BUGFIX SEBASTIAN
 	int x = gibRasterX(pos.getYPos(),pos.getXPos());
 	int y = gibRasterY(pos.getXPos());
@@ -324,7 +323,7 @@ public class BoardPresentation extends JPanel {
      *                Spielernummer
      * @return Farbe des Spielers
      */
-    private Color mapPlayerToColor(byte player) {
+    public static Color mapPlayerToColor(byte player) {
 	switch (player) {
 	case 1:
 	    return Color.RED;

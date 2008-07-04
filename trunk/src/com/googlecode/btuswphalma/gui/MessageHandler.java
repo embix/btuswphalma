@@ -11,9 +11,11 @@ import com.googlecode.btuswphalma.base.MessageAddresses;
 import com.googlecode.btuswphalma.base.MessageType;
 import com.googlecode.btuswphalma.base.MoveErrorMessage;
 import com.googlecode.btuswphalma.base.MoveMessage;
+import com.googlecode.btuswphalma.base.PlayerListMessage;
 import com.googlecode.btuswphalma.base.ScoreMessage;
 import com.googlecode.btuswphalma.gameengine.Board;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
+import com.googlecode.btuswphalma.gameengine.PlayerList;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
 
 /**
@@ -275,7 +277,14 @@ public class MessageHandler
      * @param msg gibt die zu behandelnde Nachricht an
      */
     private void recvMsgPlayerData(IMessage msg) {
-	// TODO Auto-generated method stub
+	// unsauber
+	try {
+	    PlayerListMessage plrLstMsg = (PlayerListMessage) msg;
+	    PlayerList plrLst = plrLstMsg.getPlayerList();
+	    controller.recvPlayerList(plrLst);
+	} catch (RuntimeException e) {
+	    e.printStackTrace();
+	}
 	
     }
 
