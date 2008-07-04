@@ -6,6 +6,7 @@ package com.googlecode.btuswphalma.gui;
 import com.googlecode.btuswphalma.base.LoginMessage;
 import com.googlecode.btuswphalma.gameengine.Board;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
+import com.googlecode.btuswphalma.gameengine.PlayerList;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
 
 /**
@@ -158,7 +159,7 @@ public class SInputGameData implements IRunnableGuiState {
      * @see com.googlecode.btuswphalma.gui.IGuiState#recvPlayerActivate()
      */
     public void recvPlayerActivate() {
-	// TODO: (GUI) Wechsel zu am Zug - Zustand, sofern
+	// wird ignoriert
 
     }
 
@@ -188,8 +189,18 @@ public class SInputGameData implements IRunnableGuiState {
      * Zustand aufgerufen.
      */
     public void run() {
+	controller.plp.clear();
 	promptGameData();
 	controller.getEngine().start();	// starte Nachrichtenverteilung im Dispatcher
+    }
+
+    /**
+     * Wird aufgerufen, wenn eine Spielerliste bekanntgegeben wurde
+     * 
+     * @param plrLst die Spielerliste
+     */
+    public void recvPlayerList(PlayerList plrLst) {
+	controller.plp.process(plrLst);
     }
 
 }

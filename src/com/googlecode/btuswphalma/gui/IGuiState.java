@@ -5,6 +5,7 @@ package com.googlecode.btuswphalma.gui;
 
 import com.googlecode.btuswphalma.gameengine.Board;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
+import com.googlecode.btuswphalma.gameengine.PlayerList;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
 
 /**
@@ -69,4 +70,12 @@ public interface IGuiState {
      * das Ende der Session bekanntgegeben wurde.
      */
     public void recvGameEnd();
+    
+    /**
+     * Wird vom MessageHandler aufgerufen, wenn durch die SpielEngine
+     * eine Spielerliste proklamiert wurde.
+     * 
+     * @param plrLst die Spielerliste
+     */
+    public void recvPlayerList(PlayerList plrLst);
 }

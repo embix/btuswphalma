@@ -5,6 +5,7 @@ package com.googlecode.btuswphalma.gui;
 
 import com.googlecode.btuswphalma.gameengine.Board;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
+import com.googlecode.btuswphalma.gameengine.PlayerList;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
 
 /**
@@ -127,6 +128,15 @@ public class SShowMove implements IRunnableGuiState {
 	// Zugeingabe/-anzeige loeschen
 	controller.getBoardPres().hideMove();
 	// auf neues Board / Move /... warten
+    }
+    
+    /**
+     * Wird aufgerufen, wenn eine Spielerliste bekanntgegeben wurde
+     * 
+     * @param plrLst die Spielerliste
+     */
+    public void recvPlayerList(PlayerList plrLst) {
+	controller.plp.process(plrLst);
     }
 
 }
