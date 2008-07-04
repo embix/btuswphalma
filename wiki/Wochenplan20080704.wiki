@@ -14,7 +14,7 @@ Die maximal verfügbare Zeit für diese Woche.
 
 = Aufgabenverteilung =
 ||AP||Aufgabe||Datum||Zeitansatz||Verantwortlich||
-||ZZZ||Besprechung||07.07||1||Team||
+||470||Besprechung||07.07||1||Team||
 ||402||Entwurf Computerspieler||04+05.07||4||Sebastian||
 ||403||Implementierung Computerspieler||05-07.07||10||Sebastian||
 ||408||Test Computerspieler||08.07||1||Sebastian||
