@@ -1,0 +1,94 @@
+Testprotokoll fuer regelkonformes Netzwerkspiel
+Tester: Christian Hilschenz
+Datum: 02.07.08
+Reposversion: 430 (mit kleiner Änderung in SMakeMove)
+(Master)Buildumgebung/Compiler und Betriebssystem:
+	Sun 1.5 JDK, Win XP
+(Master)Laufzeitumgebung und Betriebssystem:
+	Sun 1.5 JRE, Win XP
+(Client)Buildumgebung/Compiler und Betriebssystem:
+	Sun 1.5 JDK, Win XP
+(Client)Laufzeitumgebung und Betriebssystem:
+	Sun 1.5 JRE, Win XP
+
+Aktion:
+	(Master) PresentationStarter ausfuehren
+	(Client) PresentationStarter ausfuehren
+erwartetes Ergebnis:
+	Das Menue und das leere Spielfeld sind zu sehen.
+Beobachutung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja	
+
+Aktion:
+	(Master) Ueber Menuepunkt "Neu" ein Netzwerkspiel mit 3 Teilnehmern
+	starten. (Als Spielleiter)
+erwartetes Ergebnis:
+ 	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
+ 	fuer die Zugbestaetigung ist freigeschaltet.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja
+
+Aktion:
+	(Client) Ueber Menuepunkt "Neu" ein Netzwerkspiel als Teilnehmer
+	starten.
+erwartetes Ergebnis:
+ 	Die Aufstellung ist auf dem Spielfeld zu sehen, der Button
+ 	fuer die Zugbestaetigung ist nicht freigeschaltet.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:	
+	ja
+
+
+Aktion:
+ 	Beginnend mit dem roten Spieler (Master) werden durch die Spieler gueltige
+	Zuege eingegeben, bis alle Spieler, bis auf einen, im Zielhaus angekommen sind.
+erwartetes Ergebnis:
+	Sofern gueltige Zuege eingegeben werden (nicht verklickt ;-)
+	ist nach Zugbestaetigung die neue Aufstellung und der gemachte Zug
+	für alle Spieler sichtbar und der nächste Spieler ist an der Reihe.
+	Ist einer der Spieler im Zielhaus angelangt so wechselt dieser Spieler in den
+	Beobachtermodus und nimmt nicht mehr aktiv am Spiel teil.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja
+
+Aktion:
+	Der letzte Spielstein des vorletzten Spielers wird in
+	das Zielhaus gezogen.
+erwartetes Ergebnis:
+	Es wird die Tabelle mit den Spielergebnissen angezeigt.
+	Dabei erscheinen die Spieler in der Reihenfolge, mit der sie
+	im jeweiligen Zielhaus angekommen sind und die benoetigten
+	Zuege werden angezeigt.
+Beobachtung (sofern abweichend von Erwartung):
+	Spiel friert ein.
+Testpunkt bestanden:
+	Nein
+	
+Aktion:
+ 	Bei dem Ergebnisdialog auf OK druecken.
+erwartetes Ergebnis:
+ 	Es werden die Daten fuer eine weiter Session abgefragt.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	N/A - Konnte nicht getestet werden
+
+Aktion:
+ 	Das Spiel ueber das Menue beenden.
+erwartetes Ergebnis:
+	Die Anwendung wird ordnungsgemaess beendet.
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	Ja
+	
+Test bestanden:
+	Nein
+	
+Was muss noch getan werden:
+	1) Ergebnisdialog
+	2) Spiel darf nicht einfrieren wenn der vorletzte Spieler den letzten Stein ins Zielhaus setzt
+Was sollte noch getan werden:
+	1)	
+	2)	

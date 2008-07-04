@@ -1,0 +1,89 @@
+Testprotokoll fuer Serverenginetest
+Tester: Christian Hilschenz
+Datum: 30.05.08
+Reposversion: 259
+(Master)Buildumgebung/Compiler und Betriebssystem:
+	Sun 1.5 JDK, Win XP
+(Master)Laufzeitumgebung und Betriebssystem:
+	Sun 1.5 JRE, Win XP
+(Client)Buildumgebung/Compiler und Betriebssystem:
+	Sun 1.5 JDK, Win XP
+(Client)Laufzeitumgebung und Betriebssystem:
+	Sun 1.5 JRE, Win XP
+	
+Allgemeine Test Beschreibung:
+Fuer den Test der Server-Engine wird eine Laufzeitumgebung bereitgestellt.
+Diese ist jener nachempfunden, in die die Server-Engine nach Abschluss von TP 2
+eingebettet sein wird. Hierzu werden die Testklassen TestNetwork, TestGui und
+TestManager (=Spielengine) erstellt, welche vereinfachte Implementationen
+der 3 Hauptkomponenten des Halmaprogramms (in TP 2) darstellen
+(siehe http://code.google.com/p/btuswphalma/wiki/Produktentwurf).
+Jede dieser Komponenten versendet Nachrichten (mit festgelegtem Typ) fuer den Test und
+gibt beim Empfangen einer Nachricht diese auf dem Bildschirm aus.
+
+Nachrichtentypen fuer die einzelnen Komponenten:
+	* TestGui: MT_MOVE
+	* TestManager: MT_BOARD
+	* TestNetwork: MT_LOGIN
+
+Die Server-Engine ist nach Festlegung/Plan eine recht einfach gehaltene Komponente.
+Sie weis nichts ueber die zu verschickenden Nachrichten oder ueber das laufende Spiel allgemein.
+Fuer die Korrektheit der Nachrichten (also Inhalt, Quelle und Ziel der Nachricht) haben
+die einzelnen Komponenten zu sorgen. Von daher wurde das Verhalten fuer Fehlerfaelle
+(also z.B. falsche Ziel-IDs) nicht getestet.
+
+Situation 1:
+	* Test fuer Situation in TP 2, also nur Spiel-Engine und GUI, kein Netzwerk.
+	* Die GUI verschickt 4 Nachrichten an die Spiel-Engine
+	* Fall 1: Die Spiel-Engine verschickt 6 Nachrichten an den Spieler 5.
+	* Fall 2: Die Spiel-Engine verschickt 6 Nachrichten an den Spieler 1.
+	* Fall 3: Die Spiel-Engine verschickt 6 Nachrichten als Broadcastnachricht, also an alle Spieler.
+
+erwartetes Ergebnis:
+	* Spiel-Engine sollte 4 Nachrichten von Spieler 1 (der GUI) erhalten
+	* GUI sollte in allen Faellen 6 Nachrichten erhalten (in TP 2 werden die Nachrichten aller Spieler an die GUI geschickt)
+
+Beobachtung (sofern abweichend von Erwartung):
+Testpunkt bestanden:
+	ja
+	
+Situation 2:
+	* Test fuer Situation in TP 3 und 4, alle Komponenten erhalten Nachrichten.
+	* Die GUI verschickt 4 Nachrichten an die Spiel-Engine
+	* Das Netzwerk verschickt 5 Nachrichten an die Spiel-Engine
+	* Fall 1: Die Spiel-Engine verschickt 6 Nachrichten an den Spieler 5.
+	* Fall 2: Die Spiel-Engine verschickt 6 Nachrichten an den Spieler 1.
+	* Fall 3: Die Spiel-Engine verschickt 6 Nachrichten als Broadcastnachricht, also an alle Spieler.
+
+erwartetes Ergebnis:
+	* Spiel-Engine sollte 9 Nachrichten erhalten (4 von Spieler 1 (der GUI), 5 vom Netzwerk)
+	* Fall 1:
+	  > GUI sollte keine Nachrichten erhalten
+	  > Netzwerk sollte 6 Nachrichten erhalten
+	* Fall 2:
+	  > GUI sollte 6 Nachrichten erhalten
+	  > Netzwerk sollte keine Nachrichten erhalten
+	* Fall 3:
+	  > GUI sollte 6 Nachrichten erhalten
+	  > Netzwerk sollte 6 Nachrichten erhalten
+
+Beobachtung (sofern abweichend von Erwartung):
+	* Exceptions im NetworkListener
+	* TestManager erhielt keine Netzwerknachrichten
+	* ermittelter Grund: die Methoden wait und notifyAll des Notifyobjekts waren nicht in synchronized-Bloecken eingebettet.
+Testpunkt bestanden:
+	Nein, nach Codeanpassung wie im Punkt zuvor beschrieben: Ja
+
+Test bestanden:
+	Ja
+	
+Was muss noch getan werden:
+	1) Dispatcher muss fuer den Client angepasst werden
+	2)
+Was sollte noch getan werden:
+	1)	
+	2)	
+	
+Anmerkungen:
+Die beschriebenen Tests wurden mehrmals ausgefuehrt, unter anderem auch mit veraenderter Anzahl an zu verschickenden Nachrichten, um
+etwaige Probleme der Nebenlaeufigkeit aufzudecken.

@@ -86,8 +86,7 @@ public class GuiController{
 	
 	stateSessionEnd = new SSessionEnd(this);
 	
-	// FIXME: (GUI) initialen Controllerzustand setzen
-	//this.state = stateInputGameData
+	this.state = null;	// wird von newGame anständig gesetzt
 	
 	
 	// TODO: (GUI) Instanzierung der GUI-Hilfsklassen
@@ -96,8 +95,7 @@ public class GuiController{
 	this.inh = new InputHandler();
 	this.plp = new PlayerListPresentation();
 	
-	// FIXME: (ALLE) Instanzierung Engine (gameengine und serverengine)
-	engine = new Dispatcher(); // hoffentlich reicht das...
+	engine = new Dispatcher();
 	this.mh = MessageHandler.createMasterMessageHandler(engine, this);
 	
 	// Presentation traegt sich selbst ein, siehe initialize()
@@ -216,7 +214,6 @@ public class GuiController{
      * Startet ein neues Spiel
      */
     public void newGame() {
-	// TODO: Sollte das so bleiben müssen wir den Entwurf anpassen
 	state = stateInputGameData;
 	state.run();
     }
