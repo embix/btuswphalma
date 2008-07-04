@@ -56,7 +56,8 @@ public class SInputGameData implements IRunnableGuiState {
 	}
     }
     
-    void promptClientGameData() {
+    // Zeigt den Dialog für die Clientspielerdaten
+    private void promptClientGameData() {
 	DialogClientGameData dialog = new DialogClientGameData(controller.getPresentation(),false);
 	
 	if(dialog.ok()) {
@@ -68,7 +69,8 @@ public class SInputGameData implements IRunnableGuiState {
 	}
     }
     
-    void promptMasterGameData() {
+    // Zeigt den Dialog für die Masterspielerdaten
+    private void promptMasterGameData() {
 	DialogMasterGameData dialog = new DialogMasterGameData(controller.getPresentation());
 	
 	if(dialog.ok()) {

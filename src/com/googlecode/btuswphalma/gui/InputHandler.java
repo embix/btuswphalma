@@ -9,6 +9,8 @@ import java.awt.event.MouseListener;
 import com.googlecode.btuswphalma.gameengine.BoardPosition;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
 
+import com.googlecode.btuswphalma.gameengine.HalmaMath;
+
 /**
  * Hilfsklasse zu Verarbeitung der Benutzereingaben, zB fuer
  * die Eingabe der Spielzuege.
@@ -101,9 +103,11 @@ public class InputHandler implements MouseListener {
 		BoardPosition pos;
 		pos = board.gibBoardAusRaster(x, y);
 		
-		board.showPosition(pos);
+		if(HalmaMath.isOnBoard(pos)) {
+		    board.showPosition(pos);
+		    builder.addPosition(pos);
+		}
 		
-		builder.addPosition(pos);
 		// Debugausgabe
 		byte xPos = pos.getXPos();
 		byte yPos = pos.getYPos();

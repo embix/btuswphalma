@@ -192,13 +192,24 @@ public class Dispatcher extends Thread implements IDispatcher, IGuiCom {
 	if (msgDest == -1) {
 	    manager.acceptMessage(msg);
 	} else {
-	    if (hotseat || msgDest <= 1) {
-		dispatchToGui(msg);
-	    }
-
 	    if (!hotseat && (msgDest == 0 || msgDest > 1)) {
 		network.sendMessage(msg);
 	    }
+	    
+	    if (hotseat || msgDest <= 1) {
+		dispatchToGui(msg);
+	    }
+	}
+    }
+    
+    /**
+     * @see java.lang.Thread#start()
+     */
+    @Override
+    public void start() {
+	if(server) {
+	    // Thread zum Warteschlangeabhören muss nur auf dem Server laufen
+	    super.start();
 	}
     }
 
