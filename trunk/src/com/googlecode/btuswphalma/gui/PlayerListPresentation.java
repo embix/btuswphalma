@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.border.BevelBorder;
 
 import com.googlecode.btuswphalma.gameengine.Player;
 import com.googlecode.btuswphalma.gameengine.PlayerList;
@@ -32,7 +33,11 @@ public class PlayerListPresentation extends javax.swing.JPanel {
 
     private List<JLabel> labels;
     
-    private Font f;
+    private Font fnt;
+    
+    private int radius = 12;
+    
+    private int activePlr = 0;
     
     /**
      * Konstruktor
@@ -40,7 +45,8 @@ public class PlayerListPresentation extends javax.swing.JPanel {
     public PlayerListPresentation(){
 	labels = new ArrayList<JLabel>();
 	this.setLayout(new GridLayout(12,2));
-	f = new Font("Helvetica", Font.BOLD, 14);
+	fnt = new Font("Helvetica", Font.BOLD, radius*2);
+	
     }
     
     /**
@@ -54,13 +60,20 @@ public class PlayerListPresentation extends javax.swing.JPanel {
 	byte id;
 	for(Player p : pl.getPlayers()){
 	    l = new JLabel(p.getName());
-	    l.setFont(f);
+	    l.setFont(fnt);
 	    id = (byte) p.getID();
 	    Color c = BoardPresentation.mapPlayerToColor(id);
 	    l.setForeground(c);
 	    labels.add(l);
 	    this.add(l);
 	}
+	try {
+	    l = labels.get(activePlr-1);
+	    l.setBorder(new BevelBorder(BevelBorder.LOWERED));
+	} catch (RuntimeException e) {
+	    e.printStackTrace();
+	}
+	repaint();
     }
 
     /**
@@ -72,5 +85,40 @@ public class PlayerListPresentation extends javax.swing.JPanel {
 	}
 	labels.clear();
     }
+    
+    /**
+     * Setter fuer den Massstab der Zeichengrosse / Radius
+     * @param radius
+     */
+    public void setRadius(int radius){
+	if ((radius > 5) && (radius < 29)) {
+	    this.radius = radius;
+	}
+	fnt = new Font("Helvetica", Font.BOLD, radius*2);
+	for(JLabel l : labels){
+	    l.setFont(fnt);
+	}
+	repaint();
+	// repaint wird vom Container implizit durch pack() aufgerufen,
+	// allerdings macht pack nichts mehr, wenn die Grosse einmal
+	// die gleiche war...
+    }
+    
+    /**
+     * Getter fuer den Zeichenradius / Massstab
+     * @return gibt den aktuell verwendeten Zeichenradius zuruck
+     */
+    public int getRadius(){
+	return radius;
+    }
 
+    
+    /**
+     * Den aktiven Spieler in der Spielerliste kenntlich machen
+     * @param plrNr
+     */
+    public void markActive(int plrNr) {
+	// unsauber
+	activePlr = plrNr;
+    }
 }
