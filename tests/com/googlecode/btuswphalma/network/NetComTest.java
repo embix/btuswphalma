@@ -31,11 +31,17 @@ public class NetComTest {
     static final byte[] rwAddr = {127,0,0,1};
     static InetAddress address;
     
+    /**
+     * @throws UnknownHostException
+     */
     @BeforeClass
     public static void setUpBeforeClass() throws UnknownHostException {
 	address = InetAddress.getByAddress(rwAddr);
     }
     
+    /**
+     * 
+     */
     @Test
     public void networkTest() {
 	int i = 0;
