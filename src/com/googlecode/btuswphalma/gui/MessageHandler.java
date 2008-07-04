@@ -221,6 +221,8 @@ public class MessageHandler
 	try {
 	    BoardMessage boardMessage = (BoardMessage) msg;
 	    Board board = boardMessage.getBoard();
+	    int plyNr = boardMessage.getActivePlayer();
+	    controller.plp.markActive(plyNr);
 	    controller.recvBoard(board);
 	} catch (RuntimeException e) {
 	    e.printStackTrace();

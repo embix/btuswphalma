@@ -107,6 +107,7 @@ public class Presentation extends JFrame {
 	System.out.print("radius="+radius+"\n");
 	radius +=2;
 	controller.getBoardPres().setRadius(radius);
+	controller.plp.setRadius(radius);
 	if(radius == controller.getBoardPres().getRadius()){
 	    pack();
 	}
@@ -121,6 +122,7 @@ public class Presentation extends JFrame {
 	System.out.print("radius="+radius+"\n");
 	radius -=2;
 	controller.getBoardPres().setRadius(radius);
+	controller.plp.setRadius(radius);
 	if(radius == controller.getBoardPres().getRadius()){
 	    pack();
 	}
