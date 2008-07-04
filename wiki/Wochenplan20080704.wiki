@@ -9,8 +9,8 @@ Die maximal verfügbare Zeit für diese Woche.
 ||Sebastian B.||3||6||3||2||2||2||2||20||
 ||Michel||2||0||0||2||2||2||3||11||
 ||Christian||4||0||0||2||2||5||2||15||
-||Christoph||0||5||2||2||2||3||6||20||
-||Σ||9||11||5||8||8||12||13||66||
+||Christoph||2||2||0||2||2||2||2||12||
+||Σ||11||8||3||8||8||11||9||58||
 
 = Aufgabenverteilung =
 ||AP||Aufgabe||Datum||Zeitansatz||Verantwortlich||
@@ -31,8 +31,8 @@ Die maximal verfügbare Zeit für diese Woche.
 ||408||Test Computerspieler||08+09.07||2||Christian||
 ||480||Poster||09+10.07||2||Christian||
 ||204||Engwurf GUI aktualisieren||10.07||1||Christian||
-||414||Endpräsentation||06+07.07||4||Christoph||
-||413||Projekthefter||05+10.07||7||Christoph||
+||414||Endpräsentation||06+07.07||3||Christoph||
+||413||Projekthefter||05+10.07||8||Christoph||
 ||480||Poster||09.07||1||Christoph||
 
 Für Poster und Handbuch werden Freitag nach dem Beratergespräch noch die konkreten Aufträge verteilt.
