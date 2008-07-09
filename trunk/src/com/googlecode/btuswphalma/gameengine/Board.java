@@ -41,8 +41,12 @@ public class Board implements Serializable {
      * @return byte[][] (Spielbrett)
      */
     public byte[][] getBoardArryClone() {
-	// FIXME hinten an das boardArray gehoert ein .clone()
-	byte[][] clone = this.boardArray.clone();
+	
+	byte[][] clone = new byte[boardArray.length][];
+	for (int i = 0; i < boardArray.length; i++) {
+	    clone[i] = boardArray[i].clone();
+	    
+	}
 	return clone;
     }
 
