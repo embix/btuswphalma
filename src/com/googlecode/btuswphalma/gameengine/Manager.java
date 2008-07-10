@@ -34,47 +34,57 @@ public class Manager implements IManager, Runnable {
      */
     // TODO welche adresse aus MessageAddresses
     private static final int SERVER_ID = 1;
+    
     /**
      * Diese Adresse signalisiert, dass eine Message an alle gehen soll
      */
     // TODO woanders speichern
     private static final int BROADCAST_ID = MessageAddresses.BROADCAST_ADDRESS;
+    
     /**
      * Spiel mit Regelpruefung, ohne Veto
      */
     private static final int WITHOUT_VETO = 0;
+    
     /**
      * Spiel mit einfacher Zugpruefung, mit Veto
      */
     @SuppressWarnings("unused")
     private static final int WITH_VETO = 1;
+    
     /**
      * Die Anzahl der Millisekunden, die der Spielzug angezeigt werden soll
      */
     public static final long DISPLAY_TIME = 100;// FIXME fuer den Test
+    
     /**
      * Die Queue, in die von aussen Nachrichten geschrieben werden. Diese
      * Nachrichten werden dann von dem laufenden thread verarbeitet
      */
     private ConcurrentLinkedQueue<IMessage> msgQueue;
+    
     /**
      * Der Dispatcher dient dem Manager dazu Nachrichten an die Aussenwelt
      * schicken zu koennen
      */
     private IDispatcher dispatcher;
+    
     /**
      * Das eigentliche Spiel. Hier ist das Spielbrett und die Spielerliste
      * gespeichert.
      */
     private Game game;
+    
     /**
      * Die Gespielte Variante des Spiels.
      */
     private int gameVariant;
+    
     /**
      * Wird im Hotseat-Modus gespielt
      */
     private boolean hotSeat;
+    
     /**
      * Wurde das Spiel angehalten/abgebrochen
      */
@@ -95,7 +105,7 @@ public class Manager implements IManager, Runnable {
 	try {
 	    game = new Game(numberOfPlayers);
 	} catch (GameException e) {
-	    System.err.println("Couldn't create onject of type Game");
+	    System.err.println("Couldn't create object of type Game");
 	    e.printStackTrace();
 	    System.exit(1);
 	}
@@ -123,7 +133,7 @@ public class Manager implements IManager, Runnable {
 	try {
 	    game = new Game(numberOfPlayers);
 	} catch (GameException e) {
-	    System.err.println("Couldn't create onject of type Game");
+	    System.err.println("Couldn't create object of type Game");
 	    e.printStackTrace();
 	    System.exit(1);
 	}
