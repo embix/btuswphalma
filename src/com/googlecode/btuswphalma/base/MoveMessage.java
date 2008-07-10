@@ -18,6 +18,10 @@ public class MoveMessage extends AbstractMessage {
      * generierte UID
      */
     private static final long serialVersionUID = 8296735754599422482L;
+    
+    /**
+     * Der zu uebermittelnde Zug
+     */
     private HalmaMove move;
     
     /**
@@ -48,6 +52,16 @@ public class MoveMessage extends AbstractMessage {
      */
     public HalmaMove getMove() {
 	return move;
+    }
+
+    /**
+     * Quelle, Ziel und Zug werden Ausgegeben
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+	
+	return "from: " + this.getSource() + "/to: " + this.getDestination()+"/move: "+this.getMove();
     }
 
 }
