@@ -24,12 +24,11 @@ public class LoginMessage extends AbstractMessage {
 
     /**
      * Die Login Message wird erzeugt
-     * 
-     * @param name gewuenschter Name
      * @param source die eigene ID
      * @param destination die Ziel ID
+     * @param name gewuenschter Name
      */
-    public LoginMessage(String name, int source, int destination) {
+    public LoginMessage(int source, int destination, String name) {
 	super(source, destination);
 	this.name = name;
     }
