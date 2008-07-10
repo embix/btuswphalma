@@ -71,13 +71,35 @@ public class BoardPosition implements Serializable {
     public void setYPos(byte y) {
 	this.yPos = y;
     }
-    
+
     /**
      * Eine BoardPosition wird als 2-Tupel in der Form [xpos, ypos] ausgegeben
-     * @return ein String der die BoardPosition darstellt 
+     * 
+     * @return ein String der die BoardPosition darstellt
      */
     @Override
     public String toString() {
 	return "[" + xPos + ", " + yPos + "]";
+    }
+
+    /**
+     * Zwei Positionen sind gleich, wenn ihre x- und y-Werte gleich sind
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+	//this und obj sind dasselbe Objekt
+	if (this == obj) {
+	    return true;
+	}
+	//obj ist nicht null und ine BoardPosition
+	if (obj instanceof BoardPosition) {
+	    BoardPosition newPos = (BoardPosition) obj;
+	    return this.xPos == newPos.getXPos()
+		    && this.yPos == newPos.getYPos();
+	}
+	//sicher ungleich
+	return false;
     }
 }
