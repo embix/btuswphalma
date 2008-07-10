@@ -57,11 +57,11 @@ public class NetComTest {
 	System.out.println("ZZZ"+i++);
 	client1 = new ClientNetCom(address,PORT);
 	System.out.println("ZZZ"+i++);
-	client1.sendMessage(new LoginMessage("Client1",0,1));
+	client1.sendMessage(new LoginMessage(0,1,"Client1"));
 	System.out.println("ZZZ"+i++);
 	client2 = new ClientNetCom(address,PORT);
 	System.out.println("ZZZ"+i++);
-	client2.sendMessage(new LoginMessage("Client2",0,1));
+	client2.sendMessage(new LoginMessage(0,1,"Client2"));
 	System.out.println("ZZZ"+i++);
 	ArrayList<BoardPosition> poses= new ArrayList<BoardPosition>();
 	poses.add(new BoardPosition((byte)1,(byte)2));

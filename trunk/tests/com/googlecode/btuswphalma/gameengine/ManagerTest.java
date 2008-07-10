@@ -53,8 +53,8 @@ public class ManagerTest implements IDispatcher {
 	manager = new Manager(2, this);
 	Thread managerThread = new Thread(manager);
 	managerThread.start();
-	manager.acceptMessage(new LoginMessage(player1, 1, -1));
-	manager.acceptMessage(new LoginMessage(player2, 2, -1));
+	manager.acceptMessage(new LoginMessage(1, -1, player1));
+	manager.acceptMessage(new LoginMessage(2, -1, player2));
 
 	Thread.sleep(SLEEP_TIME);
 	assertFalse(answers.isEmpty());
@@ -91,8 +91,8 @@ public class ManagerTest implements IDispatcher {
 	manager = new Manager(2, this);
 	Thread managerThread = new Thread(manager);
 	managerThread.start();
-	manager.acceptMessage(new LoginMessage(player1, 1, -1));
-	manager.acceptMessage(new LoginMessage(player2, 2, -1));
+	manager.acceptMessage(new LoginMessage(1, -1, player1));
+	manager.acceptMessage(new LoginMessage(2, -1, player2));
 
 	Thread.sleep(SLEEP_TIME);
 	assertFalse(answers.isEmpty());

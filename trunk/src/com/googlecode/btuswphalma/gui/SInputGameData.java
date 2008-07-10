@@ -65,7 +65,7 @@ public class SInputGameData implements IRunnableGuiState {
 	    controller.getEngine().createManager(1, false, false);
 	    controller.getEngine().createNetwork(cData.ip, cData.port, 0, false);
 	    
-	    controller.getMessageHandler().sendMessage(new LoginMessage(cData.playerName,1,-1));
+	    controller.getMessageHandler().sendMessage(new LoginMessage(1,-1,cData.playerName));
 	}
     }
     
@@ -77,7 +77,7 @@ public class SInputGameData implements IRunnableGuiState {
 	    MasterGameData mData = dialog.getMasterGameData();
 	    controller.getEngine().createManager(mData.playerCount, true, mData.gmod == GameMode.HOT_SEAT);
 	    
-	    controller.getMessageHandler().sendMessage(new LoginMessage(mData.playerName,1,-1));
+	    controller.getMessageHandler().sendMessage(new LoginMessage(1,-1,mData.playerName));
 	    
 	    if(mData.gmod == GameMode.HOT_SEAT ) {
 		// Hotseat Modus -> Infos für die anderen Spieler abholen
@@ -86,7 +86,7 @@ public class SInputGameData implements IRunnableGuiState {
 			
 			if(mClientDlg.ok()) {
 			    ClientGameData mClientData = mClientDlg.getClientGameData();
-			    controller.getMessageHandler().sendMessage(new LoginMessage(mClientData.playerName,i+1,-1));
+			    controller.getMessageHandler().sendMessage(new LoginMessage(i+1,-1,mClientData.playerName));
 			}
 		    }
 	    } else {
