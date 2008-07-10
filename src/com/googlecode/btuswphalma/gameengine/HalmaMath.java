@@ -99,4 +99,28 @@ public class HalmaMath {
 	|| ((Math.abs(xs - xe) == 2) && (Math.abs(ys - ye) == 1)));
 	// ein Sprung mit vertikaler Bewegung
     }
+    
+    /**
+     * Es wird die Position zurueckgegeben, die uebersprungen wird, wenn
+     * startPos und endPos ein Teilsprung sind
+     * 
+     * @param startPos
+     * @param endPos
+     * @return die BoardPosition, die auf das übersprungene Feld zeigt
+     */
+    public static BoardPosition getOverleaptPos(BoardPosition startPos,
+	    BoardPosition endPos) {
+
+	// Ich vertraue darauf, nur startPos und endPos zu kriegen, die die
+	// richtige Distanz haben
+	byte xs = startPos.getXPos();
+	byte ys = startPos.getYPos();
+	byte xe = endPos.getXPos();
+	byte ye = endPos.getYPos();
+
+	byte xol = (byte) ((xs + xe) / 2);
+	byte yol = (byte) (((ys + ye) / 2) + ((xs == xe) ? 0 : (xs % 2)));
+
+	return new BoardPosition(xol, yol);
+    }
 }
