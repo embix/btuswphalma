@@ -180,6 +180,7 @@ public class KIController extends Thread {
 	    break;
 	case MT_MOVEERROR:
 	    // TODO Darf nicht passieren, beenden?
+	    running = false;
 	    break;
 	case MT_PLAYERACTIVATE:
 	    makeMove();
