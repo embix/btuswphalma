@@ -10,7 +10,10 @@ import com.googlecode.btuswphalma.gameengine.PlayerList;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
 import com.googlecode.btuswphalma.gameengine.TerminateMessage;
 import com.googlecode.btuswphalma.kiplayer.BestSingelStepKIAlgorithm;
+import com.googlecode.btuswphalma.kiplayer.IKIAlgorithm;
 import com.googlecode.btuswphalma.kiplayer.KIController;
+import com.googlecode.btuswphalma.kiplayer.RandomKIAlgorithm;
+import com.googlecode.btuswphalma.kiplayer.RandomPlusKIAlgorithm;
 
 /**
  * Controllerzustand nach Programmstart, zu diesem Zeitpunkt
@@ -75,7 +78,8 @@ public class SInputGameData implements IRunnableGuiState {
     // Zeigt den Dialog für die Masterspielerdaten
     private void promptMasterGameData() {
 	DialogMasterGameData dialog = new DialogMasterGameData(controller.getPresentation());
-	
+	IKIAlgorithm kiAlgo;
+
 	if(dialog.ok()) {
 	    MasterGameData mData = dialog.getMasterGameData();
 	    controller.getEngine().createManager(mData.playerCount, true, mData.gmod == GameMode.HOT_SEAT);
@@ -102,9 +106,18 @@ public class SInputGameData implements IRunnableGuiState {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		}
+		
 		for (int i = 0; i < mData.aiCount;i++) {
-		    //FIXME unterschiedliche KI benutzen
-		    new KIController(new BestSingelStepKIAlgorithm(),"localhost",mData.port,"KI Spieler "+(i+1));
+		    if (mData.kiLevel < 1) {
+			kiAlgo = new RandomKIAlgorithm();
+		    } else if (mData.kiLevel == 1) {
+			kiAlgo = new RandomPlusKIAlgorithm();
+		    } else if (mData.kiLevel == 2) {
+			kiAlgo = new BestSingelStepKIAlgorithm();
+		    } else {
+			kiAlgo = new BestSingelStepKIAlgorithm();
+		    }
+		    new KIController(kiAlgo,"localhost",mData.port,"KI Spieler "+(i+1));
 		}
 	    }
 	}

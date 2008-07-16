@@ -55,7 +55,7 @@ public class Manager implements IManager, Runnable {
     /**
      * Die Anzahl der Millisekunden, die der Spielzug angezeigt werden soll
      */
-    public static final long DISPLAY_TIME = 100;// FIXME fuer den Test
+    public static final long DISPLAY_TIME = 1000;// FIXME fuer den Test
     
     /**
      * Die Queue, in die von aussen Nachrichten geschrieben werden. Diese

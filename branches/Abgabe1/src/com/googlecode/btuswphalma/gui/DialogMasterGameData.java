@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,6 +36,7 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
     private JRadioButton radioButtonNetplay;
     private JTextField fieldAiPlayerCount;
     private JTextField fieldPort;
+    private JComboBox levelCombo;
     
     private String defaultPort = "32334";	// TODO: Sollte vlt. irgendwo zentral als Konstante
 						// definiert sein
@@ -94,6 +96,18 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	c.gridwidth = GridBagConstraints.REMAINDER;
 	gridbag.setConstraints(fieldAiPlayerCount, c);
 	pane.add(fieldAiPlayerCount);
+	
+	//Spielstaerke auswaehlen
+	label = new JLabel("KI-Staerke");
+	c.gridwidth = 1;
+	gridbag.setConstraints(label, c);
+	pane.add(label);
+	
+	Integer[] levels = {0,1,2};
+	levelCombo = new JComboBox(levels);
+	c.gridwidth = GridBagConstraints.REMAINDER;
+	gridbag.setConstraints(levelCombo, c);
+	pane.add(levelCombo);
 	
 	// Bereich fuer die Portnummereingabe
 	label = new JLabel("Netzwerk Port");
@@ -160,9 +174,14 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	masterGameData.playerName = getPlayerName();
 	masterGameData.playerCount = getPlayerCount();
 	masterGameData.aiCount = getAiPlayerCount();
+	masterGameData.kiLevel = getKiLevel();
 	masterGameData.port = getPort();
 	masterGameData.gmod = getGameMode();
 	return masterGameData;
+    }
+
+    private int getKiLevel() {
+	return (Integer) levelCombo.getSelectedItem();
     }
 
     /**
