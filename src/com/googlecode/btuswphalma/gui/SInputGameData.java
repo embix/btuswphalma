@@ -9,6 +9,8 @@ import com.googlecode.btuswphalma.gameengine.HalmaMove;
 import com.googlecode.btuswphalma.gameengine.PlayerList;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
 import com.googlecode.btuswphalma.gameengine.TerminateMessage;
+import com.googlecode.btuswphalma.kiplayer.BestSingelStepKIAlgorithm;
+import com.googlecode.btuswphalma.kiplayer.KIController;
 
 /**
  * Controllerzustand nach Programmstart, zu diesem Zeitpunkt
@@ -93,6 +95,17 @@ public class SInputGameData implements IRunnableGuiState {
 	    } else {
 		// playerCount kann so uebergeben werden da ServerNetCom immer Anzahl Clients plus 1 haben will.
 		controller.getEngine().createNetwork(null, mData.port, mData.playerCount, true);
+		try {
+		    System.err.println("AI?");
+		    Thread.sleep(500);
+		} catch (InterruptedException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+		for (int i = 0; i < mData.aiCount;i++) {
+		    //FIXME unterschiedliche KI benutzen
+		    new KIController(new BestSingelStepKIAlgorithm(),"localhost",mData.port,"KI Spieler "+(i+1));
+		}
 	    }
 	}
     }

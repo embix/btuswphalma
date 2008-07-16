@@ -2,6 +2,9 @@ package com.googlecode.btuswphalma.gameengine;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Beinhaltet die Liste mit den Spielerdaten, 1-6 Eintraege
@@ -88,6 +91,30 @@ public class PlayerList implements Serializable {
      */
     public void addPlayer(Player play) {
 	this.players.add(play);
+	sortPlayers();
+    }
+
+    private void sortPlayers() {
+	// TODO Auto-generated method stub
+	Comparator<Player> playerIDComperator = new Comparator<Player>() {
+
+	    public int compare(Player player1, Player player2) {
+		int idPlayer1 = player1.getID();
+		int idPlayer2 = player2.getID();
+		/*
+		 * Kein einfaches Abziehen der Werte, da Ueberlauf (allgemein,
+		 * hier eher nicht) moeglich
+		 */
+		if (idPlayer1 < idPlayer2) {
+		    return -1;
+		} else if (idPlayer1 == idPlayer2) {
+		    return 0;
+		} else {
+		    return 1;
+		}
+	    }
+	};
+	Collections.sort(players, playerIDComperator);
     }
 
     /**
