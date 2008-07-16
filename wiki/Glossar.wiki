@@ -6,7 +6,7 @@ Folgende Begriffe werden synonym verwendet:
 ==Programm==
   * Spiel
   * Produkt
-Hierbei handelt es sich um das ausführbare Program, in dem die geforterte Funktionalität eingebaut ist.
+Hierbei handelt es sich um das ausführbare Program, in dem die geforderte Funktionalität eingebaut ist.
 
 ==Session==
 Eine Session ist eine Hintereinanderreihung von Spielrunden, vom ersten Zug des Spieler 1 bis der vorletzte teilnehmende Spieler zu den Beobachtern wechselt.
