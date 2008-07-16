@@ -191,8 +191,16 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	    // Anzahl KI Spieler pruefen
 	    // TODO: (GUI)(TP4) 0 bis 2 KI Spieler erlauben
 	    // pruefen, ob mehr KI als Gesamtspieler
-	    if (getAiPlayerCount() != 0) {
+	    if (getAiPlayerCount() < 0) {
 		fieldAiPlayerCount.setText("0");
+		fieldAiPlayerCount.requestFocus();
+		return;
+	    } else if (getAiPlayerCount() > 2) {
+		fieldAiPlayerCount.setText("2");
+		fieldAiPlayerCount.requestFocus();
+		return;
+	    } else if (getAiPlayerCount() == 2 && getPlayerCount() == 2) {
+		fieldAiPlayerCount.setText("1");
 		fieldAiPlayerCount.requestFocus();
 		return;
 	    }
