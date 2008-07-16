@@ -20,9 +20,7 @@ import com.googlecode.btuswphalma.gameengine.PlayerList;
 public class BestSingelStepKIAlgorithm implements IKIAlgorithm {
 
     /**
-     * Fuer einen zufaellig gewaehlten, noch nicht betrachteter Stein des
-     * Spielers werden alle moeglichen Zuege berechnet und falls es Zuege gibt,
-     * einer zufaellig ausgewaehlt. Falls nicht, wieder von vorne.
+     * Fuer alle Steine des Spielers werden alle Zuege berechnet und ein bester Zug ausgewaehlt. 
      * 
      * @see com.googlecode.btuswphalma.kiplayer.IKIAlgorithm#computeMove(com.googlecode.btuswphalma.gameengine.Board,
      *      com.googlecode.btuswphalma.gameengine.PlayerList, int)
