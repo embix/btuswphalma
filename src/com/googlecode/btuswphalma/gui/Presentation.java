@@ -16,6 +16,8 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.border.BevelBorder;
 
+import com.googlecode.btuswphalma.gameengine.TerminateMessage;
+
 /**
  * Klasse des Containers fuer die gesamte Darstellung, alle graphischen
  * Komponenten werden direkt oder inderekt mit der Presenation-Instanz
@@ -208,6 +210,13 @@ public class Presentation extends JFrame {
 		// TODO: (GUI) Menuehandling sauberer umsetzen
 		System.out.println("Menue: " + cmd);// debug Ausgabe
 		if(cmd.equals("ende")){
+		    controller.mh.sendMessage(new TerminateMessage(1,-1));
+		    try {
+			Thread.sleep(1000);
+		    } catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		    }
 		    System.exit(0);
 		}
 		if(cmd.equals("neu")){

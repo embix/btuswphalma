@@ -8,6 +8,7 @@ import com.googlecode.btuswphalma.gameengine.Board;
 import com.googlecode.btuswphalma.gameengine.HalmaMove;
 import com.googlecode.btuswphalma.gameengine.PlayerList;
 import com.googlecode.btuswphalma.gameengine.ScoreList;
+import com.googlecode.btuswphalma.gameengine.TerminateMessage;
 
 /**
  * Controllerzustand nach Programmstart, zu diesem Zeitpunkt
@@ -100,6 +101,13 @@ public class SInputGameData implements IRunnableGuiState {
      * Beendet das Spiel sofort durch Beenden der JVM.
      */
     void quitGame(){
+	controller.mh.sendMessage(new TerminateMessage(1,-1));
+	try {
+	    Thread.sleep(1000);
+	} catch (InterruptedException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
+	}
 	System.exit(0);
     }
     

@@ -32,7 +32,7 @@ public class Manager implements IManager, Runnable {
     /**
      * Die Adresse des Servers. Diese ist immer 1
      */
-    // TODO welche adresse aus MessageAddresses
+    // TODO welche Adresse aus MessageAddresses
     private static final int SERVER_ID = 1;
     
     /**
@@ -239,6 +239,8 @@ public class Manager implements IManager, Runnable {
 		playing = performMove();
 	    } else if (msg.getType() == MessageType.MT_SAVE) {
 		// TODO Hier Speichern
+	    } else if (msg.getType() == MessageType.MT_TERMINATE) {
+		playing = false;
 	    } else {
 		stopGameOnError();
 	    }
