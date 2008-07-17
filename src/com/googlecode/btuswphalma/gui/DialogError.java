@@ -16,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
+ * modaler Dialog zur Ausgabe von Spielfehlermeldungen
+ * 
  * @author embix
  * 
  */
