@@ -2,7 +2,6 @@ package com.googlecode.btuswphalma.gameengine;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -95,7 +94,6 @@ public class PlayerList implements Serializable {
     }
 
     private void sortPlayers() {
-	// TODO Auto-generated method stub
 	Comparator<Player> playerIDComperator = new Comparator<Player>() {
 
 	    public int compare(Player player1, Player player2) {
