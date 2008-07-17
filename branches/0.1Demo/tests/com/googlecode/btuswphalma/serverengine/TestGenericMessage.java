@@ -10,6 +10,7 @@ import com.googlecode.btuswphalma.base.*;
  * 
  * @author ASM
  */
+@SuppressWarnings("serial")
 public class TestGenericMessage implements IMessage {
 
     private MessageType type;
