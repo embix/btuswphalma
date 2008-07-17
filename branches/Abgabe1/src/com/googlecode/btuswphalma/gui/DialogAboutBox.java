@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 /**
- * Modaler Dialog zur Eingabe der Spielerdaten der Clients
+ * Modaler Dialog zur Ausgabe der Programminformationen
  * 
  * @author embix
  */
