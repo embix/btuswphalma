@@ -99,6 +99,7 @@ public class SInputGameData implements IRunnableGuiState {
 	    } else {
 		// playerCount kann so uebergeben werden da ServerNetCom immer Anzahl Clients plus 1 haben will.
 		controller.getEngine().createNetwork(null, mData.port, mData.playerCount, true);
+		String name;
 		try {
 		    System.err.println("AI?");
 		    Thread.sleep(500);
@@ -109,15 +110,19 @@ public class SInputGameData implements IRunnableGuiState {
 		
 		for (int i = 0; i < mData.aiCount;i++) {
 		    if (mData.kiLevel < 1) {
+			name = "einfache KI";
 			kiAlgo = new RandomKIAlgorithm();
 		    } else if (mData.kiLevel == 1) {
 			kiAlgo = new RandomPlusKIAlgorithm();
+			name = "mittlere KI";
 		    } else if (mData.kiLevel == 2) {
 			kiAlgo = new BestSingelStepKIAlgorithm();
+			name = "schwere KI";
 		    } else {
 			kiAlgo = new BestSingelStepKIAlgorithm();
+			name = "schwerste KI";
 		    }
-		    new KIController(kiAlgo,"localhost",mData.port,"KI Spieler "+(i+1));
+		    new KIController(kiAlgo,"localhost",mData.port,name + ' ' + (i+1));
 		}
 	    }
 	}
