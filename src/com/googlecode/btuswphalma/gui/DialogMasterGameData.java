@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -36,8 +37,9 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
     private JRadioButton radioButtonNetplay;
     private JTextField fieldAiPlayerCount;
     private JTextField fieldPort;
-    private JComboBox levelCombo;
-    
+    private JComboBox levelCombo1;
+    private JComboBox levelCombo2;
+    private JPanel levelPane;
     private String defaultPort = "32334";	// TODO: Sollte vlt. irgendwo zentral als Konstante
 						// definiert sein
 
@@ -98,16 +100,20 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	pane.add(fieldAiPlayerCount);
 	
 	//Spielstaerke auswaehlen
-	label = new JLabel("KI-Staerke");
+	label = new JLabel("KI-Staerken");
 	c.gridwidth = 1;
 	gridbag.setConstraints(label, c);
 	pane.add(label);
 	
 	Integer[] levels = {0,1,2};
-	levelCombo = new JComboBox(levels);
+	levelPane = new JPanel();
+	levelCombo1 = new JComboBox(levels);
+	levelCombo2 = new JComboBox(levels);
+	levelPane.add(levelCombo1);
+	levelPane.add(levelCombo2);
 	c.gridwidth = GridBagConstraints.REMAINDER;
-	gridbag.setConstraints(levelCombo, c);
-	pane.add(levelCombo);
+	gridbag.setConstraints(levelPane, c);
+	pane.add(levelPane);
 	
 	// Bereich fuer die Portnummereingabe
 	label = new JLabel("Netzwerk Port");
@@ -174,14 +180,25 @@ public class DialogMasterGameData extends JDialog implements ActionListener {
 	masterGameData.playerName = getPlayerName();
 	masterGameData.playerCount = getPlayerCount();
 	masterGameData.aiCount = getAiPlayerCount();
-	masterGameData.kiLevel = getKiLevel();
+	masterGameData.aiLevel1 = getAiLevel1();
+	masterGameData.aiLevel2 = getAiLevel2();
 	masterGameData.port = getPort();
 	masterGameData.gmod = getGameMode();
 	return masterGameData;
     }
 
-    private int getKiLevel() {
-	return (Integer) levelCombo.getSelectedItem();
+    /**
+     * @return Die Spielstaerke KI 1
+     */
+    private int getAiLevel1() {
+	return (Integer) levelCombo1.getSelectedItem();
+    }
+    
+    /**
+     * @return Die Spielstaerke KI 2
+     */
+    private int getAiLevel2() {
+	return (Integer) levelCombo2.getSelectedItem();
     }
 
     /**
