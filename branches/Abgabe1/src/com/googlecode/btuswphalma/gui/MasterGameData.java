@@ -34,9 +34,14 @@ public class MasterGameData {
     public int aiCount = 0; // fuer TP2 und TP3 keine AI
     
     /**
-     * Die Spielstaerke der KI
+     * Die Spielstaerke der KI 1
      */
-    public int kiLevel = 0;
+    public int aiLevel1 = 0;
+    
+    /**
+     * Die Spielstaerke der KI 2
+     */
+    public int aiLevel2 = 0;
     
     /**
      * Port an dem der Server lauschen soll
