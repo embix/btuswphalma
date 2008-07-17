@@ -43,7 +43,7 @@ public class DialogAboutBox extends JDialog implements ActionListener{
 
 		// den auszugebenden Text einbetten
 		JTextArea aboutText = new JTextArea();
-		aboutText.setFont( new Font(Font.SANS_SERIF, Font.BOLD, 14) );
+		aboutText.setFont( new Font("Helvetica", Font.BOLD, 14) );
 		// der eigendliche Text
 		aboutText.append("BTU SWP Halma\n");
 		aboutText.append("\n");
