@@ -4,6 +4,7 @@
 package com.googlecode.btuswphalma.gui;
 
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -13,7 +14,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 /**
  * Modaler Dialog zur Eingabe der Spielerdaten der Clients
@@ -41,10 +42,28 @@ public class DialogAboutBox extends JDialog implements ActionListener{
 		c.insets = new Insets(5, 5, 5, 5);
 
 		// den auszugebenden Text einbetten
-		JLabel label = new JLabel("BlaBla");
+		JTextArea aboutText = new JTextArea();
+		aboutText.setFont( new Font(Font.SANS_SERIF, Font.BOLD, 14) );
+		// der eigendliche Text
+		aboutText.append("BTU SWP Halma\n");
+		aboutText.append("\n");
+		aboutText.append("Version 1.0\n");
+		aboutText.append("\n");
+		aboutText.append("(c) 2008\n");
+		aboutText.append("\n");
+		aboutText.append("Sebastian Becker,\n");
+		aboutText.append("Michel Bretschneider,\n");
+		aboutText.append("Christian Hilschenz,\n");
+		aboutText.append("Christoph Kerth\n");
+		aboutText.append("\n");
+		aboutText.append("\n");
+		aboutText.append("http://code.google.com/p/btuswphalma/\n");
+		aboutText.append("\n");
+		aboutText.setEditable(false);
+		
 		c.gridwidth = GridBagConstraints.REMAINDER;
-		gridbag.setConstraints(label, c);
-		pane.add(label);
+		gridbag.setConstraints(aboutText, c);
+		pane.add(aboutText);
 
 		/* allgemeiner Standard fuer Dialoge */
 		// OK
