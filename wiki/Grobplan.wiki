@@ -1,5 +1,5 @@
 ﻿#summary der Grobplan für die Teilprojekte
-#labels Featured,Phase-Requirements
+#labels Phase-Requirements
 
 =Der Grobplan der Teilprojekte=
 
