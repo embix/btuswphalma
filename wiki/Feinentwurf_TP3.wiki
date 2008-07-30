@@ -1,5 +1,5 @@
 ﻿#summary der skizzierte Feinentwurf für TP 3
-#labels Featured,Phase-Requirements
+#labels Phase-Requirements
 
 =Feinentwurf TP3=
 skizziert
