@@ -1,5 +1,5 @@
-#summary Pflichtenheft (noch nicht vom Auftraggeber abgesegnet)
-#labels Featured,Phase-Requirements
+#summary Pflichtenheft
+#labels Phase-Requirements
 
 =Zielbestimmung=
 ==Mußkriterien==
