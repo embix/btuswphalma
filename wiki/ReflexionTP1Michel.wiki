@@ -1,4 +1,5 @@
 #summary Reflexionsbericht zum 1.Teilprojekt (Michel)
+#labels Deprecated
 
 ==Rolle als Anforderungsmanager==
 In der Rolle des Anforderungsmanagers war es meine Aufgabe, Mehrdeutigkeiten und Widersprüche in der Definition der Anforderungen zu finden und diese dann zu einem Konsens zwischen Team und Auftraggeber zu führen. Alle bekannten Unklarheiten wurden beseitigt, unter anderem durch Anlegen eines Glossars in welchem die wesentlichen Begrifflichkeiten das Projekt betreffend aufgeführt sind. Sofern im Entwicklungsprozess neue Definitionen für abstrakte Begriffe gefunden wurden, sind diese näher erläutert in das Glossar eingefügt worden.
