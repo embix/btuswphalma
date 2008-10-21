@@ -1,4 +1,5 @@
 ﻿#summary Der Wochenplan für die Woche vom 27.06.2008 bis 03.07.2008
+#labels Deprecated
 
 = Verfügbare Zeit =
 
